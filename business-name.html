@@ -79,24 +79,20 @@ margin-top:30px;
 
 <script>
 
-function generateName(){
+function copyName(text){
+
+navigator.clipboard.writeText(text);
+
+alert("Copied: " + text);
+
+}
+
+function generate(){
 
 const keyword = document.getElementById("keyword").value;
 
-if(keyword==""){
-alert("Please enter a keyword");
-return;
-}
-
-const prefix = [
-"Urban","Smart","Prime","Bright","Next","Blue","Global","Peak",
-"Golden","Rapid","Nova","Vision","Future","Green","Power"
-];
-
-const suffix = [
-"Lab","Hub","Works","Forge","Studio","Group","Craft","Nest",
-"Solutions","Factory","Space","Network","World","Systems"
-];
+const prefix = ["Urban","Smart","Prime","Next","Bright","Nova"];
+const suffix = ["Lab","Hub","Works","Forge","Studio","Group"];
 
 let output="";
 
@@ -107,7 +103,7 @@ const s = suffix[Math.floor(Math.random()*suffix.length)];
 
 const name = p + keyword + s;
 
-output += "<div class='name'>"+name+"</div>";
+output += "<p>"+name+" <button onclick=\"copyName('"+name+"')\">Copy</button></p>";
 
 }
 
