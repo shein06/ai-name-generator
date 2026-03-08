@@ -1,32 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Brand Name Generator</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+text-align:center;
+padding:40px;
+}
+
+h1{
+font-size:28px;
+}
+
+input{
+padding:12px;
+width:250px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+padding:12px 20px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+.result{
+margin-top:30px;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.name{
+padding:8px;
+font-size:18px;
+}
+
+a{
+display:block;
+margin-top:30px;
+}
+
+</style>
+
 </head>
 
-<body style="font-family:Arial;text-align:center;padding:40px;">
+<body>
 
 <h1>Brand Name Generator</h1>
 
-<input type="text" id="keyword" placeholder="Enter brand keyword">
+<p>Enter your brand keyword</p>
+
+<input type="text" id="keyword" placeholder="example: fashion">
 
 <br><br>
 
-<button onclick="generate()">Generate Brand</button>
+<button onclick="generateName()">Generate Name</button>
 
-<h2>Results</h2>
+<div class="result" id="result"></div>
 
-<div id="result"></div>
+<a href="index.html">← Back to Home</a>
 
 <script>
 
-function generate(){
+function generateName(){
 
 const keyword = document.getElementById("keyword").value;
 
-const prefix = ["Neo","Lux","Viva","Aura","Nova","Zen","Epic","Alpha"];
-const suffix = ["ify","ly","ora","ium","ex","ify","io","ster"];
+if(keyword==""){
+alert("Please enter a keyword");
+return;
+}
+
+const prefix = [
+"Neo","Lux","Viva","Aura","Nova","Zen","Epic","Alpha",
+"Hyper","Ultra","Meta","Prime","Glow","Core"
+];
+
+const suffix = [
+"ify","ly","ora","ium","ex","io","ster","lab",
+"works","zone","line","verse"
+];
 
 let output="";
 
@@ -35,7 +105,9 @@ for(let i=0;i<10;i++){
 const p = prefix[Math.floor(Math.random()*prefix.length)];
 const s = suffix[Math.floor(Math.random()*suffix.length)];
 
-output += "<p>"+p+keyword+s+"</p>";
+const name = p + keyword + s;
+
+output += "<div class='name'>"+name+"</div>";
 
 }
 
