@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shop Name Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body style="font-family:Arial;text-align:center;padding:40px;">
+
+<h1>Shop Name Generator</h1>
+
+<input type="text" id="keyword" placeholder="Enter shop keyword">
+
+<br><br>
+
+<button onclick="generate()">Generate Shop Name</button>
+
+<h2>Results</h2>
+
+<div id="result"></div>
+
+<script>
+
+function copyName(text){
+navigator.clipboard.writeText(text);
+alert("Copied: " + text);
+}
+
+function generate(){
+
+const keyword = document.getElementById("keyword").value;
+
+const prefix = ["Urban","Happy","Fresh","Golden","Magic","Dream","Smart","Lucky"];
+const suffix = ["Store","Market","Shop","Corner","Mart","Boutique","Hub","World"];
+
+let output="";
+
+for(let i=0;i<10;i++){
+
+const p = prefix[Math.floor(Math.random()*prefix.length)];
+const s = suffix[Math.floor(Math.random()*suffix.length)];
+
+const name = p + keyword + s;
+
+output += "<p>"+name+" <button onclick=\"copyName('"+name+"')\">Copy</button></p>";
+
+}
+
+document.getElementById("result").innerHTML = output;
+
+}
+
+</script>
+
+</body>
+</html>
