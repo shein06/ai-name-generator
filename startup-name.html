@@ -95,4 +95,27 @@ const prefix = [
 
 const suffix = [
 "Tech","Labs","AI","Works","Systems","Soft",
-"Solutions","
+"Solutions","Hub","Network","Flow","Base"
+];
+
+let output="";
+
+for(let i=0;i<10;i++){
+
+const p = prefix[Math.floor(Math.random()*prefix.length)];
+const s = suffix[Math.floor(Math.random()*suffix.length)];
+
+const name = p + keyword + s;
+
+output += "<div class='name'>"+name+"</div>";
+
+}
+
+document.getElementById("result").innerHTML = output;
+
+}
+
+</script>
+
+</body>
+</html>
