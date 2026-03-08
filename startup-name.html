@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Startup Name Generator</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+
 body{
 font-family:Arial;
 background:#f4f4f4;
@@ -53,7 +56,9 @@ a{
 display:block;
 margin-top:30px;
 }
+
 </style>
+
 </head>
 
 <body>
@@ -73,21 +78,22 @@ margin-top:30px;
 <a href="index.html">← Back to Home</a>
 
 <script>
+
 function generateName(){
 
 const keyword = document.getElementById("keyword").value;
 
-if(keyword===""){
+if(keyword==""){
 alert("Please enter a keyword");
 return;
 }
 
-const prefix=[
+const prefix = [
 "Next","Future","Hyper","Neo","Alpha","Quantum",
 "Meta","Nova","Ultra","Smart","Data","Cloud"
 ];
 
-const suffix=[
+const suffix = [
 "Tech","Labs","AI","Works","Systems","Soft",
 "Solutions","Hub","Network","Flow","Base"
 ];
@@ -96,20 +102,23 @@ let output="";
 
 for(let i=0;i<10;i++){
 
-const p=prefix[Math.floor(Math.random()*prefix.length)];
-const s=suffix[Math.floor(Math.random()*suffix.length)];
+const p = prefix[Math.floor(Math.random()*prefix.length)];
+const s = suffix[Math.floor(Math.random()*suffix.length)];
 
-const name=p+keyword+s;
+const name = p + keyword + s;
 
-output+="<div class='name'>"+name+"</div>";
-}
-
-document.getElementById("result").innerHTML=output;
+output += "<div class='name'>"+name+"</div>";
 
 }
+
+document.getElementById("result").innerHTML = output;
+
+}
+
 </script>
 
 </body>
+</html></body>
 </html>}
 
 document.getElementById("result").innerHTML = output;
