@@ -5,150 +5,29 @@
 <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
 
 <title>AI Name Generator</title>
+<meta name="description" content="Generate 1000+ creative and unique names for your {Business/Startup/Brand} instantly with our free AI tool.">
+<meta name="keywords" content="{business} name generator, creative names, AI name ideas, branding tools">
+<meta name="author" content="AI Name Generator">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shein06.github.io/ai-name-generator/">
+<meta property="og:title" content="{Business} Name Generator - Free AI Tool">
+<meta property="og:description" content="Stop brainstorming for hours! Get the perfect name for your {Business} in seconds.">
+<meta property="og:image" content="https://raw.githubusercontent.com/username/ai-name-generator/main/preview-image.png">
 
-<meta name="description" content="Free AI name generator tools for business, brand, startup, YouTube channel, and more.">
-<meta name="keywords" content="name generator, ai name generator, business name generator">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://shein06.github.io/ai-name-generator/">
+<meta property="twitter:title" content="{Business} Name Generator - Free AI Tool">
+<meta property="twitter:description" content="Get creative name ideas for your {Business} instantly.">
+<meta property="twitter:image" content="https://raw.githubusercontent.com/username/ai-name-generator/main/preview-image.png">
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<style>
+<link rel="stylesheet" href="style.css">
 
-body{
-font-family:'Poppins',sans-serif;
-margin:0;
-background:#fafafa;
-text-align:center;
-color:#222;
-}
-
-/* HEADER */
-
-header{
-background:#1a73e8;
-color:white;
-padding:60px 20px;
-}
-
-h1{
-margin:0;
-font-size:36px;
-}
-
-.subtitle{
-margin-top:10px;
-font-size:18px;
-opacity:0.9;
-}
-
-/* SEARCH */
-
-.search{
-margin-top:25px;
-}
-
-.search input{
-padding:12px;
-width:260px;
-border-radius:6px;
-border:none;
-font-size:16px;
-}
-
-/* GRID */
-
-.tools{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:20px;
-padding:40px 20px;
-max-width:1000px;
-margin:auto;
-}
-
-.card{
-background:white;
-padding:25px;
-border-radius:12px;
-box-shadow:0 4px 14px rgba(0,0,0,0.08);
-transition:0.25s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-}
-
-.card a{
-text-decoration:none;
-font-size:18px;
-font-weight:600;
-color:#1a73e8;
-display:block;
-margin-bottom:8px;
-}
-
-.card p{
-font-size:14px;
-color:#666;
-margin:0;
-}
-
-/* HOW IT WORKS */
-
-.how{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-}
-
-.how-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-margin-top:20px;
-}
-
-.how-card{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 4px 12px rgba(0,0,0,0.08);
-}
-
-.how-card span{
-font-size:28px;
-display:block;
-margin-bottom:10px;
-}
-
-/* CONTENT SEO */
-
-.content{
-max-width:800px;
-margin:auto;
-padding:40px 20px;
-text-align:left;
-}
-
-.content h2{
-text-align:center;
-}
-
-/* FOOTER */
-
-footer{
-margin-top:40px;
-padding:30px 20px;
-background:#f1f1f1;
-color:#555;
-}
-
-.social img{
-width:22px;
-margin:0 8px;
-}
-
-</style>
 
 </head>
 
@@ -158,71 +37,136 @@ margin:0 8px;
 
 <h1>AI Name Generator</h1>
 
+<div style="margin-top: 15px;">
+    <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
+        🌙 Dark Mode
+    </button>
+</div>
+
 <div class="subtitle">
 Generate creative names for your business, brand, shop, startup, and social media
 </div>
-
-<div class="search">
-<input type="text" placeholder="Search generator...">
+<div class="search-container">
+    <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="toolSearch" placeholder="Search generator..." onkeyup="searchTools()">
+        <button class="search-btn" onclick="searchTools()">Search</button>
+    </div>
 </div>
+<div class="trending" style="margin-top: 15px; font-size: 13px; opacity: 0.8;">
+    <span style="background: #ff4757; color: white; padding: 2px 8px; border-radius: 10px; font-weight: bold; margin-right: 5px;">HOT</span>
+    Trending: <a href="startup-name.html" style="color: white; text-decoration: underline;">AI Startup</a>, 
+    <a href="gaming-name.html" style="color: white; text-decoration: underline;">Aesthetic Usernames</a>
+</div>
+
+<script src="script.js"></script>
+
+
 
 </header>
 
 <!-- FEATURED GENERATORS -->
+<div class="seo-container">
+    <div class="seo-card">
+        <h2>Why Use Our Free AI Name Generator Tools?</h2>
+        <p>
+            Finding the right business or brand name is the first step toward success. 
+            Our <strong>AI Name Generator</strong> is specifically designed to help entrepreneurs, 
+            creators, and startups discover unique identities instantly.
+        </p>
+    </div>
+
+    <div class="seo-grid">
+        <div class="seo-mini-card">
+            <span>🚀</span>
+            <h4>Fast & Instant</h4>
+            <p>Get hundreds of creative name ideas in seconds without brainstorming for hours.</p>
+        </div>
+        <div class="seo-mini-card">
+            <span>💎</span>
+            <h4>100% Free</h4>
+            <p>All our tools are completely free to use. No subscriptions or hidden fees involved.</p>
+        </div>
+        <div class="seo-mini-card">
+            <span>📈</span>
+            <h4>SEO Friendly</h4>
+            <p>We generate names that are catchy, memorable, and optimized for search engines.</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <span class="card-icon">💼</span>
+    <a href="business-name.html">Business Name Generator</a>
+    <p>Generate creative and unique business name ideas.</p>
+    <span class="cta-btn">Try Now →</span>
+</div>
 
 <div class="tools">
 
 <div class="card">
+<span class="card-icon">💼</span>
 <a href="business-name.html">Business Name Generator</a>
 <p>Generate creative and unique business name ideas.</p>
 </div>
 
 <div class="card">
+<span class="card-icon">✨</span>
 <a href="brand-name.html">Brand Name Generator</a>
 <p>Create memorable brand names instantly.</p>
 </div>
 
 <div class="card">
+<span class="card-icon">🛒</span>
 <a href="shop-name.html">Shop Name Generator</a>
 <p>Find catchy names for your online shop.</p>
 </div>
 
 <div class="card">
+<span class="card-icon">🚀</span>
 <a href="startup-name.html">Startup Name Generator</a>
 <p>Generate innovative startup name ideas.</p>
 </div>
 
 <div class="card">
+<span class="card-icon">🎮</span>
 <a href="gaming-name.html">Gaming Name Generator</a>
 <p>Create cool gamer tags and gaming names.</p>
 </div>
 
 <div class="card">
+<span class="card-icon">👤</span>
 <a href="username-generator.html">Username Generator</a>
 <p>Generate unique usernames for social media.</p>
 </div>
 
 <div class="card">
+<span class="card-icon">📺</span>
 <a href="youtube-name-generator.html">YouTube Channel Name Generator</a>
 <p>Find creative YouTube channel name ideas.</p>
 </div>
 
 <div class="card">
+<span class="card-icon">📧</span>
 <a href="email-name-generator.html">Email Name Generator</a>
 <p>Create professional email name ideas.</p>
 </div>
 
 <div class="card">
+<span class="card-icon">📝</span>
 <a href="blog-name-generator.html">Blog Name Generator</a>
 <p>Generate catchy blog and website names.</p>
 </div>
 
 <div class="card">
+<span class="card-icon">🏢</span>
 <a href="company-name-generator.html">Company Name Generator</a>
 <p>Find unique and professional company names.</p>
 </div>
 
 </div>
+
 
 <!-- HOW IT WORKS -->
 
@@ -271,12 +215,7 @@ With our collection of generators, you can quickly generate name ideas for busin
 <p>
 These tools are completely free and designed to help creators discover memorable names faster without spending hours brainstorming.
 </p>
-<p>
-<a href="about.html">About</a> |
-<a href="contact.html">Contact</a> |
-<a href="privacy-policy.html">Privacy Policy</a> |
-<a href="terms.html">Terms</a>
-</p>
+
 </div>
 
 <footer>
@@ -290,6 +229,12 @@ These tools are completely free and designed to help creators discover memorable
 <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"></a>
 
 <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg"></a>
+<p>
+<a href="about.html">About</a> |
+<a href="contact.html">Contact</a> |
+<a href="privacy-policy.html">Privacy Policy</a> |
+<a href="terms.html">Terms</a>
+</p>
 
 </div>
 
@@ -298,4 +243,4 @@ These tools are completely free and designed to help creators discover memorable
 </footer>
 
 </body>
-</html>
+  </html>
