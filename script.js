@@ -111,3 +111,13 @@ function showLoading(resultId, callback) {
         callback(); // Jalankan fungsi generate aslinya
     }, 800);
 }
+// FUNGSI CEK DOMAIN (Ide Gila No. 1)
+function checkDomain(name) {
+    // Kita bersihkan spasi agar jadi format domain (contoh: "Smart Coffee" jadi "smartcoffee")
+    const domainName = name.toLowerCase().replace(/\s+/g, '');
+    const url = `https://www.namecheap.com/domains/registration/results/?domain=${domainName}.com`;
+    
+    // Buka di tab baru agar user tidak meninggalkan website kita (Penting buat AdSense!)
+    window.open(url, '_blank');
+}
+
