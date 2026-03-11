@@ -120,4 +120,24 @@ function checkDomain(name) {
     // Buka di tab baru agar user tidak meninggalkan website kita (Penting buat AdSense!)
     window.open(url, '_blank');
 }
+// FUNGSI DOWNLOAD KARTU NAMA (Ide Gila No. 2)
+function downloadCard(elementId, fileName) {
+    const element = document.getElementById(elementId);
+    
+    // Beri gaya sementara agar gambar terlihat premium saat di-download
+    element.style.padding = "50px";
+    element.style.background = document.body.classList.contains('dark-mode') ? "#1f1f1f" : "#ffffff";
+    element.style.border = "2px solid #1a73e8";
+
+    html2canvas(element).then(canvas => {
+        const link = document.createElement('a');
+        link.download = fileName + '.png';
+        link.href = canvas.toDataURL();
+        link.click();
+        
+        // Kembalikan gaya ke semula
+        element.style.padding = "25px";
+        element.style.border = "none";
+    });
+}
 
