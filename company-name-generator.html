@@ -116,12 +116,24 @@ var s=suffix[Math.floor(Math.random()*suffix.length)];
 var name=p+keyword+s;
 
         // Template kartu hasil (Tidak perlu diubah)
-        output += `
-            <div class="seo-mini-card reveal active" style="text-align:center;">
-                <h4 style="margin-bottom:15px;">${name}</h4>
-                <button class="cta-btn" onclick="copyName('${name}')">Copy Name</button>
-            </div>
-        `;
+        // GANTI BAGIAN OUTPUT DENGAN INI
+output += `
+    <div class="seo-mini-card reveal active" style="text-align:center;">
+        <h4 style="margin-bottom:15px;">${name}</h4>
+        
+        <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+            
+            <button class="cta-btn" onclick="copyName('${name}')" style="margin:0; flex: 1; min-width: 100px;">
+                📋 Copy
+            </button>
+            
+            <button class="cta-btn" onclick="checkDomain('${name}')" style="margin:0; flex: 1; min-width: 100px; background: #28a745;">
+                🌐 Check .com
+            </button>
+            
+        </div>
+    </div>
+`;
     }
 
     document.getElementById("result").innerHTML = output;
@@ -135,3 +147,4 @@ function copyName(text) {
 
 </body>
 </html>
+ 
