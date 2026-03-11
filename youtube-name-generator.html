@@ -1,99 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<title>YouTube Channel Name Generator</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-
-body{
-font-family:Arial;
-background:#f4f4f4;
-text-align:center;
-padding:40px;
-}
-
-h1{
-font-size:28px;
-}
-
-input{
-padding:12px;
-width:250px;
-border-radius:6px;
-border:1px solid #ccc;
-}
-
-button{
-padding:12px 20px;
-background:#007bff;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
-}
-
-button:hover{
-background:#0056b3;
-}
-
-.result{
-margin-top:30px;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-
-.name{
-padding:8px;
-font-size:18px;
-}
-
-.copy-btn{
-margin-left:10px;
-padding:4px 8px;
-font-size:12px;
-background:#007bff;
-color:white;
-border:none;
-border-radius:4px;
-cursor:pointer;
-}
-
-.copy-btn:hover{
-background:#0056b3;
-}
-
-a{
-display:block;
-margin-top:30px;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Name Generator - Creative Blog Ideas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1>YouTube Channel Name Generator</h1>
+<header>
+    <h1>Youtube Name Generator</h1>
+    <div class="subtitle">Find the perfect name for your new Youtube</div>
+    
+    <div style="margin-top: 15px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
+            🌙 Dark Mode
+        </button>
+    </div>
+</header>
 
-<p>Enter your keyword</p>
+<div class="seo-container">
+    <div class="seo-card reveal">
+        <p>Enter a topic or niche keyword to get creative Youtube name suggestions.</p>
+        <div class="search-container" style="margin-top: 10px;">
+            <div class="search-box">
+                <span class="search-icon">📝</span>
+                <input type="text" id="keyword" placeholder="example: travel, food, tech">
+                <button class="search-btn" onclick="showLoading('result', generateName)">Generate</button>
 
-<input type="text" id="keyword" placeholder="example: gaming">
+            </div>
+        </div>
+    </div>
 
-<br><br>
+    <div id="result" class="seo-grid"></div>
 
-<button onclick="generateName()">Generate Name</button>
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
+    </div>
+</div>
 
-<div class="result" id="result"></div>
+<div class="how reveal">
+    <h2>How to Pick a Great Blog Name</h2>
+    <div class="how-grid">
+        <div class="how-card">
+            <span>📖</span>
+            <strong>Reflect Your Niche</strong>
+            <p>Make sure people know what you're writing about just by reading the name.</p>
+        </div>
+        <div class="how-card">
+            <span>🗣️</span>
+            <strong>Easy to Pronounce</strong>
+            <p>Avoid complicated words. A simple name is easier for readers to share.</p>
+        </div>
+        <div class="how-card">
+            <span>✨</span>
+            <strong>Stay Original</strong>
+            <p>Try to stand out from other bloggers in your specific category.</p>
+        </div>
+    </div>
+</div>
 
-<a href="index.html">← Back to Home</a>
+<div class="content reveal">
+    <h2>Free AI Blog Name Generator for Every Niche</h2>
+    <p>
+        Starting a blog is exciting, but finding the right name can be a challenge. Our <strong>Blog Name Generator</strong> is designed to provide you with instant inspiration. Whether you are starting a lifestyle blog, a technical journal, or a travel diary, our AI tool helps you find names that are catchy and memorable.
+    </p>
+    <p>
+        Simply enter a keyword that describes your blog's focus, and we will generate 10 unique combinations for you.
+    </p>
+</div>
+
+<footer>
+    <div class="social">
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="FB"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="TW"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="IG"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YT"></a>
+        <p>
+            <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms</a>
+        </p>
+    </div>
+    <p>&copy; 2026 AI Name Generator. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
 
 <script>
-
+// --- 5. EDIT LOGIKA GENERATOR DI SINI SAJA ---
 function generateName(){
 
 var keyword=document.getElementById("keyword").value;
@@ -122,22 +115,22 @@ var s=suffix[Math.floor(Math.random()*suffix.length)];
 
 var name=p+keyword+s;
 
-output += "<div class='name'>"+
-name+
-" <button class='copy-btn' onclick=\"copyName('"+name+"')\">Copy</button>"+
-"</div>";
+        // Template kartu hasil (Tidak perlu diubah)
+        output += `
+            <div class="seo-mini-card reveal active" style="text-align:center;">
+                <h4 style="margin-bottom:15px;">${name}</h4>
+                <button class="cta-btn" onclick="copyName('${name}')">Copy Name</button>
+            </div>
+        `;
+    }
 
+    document.getElementById("result").innerHTML = output;
 }
 
-document.getElementById("result").innerHTML=output;
-
+function copyName(text) {
+    navigator.clipboard.writeText(text);
+    alert("Copied: " + text);
 }
-
-function copyName(text){
-navigator.clipboard.writeText(text);
-alert("Copied: " + text);
-}
-
 </script>
 
 </body>
