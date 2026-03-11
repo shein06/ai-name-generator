@@ -1,118 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Startup Name Generator</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Name Generator - Innovative AI Ideas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+<body>
 
-<style>
+<header>
+    <h1>Startup Name Generator</h1>
+    <div class="subtitle">Launch your next big idea with a powerful and innovative name</div>
+    
+    <div style="margin-top: 15px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
+            🌙 Dark Mode
+        </button>
+    </div>
+</header>
 
-body{
-font-family:Arial;
-background:#f4f4f4;
-text-align:center;
-padding:40px;
-}
+<div class="seo-container">
+    <div class="seo-card reveal">
+        <p>Enter a core keyword for your startup to generate modern and tech-ready names.</p>
+        <div class="search-container" style="margin-top: 10px;">
+            <div class="search-box">
+                <span class="search-icon">🚀</span>
+                <input type="text" id="keyword" placeholder="example: finance, cloud, health">
+                <button class="search-btn" onclick="generateStartupName()">Generate</button>
+            </div>
+        </div>
+    </div>
 
-h1{
-font-size:28px;
-}
+    <div id="result" class="seo-grid"></div>
 
-input{
-padding:12px;
-width:250px;
-border-radius:6px;
-border:1px solid #ccc;
-}
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
+    </div>
+</div>
 
-button{
-padding:12px 20px;
-background:#007bff;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
-}
+<div class="how reveal">
+    <h2>How to Name Your Startup</h2>
+    <div class="how-grid">
+        <div class="how-card">
+            <span>⚡</span>
+            <strong>Short & Catchy</strong>
+            <p>Most successful startups have names that are easy to remember and spell.</p>
+        </div>
+        <div class="how-card">
+            <span>🌐</span>
+            <strong>Domain Ready</strong>
+            <p>Look for names that feel digital-native and work well as a .com or .io domain.</p>
+        </div>
+        <div class="how-card">
+            <span>🦄</span>
+            <strong>Unique Identity</strong>
+            <p>Your startup name should stand out in a crowded market and sound innovative.</p>
+        </div>
+    </div>
+</div>
 
-button:hover{
-background:#0056b3;
-}
+<div class="content reveal">
+    <h2>Free AI Startup Name Generator</h2>
+    <p>
+        Finding the right name for a new venture is one of the hardest parts of being a founder. Our <strong>Startup Name Generator</strong> uses AI-inspired patterns to create names that sound modern, technical, and ready for the global market. Whether you're building a FinTech app, a SaaS platform, or a new AI tool, we help you find the perfect match.
+    </p>
+</div>
 
-.result{
-margin-top:30px;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
+<footer>
+    <div class="social">
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="FB"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="TW"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="IG"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YT"></a>
+        <p>
+            <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms</a>
+        </p>
+    </div>
+    <p>&copy; 2026 AI Name Generator. All rights reserved.</p>
+</footer>
 
-.name{
-padding:8px;
-font-size:18px;
-}
-
-.copy-btn{
-margin-left:10px;
-padding:4px 8px;
-font-size:12px;
-background:#007bff;
-color:white;
-border:none;
-border-radius:4px;
-cursor:pointer;
-}
-
-a{
-display:block;
-margin-top:30px;
-}
-
-</style>
-<body style="font-family:Arial;text-align:center;padding:40px;">
-
-<h1>Startup Name Generator</h1>
-
-<input type="text" id="keyword" placeholder="Enter startup keyword">
-
-<br><br>
-
-<button onclick="generate()">Generate Startup Name</button>
-
-<h2>Results</h2>
-
-<div class="result" id="result"></div>
+<script src="script.js"></script>
 
 <script>
+function generateStartupName() {
+    const keyword = document.getElementById("keyword").value;
 
-function copyName(text){
-navigator.clipboard.writeText(text);
-alert("Copied: " + text);
+    if (keyword === "") {
+        alert("Please enter a keyword");
+        return;
+    }
+
+    // Menggunakan fungsi showLoading dari script.js agar terlihat pro
+    showLoading('result', function() {
+        const prefix = ["Tech","Next","Neo","Future","Hyper","Quantum","Nova","Meta","Cloud","Rapid"];
+        const suffix = [" Labs"," Tech"," AI"," Systems"," Soft"," Works"," Flow"," Logic"," Base"," Hub"];
+
+        let output = "";
+
+        for (let i = 0; i < 10; i++) {
+            const p = prefix[Math.floor(Math.random() * prefix.length)];
+            const s = suffix[Math.floor(Math.random() * suffix.length)];
+            const name = p + " " + keyword + s;
+
+            output += `
+                <div class="seo-mini-card reveal active" style="text-align:center;">
+                    <h4 style="margin-bottom:15px;">${name}</h4>
+                    <button class="cta-btn" onclick="copyName('${name}')">Copy Name</button>
+                </div>
+            `;
+        }
+
+        document.getElementById("result").innerHTML = output;
+    });
 }
 
-function generate(){
-
-const keyword = document.getElementById("keyword").value;
-
-const prefix = ["Tech","Next","Neo","Future","Hyper","Quantum","Nova","Meta"];
-const suffix = ["Labs","Tech","AI","Systems","Soft","Works","Flow","Logic"];
-
-let output="";
-
-for(let i=0;i<10;i++){
-
-const p = prefix[Math.floor(Math.random()*prefix.length)];
-const s = suffix[Math.floor(Math.random()*suffix.length)];
-
-const name = p + keyword + s;
-
-output=output+"<div class='name'>"+name+" <button class='copy-btn' onclick=\"copyName('"+name+"')\">Copy</button></div>";
-
+function copyName(text) {
+    navigator.clipboard.writeText(text);
+    alert("Copied: " + text);
 }
-
-document.getElementById("result").innerHTML = output;
-
-}
-
 </script>
 
 </body>
