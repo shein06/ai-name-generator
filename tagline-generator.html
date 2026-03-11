@@ -1,147 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Tagline Generator</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Generate creative and catchy taglines for your business, brand, or product instantly with our free AI Tagline Generator.">
-<meta name="keywords" content="tagline generator, catchy slogan, business tagline, brand slogan, product tagline">
-<meta name="robots" content="index, follow">
-
-<style>
-body{
-font-family:Arial;
-margin:0;
-background:#f5f7fb;
-text-align:center;
-}
-header{
-background:#111;
-color:white;
-padding:40px 20px;
-}
-h1{
-margin:0;
-font-size:36px;
-}
-.subtitle{
-margin-top:10px;
-font-size:18px;
-color:#ddd;
-}
-.tools{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-padding:40px;
-max-width:900px;
-margin:auto;
-}
-.card{
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 4px 12px rgba(0,0,0,0.1);
-transition:0.2s;
-}
-.card:hover{
-transform:translateY(-5px);
-}
-a{
-text-decoration:none;
-font-size:18px;
-font-weight:bold;
-color:#333;
-}
-footer{
-margin-top:40px;
-padding:20px;
-color:#777;
-}
-input{
-padding:12px;
-width:250px;
-border-radius:6px;
-border:1px solid #ccc;
-margin-top:20px;
-}
-button{
-padding:12px 20px;
-background:#007bff;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
-margin-top:10px;
-}
-button:hover{
-background:#0056b3;
-}
-.result{
-margin-top:30px;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-.name{
-padding:8px;
-font-size:18px;
-}
-
-.copy-btn{
-margin-left:10px;
-padding:4px 8px;
-font-size:12px;
-background:#007bff;
-color:white;
-border:none;
-border-radius:4px;
-cursor:pointer;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tagline Generator - Free Creative Catchphrases</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-<h1>Tagline Generator</h1>
-<div class="subtitle">Generate creative taglines for your business, brand, or product</div>
+    <h1>Tagline Generator</h1>
+    <div class="subtitle">Generate creative and catchy taglines for your brand or product</div>
+    
+    <div style="margin-top: 15px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
+            🌙 Dark Mode
+        </button>
+    </div>
 </header>
 
-<input type="text" id="keyword" placeholder="Enter your keyword">
-<br>
-<button onclick="generateTagline()">Generate Tagline</button>
+<div class="seo-container">
+    <div class="seo-card reveal">
+        <p>Enter your business or product keyword to generate catchy slogans.</p>
+        <div class="search-container" style="margin-top: 10px;">
+            <div class="search-box">
+                <span class="search-icon">🏷️</span>
+                <input type="text" id="keyword" placeholder="example: Coffee, Tech, Fitness">
+                <button class="search-btn" onclick="showLoading('result', generateTagline)">Generate</button>
+            </div>
+        </div>
+    </div>
 
-<div class="result" id="result"></div>
-<a href="index.html">← Back to Home</a>
+    <div id="result" class="seo-grid"></div>
 
-<script>
-function copyName(text){
-navigator.clipboard.writeText(text);
-alert("Copied: " + text);
-}
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
+    </div>
+</div>
 
-function generateTagline(){
-const keyword = document.getElementById("keyword").value;
-if(keyword==""){
-alert("Please enter a keyword");
-return;
-}
-const prefixes = ["Ultimate","Smart","Next","Pro","Creative","Fresh"];
-const suffixes = ["Solutions","Ideas","Lab","Works","Studio","Hub"];
-let output="";
-for(let i=0;i<10;i++){
-const p = prefixes[Math.floor(Math.random()*prefixes.length)];
-const s = suffixes[Math.floor(Math.random()*suffixes.length)];
-const name = p + " " + keyword + " " + s;
-output += "<div class='name'>"+name+" <button onclick=\"copyName('"+name+"')\">Copy</button></div>";
-}
-document.getElementById("result").innerHTML = output;
-}
-</script>
+<div class="how reveal">
+    <h2>How to Create a Great Tagline</h2>
+    <div class="how-grid">
+        <div class="how-card">
+            <span>💡</span>
+            <strong>Focus on Benefit</strong>
+            <p>A good tagline tells people exactly what value you provide.</p>
+        </div>
+        <div class="how-card">
+            <span>✨</span>
+            <strong>Keep it Short</strong>
+            <p>The most memorable slogans are usually between 3 to 5 words.</p>
+        </div>
+        <div class="how-card">
+            <span>🎯</span>
+            <strong>Know Your Audience</strong>
+            <p>Use words that resonate specifically with your target customers.</p>
+        </div>
+    </div>
+</div>
+
+<div class="content reveal">
+    <h2>Boost Your Brand with Our Tagline Generator</h2>
+    <p>
+        A great tagline or slogan can make your brand unforgettable. Our <strong>Free AI Tagline Generator</strong> helps you brainstorm thousands of creative ideas instantly. Whether you need a slogan for a new startup, a catchy phrase for a product launch, or a professional mission statement, we've got you covered.
+    </p>
+    <p>
+        Our tool uses a smart database of high-converting prefixes and suffixes to ensure your generated taglines sound professional and modern. Simply enter your primary keyword and hit generate.
+    </p>
+</div>
 
 <footer>
-Free online tools for entrepreneurs and creators.
+    <div class="social">
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="FB"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="TW"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="IG"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YT"></a>
+        <p>
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a> |
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms</a>
+        </p>
+    </div>
+    <p>&copy; 2026 AI Name Generator. All rights reserved.</p>
 </footer>
+
+<script src="script.js"></script>
+
+<script>
+// LOGIKA KHUSUS GENERATOR TAGLINE
+function generateTagline() {
+    const keyword = document.getElementById("keyword").value;
+
+    if (keyword == "") {
+        alert("Please enter a keyword");
+        return;
+    }
+
+    // Dataset Tagline
+    const prefixes = ["Experience","Your","Simply","The","Innovative","Pure","Expert","Smart","Unlock","Discover"];
+    const suffixes = ["Solutions","Moment","Future","Way","Experience","Edge","World","Direct","Redefined"];
+
+    let output = "";
+
+    for (let i = 0; i < 10; i++) {
+        const p = prefixes[Math.floor(Math.random() * prefixes.length)];
+        const s = suffixes[Math.floor(Math.random() * suffixes.length)];
+        
+        // Format Tagline: Prefix + Keyword + Suffix
+        const tagline = `${p} ${keyword} ${s}`;
+
+        output += `
+            <div class="seo-mini-card reveal active" style="text-align:center;">
+                <h4 style="margin-bottom:15px; font-style: italic;">"${tagline}"</h4>
+                <button class="cta-btn" onclick="copyName('${tagline}')">Copy Tagline</button>
+            </div>
+        `;
+    }
+
+    document.getElementById("result").innerHTML = output;
+}
+
+function copyName(text) {
+    navigator.clipboard.writeText(text);
+    alert("Copied to clipboard: " + text);
+}
+</script>
 
 </body>
 </html>
