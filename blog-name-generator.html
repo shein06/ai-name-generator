@@ -1,52 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+// --- 5. EDIT LOGIKA GENERATOR (VERSI BLOG) ---
+function generateBlogName() {
+    const keyword = document.getElementById("keyword").value;
+    if (keyword === "") { 
+        alert("Please enter a keyword"); 
+        return; 
+    }
 
-  gtag('config', 'G-4LVEC8BY40');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Name Generator - Creative Blog Ideas</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    // Memanggil loading spinner
+    showLoading('result', function() {
+        let output = "";
+        
+        for (let i = 0; i < 10; i++) {
+            const idUnik = "card-" + i;
+            const aiScore = Math.floor(Math.random() * 15) + 84;
 
-<header>
-    <h1>Blog Name Generator</h1>
-    <div class="subtitle">Find the perfect name for your new blog or personal journal</div>
-    
-    <div style="margin-top: 15px;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
-            🌙 Dark Mode
-        </button>
-    </div>
-</header>
+            // Database khusus Blog: Creative + Aesthetic
+            const word1 = AI_DATABASE.creative[Math.floor(Math.random() * AI_DATABASE.creative.length)];
+            const word2 = AI_DATABASE.aesthetic[Math.floor(Math.random() * AI_DATABASE.aesthetic.length)];
+            
+            const patterns = [
+                `${word1} ${keyword}`, 
+                `${keyword} ${word2}`, 
+                `${keyword} ${word1}`, 
+                `${word2}${keyword}`
+            ];
+            const name = patterns[Math.floor(Math.random() * patterns.length)];
 
-<div class="seo-container">
-    <div class="seo-card reveal">
-        <p>Enter a topic or niche keyword to get creative blog name suggestions.</p>
-        <div class="search-container" style="margin-top: 10px;">
-            <div class="search-box">
-                <span class="search-icon">📝</span>
-                <input type="text" id="keyword" placeholder="example: travel, food, tech">
-                <button class="search-btn" onclick="showLoading('result', generateBlogName)">Generate</button>
+            output += `
+                <div class="seo-mini-card reveal active" id="${idUnik}" style="text-align:center; position:relative;">
+                    <span style="font-size:9px; background:#1a73e8; color:white; padding:2px 8px; border-radius:10px; font-weight:bold;">AI OPTIMIZED</span>
+                    <h4 style="margin: 15px 0 5px 0; font-size:20px; letter-spacing:0.5px;">${name}</h4>
+                    <p style="font-size:11px; color:#28a745; margin-bottom:15px;">🧠 AI Confidence: ${aiScore}%</p>
+                    
+                    <div style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
+                        <button class="cta-btn" onclick="copyName('${name}')" style="flex: 1; font-size: 11px; padding: 8px;">📋 Copy</button>
+                        <button class="cta-btn" onclick="checkDomain('${name}')" style="flex: 1; font-size: 11px; background: #28a745; padding: 8px;">🌐 Domain</button>
+                        <button class="cta-btn" onclick="downloadCard('${idUnik}', '${name}')" style="flex: 1; font-size: 11px; background: #ff9f43; padding: 8px;">📸 Save</button>
+                    </div>
+                </div>
+            `;
+        }
+        document.getElementById("result").innerHTML = output;
+    });
+}
 
-            </div>
-        </div>
-    </div>
-
-    <div id="result" class="seo-grid"></div>
-
-    <div style="margin-top: 30px; text-align: center;">
-        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
-    </div>
-</div>
+function copyName(text) {
+    navigator.clipboard.writeText(text);
+    alert("Copied: " + text);
+}
 
 <div class="how reveal">
     <h2>How to Pick a Great Blog Name</h2>
