@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4LVEC8BY40');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Name Generator - AI Tools</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
 <header>
+    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 5px 12px; border-radius: 15px; cursor: pointer; font-size: 12px;">
+            🌙 Dark
+        </button>
+    </div>
     <h1>Business Name Generator</h1>
     <div class="subtitle">Discover the perfect identity for your next big venture</div>
-    
-    <div style="margin-top: 15px;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
-            🌙 Dark Mode
-        </button>
+
+    <div class="search-container">
+        <div class="search-box">
+            <span class="search-icon">💡</span>
+            <input type="text" id="keyword" placeholder="example: coffee, tech, fashion">
+            <button class="search-btn" onclick="generateName()">Generate</button>
+        </div>
     </div>
 </header>
 
 <div class="seo-container">
-    <div class="seo-card reveal">
-        <p>Enter your business keyword below to generate unique name ideas.</p>
-        <div class="search-container" style="margin-top: 10px;">
-            <div class="search-box">
-                <span class="search-icon">💡</span>
-                <input type="text" id="keyword" placeholder="example: coffee, tech, fashion">
-                <button class="search-btn" onclick="showLoading('result', generateName)">Generate</button>
-            </div>
-        </div>
-    </div>
-
     <div id="result" class="seo-grid"></div>
 
     <div style="margin-top: 30px; text-align: center;">
         <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
     </div>
 </div>
+
+<div class="how reveal">
+    <h2>How to Pick a Great Business Name</h2>
+    <div class="how-grid">
+        <div class="how-card"><span>🔎</span><strong>Enter Keyword</strong><p>Type a word related to your niche.</p></div>
+        <div class="how-card"><span>⚡</span><strong>AI Generation</strong><p>Our hybrid engine creates unique combinations.</p></div>
+        <div class="how-card"><span>📋</span><strong>Save & Use</strong><p>Copy the name or save it as a brand card.</p></div>
+    </div>
+</div>
+
+<div class="content reveal">
+    <h2>Professional Business Name Ideas</h2>
+    <p>Finding the right name is the first step toward success. Our <strong>AI Business Name Generator</strong> helps you discover names that are catchy, memorable, and ready for branding.</p>
+</div>
+
 <div class="seo-container" style="margin-top: 50px; border-top: 1px dashed #ccc; padding-top: 30px;">
     <h3>Other AI Generators You Might Like</h3>
     <div class="seo-grid">
@@ -57,126 +67,68 @@
             <strong>🎮 Gaming Name</strong>
             <p style="font-size:12px;">Cool tags for your gaming profile.</p>
         </a>
-        <a href="youtube-name-generator.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
-            <strong>📺 YouTube Name</strong>
-            <p style="font-size:12px;">Catchy names for your channel.</p>
+        <a href="brand-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
+            <strong>✨ Brand Name</strong>
+            <p style="font-size:12px;">Create memorable brand identities.</p>
         </a>
     </div>
 </div>
 
 <footer>
+    <div class="social">
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="FB"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="TW"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="IG"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YT"></a>
+        <p>
+            <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms</a>
+        </p>
+    </div>
     <p>&copy; 2026 AI Name Generator. All rights reserved.</p>
-    <!-- HOW IT WORKS -->
-
-<div class="how">
-
-<h2>How It Works</h2>
-
-<div class="how-grid">
-
-<div class="how-card">
-<span>🔎</span>
-<strong>Enter a Keyword</strong>
-<p>Type a word related to your business, brand, or content niche.</p>
-</div>
-
-<div class="how-card">
-<span>⚡</span>
-<strong>Generate Ideas</strong>
-<p>The generator instantly creates creative name ideas based on your keyword.</p>
-</div>
-
-<div class="how-card">
-<span>📋</span>
-<strong>Copy Your Favorite</strong>
-<p>Choose the best name and copy it instantly to use for your project.</p>
-</div>
-
-</div>
-
-</div>
-
-<!-- SEO CONTENT -->
-
-<div class="content">
-
-<h2>Free AI Name Generator Tools</h2>
-
-<p>
-Our AI Name Generator tools help entrepreneurs, creators, and startups find unique and creative names instantly. Whether you're starting a new business, launching a YouTube channel, creating a brand, or building a blog, choosing the right name is one of the most important steps.
-</p>
-
-<p>
-With our collection of generators, you can quickly generate name ideas for businesses, brands, gaming profiles, social media usernames, and more. Simply enter a keyword related to your niche and the generator will instantly create multiple creative suggestions.
-</p>
-
-<p>
-These tools are completely free and designed to help creators discover memorable names faster without spending hours brainstorming.
-</p>
-
-</div>
-
-<footer>
-
-<div class="social">
-
-<a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg"></a>
-
-<a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg"></a>
-
-<a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"></a>
-
-<a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg"></a>
-<p>
-<a href="about.html">About</a> |
-<a href="contact.html">Contact</a> |
-<a href="privacy-policy.html">Privacy Policy</a> |
-<a href="terms.html">Terms</a>
-</p>
-
-</div>
-
-<p>Free online tools for entrepreneurs and creators.</p>
 </footer>
 
 <script src="script.js"></script>
 
 <script>
-// Fungsi Generator Khusus Halaman Ini
 function generateName() {
     const keyword = document.getElementById("keyword").value;
+    if (keyword === "") { alert("Please enter a keyword"); return; }
 
-    if (keyword == "") {
-        alert("Please enter a keyword");
-        return;
-    }
+    showLoading('result', function() {
+        let output = "";
+        
+        for (let i = 0; i < 10; i++) {
+            const idUnik = "biz-card-" + i;
+            const aiScore = Math.floor(Math.random() * 15) + 84;
 
-    const prefix = ["Urban","Smart","Prime","Bright","Next","Blue","Global","Peak","Golden","Rapid","Nova","Vision","Future","Green","Power"];
-    const suffix = ["Lab","Hub","Works","Forge","Studio","Group","Craft","Nest","Solutions","Factory","Space","Network","World","Systems"];
+            // Database Khusus Bisnis: Business + Modern
+            const word1 = AI_DATABASE.business[Math.floor(Math.random() * AI_DATABASE.business.length)];
+            const word2 = AI_DATABASE.modern[Math.floor(Math.random() * AI_DATABASE.modern.length)];
+            
+            const patterns = [
+                `${word1} ${keyword}`, 
+                `${keyword} ${word2}`, 
+                `${word1}${keyword}`, 
+                `${keyword} ${word1}`
+            ];
+            const name = patterns[Math.floor(Math.random() * patterns.length)];
 
-    let output = "";
-
-    for (let i = 0; i < 10; i++) {
-        const p = prefix[Math.floor(Math.random() * prefix.length)];
-        const s = suffix[Math.floor(Math.random() * suffix.length)];
-        const name = p + keyword + s;
-
-        // Kita gunakan struktur 'seo-mini-card' agar desainnya sama dengan index
-        output += `
-            <div class="seo-mini-card reveal active" style="text-align:center;">
-                <h4 style="margin-bottom:15px;">${name}</h4>
-                <button class="cta-btn" onclick="copyName('${name}')">Copy Name</button>
-            </div>
-        `;
-    }
-
-    document.getElementById("result").innerHTML = output;
-}
-
-function copyName(text) {
-    navigator.clipboard.writeText(text);
-    // Kita ganti alert dengan cara yang lebih elegan nanti, tapi semeantara ini oke
-    alert("Copied to clipboard: " + text);
+            output += `
+                <div class="seo-mini-card reveal active" id="${idUnik}" style="text-align:center; position:relative;">
+                    <span style="font-size:9px; background:#1a73e8; color:white; padding:2px 8px; border-radius:10px; font-weight:bold;">AI OPTIMIZED</span>
+                    <h4 style="margin: 15px 0 5px 0; font-size:20px; letter-spacing:0.5px;">${name}</h4>
+                    <p style="font-size:11px; color:#28a745; margin-bottom:15px;">🧠 AI Confidence: ${aiScore}%</p>
+                    
+                    <div style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
+                        <button class="cta-btn" onclick="copyName('${name}')" style="flex: 1; font-size: 11px; padding: 8px;">📋 Copy</button>
+                        <button class="cta-btn" onclick="checkDomain('${name}')" style="flex: 1; font-size: 11px; background: #28a745; padding: 8px;">🌐 Domain</button>
+                        <button class="cta-btn" onclick="downloadCard('${idUnik}', '${name}')" style="flex: 1; font-size: 11px; background: #ff9f43; padding: 8px;">📸 Save</button>
+                    </div>
+                </div>
+            `;
+        }
+        document.getElementById("result").innerHTML = output;
+    });
 }
 </script>
 
