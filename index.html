@@ -43,34 +43,29 @@
 <body>
 
 <header>
-
-<h1>AI Name Generator</h1>
-
-<div style="margin-top: 15px;">
-    <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
-        🌙 Dark Mode
-    </button>
-</div>
-<div class="subtitle">
-Generate creative names for your business, brand, shop, startup, and social media
-</div>
-
-<div class="search-container">
-    <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="toolSearch" placeholder="Search generator..." onkeyup="searchTools()">
-        <button class="search-btn" onclick="searchTools()">Search</button>
+    <div style="text-align: right; max-width: 800px; margin: 0 auto;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 5px 12px; border-radius: 15px; cursor: pointer; font-size: 12px;">
+            🌙 Dark
+        </button>
     </div>
-</div>
-<div class="trending" style="margin-top: 15px; font-size: 13px; opacity: 0.8;">
-    <span style="background: #ff4757; color: white; padding: 2px 8px; border-radius: 10px; font-weight: bold; margin-right: 5px;">HOT</span>
-    Trending: <a href="startup-name.html" style="color: white; text-decoration: underline;">AI Startup</a>, 
-    <a href="gaming-name.html" style="color: white; text-decoration: underline;">Aesthetic Usernames</a>
-</div>
 
-<script src="script.js"></script>
+    <h1>AI Name Generator</h1>
+    <div class="subtitle">
+        Find the perfect name for your business, brand, or social media instantly.
+    </div>
 
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
+            <button class="search-btn" onclick="searchTools()">Search</button>
+        </div>
+    </div>
 
+    <div class="trending" style="margin-top: 15px; font-size: 12px;">
+        <span style="background: #ff4757; padding: 2px 8px; border-radius: 10px; font-weight: bold;">HOT</span>
+        <a href="startup-name.html" style="color: white; margin-left: 5px;">Startup</a> • 
+        <a href="gaming-name.html" style="color: white;">Gaming</a>
+    </div>
 </header>
 
 <!-- FEATURED GENERATORS -->
