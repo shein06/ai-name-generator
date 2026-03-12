@@ -1,53 +1,52 @@
-// --- 5. EDIT LOGIKA GENERATOR (VERSI BLOG) ---
-function generateBlogName() {
-    const keyword = document.getElementById("keyword").value;
-    if (keyword === "") { 
-        alert("Please enter a keyword"); 
-        return; 
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    // Memanggil loading spinner
-    showLoading('result', function() {
-        let output = "";
-        
-        for (let i = 0; i < 10; i++) {
-            const idUnik = "card-" + i;
-            const aiScore = Math.floor(Math.random() * 15) + 84;
+  gtag('config', 'G-4LVEC8BY40');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Name Generator - Creative Blog Ideas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-            // Database khusus Blog: Creative + Aesthetic
-            const word1 = AI_DATABASE.creative[Math.floor(Math.random() * AI_DATABASE.creative.length)];
-            const word2 = AI_DATABASE.aesthetic[Math.floor(Math.random() * AI_DATABASE.aesthetic.length)];
-            
-            const patterns = [
-                `${word1} ${keyword}`, 
-                `${keyword} ${word2}`, 
-                `${keyword} ${word1}`, 
-                `${word2}${keyword}`
-            ];
-            const name = patterns[Math.floor(Math.random() * patterns.length)];
+<header>
+    <h1>Blog Name Generator</h1>
+    <div class="subtitle">Find the perfect name for your new blog or personal journal</div>
+    
+    <div style="margin-top: 15px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
+            🌙 Dark Mode
+        </button>
+    </div>
+</header>
 
-            output += `
-                <div class="seo-mini-card reveal active" id="${idUnik}" style="text-align:center; position:relative;">
-                    <span style="font-size:9px; background:#1a73e8; color:white; padding:2px 8px; border-radius:10px; font-weight:bold;">AI OPTIMIZED</span>
-                    <h4 style="margin: 15px 0 5px 0; font-size:20px; letter-spacing:0.5px;">${name}</h4>
-                    <p style="font-size:11px; color:#28a745; margin-bottom:15px;">🧠 AI Confidence: ${aiScore}%</p>
-                    
-                    <div style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
-                        <button class="cta-btn" onclick="copyName('${name}')" style="flex: 1; font-size: 11px; padding: 8px;">📋 Copy</button>
-                        <button class="cta-btn" onclick="checkDomain('${name}')" style="flex: 1; font-size: 11px; background: #28a745; padding: 8px;">🌐 Domain</button>
-                        <button class="cta-btn" onclick="downloadCard('${idUnik}', '${name}')" style="flex: 1; font-size: 11px; background: #ff9f43; padding: 8px;">📸 Save</button>
-                    </div>
-                </div>
-            `;
-        }
-        document.getElementById("result").innerHTML = output;
-    });
-}
+<div class="seo-container">
+    <div class="seo-card reveal">
+        <p>Enter a topic or niche keyword to get creative blog name suggestions.</p>
+        <div class="search-container" style="margin-top: 10px;">
+            <div class="search-box">
+                <span class="search-icon">📝</span>
+                <input type="text" id="keyword" placeholder="example: travel, food, tech">
+                <button class="search-btn" onclick="showLoading('result', generateBlogName)">Generate</button>
 
-function copyName(text) {
-    navigator.clipboard.writeText(text);
-    alert("Copied: " + text);
-}
+            </div>
+        </div>
+    </div>
+
+    <div id="result" class="seo-grid"></div>
+
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
+    </div>
+</div>
 
 <div class="how reveal">
     <h2>How to Pick a Great Blog Name</h2>
@@ -113,11 +112,13 @@ function copyName(text) {
 <script src="script.js"></script>
 
 <script>
-// --- 5. EDIT LOGIKA GENERATOR DI SINI SAJA ---
+// --- 5. EDIT LOGIKA GENERATOR (VERSI BLOG) ---
 function generateBlogName() {
-function generateStartupName() {
     const keyword = document.getElementById("keyword").value;
-    if (keyword === "") { alert("Please enter a keyword"); return; }
+    if (keyword === "") { 
+        alert("Please enter a keyword"); 
+        return; 
+    }
 
     // Memanggil loading spinner
     showLoading('result', function() {
@@ -125,22 +126,20 @@ function generateStartupName() {
         
         for (let i = 0; i < 10; i++) {
             const idUnik = "card-" + i;
-            const aiScore = Math.floor(Math.random() * 15) + 84; // Skor AI 84-99%
+            const aiScore = Math.floor(Math.random() * 15) + 84;
 
-            // PILIH DATABASE SESUAI HALAMAN (Ganti 'modern' atau 'tech' sesuai kebutuhan)
-            const word1 = AI_DATABASE.modern[Math.floor(Math.random() * AI_DATABASE.modern.length)];
-            const word2 = AI_DATABASE.tech[Math.floor(Math.random() * AI_DATABASE.tech.length)];
+            // Database khusus Blog: Creative + Aesthetic
+            const word1 = AI_DATABASE.creative[Math.floor(Math.random() * AI_DATABASE.creative.length)];
+            const word2 = AI_DATABASE.aesthetic[Math.floor(Math.random() * AI_DATABASE.aesthetic.length)];
             
-            // Variasi Pola Nama
             const patterns = [
                 `${word1} ${keyword}`, 
                 `${keyword} ${word2}`, 
-                `${word1}${keyword}`, 
-                `${keyword.charAt(0).toUpperCase() + keyword.slice(1)}${word1}`
+                `${keyword} ${word1}`, 
+                `${word2}${keyword}`
             ];
             const name = patterns[Math.floor(Math.random() * patterns.length)];
 
-            // Template Kartu (Sama untuk semua halaman)
             output += `
                 <div class="seo-mini-card reveal active" id="${idUnik}" style="text-align:center; position:relative;">
                     <span style="font-size:9px; background:#1a73e8; color:white; padding:2px 8px; border-radius:10px; font-weight:bold;">AI OPTIMIZED</span>
@@ -163,6 +162,7 @@ function copyName(text) {
     navigator.clipboard.writeText(text);
     alert("Copied: " + text);
 }
+
 </script>
 
 </body>
