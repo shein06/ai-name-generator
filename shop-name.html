@@ -115,49 +115,55 @@
 <script>
 // --- 5. EDIT LOGIKA GENERATOR DI SINI SAJA ---
 function copyName(text){
-navigator.clipboard.writeText(text);
-alert("Copied: " + text);
-}
-
-function generateName(){
-
-const keyword = document.getElementById("keyword").value;
-
-if(keyword==""){
-alert("Please enter a keyword");
-return;
-}
-
-const prefix = [
-"Urban","Happy","Fresh","Golden","Magic","Dream",
-"Smart","Lucky","Bright","Mega","Prime","Daily"
-];
-
-const suffix = [
-"Store","Market","Shop","Corner","Mart","Boutique",
-"Hub","World","Outlet","Plaza","Spot"
-];
-
-let output="";
-
-for(let i=0;i<10;i++){
-
-const p = prefix[Math.floor(Math.random()*prefix.length)];
-const s = suffix[Math.floor(Math.random()*suffix.length)];
-
-const name = p + keyword + s;
-
-        // Template kartu hasil (Tidak perlu diubah)
-        output += `
-            <div class="seo-mini-card reveal active" style="text-align:center;">
-                <h4 style="margin-bottom:15px;">${name}</h4>
-                <button class="cta-btn" onclick="copyName('${name}')">Copy Name</button>
-            </div>
-        `;
+function generateName() {
+    const keyword = document.getElementById("keyword").value;
+    if (keyword === "") { 
+        alert("Please enter a keyword"); 
+        return; 
     }
 
-    document.getElementById("result").innerHTML = output;
+    // Memanggil loading (Pastikan fungsi showLoading ada di script.js)
+    showLoading('result', function() {
+        let output = "";
+        
+        for (let i = 0; i < 10; i++) {
+            const idUnik = "card-" + i;
+            const aiScore = Math.floor(Math.random() * 15) + 84;
+
+            // --- BAGIAN YANG BISA KAMU UBAH SESUAI HALAMAN ---
+            // Pilih kategori: modern, business, tech, creative, atau aesthetic
+            const w1 = AI_DATABASE.business[Math.floor(Math.random() * AI_DATABASE.modern.length)];
+            const w2 = AI_DATABASE.creative[Math.floor(Math.random() * AI_DATABASE.tech.length)];
+            // ------------------------------------------------
+
+            // Variasi Pola Nama
+            const patterns = [
+                `${w1} ${keyword}`, 
+                `${keyword} ${w2}`, 
+                `${w1}${keyword}`, 
+                `${keyword}${w1}`
+            ];
+            const name = patterns[Math.floor(Math.random() * patterns.length)];
+
+            // Template kartu yang sudah dioptimasi (tetap sinkron dengan CSS kamu)
+            output += `
+                <div class="seo-mini-card reveal active" id="${idUnik}" style="text-align:center; position:relative;">
+                    <span style="font-size:9px; background:#1a73e8; color:white; padding:2px 8px; border-radius:10px; font-weight:bold;">AI OPTIMIZED</span>
+                    <h4 style="margin: 15px 0 5px 0; font-size:20px; letter-spacing:0.5px;">${name}</h4>
+                    <p style="font-size:11px; color:#28a745; margin-bottom:15px;">🧠 AI Confidence: ${aiScore}%</p>
+                    
+                    <div style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
+                        <button class="cta-btn" onclick="copyName('${name}')" style="flex: 1; font-size: 11px; padding: 8px;">📋 Copy</button>
+                        <button class="cta-btn" onclick="checkDomain('${name}')" style="flex: 1; font-size: 11px; background: #28a745; padding: 8px;">🌐 Domain</button>
+                        <button class="cta-btn" onclick="downloadCard('${idUnik}', '${name}')" style="flex: 1; font-size: 11px; background: #ff9f43; padding: 8px;">📸 Save</button>
+                    </div>
+                </div>
+            `;
+        }
+        document.getElementById("result").innerHTML = output;
+    });
 }
+
 
 function copyName(text) {
     navigator.clipboard.writeText(text);
