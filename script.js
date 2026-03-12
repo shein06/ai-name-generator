@@ -1,3 +1,12 @@
+// GLOBAL AI SMART DATABASE 2026
+const AI_DATABASE = {
+    modern: ["Zynapse", "Nexalyn", "Aetheris", "Veldora", "Quantix", "Omnith", "Krytos", "Elovate", "Ionix", "Synthetix", "Fluxo", "Zenith", "Apex", "Lyra", "Kinetix"],
+    business: ["Capital", "Equity", "Partners", "Holdings", "Ventures", "Synergy", "Global", "Bridge", "Alliance", "Prime", "Elite", "Summit", "Vision", "Legacy", "Core"],
+    tech: ["Labs", "Node", "Grid", "Pulse", "Mind", "Flow", "Logic", "Base", "Hub", "System", "Cloud", "Data", "Link", "Byte", "Orbit"],
+    creative: ["Studio", "Maison", "Concept", "Muse", "Aura", "Craft", "Design", "Vibe", "Flow", "Story", "Artisan", "Canvas", "Bloom", "Echo", "Spark"],
+    aesthetic: ["Luna", "Sora", "Hana", "Mochi", "Aura", "Cloud", "Dear", "Sweet", "Daily", "Pure", "Soft", "Vibe", "Muse", "Ethos", "Nara"]
+};
+
 // 1. FUNGSI DARK MODE (DENGAN PENYIMPANAN OTOMATIS)
 function toggleDarkMode() {
     const body = document.body;
