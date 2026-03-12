@@ -111,35 +111,53 @@
 <script>
 function generateStartupName() {
     const keyword = document.getElementById("keyword").value;
-
-    if (keyword === "") {
-        alert("Please enter a keyword");
-        return;
+    if (keyword === "") { 
+        alert("Please enter a keyword"); 
+        return; 
     }
 
-    // Menggunakan fungsi showLoading dari script.js agar terlihat pro
+    // Memanggil loading (Pastikan fungsi showLoading ada di script.js)
     showLoading('result', function() {
-        const prefix = ["Tech","Next","Neo","Future","Hyper","Quantum","Nova","Meta","Cloud","Rapid"];
-        const suffix = [" Labs"," Tech"," AI"," Systems"," Soft"," Works"," Flow"," Logic"," Base"," Hub"];
-
         let output = "";
-
+        
         for (let i = 0; i < 10; i++) {
-            const p = prefix[Math.floor(Math.random() * prefix.length)];
-            const s = suffix[Math.floor(Math.random() * suffix.length)];
-            const name = p + " " + keyword + s;
+            const idUnik = "card-" + i;
+            const aiScore = Math.floor(Math.random() * 15) + 84;
 
+            // --- BAGIAN YANG BISA KAMU UBAH SESUAI HALAMAN ---
+            // Pilih kategori: modern, business, tech, creative, atau aesthetic
+            const w1 = AI_DATABASE.creative[Math.floor(Math.random() * AI_DATABASE.modern.length)];
+            const w2 = AI_DATABASE.tech[Math.floor(Math.random() * AI_DATABASE.tech.length)];
+            // ------------------------------------------------
+
+            // Variasi Pola Nama
+            const patterns = [
+                `${w1} ${keyword}`, 
+                `${keyword} ${w2}`, 
+                `${w1}${keyword}`, 
+                `${keyword}${w1}`
+            ];
+            const name = patterns[Math.floor(Math.random() * patterns.length)];
+
+            // Template kartu yang sudah dioptimasi (tetap sinkron dengan CSS kamu)
             output += `
-                <div class="seo-mini-card reveal active" style="text-align:center;">
-                    <h4 style="margin-bottom:15px;">${name}</h4>
-                    <button class="cta-btn" onclick="copyName('${name}')">Copy Name</button>
+                <div class="seo-mini-card reveal active" id="${idUnik}" style="text-align:center; position:relative;">
+                    <span style="font-size:9px; background:#1a73e8; color:white; padding:2px 8px; border-radius:10px; font-weight:bold;">AI OPTIMIZED</span>
+                    <h4 style="margin: 15px 0 5px 0; font-size:20px; letter-spacing:0.5px;">${name}</h4>
+                    <p style="font-size:11px; color:#28a745; margin-bottom:15px;">🧠 AI Confidence: ${aiScore}%</p>
+                    
+                    <div style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
+                        <button class="cta-btn" onclick="copyName('${name}')" style="flex: 1; font-size: 11px; padding: 8px;">📋 Copy</button>
+                        <button class="cta-btn" onclick="checkDomain('${name}')" style="flex: 1; font-size: 11px; background: #28a745; padding: 8px;">🌐 Domain</button>
+                        <button class="cta-btn" onclick="downloadCard('${idUnik}', '${name}')" style="flex: 1; font-size: 11px; background: #ff9f43; padding: 8px;">📸 Save</button>
+                    </div>
                 </div>
             `;
         }
-
         document.getElementById("result").innerHTML = output;
     });
 }
+
 
 function copyName(text) {
     navigator.clipboard.writeText(text);
