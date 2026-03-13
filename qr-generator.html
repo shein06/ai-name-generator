@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI QR Code Generator - Free & Custom Styles | AINameGen</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        .qr-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .qr-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            background: rgba(255,255,255,0.05);
+            color: var(--text-color);
+            outline: none;
+        }
+        #qrcode {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        #qrcode canvas, #qrcode img {
+            max-width: 100%;
+            height: auto;
+        }
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .btn-generate {
+            background: #1a73e8;
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="compact-header">
+    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" class="btn-dark-mini">🌙 Dark</button>
+    </div>
+    <h1>AI QR Generator</h1>
+    <p class="subtitle">Create professional & custom QR codes instantly for free.</p>
+</header>
+
+<div class="qr-container">
+    <div class="qr-card reveal active">
+        <div class="input-group">
+            <label>Enter URL or Text</label>
+            <input type="text" id="qrText" placeholder="https://yourwebsite.com" oninput="updateQR()">
+        </div>
+
+        <div class="settings-grid">
+            <div class="input-group">
+                <label>QR Color</label>
+                <input type="color" id="fgColor" value="#000000" onchange="updateQR()">
+            </div>
+            <div class="input-group">
+                <label>Pattern Size</label>
+                <select id="qrSize" onchange="updateQR()">
+                    <option value="128">Small</option>
+                    <option value="256" selected>Medium</option>
+                    <option value="512">Large (HD)</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="qrcode"></div>
+
+        <div id="actionButtons" style="display: none;">
+            <button class="cta-btn" onclick="downloadQR()" style="background: #28a745; width: 100%;">⬇️ Download QR Code (PNG)</button>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
+    </div>
+</div>
+
+<div class="how reveal">
+    <h2>Smart QR Features</h2>
+    <div class="how-grid">
+        <div class="how-card"><span>🎨</span><strong>Custom Style</strong><p>Change colors to match your brand identity easily.</p></div>
+        <div class="how-card"><span>📱</span><strong>Universal Scan</strong><p>Compatible with all iPhone & Android camera apps.</p></div>
+        <div class="how-card"><span>💎</span><strong>High Quality</strong><p>Download HD versions for printing on menus or flyers.</p></div>
+    </div>
+</div>
+
+<div class="content reveal">
+    <h2>Why use our QR Generator?</h2>
+    <p>QR codes are the bridge between the physical and digital world. Whether you need a QR code for your <strong>restaurant menu</strong>, <strong>business card</strong>, or <strong>YouTube channel</strong>, our tool provides a fast and secure way to generate them. No data is stored, and everything is processed right in your browser.</p>
+</div>
+<div class="seo-container" style="margin-top: 50px; border-top: 1px dashed #ccc; padding-top: 30px;">
+    <h3>Other AI Generators You Might Like</h3>
+    <div class="seo-grid">
+        <a href="startup-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
+            <strong>🚀 Startup Name</strong>
+            <p style="font-size:12px;">Innovative ideas for tech ventures.</p>
+        </a>
+        <a href="gaming-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
+            <strong>🎮 Gaming Name</strong>
+            <p style="font-size:12px;">Cool tags for your gaming profile.</p>
+        </a>
+        <a href="youtube-name-generator.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
+            <strong>📺 YouTube Name</strong>
+            <p style="font-size:12px;">Catchy names for your channel.</p>
+        </a>
+    </div>
+
+<footer>
+    <div class="social">
+        <a href="sitemap.xml" style="font-size: 10px; opacity: 0.5;">Sitemap</a>
+    </div>
+    <p>&copy; 2026 AI Name Generator. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    let qr;
+
+    function updateQR() {
+        const text = document.getElementById('qrText').value;
+        const color = document.getElementById('fgColor').value;
+        const size = document.getElementById('qrSize').value;
+        const qrContainer = document.getElementById('qrcode');
+        const actionButtons = document.getElementById('actionButtons');
+
+        qrContainer.innerHTML = ""; // Clear existing
+
+        if (text.trim() !== "") {
+            qr = new QRCode(qrContainer, {
+                text: text,
+                width: parseInt(size),
+                height: parseInt(size),
+                colorDark : color,
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+            actionButtons.style.display = "block";
+        } else {
+            actionButtons.style.display = "none";
+        }
+    }
+
+    function downloadQR() {
+        const img = document.querySelector('#qrcode img');
+        const canvas = document.querySelector('#qrcode canvas');
+        const link = document.createElement('a');
+        link.download = 'QR-Code-AINameGen.png';
+
+        if (img) {
+            link.href = img.src;
+        } else if (canvas) {
+            link.href = canvas.toDataURL("image/png");
+        }
+        
+        link.click();
+    }
+</script>
+
+</body>
+</html>
