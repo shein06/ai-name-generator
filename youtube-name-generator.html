@@ -1,48 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4LVEC8BY40');
-</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youtube Name Generator - Creative Blog Ideas</title>
+    <title>YouTube Name Generator - AI Channel Ideas</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
 <header>
-    <h1>Youtube Name Generator</h1>
-    <div class="subtitle">Find the perfect name for your new Youtube</div>
-    
-    <div style="margin-top: 15px;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
-            🌙 Dark Mode
+    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 5px 12px; border-radius: 15px; cursor: pointer; font-size: 12px;">
+            🌙 Dark
         </button>
+    </div>
+    <h1>YouTube Name Generator</h1>
+    <div class="subtitle">Find the perfect name for your new YouTube Channel</div>
+
+    <div class="search-container">
+        <div class="search-box">
+            <span class="search-icon">📺</span>
+            <input type="text" id="keyword" placeholder="example: gaming, vlogs, tech">
+            <button class="search-btn" onclick="generateName()">Generate</button>
+        </div>
     </div>
 </header>
 
 <div class="seo-container">
-    <div class="seo-card reveal">
-        <p>Enter a topic or niche keyword to get creative Youtube name suggestions.</p>
-        <div class="search-container" style="margin-top: 10px;">
-            <div class="search-box">
-                <span class="search-icon">📝</span>
-                <input type="text" id="keyword" placeholder="example: travel, food, tech">
-                <button class="search-btn" onclick="showLoading('result', generateName)">Generate</button>
-
-            </div>
-        </div>
-    </div>
-
     <div id="result" class="seo-grid"></div>
 
     <div style="margin-top: 30px; text-align: center;">
@@ -51,36 +43,34 @@
 </div>
 
 <div class="how reveal">
-    <h2>How to Pick a Great Blog Name</h2>
+    <h2>How to Pick a Great YouTube Name</h2>
     <div class="how-grid">
         <div class="how-card">
-            <span>📖</span>
-            <strong>Reflect Your Niche</strong>
-            <p>Make sure people know what you're writing about just by reading the name.</p>
+            <span>📹</span>
+            <strong>Niche Focused</strong>
+            <p>Make sure it relates to your content style (e.g. Gaming, Tech).</p>
         </div>
         <div class="how-card">
-            <span>🗣️</span>
-            <strong>Easy to Pronounce</strong>
-            <p>Avoid complicated words. A simple name is easier for readers to share.</p>
+            <span>📢</span>
+            <strong>Catchy & Short</strong>
+            <p>Short names are easier to remember and search for.</p>
         </div>
         <div class="how-card">
             <span>✨</span>
-            <strong>Stay Original</strong>
-            <p>Try to stand out from other bloggers in your specific category.</p>
+            <strong>Unique Identity</strong>
+            <p>Stand out from the millions of other creators.</p>
         </div>
     </div>
 </div>
 
 <div class="content reveal">
-    <h2>Free AI Blog Name Generator for Every Niche</h2>
+    <h2>Free AI YouTube Name Generator</h2>
     <p>
-        Starting a blog is exciting, but finding the right name can be a challenge. Our <strong>Blog Name Generator</strong> is designed to provide you with instant inspiration. Whether you are starting a lifestyle blog, a technical journal, or a travel diary, our AI tool helps you find names that are catchy and memorable.
-    </p>
-    <p>
-        Simply enter a keyword that describes your blog's focus, and we will generate 10 unique combinations for you.
+        Starting a YouTube channel is exciting, but finding the right name is the first step toward success. Our <strong>YouTube Name Generator</strong> uses a hybrid AI logic to combine your keywords with trending channel suffixes and prefixes. Whether you are into vlogging, gaming, or education, we've got you covered.
     </p>
 </div>
-    <div class="seo-container" style="margin-top: 50px; border-top: 1px dashed #ccc; padding-top: 30px;">
+
+<div class="seo-container" style="margin-top: 50px; border-top: 1px dashed #ccc; padding-top: 30px;">
     <h3>Other AI Generators You Might Like</h3>
     <div class="seo-grid">
         <a href="startup-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
@@ -91,22 +81,20 @@
             <strong>🎮 Gaming Name</strong>
             <p style="font-size:12px;">Cool tags for your gaming profile.</p>
         </a>
-        <a href="youtube-name-generator.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
-            <strong>📺 YouTube Name</strong>
-            <p style="font-size:12px;">Catchy names for your channel.</p>
+        <a href="brand-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
+            <strong>✨ Brand Name</strong>
+            <p style="font-size:12px;">Memorable brand identities.</p>
         </a>
     </div>
 </div>
-
 
 <footer>
     <div class="social">
         <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="FB"></a>
         <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="TW"></a>
         <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="IG"></a>
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YT"></a>
         <p>
-            <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms</a>
+            <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a>
         </p>
     </div>
     <p>&copy; 2026 AI Name Generator. All rights reserved.</p>
@@ -115,7 +103,6 @@
 <script src="script.js"></script>
 
 <script>
-// --- 5. EDIT LOGIKA GENERATOR DI SINI SAJA ---
 function generateName() {
     const keyword = document.getElementById("keyword").value;
     if (keyword === "") { 
@@ -128,26 +115,21 @@ function generateName() {
         let output = "";
         
         for (let i = 0; i < 10; i++) {
-            const idUnik = "card-" + i;
+            const idUnik = "yt-card-" + i;
             const aiScore = Math.floor(Math.random() * 15) + 84;
 
-            // --- BAGIAN YANG BISA KAMU UBAH SESUAI HALAMAN ---
-            // Pilih kategori: modern, business, tech, creative, atau aesthetic
-            const w1 = AI_DATABASE.aesthetic [Math.floor(Math.random() * AI_DATABASE.modern.length)];
-            const w2 = AI_DATABASE.modern [Math.floor(Math.random() * AI_DATABASE.tech.length)];
-
-            // ------------------------------------------------
-
-            // Variasi Pola Nama
+            // Database YouTube: Pakai Creative + Tech agar modern
+            const w1 = AI_DATABASE.creative[Math.floor(Math.random() * AI_DATABASE.creative.length)];
+            const w2 = AI_DATABASE.tech[Math.floor(Math.random() * AI_DATABASE.tech.length)];
+            
             const patterns = [
                 `${w1} ${keyword}`, 
                 `${keyword} ${w2}`, 
-                `${w1}${keyword}`, 
-                `${keyword}${w1}`
+                `${keyword}${w1}`, 
+                `${w2} ${keyword}`
             ];
             const name = patterns[Math.floor(Math.random() * patterns.length)];
 
-            // Template kartu yang sudah dioptimasi (tetap sinkron dengan CSS kamu)
             output += `
                 <div class="seo-mini-card reveal active" id="${idUnik}" style="text-align:center; position:relative;">
                     <span style="font-size:9px; background:#1a73e8; color:white; padding:2px 8px; border-radius:10px; font-weight:bold;">AI OPTIMIZED</span>
@@ -165,13 +147,6 @@ function generateName() {
         document.getElementById("result").innerHTML = output;
     });
 }
-
-
-function copyName(text) {
-    navigator.clipboard.writeText(text);
-    alert("Copied: " + text);
-}
 </script>
-
 </body>
 </html>
