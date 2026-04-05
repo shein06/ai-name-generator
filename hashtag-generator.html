@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hashtag Generator for TikTok & IG - OmniTools AI</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .hashtag-container { max-width: 700px; margin: 0 auto; padding: 20px; }
+        .tag-box { 
+            background: var(--card-bg); border-radius: 15px; padding: 25px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center;
+        }
+        .result-area {
+            margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+        }
+        .hashtag-item {
+            background: rgba(26, 115, 232, 0.1); color: #1a73e8;
+            padding: 5px 12px; border-radius: 20px; font-size: 14px; font-weight: 600;
+            border: 1px solid rgba(26, 115, 232, 0.2); transition: 0.2s;
+        }
+        .hashtag-item:hover { background: #1a73e8; color: white; cursor: pointer; }
+        #copyBtn { display: none; margin-top: 20px; width: 100%; }
+    </style>
+</head>
+<body>
+
+<header class="compact-header">
+    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" class="btn-dark-mini">🌙 Dark</button>
+    </div>
+    <h1>AI Hashtag Finder</h1>
+    <p class="subtitle">Get trending hashtags for your TikTok, Instagram, and Reels.</p>
+</header>
+
+<div class="hashtag-container">
+    <div class="tag-box reveal active">
+        <div class="search-box" style="margin-bottom: 15px;">
+            <input type="text" id="tagInput" placeholder="Enter topic (e.g. Food, Gaming, Travel)...">
+        </div>
+        <button class="cta-btn" onclick="generateTags()" style="width:100%;">🔍 Find Hashtags</button>
+
+        <div id="resultTags" class="result-area">
+            </div>
+
+        <button id="copyBtn" class="cta-btn" onclick="copyAll()" style="background: #28a745;">📋 Copy All Hashtags</button>
+    </div>
+
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
+    </div>
+</div>
+
+<div class="how reveal">
+    <h2>Go Viral Faster</h2>
+    <div class="how-grid">
+        <div class="how-card"><span>📈</span><strong>Trending Data</strong><p>Dapatkan kombinasi hashtag populer dan spesifik untuk jangkauan lebih luas.</p></div>
+        <div class="how-card"><span>📱</span><strong>Multi Platform</strong><p>Optimasi konten untuk TikTok, Instagram Reels, dan YouTube Shorts.</p></div>
+        <div class="how-card"><span>🚀</span><strong>Zero Effort</strong><p>Copy puluhan hashtag sekaligus hanya dengan satu kali klik.</p></div>
+    </div>
+</div>
+
+<footer>
+    <div class="social"><a href="sitemap.xml" style="font-size: 10px; opacity: 0.5;">Sitemap</a></div>
+    <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    const database = {
+        "food": ["makananenak", "kulinertiktok", "recipe", "foodvlogger", "mukbang", "cooking", "instafood", "jajanan", "viralasep"],
+        "gaming": ["gamingontiktok", "mobilelegends", "freefire", "gamer", "esports", "gamingclips", "gameplay", "pubgmobile"],
+        "travel": ["liburan", "healing", "wisata", "adventure", "nature", "travelgram", "exploreindonesia", "wonderfulindonesia"],
+        "fashion": ["ootd", "outfitinspo", "fashiontiktok", "style", "beauty", "shopping", "racuntiktok", "skincare"],
+        "tech": ["technology", "gadget", "setup", "software", "ai", "coding", "developer", "omnitoolsai", "iphone"]
+    };
+
+    function generateTags() {
+        const input = document.getElementById('tagInput').value.toLowerCase().trim();
+        const resultArea = document.getElementById('resultTags');
+        const copyBtn = document.getElementById('copyBtn');
+        
+        resultArea.innerHTML = "";
+        
+        // Cari keyword atau gunakan default viral tags
+        let tags = database[input] || ["fyp", "viral", "trending", "explore", "foryou", "contentcreator", "shorts", "reels"];
+        
+        // Tambahkan variasi hashtag
+        tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = "hashtag-item";
+            span.innerText = "#" + tag;
+            resultArea.appendChild(span);
+        });
+
+        copyBtn.style.display = "block";
+    }
+
+    function copyAll() {
+        const tags = Array.from(document.querySelectorAll('.hashtag-item'))
+                          .map(t => t.innerText)
+                          .join(' ');
+        navigator.clipboard.writeText(tags);
+        alert("All hashtags copied to clipboard!");
+    }
+</script>
+</body>
+</html>
