@@ -1,274 +1,196 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
 
-  gtag('config', 'G-4LVEC8BY40');
-</script>
-<meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniTools AI - All-in-One Free AI Tools for Creators</title>
+    
+    <meta name="description" content="OmniTools AI provides 20+ free AI-powered tools including Name Generators, Image Converters, JSON Formatters, and Secure Password Generators.">
+    <meta name="keywords" content="OmniTools AI, free ai tools, name generator, json formatter, webp converter, qr generator">
+    <meta name="author" content="OmniTools AI">
 
-<title> OmniTools AI </title>
-<meta name="description" content="Generate 1000+ creative and unique names for your {Business/Startup/Brand} instantly with our free AI tool.">
-<meta name="keywords" content="{business} name generator, creative names, AI name ideas, branding tools">
-<meta name="author" content="AI Name Generator">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shein06.github.io/ai-name-generator/">
+    <meta property="og:title" content="OmniTools AI - Free Productivity Tools">
+    <meta property="og:description" content="Boost your workflow with our all-in-one AI tools collection. Free, fast, and secure.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/username/ai-name-generator/main/preview-image.png">
 
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://shein06.github.io/ai-name-generator/">
-<meta property="og:title" content="{Business} Name Generator - Free AI Tool">
-<meta property="og:description" content="Stop brainstorming for hours! Get the perfect name for your {Business} in seconds.">
-<meta property="og:image" content="https://raw.githubusercontent.com/username/ai-name-generator/main/preview-image.png">
-
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://shein06.github.io/ai-name-generator/">
-<meta property="twitter:title" content="{Business} Name Generator - Free AI Tool">
-<meta property="twitter:description" content="Get creative name ideas for your {Business} instantly.">
-<meta property="twitter:image" content="https://raw.githubusercontent.com/username/ai-name-generator/main/preview-image.png">
-
-<link rel="icon" type="image/png" href="favicon.png">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .category-title {
+            margin: 40px 0 20px;
+            padding-left: 15px;
+            border-left: 4px solid #1a73e8;
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+        .tool-badge {
+            font-size: 9px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .badge-ai { background: #6c5ce7; color: white; }
+        .badge-dev { background: #00b894; color: white; }
+        .badge-sec { background: #ff7675; color: white; }
+    </style>
 </head>
-
 
 <body>
 
 <header>
-    <div style="text-align: right; max-width: 800px; margin: 0 auto;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 5px 12px; border-radius: 15px; cursor: pointer; font-size: 12px;">
-            🌙 Dark
-        </button>
+    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" class="btn-dark-mini">🌙 Dark</button>
     </div>
 
     <h1>OmniTools AI</h1>
     <div class="subtitle">
-        Find the perfect name for your business, brand, or social media instantly.
+        Your all-in-one AI-powered toolbox for creators, developers, and entrepreneurs.
     </div>
 
     <div class="search-container">
         <div class="search-box">
-            <input type="text" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
+            <input type="text" id="toolSearch" placeholder="Search 20+ tools..." onkeyup="searchTools()">
             <button class="search-btn" onclick="searchTools()">Search</button>
         </div>
     </div>
 
     <div class="trending" style="margin-top: 15px; font-size: 12px;">
-        <span style="background: #ff4757; padding: 2px 8px; border-radius: 10px; font-weight: bold;">HOT</span>
-        <a href="startup-name.html" style="color: white; margin-left: 5px;">Startup</a> • 
-        <a href="gaming-name.html" style="color: white;">Gaming</a>
+        <span style="background: #ff4757; padding: 2px 8px; border-radius: 10px; font-weight: bold;">TRENDING</span>
+        <a href="font-generator.html" style="color: white; margin-left: 5px;">Fancy Font</a> • 
+        <a href="image-to-webp.html" style="color: white;">WebP Converter</a> • 
+        <a href="json-formatter.html" style="color: white;">JSON Formatter</a>
     </div>
 </header>
 
-<!-- FEATURED GENERATORS -->
 <div class="seo-container">
-    <div class="seo-card">
-        <h2>Why Use Our Free OmniTools AI?</h2>
-        <p>
-            Finding the right business or brand name is the first step toward success. 
-            Our <strong>OmniTools AI</strong> is specifically designed to help entrepreneurs, 
-            creators, and startups discover unique identities instantly.
-        </p>
-    </div>
-
-    <div class="seo-grid">
-        <div class="seo-mini-card">
-            <span>🚀</span>
-            <h4>Fast & Instant</h4>
-            <p>Get hundreds of creative name ideas in seconds without brainstorming for hours.</p>
-        </div>
-        <div class="seo-mini-card">
-            <span>💎</span>
-            <h4>100% Free</h4>
-            <p>All our tools are completely free to use. No subscriptions or hidden fees involved.</p>
-        </div>
-        <div class="seo-mini-card">
-            <span>📈</span>
-            <h4>SEO Friendly</h4>
-            <p>We generate names that are catchy, memorable, and optimized for search engines.</p>
-        </div>
+    <div class="seo-card reveal active">
+        <h2>Smart Solutions with OmniTools AI</h2>
+        <p>Why waste hours on repetitive tasks? Our <strong>OmniTools AI</strong> ecosystem provides instant, browser-based solutions for your daily digital needs. No registration, no fees—just pure productivity.</p>
     </div>
 </div>
 
+<main class="tools-wrapper" style="max-width: 1100px; margin: 0 auto; padding: 20px;">
 
-<div class="card">
-    <span class="card-icon">💼</span>
-    <a href="business-name.html">Business Name Generator</a>
-    <p>Generate creative and unique business name ideas.</p>
-    <span class="cta-btn">Try Now →</span>
-</div>
+    <h3 class="category-title">🎨 Creative & Branding</h3>
+    <div class="tools">
+        <div class="card reveal active">
+            <span class="tool-badge badge-ai">AI Writing</span>
+            <span class="card-icon">💼</span>
+            <a href="business-name.html">Business Name Generator</a>
+            <p>Find the perfect identity for your new venture.</p>
+        </div>
+        <div class="card reveal active">
+            <span class="tool-badge badge-ai">Popular</span>
+            <span class="card-icon">✨</span>
+            <a href="font-generator.html">Fancy Font Generator</a>
+            <p>Create aesthetic text for Bio and Social Media.</p>
+        </div>
+        <div class="card reveal">
+            <span class="card-icon">🎮</span>
+            <a href="gaming-name.html">Gaming Name Generator</a>
+            <p>Cool gamer tags for ML, FF, and PUBG.</p>
+        </div>
+        <div class="card reveal">
+            <span class="card-icon">🚀</span>
+            <a href="startup-name.html">Startup Name Generator</a>
+            <p>Innovative names for next-gen startups.</p>
+        </div>
+        <div class="card reveal">
+            <span class="card-icon">📺</span>
+            <a href="youtube-name-generator.html">YouTube Name Gen</a>
+            <p>Catchy names for your video channel.</p>
+        </div>
+    </div>
 
-<div class="tools">
+    <h3 class="category-title">💻 Developer & SEO Tools</h3>
+    <div class="tools">
+        <div class="card reveal active">
+            <span class="tool-badge badge-dev">SEO Tool</span>
+            <span class="card-icon">🖼️</span>
+            <a href="image-to-webp.html">Image to WebP</a>
+            <p>Optimize images for faster website loading.</p>
+        </div>
+        <div class="card reveal active">
+            <span class="tool-badge badge-dev">Utility</span>
+            <span class="card-icon">🗒️</span>
+            <a href="json-formatter.html">JSON Formatter</a>
+            <p>Clean, validate, and minify your JSON code.</p>
+        </div>
+        <div class="card reveal">
+            <span class="card-icon">🌐</span>
+            <a href="sitemap.xml">Sitemap Viewer</a>
+            <p>View the structure of OmniTools AI.</p>
+        </div>
+    </div>
 
-<div class="card">
-<span class="card-icon">💼</span>
-<a href="business-name.html">Business Name Generator</a>
-<p>Generate creative and unique business name ideas.</p>
-</div>
+    <h3 class="category-title">🛡️ Security & Utility</h3>
+    <div class="tools">
+        <div class="card reveal active">
+            <span class="tool-badge badge-sec">Encrypted</span>
+            <span class="card-icon">🔑</span>
+            <a href="password-gen.html">Secure Password Gen</a>
+            <p>Generate unhackable AI-rated passwords.</p>
+        </div>
+        <div class="card reveal active">
+            <span class="tool-badge badge-sec">Fast</span>
+            <span class="card-icon">🔳</span>
+            <a href="qr-generator.html">AI QR Generator</a>
+            <p>Create custom QR codes for links & text.</p>
+        </div>
+    </div>
 
-<div class="card">
-<span class="card-icon">✨</span>
-<a href="brand-name.html">Brand Name Generator</a>
-<p>Create memorable brand names instantly.</p>
-</div>
+</main>
 
-<div class="card">
-<span class="card-icon">🛒</span>
-<a href="shop-name.html">Shop Name Generator</a>
-<p>Find catchy names for your online shop.</p>
-</div>
-
-<div class="card">
-<span class="card-icon">🚀</span>
-<a href="startup-name.html">Startup Name Generator</a>
-<p>Generate innovative startup name ideas.</p>
-</div>
-
-<div class="card">
-<span class="card-icon">🎮</span>
-<a href="gaming-name.html">Gaming Name Generator</a>
-<p>Create cool gamer tags and gaming names.</p>
-</div>
-
-<div class="card">
-<span class="card-icon">👤</span>
-<a href="username-generator.html">Username Generator</a>
-<p>Generate unique usernames for social media.</p>
-</div>
-
-<div class="card">
-<span class="card-icon">📺</span>
-<a href="youtube-name-generator.html">YouTube Channel Name Generator</a>
-<p>Find creative YouTube channel name ideas.</p>
-</div>
-
-<div class="card">
-<span class="card-icon">📧</span>
-<a href="email-name-generator.html">Email Name Generator</a>
-<p>Create professional email name ideas.</p>
-</div>
-
-<div class="card">
-<span class="card-icon">📝</span>
-<a href="blog-name-generator.html">Blog Name Generator</a>
-<p>Generate catchy blog and website names.</p>
-</div>
-
-<div class="card">
-<span class="card-icon">🏢</span>
-<a href="company-name-generator.html">Company Name Generator</a>
-<p>Find unique and professional company names.</p>
-</div>
-  
-<div class="card reveal">
-    <span class="card-icon">🛡️</span>
-    <a href="password-generator.html">AI Password Generator</a>
-    <p>Create secure & unbreakable passwords instantly.</p>
-</div>
-  
-<div class="card reveal">
-    <span class="card-icon">💻</span>
-    <a href="image-to-webp.html">image to webP</a>
-    <p>Convert JPG, PNG, and HEIC images to WebP instantly. Free, secure, and AI-optimized for faster website loading and better SEO.</p>
-</div>
-<div class="card reveal">
-    <span class="card-icon">🗒️</span>
-    <a href="qr-generator.html">AI QR Generator</a>
-    <p>Create secure & unbreakable passwords instantly.</p>
-</div>
- <div class="card reveal">
-    <span class="card-icon"💻</span>
-    <a href="json-formatter.html">AI JSON Formatter & Validator</a>
-    <p>AI JSON Formatter & Validator - Clean Your Code.</p>
-</div> 
-  <div class="card reveal">
-    <span class="card-icon"🛡️</span>
-    <a href="password-gen.html">Secure Password Generator</a>
-    <p>Generate unhackable passwords with AI strength analysis.</p>
-</div> 
-</div>
-
-
-<!-- HOW IT WORKS -->
-
-<div class="how">
-
-<h2>How It Works</h2>
-
-<div class="how-grid">
-
-<div class="how-card">
-<span>🔎</span>
-<strong>Enter a Keyword</strong>
-<p>Type a word related to your business, brand, or content niche.</p>
-</div>
-
-<div class="how-card">
-<span>⚡</span>
-<strong>Generate Ideas</strong>
-<p>The generator instantly creates creative name ideas based on your keyword.</p>
-</div>
-
-<div class="how-card">
-<span>📋</span>
-<strong>Copy Your Favorite</strong>
-<p>Choose the best name and copy it instantly to use for your project.</p>
-</div>
-
-</div>
-
-</div>
-
-<!-- SEO CONTENT -->
-
-<div class="content">
-
-<h2>Free OmniTools AI</h2>
-
-<p>
-Our OmniTools AI help entrepreneurs, creators, and startups find unique and creative names instantly. Whether you're starting a new business, launching a YouTube channel, creating a brand, or building a blog, choosing the right name is one of the most important steps.
-</p>
-
-<p>
-With our collection of generators, you can quickly generate name ideas for businesses, brands, gaming profiles, social media usernames, and more. Simply enter a keyword related to your niche and the generator will instantly create multiple creative suggestions.
-</p>
-
-<p>
-These tools are completely free and designed to help creators discover memorable names faster without spending hours brainstorming.
-</p>
-
+<div class="how reveal active">
+    <h2>Empowering Creators Worldwide</h2>
+    <div class="how-grid">
+        <div class="how-card">
+            <span>⚡</span>
+            <strong>High Performance</strong>
+            <p>Our tools run 100% on your browser for instant results.</p>
+        </div>
+        <div class="how-card">
+            <span>🔒</span>
+            <strong>Privacy First</strong>
+            <p>We never store your data or uploaded images on our servers.</p>
+        </div>
+        <div class="how-card">
+            <span>🌍</span>
+            <strong>SEO Optimized</strong>
+            <p>Built to help your digital presence grow faster.</p>
+        </div>
+    </div>
 </div>
 
 <footer>
-
-<div class="social">
-
-<a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg"></a>
-
-<a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg"></a>
-
-<a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"></a>
-
-<a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg"></a>
-<p>
-<a href="about.html">About</a> |
-<a href="contact.html">Contact</a> |
-<a href="privacy-policy.html">Privacy Policy</a> |
-<a href="terms.html">Terms</a>
-</p>
-
-</div>
-
-<p>Free online tools for entrepreneurs and creators.</p>
-
-
+    <div class="social">
+        <p>
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a> |
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms</a> |
+            <a href="sitemap.xml">Sitemap</a>
+        </p>
+    </div>
+    <p>&copy; 2026 <strong>OmniTools AI</strong>. Free online tools for entrepreneurs.</p>
 </footer>
+
 <script src="script.js"></script>
 </body>
-  </html>
+</html>
