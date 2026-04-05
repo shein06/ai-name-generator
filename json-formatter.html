@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI JSON Formatter & Validator - Clean Your Code | SmartToolbox</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .json-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .editor-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .editor-wrapper { grid-template-columns: 1fr 1fr; }
+        }
+        textarea {
+            width: 100%;
+            height: 400px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 12px;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            border: 1px solid #333;
+            resize: none;
+            outline: none;
+        }
+        .output-area {
+            position: relative;
+        }
+        .status-bar {
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            display: none;
+        }
+        .status-success { background: rgba(40, 167, 69, 0.1); color: #28a745; border: 1px solid #28a745; }
+        .status-error { background: rgba(220, 53, 69, 0.1); color: #dc3545; border: 1px solid #dc3545; }
+        
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .tool-btn {
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            transition: 0.2s;
+        }
+        .btn-format { background: #1a73e8; color: white; }
+        .btn-minify { background: #6c757d; color: white; }
+        .btn-clear { background: #ff4757; color: white; }
+    </style>
+</head>
+<body>
+
+<header class="compact-header">
+    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" class="btn-dark-mini">🌙 Dark</button>
+    </div>
+    <h1>AI JSON Formatter</h1>
+    <p class="subtitle">Pretty print, validate, and minify your JSON code instantly.</p>
+</header>
+
+<div class="json-container">
+    <div class="toolbar">
+        <button class="tool-btn btn-format" onclick="processJSON('format')">✨ Format / Beautify</button>
+        <button class="tool-btn btn-minify" onclick="processJSON('minify')">📦 Minify</button>
+        <button class="tool-btn btn-clear" onclick="clearAll()">🗑️ Clear</button>
+    </div>
+
+    <div id="statusMsg" class="status-bar"></div>
+
+    <div class="editor-wrapper">
+        <div class="input-area">
+            <label style="display:block; margin-bottom:5px; font-size:12px; opacity:0.7;">Input Raw JSON:</label>
+            <textarea id="jsonInput" placeholder='Paste your messy JSON here... e.g. {"name":"John","age":30}'></textarea>
+        </div>
+        <div class="output-area">
+            <label style="display:block; margin-bottom:5px; font-size:12px; opacity:0.7;">Formatted Output:</label>
+            <textarea id="jsonOutput" readonly placeholder="Result will appear here..."></textarea>
+            <button class="cta-btn" onclick="copyResult()" style="position:absolute; bottom:20px; right:20px; font-size:11px; padding:5px 15px;">📋 Copy</button>
+        </div>
+    </div>
+    
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
+    </div>
+</div>
+
+<div class="how reveal">
+    <h2>Powerful JSON Tools</h2>
+    <div class="how-grid">
+        <div class="how-card"><span>🔍</span><strong>Validator</strong><p>Detect errors in your JSON code and find out exactly where the syntax is wrong.</p></div>
+        <div class="how-card"><span>🎨</span><strong>Beautifier</strong><p>Turn a single line of messy code into a perfectly indented, readable structure.</p></div>
+        <div class="how-card"><span>🚀</span><strong>Minifier</strong><p>Compress your JSON to the smallest size possible for faster web performance.</p></div>
+    </div>
+</div>
+
+<footer>
+    <div class="social">
+        <a href="sitemap.xml" style="font-size: 10px; opacity: 0.5;">Sitemap</a>
+    </div>
+    <p>&copy; 2026 SmartToolbox. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    const inputArea = document.getElementById('jsonInput');
+    const outputArea = document.getElementById('jsonOutput');
+    const statusMsg = document.getElementById('statusMsg');
+
+    function processJSON(mode) {
+        const rawValue = inputArea.value.trim();
+        if (!rawValue) return;
+
+        try {
+            const jsonObj = JSON.parse(rawValue);
+            let result = "";
+
+            if (mode === 'format') {
+                result = JSON.stringify(jsonObj, null, 4);
+                showStatus("✅ Valid JSON: Successfully formatted!", "success");
+            } else {
+                result = JSON.stringify(jsonObj);
+                showStatus("✅ Valid JSON: Successfully minified!", "success");
+            }
+
+            outputArea.value = result;
+        } catch (e) {
+            showStatus("❌ Invalid JSON: " + e.message, "error");
+            outputArea.value = "";
+        }
+    }
+
+    function showStatus(msg, type) {
+        statusMsg.style.display = "block";
+        statusMsg.className = "status-bar status-" + type;
+        statusMsg.textContent = msg;
+    }
+
+    function clearAll() {
+        inputArea.value = "";
+        outputArea.value = "";
+        statusMsg.style.display = "none";
+    }
+
+    function copyResult() {
+        if (!outputArea.value) return;
+        navigator.clipboard.writeText(outputArea.value);
+        alert("Copied to clipboard!");
+    }
+</script>
+
+</body>
+</html>
