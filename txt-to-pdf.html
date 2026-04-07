@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free TXT to PDF Converter - Instant & Secure | OmniTools AI</title>
+    <meta name="description" content="Convert your text files to professional PDF documents instantly. Fast, secure, and free online TXT to PDF converter by OmniTools AI.">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        .converter-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .converter-card { 
+            background: var(--card-bg); border-radius: 20px; padding: 30px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; 
+        }
+        
+        #textInput { 
+            width: 100%; height: 250px; padding: 15px; border-radius: 12px; 
+            border: 1px solid #ddd; font-family: 'Poppins', sans-serif; 
+            font-size: 14px; margin-bottom: 20px; resize: vertical;
+        }
+
+        .upload-area {
+            border: 2px dashed #1a73e8; padding: 20px; border-radius: 12px;
+            margin-bottom: 20px; cursor: pointer; transition: 0.3s;
+        }
+        .upload-area:hover { background: rgba(26, 115, 232, 0.05); }
+
+        .recom-box { margin-top: 50px; padding: 25px; border-top: 1px dashed #ccc; text-align: left; }
+        .recom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+        .recom-item { 
+            background: #fff; padding: 15px; border-radius: 12px; text-decoration: none; 
+            color: #333; border: 1px solid #eee; font-size: 13px; transition: 0.3s;
+        }
+        .recom-item:hover { border-color: #1a73e8; transform: translateY(-2px); }
+        .recom-item b { display: block; color: #1a73e8; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<header class="compact-header">
+    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" class="btn-dark-mini">🌙 Dark</button>
+    </div>
+    <h1>TXT to PDF Converter</h1>
+    <p class="subtitle">Transform your plain text into professional PDF files instantly.</p>
+</header>
+
+<div class="converter-container">
+    <div class="converter-card reveal active">
+        <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+            <p>📁 Click to upload .txt file or paste your text below</p>
+            <input type="file" id="fileInput" accept=".txt" style="display:none" onchange="handleFileUpload(event)">
+        </div>
+
+        <textarea id="textInput" placeholder="Type or paste your content here..."></textarea>
+        
+        <button class="cta-btn" onclick="convertToPDF()" style="width:100%; background: #1a73e8; color: white;">
+            ⚡ Download as PDF
+        </button>
+    </div>
+
+    <div class="explanation-section reveal" style="margin-top: 50px; text-align: left;">
+        <h2>About TXT to PDF Converter</h2>
+        <p>The <strong>TXT to PDF Converter</strong> by <strong>OmniTools AI</strong> is a lightweight utility designed for users who need a quick way to document their notes, code, or plain text into a fixed PDF format. This tool is perfect for creating read-only documents that maintain their structure across all devices.</p>
+        
+        <h3>Why Use This Tool?</h3>
+        <ul>
+            <li><strong>Privacy First:</strong> Your files are processed locally in your browser. No data is ever uploaded to our servers.</li>
+            <li><strong>Instant Conversion:</strong> Get your PDF in milliseconds without waiting in queues.</li>
+            <li><strong>Clean Formatting:</strong> Automatically converts plain text into a readable A4 PDF document.</li>
+        </ul>
+    </div>
+
+    <div class="recom-box reveal">
+        <h4>🛠️ Check Out Other Tools</h4>
+        <div class="recom-grid">
+            <a href="image-to-webp.html" class="recom-item"><b>🖼️ Image to WebP</b>Convert images for better web performance.</a>
+            <a href="website-rating.html" class="recom-item"><b>📊 Website Rating</b>Check your SEO and site health score.</a>
+            <a href="json-formatter.html" class="recom-item"><b>🗒️ JSON Formatter</b>Beautify and validate your JSON code.</a>
+            <a href="qr-generator.html" class="recom-item"><b>🔳 AI QR Generator</b>Create custom QR codes for your links.</a>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to OmniTools AI</a>
+    </div>
+</div>
+
+<footer>
+    <div class="social"><a href="sitemap.xml" style="font-size: 10px; opacity: 0.5;">Sitemap</a></div>
+    <p>&copy; 2026 <strong>OmniTools AI</strong>. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    const { jsPDF } = window.jspdf;
+
+    function handleFileUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('textInput').value = e.target.result;
+        };
+        reader.readAsText(file);
+    }
+
+    function convertToPDF() {
+        const text = document.getElementById('textInput').value;
+        if (!text.trim()) {
+            alert("Please enter some text or upload a .txt file first!");
+            return;
+        }
+
+        const doc = new jsPDF();
+        
+        // Auto-wrap text to fit A4 width
+        const splitText = doc.splitTextToSize(text, 180);
+        doc.text(splitText, 15, 20);
+        
+        doc.save("OmniTools-AI-Document.pdf");
+    }
+</script>
+</body>
+</html>
