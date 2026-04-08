@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast PDF Compressor - Reduce PDF Size Online | OmniTools AI</title>
+    <meta name="description" content="Reduce the file size of your PDF documents online for free. Fast, secure, and no data leaves your browser. The ultimate PDF optimizer by OmniTools AI.">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+    <style>
+        .compress-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .compress-card { 
+            background: var(--card-bg); border-radius: 20px; padding: 40px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; 
+        }
+        
+        .upload-zone {
+            border: 3px dashed #1a73e8; padding: 40px; border-radius: 15px;
+            cursor: pointer; transition: 0.3s; background: rgba(26, 115, 232, 0.02);
+            margin-bottom: 20px;
+        }
+        .upload-zone:hover { background: rgba(26, 115, 232, 0.08); border-color: #0d47a1; }
+        .upload-zone i { font-size: 50px; display: block; margin-bottom: 10px; }
+
+        #fileInfo { margin-top: 15px; font-weight: 600; color: #1a73e8; display: none; }
+        .loading-spinner { display: none; margin: 20px 0; font-weight: bold; color: #ff4757; }
+
+        /* Recommendation Grid */
+        .recom-section { margin-top: 50px; text-align: left; padding-top: 30px; border-top: 1px solid #eee; }
+        .recom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .recom-card { 
+            background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 12px;
+            text-decoration: none; color: #333; transition: 0.3s; font-size: 13px;
+        }
+        .recom-card:hover { border-color: #1a73e8; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .recom-card b { display: block; color: #1a73e8; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+
+<header class="compact-header">
+    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" class="btn-dark-mini">🌙 Dark</button>
+    </div>
+    <h1>PDF Compressor</h1>
+    <p class="subtitle">Shrink your PDF file size without losing essential quality.</p>
+</header>
+
+<div class="compress-container">
+    <div class="compress-card reveal active">
+        <div class="upload-zone" onclick="document.getElementById('pdfInput').click()">
+            <span>📄</span>
+            <p><strong>Click to upload PDF</strong> or drag and drop here</p>
+            <input type="file" id="pdfInput" accept="application/pdf" style="display:none" onchange="handleFile(event)">
+        </div>
+
+        <div id="fileInfo">File ready to compress</div>
+        <div id="loading" class="loading-spinner">Compressing PDF... Please wait...</div>
+        
+        <button id="compressBtn" class="cta-btn" onclick="compressPDF()" style="width:100%; display:none; background: #28a745;">
+            🚀 Compress & Download
+        </button>
+    </div>
+
+    <div class="explanation-section reveal" style="margin-top: 50px; text-align: left;">
+        <h2>How Does PDF Compression Work?</h2>
+        <p>Our **PDF Compressor** helps you reduce the size of heavy documents so they are easier to share via email or upload to web portals. By optimizing the internal structure of the PDF, we minimize the file size while keeping your text and images clear.</p>
+        
+        <h3>Why choose OmniTools AI for PDF?</h3>
+        <ul>
+            <li><strong>Browser-Based:</strong> We don't upload your files to any server. Your privacy is our priority.</li>
+            <li><strong>Fast Processing:</strong> Most files are compressed in under 3 seconds.</li>
+            <li><strong>Universal Access:</strong> Works perfectly on Chrome, Safari, and mobile browsers on tablets.</li>
+        </ul>
+    </div>
+
+    <div class="recom-section reveal">
+        <h3>💡 You Might Also Need</h3>
+        <div class="recom-grid">
+            <a href="txt-to-pdf.html" class="recom-card">
+                <b>📄 TXT to PDF</b>
+                Convert plain text into professional documents.
+            </a>
+            <a href="image-to-webp.html" class="recom-card">
+                <b>🖼️ Image Optimizer</b>
+                Reduce image sizes for faster website loading.
+            </a>
+            <a href="website-rating.html" class="recom-card">
+                <b>📊 Website Audit</b>
+                Analyze your website SEO and security score.
+            </a>
+            <a href="qr-generator.html" class="recom-card">
+                <b>🔳 AI QR Generator</b>
+                Create unique QR codes for your PDF links.
+            </a>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center;">
+        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to OmniTools AI</a>
+    </div>
+</div>
+
+<footer>
+    <div class="social"><a href="sitemap.xml" style="font-size: 10px; opacity: 0.5;">Sitemap</a></div>
+    <p>&copy; 2026 <strong>OmniTools AI</strong>. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    let selectedFile;
+
+    function handleFile(event) {
+        selectedFile = event.target.files[0];
+        if (selectedFile) {
+            document.getElementById('fileInfo').style.display = "block";
+            document.getElementById('fileInfo').innerText = "Selected: " + selectedFile.name;
+            document.getElementById('compressBtn').style.display = "block";
+        }
+    }
+
+    async function compressPDF() {
+        if (!selectedFile) return;
+
+        const loading = document.getElementById('loading');
+        const compressBtn = document.getElementById('compressBtn');
+        
+        loading.style.display = "block";
+        compressBtn.style.display = "none";
+
+        try {
+            const arrayBuffer = await selectedFile.arrayBuffer();
+            const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+            
+            // Standard optimization: re-saving with internal compression
+            const pdfBytes = await pdfDoc.save({ useObjectStreams: true });
+
+            const blob = new Blob([pdfBytes], { type: "application/pdf" });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = "Compressed-OmniTools-" + selectedFile.name;
+            link.click();
+        } catch (error) {
+            alert("Error compressing PDF: " + error.message);
+        } finally {
+            loading.style.display = "none";
+            compressBtn.style.display = "block";
+        }
+    }
+</script>
+</body>
+</html>
