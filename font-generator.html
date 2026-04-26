@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Font Generator - Modern Typography & Aesthetic Text</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Transform plain text into aesthetic fonts for Instagram, WhatsApp, and Social Media Bio with the AI-powered Architect Fancy Font Generator.">
+    <meta name="keywords" content="fancy font generator, aesthetic fonts, cool text, instagram bio fonts, unicode text converter, copy and paste fonts">
+    
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --accent: #9b51e0;
+            --bg-glass: rgba(255, 255, 255, 0.9);
+            --input-bg: #f8f9fa;
+            --border-radius: 16px;
+            --text-color: #202124;
+            --card-bg: #ffffff;
+            --bg-body: #f0f2f5;
+        }
+
+        [data-theme="dark"] {
+            --primary: #8ab4f8;
+            --accent: #c58af9;
+            --input-bg: #2d2e31;
+            --text-color: #e8eaed;
+            --card-bg: #202124;
+            --bg-body: #171717;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a73e8 0%, #9b51e0 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 { margin: 0; font-size: 2.8rem; letter-spacing: -1.5px; font-weight: 800; }
+        .subtitle { opacity: 0.9; font-size: 1.1rem; margin-top: 10px; font-weight: 300; }
+
+        .seo-container {
+            max-width: 1100px;
+            margin: -40px auto 40px;
+            padding: 0 20px;
+        }
+
+        .architect-card {
+            background: var(--card-bg);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.03);
+            margin-bottom: 40px;
+        }
+
+        /* Input Styling */
+        .input-group {
+            margin-bottom: 35px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 24px;
+            border-radius: var(--border-radius);
+            border: 2px solid transparent;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            font-size: 1.3rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-sizing: border-box;
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+        }
+
+        textarea:focus {
+            background-color: var(--card-bg);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(26, 115, 232, 0.15);
+            outline: none;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .font-card {
+            background: var(--input-bg);
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .font-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+            background: var(--card-bg);
+        }
+
+        .font-card::before {
+            content: "COPY";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.65rem;
+            font-weight: 900;
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .font-card:hover::before {
+            opacity: 1;
+        }
+
+        .font-card .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+        }
+
+        .font-card .output-text {
+            font-size: 1.35rem;
+            word-break: break-word;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        /* How it works */
+        .section-title {
+            text-align: center;
+            margin: 80px 0 40px;
+        }
+        .section-title h2 { font-size: 2.2rem; color: var(--text-color); margin-bottom: 10px; }
+        .section-title p { opacity: 0.7; font-size: 1.1rem; }
+
+        .how-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .how-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .how-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .how-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+
+        /* Toast Notification */
+        #toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a73e8;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 15px 35px rgba(26, 115, 232, 0.4);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { bottom: 0; opacity: 0; }
+            to { bottom: 40px; opacity: 1; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--card-bg);
+            margin-top: 80px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .btn-toggle {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 20px;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .results-grid { grid-template-columns: 1fr; }
+            .architect-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Fancy Font Generator</h1>
+    <div class="subtitle">Convert plain text into artistic typography for social media</div>
+    <button class="btn-toggle" onclick="toggleTheme()">🌓 Switch Theme</button>
+</header>
+
+<div class="seo-container">
+    <div class="architect-card">
+        <div class="input-group">
+            <label>Your Input Text</label>
+            <textarea id="userInput" placeholder="Type or paste your text here..." oninput="generateFonts()"></textarea>
+        </div>
+
+        <div id="results" class="results-grid">
+            <div style="grid-column: 1/-1; text-align: center; opacity: 0.4; padding: 60px;">
+                <span style="font-size: 3rem; display: block; margin-bottom: 15px;">✍️</span>
+                Typography variations will appear here as you type...
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="seo-container">
+    <div class="section-title">
+        <h2>The Science of Modern Typography</h2>
+        <p>Unlocking the potential of Unicode for digital expression.</p>
+    </div>
+
+    <div class="how-detail-grid">
+        <div class="how-card">
+            <span class="icon">🧬</span>
+            <h3>Unicode Mapping</h3>
+            <p>Our tool doesn't just change "fonts"—it maps standard ASCII characters to unique Unicode symbols that create specific visual styles recognized by all devices.</p>
+        </div>
+        <div class="how-card">
+            <span class="icon">🌍</span>
+            <h3>Universal Support</h3>
+            <p>Generated text works seamlessly across global platforms like Instagram, WhatsApp, TikTok, X (Twitter), and Facebook without requiring any app installation.</p>
+        </div>
+        <div class="how-card">
+            <span class="icon">⚡</span>
+            <h3>Architect Engine</h3>
+            <p>Built with performance in mind, our engine renders over 15+ styles instantly, ensuring a smooth creative workflow for digital architects and creators.</p>
+        </div>
+    </div>
+
+    <div class="architect-card" style="margin-top: 40px; text-align: center;">
+        <h2 style="font-size: 2rem; margin-bottom: 20px;">Why Aesthetic Fonts Matter?</h2>
+        <p style="max-width: 800px; margin: 0 auto 20px; font-size: 1.1rem; opacity: 0.8;">
+            In a crowded digital landscape, visual distinction is your greatest asset. Using a <strong>Fancy Font Generator</strong> helps your bio, captions, and headlines grab attention instantly. 
+        </p>
+        <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; opacity: 0.8;">
+            Whether you are a <em>Digital Nomad</em>, <em>Brand Manager</em>, or <em>Content Creator</em>, these styles add a layer of personality that standard text simply cannot provide. Just type, pick, and paste!
+        </p>
+    </div>
+</div>
+
+<div id="toast">Copied to clipboard! ✨</div>
+
+<footer>
+    <p>&copy; 2026 OmniTools AI. Engineered for Global Creatives by Architect Series.</p>
+</footer>
+
+<script>
+    const styles = [
+        { label: "Classic Script", map: { a: "𝓪", b: "𝓫", c: "𝓬", d: "𝓭", e: "𝓮", f: "𝓯", g: "𝓰", h: "𝓱", i: "𝓲", j: "𝓳", k: "𝓴", l: "𝓵", m: "𝓶", n: "𝓷", o: "𝓸", p: "𝓹", q: "𝓺", r: "𝓻", s: "𝓼", t: "𝓽", u: "𝓾", v: "𝓿", w: "𝔀", x: "𝔁", y: "𝔂", z: "𝔃", A: "𝓐", B: "𝓑", C: "𝓒", D: "𝓓", E: "𝓔", F: "𝓕", G: "𝓖", H: "𝓗", I: "𝓘", J: "𝓙", K: "𝓚", L: "𝓛", M: "𝓜", N: "𝓝", O: "𝓞", P: "𝓟", Q: "𝓠", R: "𝓡", S: "𝓢", T: "𝓣", U: "𝓤", V: "𝓥", W: "𝓦", X: "𝓧", Y: "𝓨", Z: "𝓩" }},
+        { label: "Modern Bold Sans", map: { a: "𝗮", b: "𝗯", c: "𝗰", d: "𝗱", e: "𝗲", f: "𝗳", g: "𝗴", h: "𝗵", i: "𝗶", j: "𝗷", k: "𝗸", l: "𝗹", m: "𝗺", n: "𝗻", o: "𝗼", p: "𝗽", q: "𝗾", r: "𝗿", s: "𝘀", t: "𝘁", u: "𝘂", v: "𝘃", w: "𝘄", x: "𝘅", y: "𝘆", z: "𝘇", A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜", J: "𝗝", K: "𝗞", L: "𝗟", M: "𝗠", N: "𝗡", O: "𝗢", P: "𝗣", Q: "𝗤", R: "𝗥", S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭" }},
+        { label: "Monospace Tech", map: { a: "𝚊", b: "𝚋", c: "𝚌", d: "𝚍", e: "𝚎", f: "𝚏", g: "𝚐", h: "𝚑", i: "𝚒", j: "𝚓", k: "𝚔", l: "𝚕", m: "𝚖", n: "𝚗", o: "𝚘", p: "𝚙", q: "", r: "𝚛", s: "𝚜", t: "𝚝", u: "𝚞", v: "𝚟", w: "𝚠", x: "𝚡", y: "𝚢", z: "𝚣", A: "𝙰", B: "𝙱", C: "𝙲", D: "𝙳", E: "𝙴", F: "𝙵", G: "𝙶", H: "𝙷", I: "𝙸", J: "𝙹", k: "𝙺", L: "𝙻", M: "𝙼", N: "𝙽", O: "𝙾", P: "𝙿", Q: "𝚀", R: "𝚁", S: "𝚂", T: "𝚃", U: "𝚄", V: "𝚅", W: "𝚆", X: "𝚇", Y: "𝚈", Z: "𝚉" }},
+        { label: "Double Struck", map: { a: "𝕒", b: "𝕓", c: "𝕔", d: "𝕕", e: "𝕖", f: "𝕗", g: "𝕘", h: "𝕙", i: "𝕚", j: "𝕛", k: "𝕜", l: "𝕝", m: "𝕞", n: "𝕟", o: "𝕠", p: "𝕡", q: "𝕢", r: "𝕣", s: "𝕤", t: "𝕥", u: "𝕦", v: "𝕧", w: "𝕨", x: "𝕩", y: "𝕪", z: "𝕫", A: "𝔸", B: "𝔹", C: "ℂ", D: "𝔻", E: "𝔼", F: "𝔽", G: "𝔾", H: "ℍ", I: "𝕀", J: "𝕁", K: "𝕂", L: "𝕃", M: "𝕄", N: "ℕ", O: "𝕆", P: "ℙ", Q: "ℚ", R: "ℝ", S: "𝕊", T: "𝕋", U: "𝕌", V: "𝕍", W: "𝕎", X: "𝕏", Y: "𝕐", Z: "ℤ" }},
+        { label: "Gothic Serif", map: { a: "𝔞", b: "𝔟", c: "𝔠", d: "𝔡", e: "𝔢", f: "𝔣", g: "𝔤", h: "𝔥", i: "𝔦", j: "𝔧", k: "𝔨", l: "𝔩", m: "𝔪", n: "𝔫", o: "𝔬", p: "𝔭", q: "𝔮", r: "𝔯", s: "𝔰", t: "𝔱", u: "𝔲", v: "𝔳", w: "𝔴", x: "𝔵", y: "𝔶", z: "𝔷", A: "𝔄", B: "𝔅", C: "ℭ", D: "𝔇", E: "𝔈", F: "𝔉", G: "𝔊", H: "ℌ", I: "ℑ", J: "𝔍", K: "𝔎", L: "𝔏", M: "𝔐", N: "𝔑", O: "𝔒", P: "𝔓", Q: "𝔔", R: "ℜ", S: "𝔖", T: "𝔗", U: "𝔘", V: "𝔙", W: "𝔚", X: "𝔛", Y: "𝔜", Z: "ℨ" }},
+        { label: "Bubble Text", map: { a: "ⓐ", b: "ⓑ", c: "ⓒ", d: "ⓓ", e: "ⓔ", f: "ⓕ", g: "ⓖ", h: "ⓗ", i: "ⓘ", j: "ⓙ", k: "ⓚ", l: "ⓛ", m: "ⓜ", n: "ⓝ", o: "ⓞ", p: "ⓟ", q: "ⓠ", r: "ⓡ", s: "ⓢ", t: "ⓣ", u: "ⓤ", v: "ⓥ", w: "ⓦ", x: "ⓧ", y: "ⓨ", z: "ⓩ", A: "Ⓐ", B: "Ⓑ", C: "Ⓒ", D: "Ⓓ", E: "Ⓔ", F: "Ⓕ", G: "Ⓖ", H: "Ⓗ", I: "Ⓘ", J: "Ⓙ", K: "Ⓚ", L: "Ⓛ", M: "Ⓜ", N: "Ⓝ", O: "Ⓞ", P: "Ⓟ", Q: "Ⓠ", R: "Ⓡ", S: "Ⓢ", T: "Ⓣ", U: "Ⓤ", V: "Ⓥ", W: "Ⓦ", X: "Ⓧ", Y: "Ⓨ", Z: "Ⓩ" }},
+        { label: "Small Caps Pro", map: { a: "ᴀ", b: "ʙ", c: "ᴄ", d: "ᴅ", e: "ᴇ", f: "ғ", g: "ɢ", h: "ʜ", i: "ɪ", j: "ᴊ", k: "ᴋ", l: "ʟ", m: "ᴍ", n: "ɴ", o: "ᴏ", p: "ᴘ", q: "ǫ", r: "ʀ", s: "s", t: "ᴛ", u: "ᴜ", v: "ᴠ", w: "ᴡ", x: "x", y: "ʏ", z: "ᴢ", A: "ᴀ", B: "ʙ", C: "ᴄ", D: "ᴅ", E: "ᴇ", F: "ғ", G: "ɢ", H: "ʜ", I: "ɪ", J: "ᴊ", K: "ᴋ", L: "ʟ", M: "ᴍ", N: "ɴ", O: "ᴏ", P: "ᴘ", Q: "ǫ", R: "ʀ", S: "s", T: "ᴛ", U: "ᴜ", V: "ᴠ", W: "ᴡ", X: "x", Y: "ʏ", Z: "ᴢ" }},
+        { label: "Bold Italic Serif", map: { a: "𝒂", b: "𝒃", c: "𝒄", d: "𝒅", e: "𝒆", f: "𝒇", g: "𝒈", h: "𝒉", i: "𝒊", j: "𝒋", k: "𝒌", l: "𝒍", m: "𝒎", n: "𝒏", o: "𝒐", p: "𝒑", q: "𝒒", r: "𝒓", s: "𝒔", t: "𝒕", u: "𝒖", v: "𝒗", w: "𝒘", x: "𝒙", y: "𝒚", z: "𝒛", A: "𝑨", B: "𝑩", C: "𝑪", D: "𝑫", E: "𝑬", F: "𝑭", G: "𝑮", H: "𝑯", I: "𝑰", J: "𝑱", K: "𝑲", L: "𝑳", M: "𝑴", N: "𝑵", O: "𝑶", P: "𝑷", Q: "𝑸", R: "𝑹", S: "𝑺", T: "𝑻", U: "𝑼", V: "𝑽", W: "𝑾", X: "𝑿", Y: "𝒀", Z: "𝒁" }}
+    ];
+
+    function transformText(text, map) {
+        return text.split('').map(char => map[char] || char).join('');
+    }
+
+    function generateFonts() {
+        const text = document.getElementById('userInput').value;
+        const resultsDiv = document.getElementById('results');
+        
+        if (!text.trim()) {
+            resultsDiv.innerHTML = '<div style="grid-column: 1/-1; text-align: center; opacity: 0.4; padding: 60px;"><span style="font-size: 3rem; display: block; margin-bottom: 15px;">✍️</span>Typography variations will appear here as you type...</div>';
+            return;
+        }
+
+        resultsDiv.innerHTML = '';
+        styles.forEach(style => {
+            const transformed = transformText(text, style.map);
+            const card = document.createElement('div');
+            card.className = 'font-card';
+            card.onclick = () => copyToClipboard(transformed);
+            
+            card.innerHTML = `
+                <div>
+                    <div class="label">${style.label}</div>
+                    <div class="output-text">${transformed}</div>
+                </div>
+            `;
+            resultsDiv.appendChild(card);
+        });
+    }
+
+    function copyToClipboard(text) {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        
+        showToast();
+    }
+
+    function showToast() {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 2000);
+    }
+
+    function toggleTheme() {
+        const body = document.body;
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+        }
+    }
+</script>
+
+</body>
+</html>
