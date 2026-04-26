@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Prompt Architect - Professional Prompt Generator</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Master AI art with our Image Prompt Architect. Professional prompt engineering for Midjourney, DALL-E, and Leonardo AI using Gemini AI technology.">
+    <meta name="keywords" content="ai prompt generator, midjourney helper, dall-e 3 builder, ai art architect, professional prompt engineering">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --accent: #9b51e0;
+            --bg-glass: rgba(255, 255, 255, 0.9);
+            --input-bg: #f8f9fa;
+            --border-radius: 16px;
+        }
+
+        .architect-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            margin-bottom: 40px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        /* Modern Input Styling */
+        .prompt-input-group {
+            margin-bottom: 25px;
+        }
+        .prompt-input-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            padding-left: 4px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: var(--border-radius);
+            border: 2px solid transparent;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            font-size: 15px;
+            transition: all 0.3s ease;
+            appearance: none;
+            box-sizing: border-box;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+        .select-wrapper::after {
+            content: '▼';
+            font-size: 10px;
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        input[type="text"]:focus, select:focus {
+            background-color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 8px 20px rgba(26, 115, 232, 0.1);
+            outline: none;
+        }
+
+        .prompt-select-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* Result Area */
+        .result-area {
+            background: linear-gradient(145deg, #ffffff, #f0f7ff);
+            border: 2.5px solid var(--primary);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 35px;
+            position: relative;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        #finalPrompt {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: #2c3e50;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        /* AI Buttons Group */
+        .ai-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-bottom: 35px;
+        }
+
+        .gemini-btn {
+            padding: 14px 10px;
+            border-radius: 14px;
+            font-size: 0.8rem;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ai-feedback-box {
+            background: #fffbe6;
+            border-left: 5px solid #ffe58f;
+            color: #856404;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        /* Extra Sections Styling */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 30px;
+        }
+        .section-title h2 { font-size: 2rem; color: var(--text-color); }
+
+        .how-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .rec-tool-card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .rec-tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>AI Image Prompt Architect</h1>
+    <div class="subtitle">Engineer High-Fidelity Visual Concepts with Gemini AI</div>
+    
+    <div style="margin-top: 15px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
+            🌙 Toggle Theme
+        </button>
+    </div>
+</header>
+
+<div class="seo-container">
+    <div class="architect-card reveal active">
+        <!-- AI Smart Controls -->
+        <div class="ai-features">
+            <button class="gemini-btn" onclick="enhanceWithGemini()">
+                <div class="loading-spinner" id="enhanceSpinner"></div>
+                ✨ Magic Enhance
+            </button>
+            <button class="gemini-btn" style="background: #34a853;" onclick="suggestIdea()">
+                <div class="loading-spinner" id="suggestSpinner"></div>
+                ✨ Smart Idea
+            </button>
+            <button class="gemini-btn" style="background: #ea4335;" onclick="analyzePrompt()">
+                <div class="loading-spinner" id="analyzeSpinner"></div>
+                ✨ AI Critic
+            </button>
+             <button class="gemini-btn" style="background: #fbbc05; color: #000;" onclick="generateVariations()">
+                <div class="loading-spinner" id="variationSpinner"></div>
+                ✨ Variations
+            </button>
+        </div>
+
+        <div class="prompt-input-group">
+            <label>Master Vision (Subject)</label>
+            <input type="text" id="subject" placeholder="Describe the heart of your image..." oninput="buildPrompt()">
+        </div>
+
+        <div class="prompt-select-grid">
+            <div class="prompt-input-group">
+                <label>Artistic Medium</label>
+                <div class="select-wrapper">
+                    <select id="artStyle" onchange="buildPrompt()">
+                        <option value="">Default AI Interpretation</option>
+                        <option value="Photorealistic, 8k resolution, Unreal Engine 5 render">Photorealistic (3D)</option>
+                        <option value="Cyberpunk, neon-drenched, high-tech grit">Cyberpunk Aesthetic</option>
+                        <option value="Studio Ghibli style, hand-painted textures">Ghibli Anime</option>
+                        <option value="Concept art, trending on ArtStation, sharp focus">Professional Concept Art</option>
+                        <option value="Renaissance oil painting, chiaroscuro lighting">Classic Oil Painting</option>
+                        <option value="Surrealist masterpiece, dream-like atmosphere">Surrealism</option>
+                    </select>
+                </div>
+            </div>
+            <div class="prompt-input-group">
+                <label>Lighting & Mood</label>
+                <div class="select-wrapper">
+                    <select id="lighting" onchange="buildPrompt()">
+                        <option value="">Natural Ambiance</option>
+                        <option value="Cinematic rim lighting, dramatic shadows">Cinematic Drama</option>
+                        <option value="Golden hour, soft warm sunlight">Golden Hour</option>
+                        <option value="Cybernetic neon glow, bioluminescent pulses">Neon / Glow</option>
+                        <option value="Moody overcast, ethereal fog">Ethereal Mist</option>
+                        <option value="Hard flash, high contrast fashion lighting">High Contrast</option>
+                    </select>
+                </div>
+            </div>
+            <div class="prompt-input-group">
+                <label>Cinematography</label>
+                <div class="select-wrapper">
+                    <select id="camera" onchange="buildPrompt()">
+                        <option value="">Standard Eye-Level</option>
+                        <option value="Wide angle lens, 14mm, expansive view">Ultra Wide</option>
+                        <option value="Macro photography, extreme detail, 100mm">Macro Detail</option>
+                        <option value="Low angle, heroic perspective, grand scale">Heroic Low Angle</option>
+                        <option value="Top-down drone photography">Aerial View</option>
+                        <option value="Shallow depth of field, f/1.8, blurred background">Bokeh Portrait</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="result-area" id="captureArea">
+            <span style="font-size:10px; background:var(--primary); color:white; padding:4px 12px; border-radius:20px; font-weight:bold; margin-bottom: 15px; display: inline-block; letter-spacing: 1px;">PROMPT BLUEPRINT</span>
+            <div id="finalPrompt">Describe your vision to see the blueprint...</div>
+            
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <button class="search-btn" id="copyBtn" onclick="copyPrompt()" style="flex: 1.5; border-radius: 14px;">📋 Copy for Midjourney</button>
+                <button class="search-btn" onclick="downloadPrompt()" style="flex: 1; background: #ff9f43; border-radius: 14px;">📸 Save Blueprint</button>
+            </div>
+        </div>
+
+        <div id="aiFeedback" class="ai-feedback-box" style="display:none;"></div>
+    </div>
+</div>
+
+<!-- DETAILED HOW IT WORKS -->
+<div class="seo-container">
+    <div class="section-title">
+        <h2>How the Architect Works</h2>
+        <p>The science behind turning words into museum-quality art.</p>
+    </div>
+    
+    <div class="how-detail-grid">
+        <div class="how-card reveal active" style="background:white;">
+            <div style="font-size: 2.5rem; margin-bottom: 15px;"></div>
+            <h3>1. Semantic Processing</h3>
+            <p>Our tool uses Gemini AI to analyze your raw ideas. It doesn't just "copy" words; it understands the intent and expands it into visual tokens that AI models like Midjourney and DALL-E prefer.</p>
+        </div>
+        <div class="how-card reveal active" style="background:white;">
+            <div style="font-size: 2.5rem; margin-bottom: 15px;"></div>
+            <h3>2. Technical Layering</h3>
+            <p>By selecting Styles, Lighting, and Camera settings, you add "weights" to the prompt. This reduces the randomness of AI generation, giving you predictable and professional results every time.</p>
+        </div>
+        <div class="how-card reveal active" style="background:white;">
+            <div style="font-size: 2.5rem; margin-bottom: 15px;"></div>
+            <h3>3. Parameter Optimization</h3>
+            <p>The Architect automatically appends crucial parameters like aspect ratios (--ar) and version tags (--v) ensuring your prompt is compatible with the latest generative engines.</p>
+        </div>
+    </div>
+
+    <!-- SEO EXPLANATION -->
+    <div class="content reveal active">
+        <h2>Why Use a Prompt Architect?</h2>
+        <p>
+            In the world of Generative AI, the quality of your output is 100% dependent on the quality of your input. Most users fail because their prompts are too vague. A professional prompt needs <strong>Subject, Medium, Lighting, Composition, and Technical Parameters.</strong>
+        </p>
+        <p>
+            Our tool automates this complex "Prompt Engineering" process. Whether you are a concept artist looking for inspiration or a social media manager needing high-quality visuals, the Architect ensures your <em>"AI Image Generation"</em> hits the mark on the first try.
+        </p>
+    </div>
+
+    <!-- RECOMMENDED TOOLS -->
+    <div class="section-title">
+        <h2>Explore More AI Tools</h2>
+        <p>Boost your productivity with our suite of specialized AI architects.</p>
+    </div>
+    
+    <div class="prompt-select-grid" id="recommendedSection">
+        <!-- Tools will be injected here -->
+    </div>
+</div>
+
+<footer>
+    <div class="social">
+        <p>
+            <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a>
+        </p>
+    </div>
+    <p>&copy; 2026 OmniTools AI. Leading the Era of Prompt Engineering.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    const apiKey = ""; 
+
+    async function callGemini(promptText) {
+        let retries = 0;
+        const maxRetries = 5;
+        const delays = [1000, 2000, 4000, 8000, 16000];
+        while (retries < maxRetries) {
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
+                });
+                const data = await response.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text;
+            } catch (error) {
+                retries++;
+                if (retries === maxRetries) throw error;
+                await new Promise(resolve => setTimeout(resolve, delays[retries-1]));
+            }
+        }
+    }
+
+    async function enhanceWithGemini() {
+        const subject = document.getElementById("subject").value;
+        if (!subject) return;
+        const spinner = document.getElementById("enhanceSpinner");
+        spinner.style.display = "inline-block";
+        try {
+            const result = await callGemini(`Act as a Midjourney expert. Rewrite this subject into a professional, descriptive, visually rich prompt: "${subject}". No conversational text, only the prompt.`);
+            if (result) {
+                document.getElementById("subject").value = result.trim();
+                buildPrompt();
+            }
+        } catch (e) {} finally { spinner.style.display = "none"; }
+    }
+
+    async function suggestIdea() {
+        const spinner = document.getElementById("suggestSpinner");
+        spinner.style.display = "inline-block";
+        try {
+            const result = await callGemini("Give me one epic, high-concept, unique image idea for AI art. One sentence.");
+            if (result) {
+                document.getElementById("subject").value = result.trim();
+                buildPrompt();
+            }
+        } catch (e) {} finally { spinner.style.display = "none"; }
+    }
+
+    async function analyzePrompt() {
+        const fullPrompt = document.getElementById("finalPrompt").innerText;
+        if (fullPrompt.includes("Describe your vision")) return;
+        const spinner = document.getElementById("analyzeSpinner");
+        const feedback = document.getElementById("aiFeedback");
+        spinner.style.display = "inline-block";
+        try {
+            const result = await callGemini(`Critique this AI image prompt and give 2 technical improvement tips: "${fullPrompt}". Very brief.`);
+            if (result) {
+                feedback.style.display = "block";
+                feedback.innerHTML = "<strong>💡 Architect Insight:</strong><br>" + result;
+            }
+        } catch (e) {} finally { spinner.style.display = "none"; }
+    }
+
+    async function generateVariations() {
+        const subject = document.getElementById("subject").value;
+        if (!subject) return;
+        const spinner = document.getElementById("variationSpinner");
+        spinner.style.display = "inline-block";
+        try {
+            const result = await callGemini(`Suggest 3 artistic variations for the vision: "${subject}". Format as 1, 2, 3.`);
+            if (result) {
+                const feedback = document.getElementById("aiFeedback");
+                feedback.style.display = "block";
+                feedback.innerHTML = "<strong>🎨 Creative Paths:</strong><br>" + result.replace(/\n/g, '<br>');
+            }
+        } catch (e) {} finally { spinner.style.display = "none"; }
+    }
+
+    function buildPrompt() {
+        const subject = document.getElementById("subject").value;
+        if (!subject) {
+            document.getElementById("finalPrompt").innerText = "Describe your vision to see the blueprint...";
+            return;
+        }
+        const style = document.getElementById("artStyle").value;
+        const lighting = document.getElementById("lighting").value;
+        const camera = document.getElementById("camera").value;
+        let parts = [subject];
+        if (style) parts.push(style);
+        if (lighting) parts.push(lighting);
+        if (camera) parts.push(camera);
+        document.getElementById("finalPrompt").innerText = parts.join(", ") + " --ar 16:9 --v 6.0";
+    }
+
+    function copyPrompt() {
+        const text = document.getElementById("finalPrompt").innerText;
+        if (text.includes("Describe your vision")) return;
+        navigator.clipboard.writeText(text);
+        const btn = document.getElementById("copyBtn");
+        btn.innerText = "📋 COPIED!";
+        setTimeout(() => { btn.innerText = "📋 Copy for Midjourney"; }, 2000);
+    }
+
+    function downloadPrompt() {
+        const element = document.getElementById("captureArea");
+        html2canvas(element).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'omnitools-ai-prompt.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+    }
+
+    // Tools Recommendation System
+    const toolDatabase = [
+        { name: "Startup Name Architect", link: "startup-name.html", icon: "🚀", desc: "AI-powered branding for your next big thing." },
+        { name: "Gaming Tag Architect", link: "gaming-name.html", icon: "🎮", desc: "Create legendary identities for the metaverse." },
+        { name: "Social Hashtag Architect", link: "hashtag-generator.html", icon: "📱", desc: "Viral hashtags optimized by Gemini AI." },
+        { name: "Fancy Font Architect", link: "font-generator.html", icon: "✨", desc: "Transform your text into aesthetic art." },
+        { name: "Business Bio Architect", link: "business-bio.html", icon: "💼", desc: "Professional bios that convert leads." }
+    ];
+
+    function initRecommendations() {
+        const shuffled = toolDatabase.sort(() => 0.5 - Math.random());
+        const selected = shuffled.slice(0, 3);
+        let html = "";
+        selected.forEach(tool => {
+            html += `
+                <a href="${tool.link}" class="rec-tool-card reveal active">
+                    <div style="font-size: 2rem; margin-bottom:10px;">${tool.icon}</div>
+                    <strong>${tool.name}</strong>
+                    <p style="font-size:13px; color:#666; margin-top:8px;">${tool.desc}</p>
+                </a>
+            `;
+        });
+        document.getElementById("recommendedSection").innerHTML = html;
+    }
+
+    window.onload = initRecommendations;
+</script>
+
+</body>
+</html>
