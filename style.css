@@ -1,27 +1,71 @@
-/* style.css - Unified Style for AI Name Generator */
+/* style.css - Enhanced "Pro AI" Style for OmniTools AI */
 
+/* --- 1. CSS VARIABLES (MASTER CONTROL) --- */
+:root {
+    --bg-main: #fafafa;
+    --bg-card: #ffffff;
+    --bg-card-hover: #ffffff;
+    --text-main: #222222;
+    --text-muted: #666666;
+    --primary: #1a73e8;
+    --primary-hover: #1557b0;
+    --primary-glow: rgba(26, 115, 232, 0.3);
+    --header-bg: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+    --icon-bg: #f0f7ff;
+    --border-color: #eeeeee;
+    --shadow-sm: 0 4px 15px rgba(0,0,0,0.05);
+    --shadow-hover: 0 12px 30px var(--primary-glow);
+}
+
+/* Dark Mode Variables (Otomatis mengganti semua warna) */
+body.dark-mode {
+    --bg-main: #121212;
+    --bg-card: #1e1e1e;
+    --bg-card-hover: #242424;
+    --text-main: #f0f0f0;
+    --text-muted: #aaaaaa;
+    --primary: #8ab4f8;
+    --primary-hover: #a1c2fa;
+    --primary-glow: rgba(138, 180, 248, 0.2);
+    --header-bg: linear-gradient(135deg, #1f1f1f 0%, #121212 100%);
+    --icon-bg: #2a2a2a;
+    --border-color: #333333;
+    --shadow-sm: 0 4px 15px rgba(0,0,0,0.4);
+    --shadow-hover: 0 12px 30px var(--primary-glow);
+}
+
+/* --- GLOBAL STYLES --- */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    background: #fafafa;
+    background: var(--bg-main);
     text-align: center;
-    color: #222;
-    transition: background 0.3s, color 0.3s;
+    color: var(--text-main);
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* --- HEADER & NAVIGATION --- */
+/* --- CUSTOM SCROLLBAR (Premium Polish) --- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 5px; opacity: 0.5; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
 /* --- HEADER OPTIMIZATION --- */
 header {
-    background: #1a73e8;
+    background: var(--header-bg);
     color: white;
-    padding: 40px 20px; /* Dikurangi dari sebelumnya */
+    padding: 40px 20px;
     text-align: center;
-    border-radius: 0 0 30px 30px; /* Memberi lengkungan halus di bawah */
+    border-radius: 0 0 40px 40px; /* Lengkungan sedikit diperhalus */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
 }
 
 header h1 {
-    font-size: 28px; /* Lebih kecil di mobile */
+    font-size: 28px;
     margin-bottom: 10px;
+    letter-spacing: -0.5px; /* Memberi kesan font lebih modern */
 }
 
 header .subtitle {
@@ -29,74 +73,87 @@ header .subtitle {
     max-width: 300px;
     margin: 0 auto 20px auto;
     opacity: 0.9;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
-/* Responsif untuk Tablet & Desktop */
 @media (min-width: 768px) {
-    header {
-        padding: 60px 20px;
-    }
-    header h1 {
-        font-size: 42px;
-    }
-    header .subtitle {
-        font-size: 18px;
-        max-width: 600px;
-    }
+    header { padding: 60px 20px; border-radius: 0 0 50px 50px; }
+    header h1 { font-size: 46px; font-weight: 700; }
+    header .subtitle { font-size: 18px; max-width: 600px; }
 }
 
-/* --- SEARCH BOX OPTIMIZATION --- */
+/* --- SEARCH BOX (Glassmorphism & AI Vibe) --- */
 .search-container {
-    max-width: 500px;
+    max-width: 550px;
     margin: 0 auto;
+    position: relative;
+    transform: translateY(20px); /* Menarik search box sedikit ke bawah agar menimpa border header */
 }
 
 .search-box {
-    background: white;
+    background: var(--bg-card);
     border-radius: 50px;
     display: flex;
-    padding: 5px 5px 5px 15px;
+    padding: 6px 6px 6px 20px;
     align-items: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
+}
+
+.search-box:focus-within {
+    box-shadow: 0 0 0 3px var(--primary-glow); /* Efek cincin saat mengetik */
+    border-color: var(--primary);
 }
 
 .search-box input {
     border: none;
     flex: 1;
-    padding: 10px;
+    padding: 12px 10px;
     outline: none;
-    font-size: 16px; /* Biar browser mobile gak auto-zoom */
+    font-size: 16px;
     width: 100%;
+    background: transparent;
+    color: var(--text-main);
+}
+
+.search-box input::placeholder {
+    color: var(--text-muted);
 }
 
 .search-btn {
-    background: #1a73e8;
+    background: var(--primary);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 50px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
+    transition: 0.3s;
 }
 
+.search-btn:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
 
-/* --- TOOLS GRID & CARDS --- */
+/* --- TOOLS GRID & CARDS (Glow Effect) --- */
 .tools {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 40px 20px;
+    gap: 25px;
+    padding: 60px 20px 40px 20px; /* Padding top ditambah untuk memberi ruang search box */
     max-width: 1200px;
     margin: auto;
 }
 
 .card {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    transition: 0.3s;
+    background: var(--bg-card);
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transisi efek mantul (bouncy) elegan */
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -104,43 +161,69 @@ header .subtitle {
     align-items: center;
     cursor: pointer;
     justify-content: center;
+    overflow: hidden; /* Untuk efek border glow jika ada */
 }
 
-.card:hover { transform: translateY(-5px); }
+.card:hover { 
+    transform: translateY(-8px);
+    background: var(--bg-card-hover);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary);
+}
 
 .card a {
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    color: #1a73e8;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text-main); /* Mengubah judul menjadi warna netral */
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    transition: color 0.3s;
 }
 
-.card p { font-size: 14px; color: #666; margin: 0; }
+.card:hover a {
+    color: var(--primary); /* Teks menjadi primary hanya saat dihover */
+}
+
+.card p { 
+    font-size: 14px; 
+    color: var(--text-muted); 
+    margin: 0; 
+    line-height: 1.5;
+}
 
 .card-icon {
-    font-size: 40px;
-    display: block;
-    margin-bottom: 15px;
-    background: #f0f7ff;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 50%;
-    margin: 0 auto 15px auto;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    background: var(--icon-bg);
+    width: 70px;
+    height: 70px;
+    border-radius: 20px; /* Bentuk squircle modern */
+    transition: 0.3s;
+}
+
+.card:hover .card-icon {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .cta-btn {
     display: inline-block;
-    margin-top: 15px;
-    padding: 8px 18px;
-    background: #f0f7ff;
-    color: #1a73e8;
+    margin-top: 20px;
+    padding: 8px 20px;
+    background: var(--icon-bg);
+    color: var(--primary);
     font-size: 13px;
     font-weight: 600;
     border-radius: 20px;
     transition: 0.3s;
+}
+
+.card:hover .cta-btn {
+    background: var(--primary);
+    color: #fff;
 }
 
 /* --- SEO & HOW IT WORKS --- */
@@ -152,72 +235,75 @@ header .subtitle {
 }
 
 .seo-card, .how-card {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    background: var(--bg-card);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
     margin-bottom: 25px;
+    border: 1px solid var(--border-color);
+    line-height: 1.6;
 }
 
 .seo-grid, .how-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    gap: 25px;
     margin-top: 20px;
 }
 
 .seo-mini-card {
-    background: white;
+    background: var(--bg-card);
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border-top: 4px solid #1a73e8;
+    box-shadow: var(--shadow-sm);
+    border-top: 4px solid var(--primary);
+    transition: 0.3s;
 }
 
-/* --- DARK MODE OVERRIDES --- */
-body.dark-mode { background: #121212; color: #e0e0e0; }
-body.dark-mode header { background: #1f1f1f; }
-body.dark-mode .card, body.dark-mode .seo-card, 
-body.dark-mode .seo-mini-card, body.dark-mode .how-card {
-    background: #242424;
-    color: #e0e0e0;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+.seo-mini-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
 }
 
-body.dark-mode .card a, body.dark-mode .cta-btn { color: #8ab4f8; }
-body.dark-mode .card-icon { background: #333; }
-body.dark-mode .cta-btn { background: #333; }
-body.dark-mode footer { background: #1a1a1a; color: #999; }
-
-/* --- REVEAL ANIMATION --- */
-.reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
-.reveal.active { opacity: 1; transform: translateY(0); }
+/* --- REVEAL ANIMATION (Lebih halus) --- */
+.reveal { 
+    opacity: 0; 
+    transform: translateY(40px) scale(0.95); 
+    transition: all 0.7s cubic-bezier(0.5, 0, 0, 1); 
+}
+.reveal.active { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+}
 
 /* --- FOOTER --- */
-footer { margin-top: 40px; padding: 30px 20px; background: #f1f1f1; color: #555; }
-.social img { width: 22px; margin: 0 8px; }
-
-/* --- RESPONSIVE --- */
-@media (max-width: 600px) {
-    h1 { font-size: 24px; }
-    .search-box { max-width: 90%; }
+footer { 
+    margin-top: 60px; 
+    padding: 40px 20px; 
+    background: var(--bg-card); 
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
 }
-/* --- LOADING SPINNER --- */
+.social img { width: 24px; margin: 0 10px; transition: 0.3s; filter: grayscale(100%); opacity: 0.7; }
+.social img:hover { filter: grayscale(0%); opacity: 1; transform: translateY(-3px); }
+
+/* --- LOADING SPINNER (AI Pulse effect) --- */
 .loader-container {
-    display: none; /* Sembunyi secara default */
+    display: none;
     text-align: center;
-    padding: 20px;
-    grid-column: 1 / -1; /* Biar di tengah grid */
+    padding: 40px;
+    grid-column: 1 / -1;
 }
 
 .spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(26, 115, 232, 0.2);
-    border-top: 4px solid #1a73e8; /* Warna biru utama */
+    width: 45px;
+    height: 45px;
+    border: 4px solid var(--icon-bg);
+    border-top: 4px solid var(--primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     display: inline-block;
+    box-shadow: 0 0 15px var(--primary-glow); /* Tambahan glow pada spinner */
 }
 
 @keyframes spin {
@@ -225,8 +311,12 @@ footer { margin-top: 40px; padding: 30px 20px; background: #f1f1f1; color: #555;
     100% { transform: rotate(360deg); }
 }
 
-/* Penyesuaian Dark Mode */
-body.dark-mode .spinner {
-    border: 4px solid rgba(255, 255, 255, 0.1);
-    border-top: 4px solid #8ab4f8;
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 600px) {
+    header h1 { font-size: 26px; }
+    .search-box { flex-direction: column; border-radius: 20px; padding: 15px; }
+    .search-box input { margin-bottom: 10px; text-align: center; }
+    .search-btn { width: 100%; border-radius: 10px; }
+    .search-container { transform: translateY(10px); }
+    .tools { padding-top: 40px; }
 }
