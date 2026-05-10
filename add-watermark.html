@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Watermark to PDF - Custom Text & Image | OmniTools AI</title>
+    <meta name="description" content="Stamp your PDF documents with custom text or image watermarks. Adjust opacity, rotation, and position securely in your browser.">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- PDF-Lib library for client-side PDF manipulation -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+    <style>
+        /* Variabel Tema OmniTools AI */
+        :root {
+            --bg-color: #f8f9fa; --text-color: #333; --card-bg: #fff;
+            --primary: #1a73e8; --border-color: #e0e0e0; --success: #28a745; --danger: #dc3545;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e;
+            --primary: #4da3ff; --border-color: #333;
+        }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; transition: 0.3s; }
+        header { text-align: center; padding: 40px 20px; }
+        .subtitle { color: #666; font-size: 1rem; margin-top: 10px; }
+        [data-theme="dark"] .subtitle { color: #aaa; }
+        .seo-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .seo-card, .content, .how { background: var(--card-bg); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); }
+        
+        /* Area Unggah (Upload Area) */
+        .upload-area {
+            display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; width: 100%;
+            border: 2px dashed var(--primary); border-radius: 12px; padding: 40px 20px; text-align: center;
+            background: rgba(26, 115, 232, 0.05); cursor: pointer; transition: all 0.3s ease; margin-bottom: 20px;
+        }
+        .upload-area:hover { background: rgba(26, 115, 232, 0.1); }
+        .upload-icon { font-size: 40px; margin-bottom: 10px; }
+        #pdfFileInput, #imgFileInput { display: none; }
+        
+        /* Panel Konfigurasi Watermark */
+        .config-panel {
+            background: var(--bg-color); padding: 25px; border-radius: 10px; border: 1px solid var(--border-color); margin-bottom: 20px;
+        }
+        
+        /* Toggle Mode (Text vs Image) */
+        .mode-tabs { display: flex; border-bottom: 2px solid var(--border-color); margin-bottom: 20px; }
+        .tab-btn {
+            background: transparent; border: none; padding: 10px 20px; font-family: 'Poppins'; font-size: 15px; font-weight: 600;
+            color: var(--text-color); cursor: pointer; opacity: 0.6; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: 0.3s;
+        }
+        .tab-btn.active { opacity: 1; border-bottom-color: var(--primary); color: var(--primary); }
+
+        /* Form Inputs */
+        .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; }
+        .form-control {
+            width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); 
+            background: var(--card-bg); color: var(--text-color); font-size: 14px; outline: none; font-family: 'Poppins'; box-sizing: border-box;
+        }
+        .form-control:focus { border-color: var(--primary); }
+        
+        /* Sliders */
+        .slider-container { display: flex; align-items: center; gap: 15px; }
+        input[type="range"] { flex: 1; accent-color: var(--primary); cursor: pointer; }
+        .slider-val { background: var(--border-color); padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; min-width: 40px; text-align: center; }
+
+        /* Input Warna */
+        input[type="color"] { width: 100%; height: 45px; padding: 2px; border-radius: 8px; border: 1px solid var(--border-color); cursor: pointer; background: var(--card-bg); }
+
+        /* Tombol Aksi */
+        .action-btn { background: var(--primary); color: #fff; border: none; padding: 14px 30px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s; font-family: 'Poppins'; width: 100%; font-size: 16px; margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .action-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        
+        /* Area Hasil */
+        .result-box { display: none; text-align: center; padding: 25px; background: rgba(40, 167, 69, 0.1); border: 1px solid var(--success); border-radius: 8px; margin-top: 20px; }
+        .download-btn { background: var(--success); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 10px; font-size: 16px;}
+        
+        /* Misc / SEO Grid */
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .seo-mini-card { background: var(--card-bg); padding: 20px; border-radius: 10px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: 0.3s; }
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; }
+        .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Add Watermark to PDF</h1>
+    <div class="subtitle">Secure your documents with custom text or image watermarks instantly.</div>
+    
+    <div style="margin-top: 20px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
+            🌙 Dark Mode
+        </button>
+    </div>
+</header>
+
+<div class="seo-container">
+    <div class="seo-card active">
+        
+        <!-- Area Unggah Dokumen Utama -->
+        <label for="pdfFileInput" class="upload-area" id="dropZone">
+            <div class="upload-icon">📑</div>
+            <h3 style="margin: 0 0 10px 0;">Upload PDF Document</h3>
+            <p style="margin: 0; font-size: 14px; color: #666;">Click or drag and drop your file here</p>
+            <input type="file" id="pdfFileInput" accept="application/pdf" onchange="handleMainFileSelect()">
+            <div id="fileInfo" style="margin-top: 10px; font-weight: 600; color: var(--primary);"></div>
+        </label>
+
+        <!-- Loading Area -->
+        <div id="loadingArea" style="display: none; text-align: center; margin: 20px 0; color: var(--primary);">
+            <p style="font-weight: 600; font-size: 18px;">Applying Watermark... ⏳</p>
+            <p style="font-size: 13px; color: #666;">Please wait, processing document locally.</p>
+        </div>
+
+        <!-- Konfigurasi Watermark (Muncul setelah file diunggah) -->
+        <div id="configArea" style="display: none;">
+            
+            <div class="config-panel">
+                <!-- Tab Pilihan Tipe Watermark -->
+                <div class="mode-tabs">
+                    <button class="tab-btn active" id="tabText" onclick="switchMode('text')">Text Watermark</button>
+                    <button class="tab-btn" id="tabImage" onclick="switchMode('image')">Image Watermark</button>
+                </div>
+
+                <!-- Bagian Pengaturan Watermark TEKS -->
+                <div id="textConfig" class="config-section">
+                    <div class="form-group">
+                        <label>Watermark Text</label>
+                        <input type="text" id="wmText" class="form-control" value="CONFIDENTIAL" placeholder="Enter your text here...">
+                    </div>
+                    
+                    <div class="input-grid">
+                        <div class="form-group">
+                            <label>Font Size</label>
+                            <input type="number" id="wmSize" class="form-control" value="60" min="10" max="200">
+                        </div>
+                        <div class="form-group">
+                            <label>Text Color</label>
+                            <input type="color" id="wmColor" value="#cccccc">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian Pengaturan Watermark GAMBAR -->
+                <div id="imageConfig" class="config-section" style="display: none;">
+                    <div class="form-group">
+                        <label>Upload Logo/Image (PNG/JPG)</label>
+                        <input type="file" id="imgFileInput" accept="image/png, image/jpeg" onchange="handleImageSelect()">
+                        <div style="display: flex; gap: 10px; margin-top: 10px;">
+                            <button onclick="document.getElementById('imgFileInput').click()" style="padding: 10px 15px; border-radius: 5px; border: 1px solid var(--primary); background: transparent; color: var(--primary); cursor: pointer; font-family: 'Poppins';">Choose Image</button>
+                            <span id="imgFileInfo" style="align-self: center; font-size: 13px; color: #666;">No image selected</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Image Scale (Size)</label>
+                        <div class="slider-container">
+                            <input type="range" id="wmImgScale" min="0.1" max="2" step="0.1" value="0.5" oninput="updateSliderVal('wmImgScale')">
+                            <span class="slider-val" id="val-wmImgScale">0.5x</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pengaturan Global (Berlaku untuk Teks & Gambar) -->
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 25px 0;">
+                <h4 style="margin-top: 0; margin-bottom: 15px;">Position & Appearance</h4>
+                
+                <div class="input-grid">
+                    <div class="form-group">
+                        <label>Position</label>
+                        <select id="wmPosition" class="form-control">
+                            <option value="center">Center</option>
+                            <option value="top-left">Top Left</option>
+                            <option value="top-right">Top Right</option>
+                            <option value="bottom-left">Bottom Left</option>
+                            <option value="bottom-right">Bottom Right</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Rotation (Degrees)</label>
+                        <div class="slider-container">
+                            <input type="range" id="wmRotation" min="0" max="360" value="45" oninput="updateSliderVal('wmRotation')">
+                            <span class="slider-val" id="val-wmRotation">45°</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Opacity (Transparency)</label>
+                        <div class="slider-container">
+                            <input type="range" id="wmOpacity" min="0.1" max="1" step="0.1" value="0.5" oninput="updateSliderVal('wmOpacity')">
+                            <span class="slider-val" id="val-wmOpacity">0.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="processBtn" class="action-btn" onclick="applyWatermark()">
+                <span>Stamp PDF Document</span>
+            </button>
+        </div>
+
+        <!-- Area Hasil Unduhan -->
+        <div id="resultArea" class="result-box">
+            <h2 style="margin-top: 0; color: var(--success);">🎉 Watermark Applied!</h2>
+            <p style="font-size: 15px; margin-bottom: 20px;">Your secure PDF document is ready for download.</p>
+            <a id="downloadLink" href="#" download="OmniTools-Watermarked.pdf" class="download-btn">⬇️ Download PDF</a>
+            <div style="margin-top: 20px;">
+                <button onclick="resetTool()" style="background: transparent; border: none; color: var(--primary); cursor: pointer; text-decoration: underline; font-family: 'Poppins'; font-size: 14px;">Stamp another file</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align: center;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Home</a>
+    </div>
+</div>
+
+<!-- Area Artikel dan SEO -->
+<div class="seo-container">
+    <div class="how active">
+        <h2 style="text-align: center; margin-top: 0;">How to Add a Watermark</h2>
+        <div class="how-grid">
+            <div class="how-card">
+                <span>📤</span>
+                <strong>1. Upload Document</strong>
+                <p style="font-size: 14px; color: #666;">Drag and drop your PDF file into the secure dropzone above.</p>
+            </div>
+            <div class="how-card">
+                <span>🎨</span>
+                <strong>2. Customize</strong>
+                <p style="font-size: 14px; color: #666;">Choose text or image. Adjust the opacity, rotation, and position to fit perfectly.</p>
+            </div>
+            <div class="how-card">
+                <span>🛡️</span>
+                <strong>3. Stamp & Download</strong>
+                <p style="font-size: 14px; color: #666;">Generate your watermarked file instantly without uploading it to any server.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content active">
+        <h2 style="margin-top: 0;">The Most Secure PDF Watermark Creator</h2>
+        <p>
+            Protecting your intellectual property and confidential documents has never been easier. With OmniTools AI's <strong>Advanced PDF Watermark tool</strong>, you can securely stamp your files with custom text (like "CONFIDENTIAL" or "DRAFT") or your company logo. 
+        </p>
+        
+        <h3 style="margin-top: 20px;">Advanced Customization Features</h3>
+        <ul style="line-height: 1.8; color: var(--text-color);">
+            <li><strong>Text & Image Support:</strong> Versatile stamping options. Support for PNGs with transparent backgrounds makes logos look professional.</li>
+            <li><strong>Smart Layering:</strong> Adjust the opacity slider to create a translucent watermark that doesn't hide your document's core content.</li>
+            <li><strong>Precision Positioning:</strong> Easily rotate the watermark diagonally across the page or anchor it cleanly to the corners.</li>
+        </ul>
+
+        <h3 style="margin-top: 20px;">Why Use Our Client-Side Architecture?</h3>
+        <p>
+            If you are stamping sensitive business contracts or unreleased manuscripts, uploading them to a random website is a huge security risk. Our tool leverages modern WebAssembly and JavaScript (`pdf-lib`) to process the PDF <strong>entirely inside your browser's memory</strong>. No data is transmitted, meaning zero risk of interception or unauthorized storage.
+        </p>
+    </div>
+
+    <div style="margin-top: 50px; border-top: 1px dashed var(--border-color); padding-top: 30px;">
+        <h3>Other PDF & Utility Tools</h3>
+        <div class="seo-grid">
+            <a href="split-pdf.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
+                <strong>✂️ PDF Splitter</strong>
+                <p style="font-size:12px; margin-bottom: 0;">Visually select, extract, or delete pages from your PDF securely.</p>
+            </a>
+            <a href="txt-to-pdf.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
+                <strong>📄 TXT to PDF</strong>
+                <p style="font-size:12px; margin-bottom: 0;">Transform plain text into professional PDF files instantly.</p>
+            </a>
+            <a href="pdf-compressor.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
+                <strong>📉 PDF Compressor</strong>
+                <p style="font-size:12px; margin-bottom: 0;">Reduce your PDF file size without losing quality.</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="social">
+        <p style="margin-top: 20px;">
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a> |
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms</a>
+        </p>
+    </div>
+    <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
+</footer>
+
+<script>
+// --- LOGIKA UTAMA WATERMARK PDF (MENGGUNAKAN PDF-LIB) ---
+
+let currentPdfBytes = null;
+let originalFileName = "Document";
+let watermarkMode = 'text'; // Mode saat ini: 'text' atau 'image'
+let uploadedImageBytes = null;
+let uploadedImageMimeType = null;
+
+// Mengatur tampilan nilai pada slider
+function updateSliderVal(id) {
+    const val = document.getElementById(id).value;
+    const display = document.getElementById(`val-${id}`);
+    if (id === 'wmRotation') display.textContent = `${val}°`;
+    else if (id === 'wmImgScale') display.textContent = `${val}x`;
+    else display.textContent = val;
+}
+
+// Beralih antara mode Teks dan Gambar
+function switchMode(mode) {
+    watermarkMode = mode;
+    
+    // Update Tab UI
+    document.getElementById('tabText').classList.remove('active');
+    document.getElementById('tabImage').classList.remove('active');
+    
+    if (mode === 'text') {
+        document.getElementById('tabText').classList.add('active');
+        document.getElementById('textConfig').style.display = 'block';
+        document.getElementById('imageConfig').style.display = 'none';
+    } else {
+        document.getElementById('tabImage').classList.add('active');
+        document.getElementById('textConfig').style.display = 'none';
+        document.getElementById('imageConfig').style.display = 'block';
+    }
+}
+
+// Event handler untuk Drag & Drop File PDF
+const dropZone = document.getElementById('dropZone');
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.background = 'rgba(26, 115, 232, 0.2)'; });
+dropZone.addEventListener('dragleave', (e) => { e.preventDefault(); dropZone.style.background = 'rgba(26, 115, 232, 0.05)'; });
+dropZone.addEventListener('drop', (e) => {
+    e.preventDefault(); dropZone.style.background = 'rgba(26, 115, 232, 0.05)';
+    if (e.dataTransfer.files.length > 0) {
+        document.getElementById('pdfFileInput').files = e.dataTransfer.files;
+        handleMainFileSelect();
+    }
+});
+
+// Membaca file PDF yang diunggah
+async function handleMainFileSelect() {
+    const fileInput = document.getElementById('pdfFileInput');
+    const file = fileInput.files[0];
+    if (!file || file.type !== 'application/pdf') {
+        alert('Please select a valid PDF file.');
+        return;
+    }
+
+    originalFileName = file.name.replace('.pdf', '');
+    document.getElementById('fileInfo').textContent = `📄 ${file.name} loaded.`;
+    
+    try {
+        currentPdfBytes = await file.arrayBuffer();
+        document.getElementById('configArea').style.display = 'block';
+        document.getElementById('resultArea').style.display = 'none';
+    } catch (error) {
+        console.error("Error reading PDF:", error);
+        alert("Failed to read PDF.");
+    }
+}
+
+// Membaca file Gambar (Logo) untuk Watermark
+async function handleImageSelect() {
+    const fileInput = document.getElementById('imgFileInput');
+    const file = fileInput.files[0];
+    if (!file) return;
+    
+    if (file.type !== 'image/png' && file.type !== 'image/jpeg') {
+        alert('Only PNG or JPG images are supported.');
+        return;
+    }
+
+    document.getElementById('imgFileInfo').textContent = `✓ ${file.name}`;
+    uploadedImageMimeType = file.type;
+    uploadedImageBytes = await file.arrayBuffer();
+}
+
+// Utilitas untuk mengubah format warna HEX ke nilai RGB [0-1] untuk pdf-lib
+function hexToRgb(hex) {
+    // Hilangkan '#'
+    hex = hex.replace(/^#/, '');
+    const bigint = parseInt(hex, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    // pdf-lib menggunakan nilai dari 0.0 hingga 1.0
+    return { r: r / 255, g: g / 255, b: b / 255 };
+}
+
+// Proses Eksekusi Watermark
+async function applyWatermark() {
+    if (!currentPdfBytes) {
+        alert('Please upload a PDF document first.');
+        return;
+    }
+
+    if (watermarkMode === 'image' && !uploadedImageBytes) {
+        alert('Please choose an image for the watermark.');
+        return;
+    }
+
+    // Tampilkan state Loading
+    document.getElementById('configArea').style.display = 'none';
+    document.getElementById('loadingArea').style.display = 'block';
+
+    try {
+        const { PDFDocument, rgb, degrees, StandardFonts } = PDFLib;
+        
+        // Memuat dokumen PDF asli
+        const pdfDoc = await PDFDocument.load(currentPdfBytes);
+        const pages = pdfDoc.getPages();
+        
+        // Mengambil parameter konfigurasi global
+        const opacity = parseFloat(document.getElementById('wmOpacity').value);
+        const rotationAngle = parseInt(document.getElementById('wmRotation').value);
+        const position = document.getElementById('wmPosition').value;
+
+        // Persiapan variabel (Teks atau Gambar)
+        let font, image, wmWidth, wmHeight;
+        let textStr, fontSize, textColor;
+        let scaleFactor;
+
+        if (watermarkMode === 'text') {
+            textStr = document.getElementById('wmText').value || 'CONFIDENTIAL';
+            fontSize = parseInt(document.getElementById('wmSize').value);
+            const hexColor = document.getElementById('wmColor').value;
+            const rgbColor = hexToRgb(hexColor);
+            textColor = rgb(rgbColor.r, rgbColor.g, rgbColor.b);
+            
+            // Embed font default (Helvetica Bold)
+            font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+            wmWidth = font.widthOfTextAtSize(textStr, fontSize);
+            wmHeight = font.heightAtSize(fontSize);
+        } else {
+            // Embed Gambar (PNG atau JPG)
+            if (uploadedImageMimeType === 'image/png') {
+                image = await pdfDoc.embedPng(uploadedImageBytes);
+            } else {
+                image = await pdfDoc.embedJpg(uploadedImageBytes);
+            }
+            
+            scaleFactor = parseFloat(document.getElementById('wmImgScale').value);
+            const imgDims = image.scale(scaleFactor);
+            wmWidth = imgDims.width;
+            wmHeight = imgDims.height;
+        }
+
+        // Terapkan Watermark ke SETIAP halaman
+        pages.forEach((page) => {
+            const { width, height } = page.getSize();
+            let x, y;
+
+            // Logika Penempatan (Positioning)
+            const margin = 50; // Jarak dari tepi untuk posisi sudut
+            
+            switch(position) {
+                case 'center':
+                    x = width / 2;
+                    y = height / 2;
+                    break;
+                case 'top-left':
+                    x = margin + (wmWidth / 2);
+                    y = height - margin - (wmHeight / 2);
+                    break;
+                case 'top-right':
+                    x = width - margin - (wmWidth / 2);
+                    y = height - margin - (wmHeight / 2);
+                    break;
+                case 'bottom-left':
+                    x = margin + (wmWidth / 2);
+                    y = margin + (wmHeight / 2);
+                    break;
+                case 'bottom-right':
+                    x = width - margin - (wmWidth / 2);
+                    y = margin + (wmHeight / 2);
+                    break;
+            }
+
+            // Fungsi untuk Menggambar (Draw)
+            if (watermarkMode === 'text') {
+                page.drawText(textStr, {
+                    x: x - (wmWidth / 2),
+                    y: y - (wmHeight / 2),
+                    size: fontSize,
+                    font: font,
+                    color: textColor,
+                    opacity: opacity,
+                    rotate: degrees(rotationAngle)
+                });
+            } else {
+                page.drawImage(image, {
+                    x: x - (wmWidth / 2),
+                    y: y - (wmHeight / 2),
+                    width: wmWidth,
+                    height: wmHeight,
+                    opacity: opacity,
+                    rotate: degrees(rotationAngle)
+                });
+            }
+        });
+
+        // Menyimpan dan Mengonversi ke Blob untuk diunduh
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        
+        const downloadLink = document.getElementById('downloadLink');
+        downloadLink.href = url;
+        downloadLink.download = `${originalFileName}_watermarked.pdf`;
+
+        // Mengubah UI ke hasil akhir
+        document.getElementById('loadingArea').style.display = 'none';
+        document.getElementById('resultArea').style.display = 'block';
+
+    } catch (error) {
+        console.error("Error applying watermark:", error);
+        alert("An error occurred. Make sure your PDF is not encrypted.");
+        resetTool();
+    }
+}
+
+// Mengatur ulang tampilan (Reset)
+function resetTool() {
+    document.getElementById('pdfFileInput').value = '';
+    document.getElementById('imgFileInput').value = '';
+    document.getElementById('fileInfo').textContent = '';
+    document.getElementById('imgFileInfo').textContent = 'No image selected';
+    document.getElementById('configArea').style.display = 'none';
+    document.getElementById('resultArea').style.display = 'none';
+    document.getElementById('loadingArea').style.display = 'none';
+    
+    currentPdfBytes = null;
+    uploadedImageBytes = null;
+}
+
+// Logika Dark Mode
+function toggleDarkMode() {
+    const body = document.body;
+    const btn = document.getElementById('darkModeToggle');
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        btn.innerHTML = '🌙 Dark Mode';
+        btn.style.background = 'var(--primary)';
+        btn.style.color = '#fff';
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        btn.innerHTML = '☀️ Light Mode';
+        btn.style.background = '#fff';
+        btn.style.color = '#000';
+    }
+}
+</script>
+
+</body>
+</html>
