@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -9,144 +10,200 @@
       gtag('config', 'G-4LVEC8BY40');
     </script>
     
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI QR Code Generator - Free & Custom Styles | AINameGen</title>
+    <title>Advanced AI QR Code Generator - Add Logo & Colors | OmniTools AI</title>
+    <meta name="description" content="Create custom, high-resolution QR codes with logos, custom colors, and advanced error correction. 100% free and offline.">
+    
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Library QR Code canggih yang mendukung Logo dan Canvas modern -->
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
 
     <style>
-        .qr-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .qr-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: bold;
-            color: var(--text-color);
-        }
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            background: rgba(255,255,255,0.05);
-            color: var(--text-color);
-            outline: none;
-        }
-        #qrcode {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            display: inline-block;
-            margin: 20px 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        #qrcode canvas, #qrcode img {
-            max-width: 100%;
-            height: auto;
-        }
-        .settings-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .btn-generate {
-            background: #1a73e8;
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
-        }
+        /* Styles adapted for OmniTools UI */
+        .qr-layout { display: flex; flex-direction: column; gap: 30px; margin-top: 20px; }
+        @media (min-width: 768px) { .qr-layout { flex-direction: row; align-items: flex-start; } }
+        
+        .qr-config-panel { flex: 1; background: var(--card-bg, #fff); padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border-color, #eee); text-align: left; }
+        .qr-preview-panel { flex: 1; background: var(--card-bg, #fff); padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border-color, #eee); display: flex; flex-direction: column; align-items: center; justify-content: center; position: sticky; top: 20px; }
+        
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; color: var(--text-color, #333); }
+        .input-group input[type="text"], .input-group select { width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border-color, #ddd); background: var(--bg-main, #fafafa); color: var(--text-color, #333); font-size: 14px; outline: none; font-family: 'Poppins'; box-sizing: border-box; transition: 0.3s; }
+        .input-group input:focus, .input-group select:focus { border-color: #1a73e8; }
+        
+        /* Two Column Grid for settings */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
+        /* Custom Color Pickers */
+        .color-picker-wrap { display: flex; align-items: center; gap: 10px; }
+        input[type="color"] { width: 45px; height: 45px; padding: 2px; border-radius: 8px; border: 1px solid var(--border-color, #ddd); cursor: pointer; background: transparent; }
+        
+        /* Checkbox for Transparent Background */
+        .checkbox-wrap { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-top: 8px; color: #666; cursor: pointer; }
+        .checkbox-wrap input { width: 16px; height: 16px; cursor: pointer; accent-color: #1a73e8; }
+        
+        /* Logo Upload UI */
+        .logo-upload-btn { background: rgba(26, 115, 232, 0.1); border: 1px dashed #1a73e8; color: #1a73e8; padding: 10px 15px; border-radius: 8px; text-align: center; cursor: pointer; font-weight: 600; font-size: 13px; display: block; transition: 0.2s; }
+        .logo-upload-btn:hover { background: rgba(26, 115, 232, 0.2); }
+        #logoInfo { font-size: 12px; margin-top: 5px; color: #888; text-align: center; }
+        #removeLogoBtn { color: #dc3545; background: none; border: none; font-size: 12px; cursor: pointer; text-decoration: underline; padding: 0; display: none; margin: 5px auto 0; }
+
+        /* Preview Canvas */
+        .canvas-container { background: #f0f0f0; padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 1px solid #ddd; position: relative; }
+        [data-theme="dark"] .canvas-container { background: #2a2a2a; border-color: #444; }
+        #qrCanvas { display: block; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        .btn-download { background: #28a745; color: white; border: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; width: 100%; font-family: 'Poppins'; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); }
+        .btn-download:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4); }
+        
+        /* Helper Tooltips */
+        .hint { font-size: 11px; color: #888; font-weight: normal; display: block; margin-top: 4px; }
     </style>
 </head>
 <body>
 
-<header class="compact-header">
+<header>
     <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" class="btn-dark-mini">🌙 Dark</button>
+        <button id="darkModeToggle" onclick="toggleDarkMode()" class="btn-dark-mini" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">🌙 Dark</button>
     </div>
-    <h1>AI QR Generator</h1>
-    <p class="subtitle">Create professional & custom QR codes instantly for free.</p>
+    <h1>Advanced QR Generator</h1>
+    <div class="subtitle">Create custom, high-resolution QR codes with logos and colors instantly.</div>
 </header>
 
-<div class="qr-container">
-    <div class="qr-card reveal active">
-        <div class="input-group">
-            <label>Enter URL or Text</label>
-            <input type="text" id="qrText" placeholder="https://yourwebsite.com" oninput="updateQR()">
+<div class="seo-container">
+    <div class="qr-layout">
+        
+        <!-- PANEL KONFIGURASI KIRI -->
+        <div class="qr-config-panel reveal active">
+            <h3 style="margin-top:0; border-bottom: 1px solid var(--border-color, #eee); padding-bottom:10px;">Configuration</h3>
+            
+            <div class="input-group">
+                <label>Target URL or Text</label>
+                <input type="text" id="qrText" placeholder="e.g., https://yourwebsite.com or WiFi Password" value="https://omnitools.ai" oninput="generateQR()">
+            </div>
+
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>Foreground Color</label>
+                    <div class="color-picker-wrap">
+                        <input type="color" id="qrFgColor" value="#000000" oninput="generateQR()">
+                        <span style="font-size:13px; font-family:monospace;" id="fgHex">#000000</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Background Color</label>
+                    <div class="color-picker-wrap">
+                        <input type="color" id="qrBgColor" value="#ffffff" oninput="generateQR()">
+                        <span style="font-size:13px; font-family:monospace;" id="bgHex">#ffffff</span>
+                    </div>
+                    <label class="checkbox-wrap">
+                        <input type="checkbox" id="qrBgTransparent" onchange="generateQR()"> Transparent BG
+                    </label>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>Error Correction <span class="hint">Higher level = Safer if adding a logo.</span></label>
+                    <select id="qrErrorLevel" onchange="generateQR()">
+                        <option value="L">Low (7% damaged)</option>
+                        <option value="M">Medium (15% damaged)</option>
+                        <option value="Q">Quartile (25% damaged)</option>
+                        <option value="H" selected>High (30% damaged) - Recommended</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Padding (Quiet Zone)</label>
+                    <select id="qrPadding" onchange="generateQR()">
+                        <option value="0">None</option>
+                        <option value="15">Small</option>
+                        <option value="30" selected>Standard</option>
+                        <option value="50">Large</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group" style="margin-bottom: 0;">
+                <label>Add Center Logo (Optional) <span class="hint">Upload a square PNG/JPG.</span></label>
+                <input type="file" id="logoInput" accept="image/png, image/jpeg" style="display:none;" onchange="handleLogoUpload()">
+                <label for="logoInput" class="logo-upload-btn">🖼️ Choose Logo Image</label>
+                <div id="logoInfo"></div>
+                <button id="removeLogoBtn" onclick="removeLogo()">Remove Logo</button>
+            </div>
+            
         </div>
 
-        <div class="settings-grid">
-            <div class="input-group">
-                <label>QR Color</label>
-                <input type="color" id="fgColor" value="#000000" onchange="updateQR()">
+        <!-- PANEL PREVIEW KANAN -->
+        <div class="qr-preview-panel reveal active">
+            <h3 style="margin-top:0;">Live Preview</h3>
+            
+            <div class="canvas-container">
+                <!-- Kita gunakan library qrious yang merender ke canvas ini -->
+                <canvas id="qrCanvas"></canvas>
             </div>
-            <div class="input-group">
-                <label>Pattern Size</label>
-                <select id="qrSize" onchange="updateQR()">
-                    <option value="128">Small</option>
-                    <option value="256" selected>Medium</option>
-                    <option value="512">Large (HD)</option>
+            
+            <div class="input-group" style="width: 100%;">
+                <label style="text-align: center;">Export Size (Resolution)</label>
+                <select id="qrExportSize" style="text-align: center;">
+                    <option value="500">Standard (500x500px)</option>
+                    <option value="1000" selected>High Definition (1000x1000px)</option>
+                    <option value="2000">Ultra Print Quality (2000x2000px)</option>
                 </select>
             </div>
+
+            <button class="btn-download" onclick="downloadQR()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download QR Code
+            </button>
         </div>
 
-        <div id="qrcode"></div>
-
-        <div id="actionButtons" style="display: none;">
-            <button class="cta-btn" onclick="downloadQR()" style="background: #28a745; width: 100%;">⬇️ Download QR Code (PNG)</button>
-        </div>
     </div>
 
-    <div style="margin-top: 30px; text-align: center;">
+    <div style="margin-top: 40px; text-align: center;">
         <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
     </div>
 </div>
 
-<div class="how reveal">
-    <h2>Smart QR Features</h2>
+<div class="how reveal active">
+    <h2>Smart QR Features (Pro Edition)</h2>
     <div class="how-grid">
-        <div class="how-card"><span>🎨</span><strong>Custom Style</strong><p>Change colors to match your brand identity easily.</p></div>
-        <div class="how-card"><span>📱</span><strong>Universal Scan</strong><p>Compatible with all iPhone & Android camera apps.</p></div>
-        <div class="how-card"><span>💎</span><strong>High Quality</strong><p>Download HD versions for printing on menus or flyers.</p></div>
+        <div class="how-card"><span>🎨</span><strong>Custom Colors</strong><p>Match your brand identity. Support for transparent backgrounds for clean placements.</p></div>
+        <div class="how-card"><span>🖼️</span><strong>Logo Embedding</strong><p>Upload your company logo and embed it directly into the center of the QR code securely.</p></div>
+        <div class="how-card"><span>💎</span><strong>Print-Ready 4K</strong><p>Download massive Ultra-HD (2000px) resolution versions perfect for banners and physical menus.</p></div>
     </div>
 </div>
 
-<div class="content reveal">
-    <h2>Why use our QR Generator?</h2>
-    <p>QR codes are the bridge between the physical and digital world. Whether you need a QR code for your <strong>restaurant menu</strong>, <strong>business card</strong>, or <strong>YouTube channel</strong>, our tool provides a fast and secure way to generate them. No data is stored, and everything is processed right in your browser.</p>
+<div class="content reveal active">
+    <h2>Why use our Advanced QR Generator?</h2>
+    <p>While basic QR generators give you a simple black-and-white square, our <strong>Advanced OmniTools QR Generator</strong> lets you create marketing-ready codes. Whether you need a transparent QR code for a business card or one with your cafe's logo in the middle, our tool does it all instantly.</p>
+    
+    <h3 style="margin-top: 20px;">Understanding Error Correction (ECL)</h3>
+    <p>A unique feature of QR codes is their ability to sustain damage and still be scannable. If you are uploading a custom logo to put in the center of the code, you are technically "damaging" the center pixels. This is why we default our generator to <strong>Level H (High Error Correction)</strong>, ensuring that even if 30% of the code is covered by your logo, mobile phone cameras can still scan it flawlessly.</p>
+    
+    <p><strong>Privacy Promise:</strong> Your URLs, texts, and uploaded logos are processed 100% locally in your web browser. Nothing is ever sent to our servers.</p>
 </div>
+
 <div class="seo-container" style="margin-top: 50px; border-top: 1px dashed #ccc; padding-top: 30px;">
     <h3>Other AI Generators You Might Like</h3>
     <div class="seo-grid">
-        <a href="startup-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
-            <strong>🚀 Startup Name</strong>
-            <p style="font-size:12px;">Innovative ideas for tech ventures.</p>
+        <a href="image-to-webp.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
+            <strong>🖼️ Image to WebP</strong>
+            <p style="font-size:12px;">Optimize images for faster website loading.</p>
         </a>
-        <a href="gaming-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
-            <strong>🎮 Gaming Name</strong>
-            <p style="font-size:12px;">Cool tags for your gaming profile.</p>
+        <a href="password-protect.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
+            <strong>🔒 Protect PDF</strong>
+            <p style="font-size:12px;">Lock your PDF files with a strong password.</p>
         </a>
-        <a href="youtube-name-generator.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
-            <strong>📺 YouTube Name</strong>
-            <p style="font-size:12px;">Catchy names for your channel.</p>
+        <a href="tagline-generator.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
+            <strong>✨ Tagline Generator</strong>
+            <p style="font-size:12px;">Creative slogans for your brand.</p>
         </a>
     </div>
+</div>
 
 <footer>
     <div class="social">
@@ -155,48 +212,164 @@
     <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
 </footer>
 
-<script src="script.js"></script>
 <script>
-    let qr;
+// --- LOGIKA UTAMA QR GENERATOR ---
 
-    function updateQR() {
-        const text = document.getElementById('qrText').value;
-        const color = document.getElementById('fgColor').value;
-        const size = document.getElementById('qrSize').value;
-        const qrContainer = document.getElementById('qrcode');
-        const actionButtons = document.getElementById('actionButtons');
+// Inisialisasi Qrious Object
+let qr;
+let uploadedLogo = null; // Menyimpan objek gambar logo jika pengguna mengunggahnya
 
-        qrContainer.innerHTML = ""; // Clear existing
+// Inisialisasi awal saat DOM siap
+document.addEventListener("DOMContentLoaded", function() {
+    qr = new QRious({
+        element: document.getElementById('qrCanvas'),
+        size: 300, // Ukuran canvas preview di layar
+        value: 'https://omnitools.ai'
+    });
+    generateQR();
+});
 
-        if (text.trim() !== "") {
-            qr = new QRCode(qrContainer, {
-                text: text,
-                width: parseInt(size),
-                height: parseInt(size),
-                colorDark : color,
-                colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.H
-            });
-            actionButtons.style.display = "block";
-        } else {
-            actionButtons.style.display = "none";
-        }
-    }
+// Fungsi untuk menggambar QR dan menumpuk Logo (Jika ada)
+function generateQR() {
+    if (!qr) return;
 
-    function downloadQR() {
-        const img = document.querySelector('#qrcode img');
-        const canvas = document.querySelector('#qrcode canvas');
-        const link = document.createElement('a');
-        link.download = 'QR-Code-AINameGen.png';
+    const text = document.getElementById('qrText').value || 'https://omnitools.ai';
+    const fgColor = document.getElementById('qrFgColor').value;
+    const bgColor = document.getElementById('qrBgColor').value;
+    const isTransparent = document.getElementById('qrBgTransparent').checked;
+    const padding = parseInt(document.getElementById('qrPadding').value);
+    const errLevel = document.getElementById('qrErrorLevel').value;
 
-        if (img) {
-            link.href = img.src;
-        } else if (canvas) {
-            link.href = canvas.toDataURL("image/png");
-        }
+    // Update Text Hex
+    document.getElementById('fgHex').innerText = fgColor;
+    document.getElementById('bgHex').innerText = isTransparent ? 'Transparent' : bgColor;
+
+    // Atur Konfigurasi QRious dasar
+    qr.set({
+        value: text,
+        foreground: fgColor,
+        background: isTransparent ? 'rgba(0,0,0,0)' : bgColor,
+        backgroundAlpha: isTransparent ? 0 : 1,
+        padding: padding,
+        level: errLevel,
+        size: 500 // Render awal resolusi lumayan agar tidak pecah
+    });
+
+    // Proses Penambahan Logo di Tengah Kanvas
+    const canvas = document.getElementById('qrCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Tunggu QRious merender (sinkron), lalu kita timpa dengan logo
+    if (uploadedLogo) {
+        // Karena QRious menimpa seluruh kanvas saat .set(), kita harus menggambar ulang logo setelahnya
+        const canvasSize = canvas.width;
         
-        link.click();
+        // Ukuran logo proporsional (Misal 25% dari ukuran QR)
+        // Kita batasi 25% agar tidak terlalu merusak pattern QR walau di level High
+        const logoSize = canvasSize * 0.25; 
+        
+        // Posisi tengah
+        const xPos = (canvasSize - logoSize) / 2;
+        const yPos = (canvasSize - logoSize) / 2;
+
+        // Gambar background kecil di belakang logo agar logo terlihat jelas (Opsional tapi direkomendasikan)
+        ctx.fillStyle = isTransparent ? '#ffffff' : bgColor;
+        ctx.fillRect(xPos - 5, yPos - 5, logoSize + 10, logoSize + 10);
+
+        // Gambar logonya
+        ctx.drawImage(uploadedLogo, xPos, yPos, logoSize, logoSize);
     }
+}
+
+// Menangani Unggahan Logo
+function handleLogoUpload() {
+    const fileInput = document.getElementById('logoInput');
+    const file = fileInput.files[0];
+    
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = new Image();
+            img.onload = function() {
+                uploadedLogo = img;
+                document.getElementById('logoInfo').innerText = `Logo: ${file.name}`;
+                document.getElementById('removeLogoBtn').style.display = 'block';
+                
+                // Set level error ke H (High) paksa agar QR tetap aman
+                document.getElementById('qrErrorLevel').value = 'H';
+                
+                generateQR(); // Gambar ulang QR dengan logo
+            }
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Menghapus Logo
+function removeLogo() {
+    uploadedLogo = null;
+    document.getElementById('logoInput').value = '';
+    document.getElementById('logoInfo').innerText = '';
+    document.getElementById('removeLogoBtn').style.display = 'none';
+    generateQR(); // Gambar ulang QR tanpa logo
+}
+
+// Mengunduh Resolusi Tinggi
+function downloadQR() {
+    const exportSize = parseInt(document.getElementById('qrExportSize').value);
+    
+    // 1. Simpan konfigurasi preview saat ini
+    const oldSize = qr.size;
+    
+    // 2. Paksa perbesar kanvas ke resolusi target (Misal 2000px)
+    qr.set({ size: exportSize });
+    
+    // 3. Timpa logo lagi (karena ukuran kanvas membesar)
+    const canvas = document.getElementById('qrCanvas');
+    if (uploadedLogo) {
+        const ctx = canvas.getContext('2d');
+        const logoSize = exportSize * 0.25;
+        const xPos = (exportSize - logoSize) / 2;
+        const yPos = (exportSize - logoSize) / 2;
+        
+        const bgColor = document.getElementById('qrBgColor').value;
+        const isTransparent = document.getElementById('qrBgTransparent').checked;
+        ctx.fillStyle = isTransparent ? '#ffffff' : bgColor;
+        ctx.fillRect(xPos - 5, yPos - 5, logoSize + 10, logoSize + 10);
+        
+        ctx.drawImage(uploadedLogo, xPos, yPos, logoSize, logoSize);
+    }
+
+    // 4. Unduh sebagai PNG
+    const link = document.createElement('a');
+    link.download = `OmniTools_QR_${exportSize}px.png`;
+    link.href = canvas.toDataURL("image/png", 1.0);
+    link.click();
+    
+    // 5. Kembalikan ukuran kanvas ke ukuran preview layar
+    qr.set({ size: 500 });
+    // Timpa logo lagi untuk ukuran layar
+    if (uploadedLogo) {
+        const ctx = canvas.getContext('2d');
+        const logoSize = 500 * 0.25;
+        const xPos = (500 - logoSize) / 2;
+        const yPos = (500 - logoSize) / 2;
+        ctx.drawImage(uploadedLogo, xPos, yPos, logoSize, logoSize);
+    }
+}
+
+// Helper Dark Mode sederhana jika tidak terhubung dengan script.js
+function toggleDarkMode() {
+    const body = document.body;
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        document.getElementById('darkModeToggle').innerText = '🌙 Dark';
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        document.getElementById('darkModeToggle').innerText = '☀️ Light';
+    }
+}
 </script>
 
 </body>
