@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+    
+    <!-- Tag Verifikasi Google -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resize PDF Pages - Convert to A4, Letter, Custom Size | OmniTools AI</title>
+    <meta name="description" content="Change your PDF page dimensions to A4, Letter, Legal, or custom sizes instantly. 100% secure, offline, and preserves vector quality.">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- PDF-Lib library for client-side vector manipulation -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+    <style>
+        /* Variabel Tema OmniTools AI */
+        :root {
+            --bg-color: #f8f9fa; --text-color: #333; --card-bg: #fff;
+            --primary: #1a73e8; --border-color: #e0e0e0; --success: #28a745; --danger: #dc3545;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e;
+            --primary: #4da3ff; --border-color: #333;
+        }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; transition: 0.3s; }
+        header { text-align: center; padding: 40px 20px; }
+        .subtitle { color: #666; font-size: 1rem; margin-top: 10px; }
+        [data-theme="dark"] .subtitle { color: #aaa; }
+        .seo-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .seo-card, .content, .how { background: var(--card-bg); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); }
+        
+        /* Upload Area */
+        .upload-area {
+            display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; width: 100%;
+            border: 2px dashed var(--primary); border-radius: 12px; padding: 50px 20px; text-align: center;
+            background: rgba(26, 115, 232, 0.05); cursor: pointer; transition: all 0.3s ease; margin-bottom: 20px;
+        }
+        .upload-area:hover { background: rgba(26, 115, 232, 0.1); transform: translateY(-2px); }
+        .upload-icon { font-size: 45px; margin-bottom: 15px; }
+        #pdfFileInput { display: none; }
+
+        /* Configuration Panel */
+        .config-panel { background: var(--bg-color); padding: 25px; border-radius: 10px; border: 1px solid var(--border-color); margin-bottom: 20px; text-align: left; }
+        .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        .form-control { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); font-size: 14px; outline: none; font-family: 'Poppins'; box-sizing: border-box; cursor: pointer; transition: 0.3s; }
+        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,115,232,0.2); }
+        
+        /* Custom Radio Buttons */
+        .radio-group { display: flex; gap: 15px; margin-top: 5px; }
+        .radio-label { display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; font-weight: 500; }
+        .radio-label input { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; }
+
+        /* Alert Box Info */
+        .alert-box { background: rgba(26, 115, 232, 0.1); border-left: 4px solid var(--primary); padding: 15px; border-radius: 4px; font-size: 13px; text-align: left; margin-bottom: 20px; line-height: 1.6; }
+
+        /* Progress Bar */
+        .progress-wrapper { display: none; background: var(--bg-color); padding: 25px; border-radius: 10px; border: 1px solid var(--border-color); text-align: center; margin-bottom: 20px; }
+        .progress-bar-container { width: 100%; height: 8px; background: var(--border-color); border-radius: 5px; margin-top: 15px; overflow: hidden; position: relative; }
+        .progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 0.2s ease; border-radius: 5px; }
+        .status-text { font-size: 14px; font-weight: 600; color: var(--primary); margin-top: 10px; }
+
+        .btn-main { background: var(--primary); color: #fff; border: none; padding: 14px 30px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Poppins'; width: 100%; font-size: 16px; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .btn-main:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(26,115,232,0.2); }
+
+        /* Result Area */
+        .result-box { display: none; text-align: center; padding: 30px; background: rgba(40, 167, 69, 0.05); border: 1px dashed var(--success); border-radius: 12px; margin-top: 20px; }
+        .download-btn { background: var(--success); color: white; padding: 14px 35px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; font-size: 16px; transition: 0.3s; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); }
+        .download-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        /* Misc */
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .seo-mini-card { background: var(--card-bg); padding: 20px; border-radius: 10px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: 0.3s; }
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; }
+        .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Resize PDF Pages</h1>
+    <div class="subtitle">Change page dimensions to A4, Letter, Legal without losing quality.</div>
+    
+    <div style="margin-top: 20px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--bg-card); border: none; color: var(--text-main); padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            🌙 Dark Mode
+        </button>
+    </div>
+</header>
+
+<div class="seo-container">
+    <div class="seo-card active">
+        
+        <div class="alert-box">
+            <strong>🚀 Pro Feature: Lossless Vector Scaling</strong><br>
+            Unlike other tools that rasterize your PDF into a blurry image, our script embeds your original pages as vector objects. This guarantees 100% quality retention and keeps your text fully selectable and searchable!
+        </div>
+
+        <label for="pdfFileInput" class="upload-area" id="dropZone">
+            <div class="upload-icon">📏</div>
+            <h3 style="margin: 0 0 10px 0;">Select PDF Document</h3>
+            <p style="margin: 0; font-size: 14px; color: var(--text-muted);">Click or drag and drop your file here</p>
+            <input type="file" id="pdfFileInput" accept="application/pdf" onchange="handleFileSelect()">
+            <div id="fileInfo" style="margin-top: 15px; font-weight: 600; color: var(--primary);"></div>
+        </label>
+
+        <div id="configArea" style="display: none;">
+            <div class="config-panel">
+                <div class="input-grid">
+                    <div class="form-group">
+                        <label>Target Page Size</label>
+                        <select id="targetSize" class="form-control">
+                            <option value="A4">A4 (Standard Document)</option>
+                            <option value="Letter">US Letter</option>
+                            <option value="Legal">US Legal</option>
+                            <option value="A3">A3 (Large Print)</option>
+                            <option value="A5">A5 (Booklet)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Orientation</label>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" name="orientation" value="portrait" checked> Portrait</label>
+                            <label class="radio-label"><input type="radio" name="orientation" value="landscape"> Landscape</label>
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+
+                <div class="form-group">
+                    <label>Scaling Behavior</label>
+                    <div class="radio-group" style="flex-wrap: wrap;">
+                        <label class="radio-label" title="Preserves aspect ratio and adds white borders if needed.">
+                            <input type="radio" name="scaling" value="fit" checked> Fit to Page (Best)
+                        </label>
+                        <label class="radio-label" title="Centers the content without resizing it.">
+                            <input type="radio" name="scaling" value="center"> Center (No Resize)
+                        </label>
+                        <label class="radio-label" title="Stretches the content to fill the whole page (may distort).">
+                            <input type="radio" name="scaling" value="stretch"> Stretch to Fill
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn-main" onclick="processResize()">
+                    📐 Resize Document
+                </button>
+            </div>
+        </div>
+
+        <div class="progress-wrapper" id="progressArea">
+            <div style="font-size: 30px; margin-bottom: 10px;">⚙️</div>
+            <h3 style="margin: 0;">Resizing Pages...</h3>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="status-text" id="statusText">Mapping vectors...</div>
+        </div>
+
+        <div id="resultArea" class="result-box">
+            <div style="font-size: 50px; margin-bottom: 10px;">🎉</div>
+            <h2 style="margin-top: 0; color: var(--success);">Resize Complete!</h2>
+            <p style="font-size: 14px; margin-bottom: 20px;">Your newly dimensioned document is ready.</p>
+            <a id="downloadLink" href="#" class="download-btn">
+                ⬇️ Download Resized PDF
+            </a>
+            <div style="margin-top: 25px;">
+                <button onclick="resetTool()" style="background: transparent; border: none; color: var(--primary); cursor: pointer; text-decoration: underline; font-family: 'Poppins'; font-size: 14px;">Resize another document</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align: center;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Home</a>
+    </div>
+</div>
+
+<div class="seo-container">
+    <div class="how active">
+        <h2 style="text-align: center; margin-top: 0;">How to Change PDF Page Size</h2>
+        <div class="how-grid">
+            <div class="how-card">
+                <span>📁</span>
+                <strong>1. Upload Document</strong>
+                <p style="font-size: 14px; color: var(--text-muted);">Choose the PDF file with incorrect dimensions.</p>
+            </div>
+            <div class="how-card">
+                <span>📏</span>
+                <strong>2. Select Format</strong>
+                <p style="font-size: 14px; color: var(--text-muted);">Pick your target size (A4, Letter) and orientation (Portrait/Landscape).</p>
+            </div>
+            <div class="how-card">
+                <span>⚡</span>
+                <strong>3. Auto Scale & Save</strong>
+                <p style="font-size: 14px; color: var(--text-muted);">Our tool perfectly scales the content and provides the new PDF instantly.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content active">
+        <h2 style="margin-top: 0;">Why Resize Your PDF?</h2>
+        <p>
+            Often, documents exported from different software or scanned via mobile apps end up with chaotic, non-standard page sizes. When you try to print or combine them with other documents, it causes printing errors or messy alignments. OmniTools AI provides a robust <strong>PDF Page Resizer</strong> to standardize your files into standard A4 or US Letter formats.
+        </p>
+        
+        <h3 style="margin-top: 20px;">The "Vector Embedding" Advantage</h3>
+        <p>
+            Unlike standard tools that convert your PDF into a flat image, our tool utilizes a technique called <strong>Vector Page Embedding</strong>. This means we take your original page and embed it as a scalable vector object onto a fresh canvas of your desired size. 
+        </p>
+        <ul style="line-height: 1.8; color: var(--text-main);">
+            <li><strong>No Blurriness:</strong> Your text, charts, and logos remain infinitely scalable.</li>
+            <li><strong>Text Searchability:</strong> The text layer is preserved, so you can still search (Ctrl+F) and copy text from the new PDF.</li>
+            <li><strong>100% Privacy:</strong> Using JavaScript (`pdf-lib`), the complex matrix calculations happen right inside your browser's memory. We do not upload your file to any remote server.</li>
+        </ul>
+    </div>
+
+    <div style="margin-top: 50px; border-top: 1px dashed var(--border-color); padding-top: 30px;">
+        <h3>Other PDF Utility Tools</h3>
+        <div class="seo-grid">
+            <a href="split-pdf.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
+                <strong>✂️ PDF Splitter</strong>
+                <p style="font-size:12px; margin-bottom: 0;">Extract or delete pages from your PDF securely.</p>
+            </a>
+            <a href="pdf-to-grayscale.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
+                <strong>🖨️ PDF to Grayscale</strong>
+                <p style="font-size:12px; margin-bottom: 0;">Remove colors from your PDF to save printer ink.</p>
+            </a>
+            <a href="password-protect.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
+                <strong>🔒 Protect PDF</strong>
+                <p style="font-size:12px; margin-bottom: 0;">Lock your PDF files with a strong password encryption.</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="social">
+        <p style="margin-top: 20px;">
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a> |
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms</a>
+        </p>
+    </div>
+    <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
+</footer>
+
+<script>
+let currentFileBuffer = null;
+let originalFileName = "Document";
+
+// Standar Ukuran Kertas dalam Points (1 pt = 1/72 inch)
+const PAGE_SIZES = {
+    'A4': [595.28, 841.89],
+    'Letter': [612, 792],
+    'Legal': [612, 1008],
+    'A3': [841.89, 1190.55],
+    'A5': [419.53, 595.28]
+};
+
+// Drag and Drop event listeners
+const dropZone = document.getElementById('dropZone');
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.background = 'var(--bg-card-hover)'; dropZone.style.borderColor = 'var(--primary-hover)'; });
+dropZone.addEventListener('dragleave', (e) => { e.preventDefault(); dropZone.style.background = 'rgba(26, 115, 232, 0.05)'; dropZone.style.borderColor = 'var(--primary)'; });
+dropZone.addEventListener('drop', (e) => {
+    e.preventDefault(); dropZone.style.background = 'rgba(26, 115, 232, 0.05)'; dropZone.style.borderColor = 'var(--primary)';
+    if (e.dataTransfer.files.length > 0) {
+        document.getElementById('pdfFileInput').files = e.dataTransfer.files;
+        handleFileSelect();
+    }
+});
+
+function handleFileSelect() {
+    const fileInput = document.getElementById('pdfFileInput');
+    const file = fileInput.files[0];
+    if (!file || file.type !== 'application/pdf') {
+        alert('Please select a valid PDF file.');
+        return;
+    }
+
+    originalFileName = file.name.replace('.pdf', '');
+    document.getElementById('fileInfo').textContent = `📄 Loaded: ${file.name}`;
+    
+    // Read the file into an ArrayBuffer
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        currentFileBuffer = e.target.result;
+        document.getElementById('configArea').style.display = 'block';
+        // Scroll slightly to view config
+        document.getElementById('configArea').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+    reader.readAsArrayBuffer(file);
+}
+
+async function processResize() {
+    if (!currentFileBuffer) return;
+
+    // Get UI Configurations
+    const targetSizeKey = document.getElementById('targetSize').value;
+    const orientation = document.querySelector('input[name="orientation"]:checked').value;
+    const scalingMode = document.querySelector('input[name="scaling"]:checked').value;
+    
+    // Set up Dimensions
+    let [targetW, targetH] = PAGE_SIZES[targetSizeKey];
+    if (orientation === 'landscape') {
+        [targetW, targetH] = [targetH, targetW]; // Tukar dimensi (Swap)
+    }
+
+    // Update UI states
+    document.getElementById('dropZone').style.display = 'none';
+    document.getElementById('configArea').style.display = 'none';
+    document.getElementById('progressArea').style.display = 'block';
+    
+    const progressBar = document.getElementById('progressBar');
+    const statusText = document.getElementById('statusText');
+
+    try {
+        const { PDFDocument } = window.PDFLib;
+        
+        // Load original document
+        const pdfOriginal = await PDFDocument.load(currentFileBuffer);
+        const totalPages = pdfOriginal.getPageCount();
+
+        // Create new empty document
+        const newPdf = await PDFDocument.create();
+
+        for (let i = 0; i < totalPages; i++) {
+            statusText.innerText = `Remapping page ${i + 1} of ${totalPages}...`;
+            progressBar.style.width = `${((i) / totalPages) * 100}%`;
+            
+            // 1. Embed halaman asli sebagai FormXObject (Vektor)
+            const [embeddedPage] = await newPdf.embedPdf(currentFileBuffer, [i]);
+            const origDims = embeddedPage.scale(1); // Dapatkan ukuran asli
+            
+            // 2. Buat halaman kosong baru dengan ukuran target
+            const newPage = newPdf.addPage([targetW, targetH]);
+
+            // 3. Kalkulasi Matriks Penskalaan dan Posisi
+            let scaleX = 1, scaleY = 1, xPos = 0, yPos = 0;
+
+            if (scalingMode === 'fit') {
+                // Pertahankan Aspek Rasio, sesuaikan agar pas masuk ke dalam halaman
+                const scale = Math.min(targetW / origDims.width, targetH / origDims.height);
+                scaleX = scale;
+                scaleY = scale;
+                // Center letak X dan Y
+                xPos = (targetW - (origDims.width * scale)) / 2;
+                yPos = (targetH - (origDims.height * scale)) / 2;
+                
+            } else if (scalingMode === 'center') {
+                // Jangan di-scale, letakkan di tengah. (Bisa terpotong jika asli > target)
+                xPos = (targetW - origDims.width) / 2;
+                yPos = (targetH - origDims.height) / 2;
+                
+            } else if (scalingMode === 'stretch') {
+                // Tarik paksa agar memenuhi kertas (bisa distorsi)
+                scaleX = targetW / origDims.width;
+                scaleY = targetH / origDims.height;
+                // xPos dan yPos tetap 0
+            }
+
+            // 4. "Cap" (Draw) halaman vektor tadi ke atas kanvas baru
+            newPage.drawPage(embeddedPage, {
+                x: xPos,
+                y: yPos,
+                xScale: scaleX,
+                yScale: scaleY,
+            });
+        }
+
+        progressBar.style.width = `100%`;
+        statusText.innerText = "Finalizing scaling calculations...";
+
+        // Save new PDF
+        const pdfBytes = await newPdf.save();
+        
+        // Trigger Download
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const downloadLink = document.getElementById('downloadLink');
+        downloadLink.href = url;
+        downloadLink.download = `${originalFileName}_${targetSizeKey}.pdf`;
+
+        setTimeout(() => {
+            document.getElementById('progressArea').style.display = 'none';
+            document.getElementById('resultArea').style.display = 'block';
+        }, 800); // Sedikit delay agar efek transisi progress bar terlihat utuh
+
+    } catch (error) {
+        console.error("Error resizing PDF:", error);
+        alert("Failed to process the document. It might be heavily encrypted.");
+        resetTool();
+    }
+}
+
+function resetTool() {
+    document.getElementById('pdfFileInput').value = '';
+    document.getElementById('dropZone').style.display = 'flex';
+    document.getElementById('fileInfo').textContent = '';
+    document.getElementById('configArea').style.display = 'none';
+    document.getElementById('progressArea').style.display = 'none';
+    document.getElementById('resultArea').style.display = 'none';
+    document.getElementById('progressBar').style.width = '0%';
+    currentFileBuffer = null;
+}
+
+// Dark Mode Toggle Logic
+function toggleDarkMode() {
+    const body = document.body;
+    const btn = document.getElementById('darkModeToggle');
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        btn.innerHTML = '🌙 Dark Mode';
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.add('dark-mode');
+        btn.innerHTML = '☀️ Light Mode';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Cek tema yang tersimpan
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    document.getElementById('darkModeToggle').innerHTML = '☀️ Light Mode';
+}
+</script>
+
+</body>
+</html>
