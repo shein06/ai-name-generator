@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+    
+    <!-- Tag Verifikasi Google -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Meta Tag Generator - Boost Your Website Ranking | OmniTools AI</title>
+    <meta name="description" content="Generate perfect SEO Meta Tags, Open Graph, and Twitter Cards with real-time Google search preview. Free online tool.">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Tool-Specific Styles */
+        .workspace-grid {
+            display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 20px;
+        }
+        @media(min-width: 850px) {
+            .workspace-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .config-panel, .preview-panel {
+            background: var(--bg-card, #fff); padding: 25px; border-radius: 15px; 
+            border: 1px solid var(--border-color, #eee); box-shadow: 0 4px 15px rgba(0,0,0,0.03); text-align: left;
+        }
+
+        /* Form Group */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        .form-control {
+            width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color, #ddd); 
+            background: var(--bg-main, #fafafa); color: var(--text-main, #333); font-size: 14px; outline: none; font-family: 'Poppins'; box-sizing: border-box; transition: 0.3s;
+        }
+        .form-control:focus { border-color: #1a73e8; box-shadow: 0 0 0 3px rgba(26,115,232,0.1); }
+        
+        .char-count { font-size: 12px; font-weight: 500; }
+        .count-good { color: #28a745; }
+        .count-warn { color: #f39c12; }
+        .count-danger { color: #dc3545; }
+
+        /* Google SERP Preview */
+        .google-preview {
+            background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;
+            font-family: Arial, sans-serif; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        [data-theme="dark"] .google-preview { background: #202124; border-color: #3c4043; }
+        
+        .g-url { color: #202124; font-size: 14px; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+        [data-theme="dark"] .g-url { color: #dadce0; }
+        .g-url img { width: 16px; height: 16px; border-radius: 50%; background: #eee; }
+        
+        .g-title { color: #1a0dab; font-size: 20px; font-weight: normal; margin: 0 0 4px 0; line-height: 1.3; cursor: pointer; text-decoration: none; }
+        .g-title:hover { text-decoration: underline; }
+        [data-theme="dark"] .g-title { color: #8ab4f8; }
+        
+        .g-desc { color: #4d5156; font-size: 14px; line-height: 1.58; word-wrap: break-word; }
+        [data-theme="dark"] .g-desc { color: #bdc1c6; }
+
+        /* Code Output Box */
+        .code-box-wrapper { position: relative; }
+        .code-box {
+            background: #1e1e1e; color: #a9dc76; padding: 20px; border-radius: 8px; 
+            font-family: 'Fira Code', Consolas, monospace; font-size: 13px; line-height: 1.5;
+            white-space: pre-wrap; word-break: break-all; overflow-x: auto; height: 350px; border: 1px solid #333;
+        }
+        .btn-copy {
+            position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); 
+            color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 6px; 
+            cursor: pointer; font-family: 'Poppins'; font-size: 12px; font-weight: 600; transition: 0.2s;
+        }
+        .btn-copy:hover { background: rgba(255,255,255,0.2); }
+
+        /* Multi-input Grid */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media(max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
+            🌙 Dark Mode
+        </button>
+    </div>
+    <h1>SEO Meta Tag Generator</h1>
+    <div class="subtitle">Create optimized HTML meta tags to rank higher on Google & look perfect on Social Media.</div>
+</header>
+
+<div class="seo-container">
+    <div class="seo-card active" style="padding: 20px;">
+        
+        <div class="workspace-grid">
+            <!-- PANEL KIRI: INPUT FORM -->
+            <div class="config-panel">
+                <h3 style="margin-top:0; border-bottom: 1px solid var(--border-color); padding-bottom:10px;">Page Details</h3>
+                
+                <div class="form-group">
+                    <label><span>Site / Page Title</span> <span id="countTitle" class="char-count">0 / 60</span></label>
+                    <input type="text" id="metaTitle" class="form-control" placeholder="e.g. Free AI Tools Collection | OmniTools" oninput="generateTags()">
+                    <small style="color:var(--text-muted); font-size:11px; margin-top:4px; display:block;">Keep under 60 characters for best Google display.</small>
+                </div>
+
+                <div class="form-group">
+                    <label><span>Meta Description</span> <span id="countDesc" class="char-count">0 / 160</span></label>
+                    <textarea id="metaDesc" class="form-control" rows="3" placeholder="e.g. Boost your workflow with our free, offline AI productivity tools." oninput="generateTags()"></textarea>
+                    <small style="color:var(--text-muted); font-size:11px; margin-top:4px; display:block;">Keep between 150-160 characters.</small>
+                </div>
+
+                <div class="form-group">
+                    <label><span>Page URL</span></label>
+                    <input type="text" id="metaUrl" class="form-control" placeholder="e.g. https://omnitools.ai/seo-tool" oninput="generateTags()">
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label><span>Image URL (For Social Sharing)</span></label>
+                        <input type="text" id="metaImage" class="form-control" placeholder="e.g. https://omnitools.ai/banner.jpg" oninput="generateTags()">
+                    </div>
+                    <div class="form-group">
+                        <label><span>Author Name</span></label>
+                        <input type="text" id="metaAuthor" class="form-control" placeholder="e.g. OmniTools Team" oninput="generateTags()">
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label><span>Keywords (Comma separated)</span></label>
+                        <input type="text" id="metaKeywords" class="form-control" placeholder="e.g. seo tools, meta generator, free ai" oninput="generateTags()">
+                    </div>
+                    <div class="form-group">
+                        <label><span>Search Engine Robots</span></label>
+                        <select id="metaRobots" class="form-control" onchange="generateTags()">
+                            <option value="index, follow">Index, Follow (Recommended)</option>
+                            <option value="noindex, follow">No Index, Follow</option>
+                            <option value="index, nofollow">Index, No Follow</option>
+                            <option value="noindex, nofollow">No Index, No Follow</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL KANAN: PREVIEW & CODE -->
+            <div class="preview-panel">
+                <h3 style="margin-top:0; border-bottom: 1px solid var(--border-color); padding-bottom:10px;">Live Google Preview</h3>
+                
+                <div class="google-preview">
+                    <div class="g-url">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2FhYSIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIvPjwvc3ZnPg==" alt="icon" id="previewIcon">
+                        <span id="previewUrl">example.com > my-page</span>
+                    </div>
+                    <h3 class="g-title" id="previewTitle">Your Page Title Will Appear Here</h3>
+                    <div class="g-desc" id="previewDesc">Write a compelling meta description in the box to the left. This text helps users decide whether to click on your link from the search engine results page.</div>
+                </div>
+
+                <h3 style="margin-top:30px; margin-bottom:10px;">Generated HTML Code</h3>
+                <div class="code-box-wrapper">
+                    <button class="btn-copy" id="copyBtn" onclick="copyCode()">📋 Copy Code</button>
+                    <div class="code-box" id="codeOutput">Start typing to generate meta tags...</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align: center;">
+        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
+    </div>
+</div>
+
+<div class="how reveal active">
+    <h2>How to Add Meta Tags to Your Website</h2>
+    <div class="how-grid">
+        <div class="how-card">
+            <span>📝</span>
+            <strong>1. Fill Information</strong>
+            <p style="font-size: 14px; color: var(--text-muted, #666);">Enter your title, description, and image URLs. Watch the live preview update instantly.</p>
+        </div>
+        <div class="how-card">
+            <span>📋</span>
+            <strong>2. Copy Code</strong>
+            <p style="font-size: 14px; color: var(--text-muted, #666);">Click the copy button to grab the fully formatted HTML meta tags.</p>
+        </div>
+        <div class="how-card">
+            <span>💻</span>
+            <strong>3. Paste in Head</strong>
+            <p style="font-size: 14px; color: var(--text-muted, #666);">Paste the code between the <code>&lt;head&gt;</code> and <code>&lt;/head&gt;</code> tags of your website's HTML file.</p>
+        </div>
+    </div>
+</div>
+
+<div class="content reveal active">
+    <h2>Why Are SEO Meta Tags Important?</h2>
+    <p>
+        Meta tags are snippets of text that describe a page's content. They don't appear directly on the page itself, but rather in the page's source code. <strong>OmniTools AI Meta Tag Generator</strong> helps you create the perfect hidden code to communicate with Search Engines.
+    </p>
+    
+    <h3 style="margin-top: 20px;">The "Big Three" Tags</h3>
+    <ul style="line-height: 1.8; color: var(--text-main, #333);">
+        <li><strong>Title Tag:</strong> The most important SEO tag. It dictates the clickable headline in Google. Aim for around 50-60 characters.</li>
+        <li><strong>Meta Description:</strong> A brief summary of the page. While it doesn't directly impact ranking algorithms, a well-written description dramatically increases your <strong>Click-Through Rate (CTR)</strong>. Aim for 150-160 characters.</li>
+        <li><strong>Open Graph & Twitter Cards:</strong> Without these, sharing your website link on WhatsApp, Facebook, or Twitter will result in a boring, blank link. These tags force social media platforms to display a rich thumbnail image and bold title.</li>
+    </ul>
+
+    <h3 style="margin-top: 20px;">What is the "Robots" Meta Tag?</h3>
+    <p>
+        The robots meta tag tells search engine crawlers (like Googlebot) what they should do with the page. "Index" means they should save it to their database so people can search for it. "Follow" tells them to follow any links on that page to discover more of your content. By default, you almost always want <code>index, follow</code>.
+    </p>
+</div>
+
+<div class="seo-container" style="margin-top: 50px; border-top: 1px dashed #ccc; padding-top: 30px;">
+    <h3>Boost Your SEO with These Free Tools</h3>
+    <div class="seo-grid">
+        <a href="blog-title-generator.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display:block;">
+            <strong>✍️ Blog Title Generator</strong>
+            <p style="font-size:12px; margin-bottom:0;">Generate click-worthy and SEO-optimized headlines instantly.</p>
+        </a>
+        <a href="similarity-checker.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display:block;">
+            <strong>🔍 Similarity Checker</strong>
+            <p style="font-size:12px; margin-bottom:0;">Compare two documents to avoid duplicate content penalties.</p>
+        </a>
+        <a href="image-to-webp.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display:block;">
+            <strong>🖼️ Image to WebP</strong>
+            <p style="font-size:12px; margin-bottom:0;">Optimize image size to improve Google PageSpeed scores.</p>
+        </a>
+    </div>
+</div>
+
+<footer>
+    <div class="social">
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="FB"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="TW"></a>
+        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="IG"></a>
+        <p style="margin-top: 20px;">
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a> |
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms</a>
+        </p>
+    </div>
+    <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
+</footer>
+
+<script>
+// --- LOGIKA META TAG GENERATOR ---
+
+function updateCharCount(id, max, countId) {
+    const el = document.getElementById(id);
+    const countEl = document.getElementById(countId);
+    const length = el.value.length;
+    
+    countEl.innerText = `${length} / ${max}`;
+    
+    // Hapus kelas warna lama
+    countEl.classList.remove('count-good', 'count-warn', 'count-danger');
+    
+    if (length === 0) {
+        countEl.style.color = "var(--text-muted)";
+    } else if (length <= max) {
+        countEl.classList.add('count-good');
+    } else if (length <= max + 10) {
+        countEl.classList.add('count-warn'); // Warning sedikit lebih
+    } else {
+        countEl.classList.add('count-danger'); // Bahaya terpotong Google
+    }
+}
+
+function updateGooglePreview(title, desc, url) {
+    const pTitle = document.getElementById('previewTitle');
+    const pDesc = document.getElementById('previewDesc');
+    const pUrl = document.getElementById('previewUrl');
+    
+    // Judul
+    pTitle.innerText = title ? title : "Your Page Title Will Appear Here";
+    
+    // Format URL untuk Preview Google (misal: https://web.com/path jadi web.com > path)
+    if(url) {
+        try {
+            const urlObj = new URL(url);
+            let displayUrl = urlObj.hostname;
+            if(urlObj.pathname.length > 1) {
+                displayUrl += " > " + urlObj.pathname.substring(1).replace(/\//g, " > ");
+            }
+            pUrl.innerText = displayUrl;
+        } catch(e) {
+            pUrl.innerText = url; // Jika URL tidak valid secara format, tampilkan mentah
+        }
+    } else {
+        pUrl.innerText = "example.com > my-page";
+    }
+
+    // Deskripsi
+    if(desc) {
+        // Simulasi potongan Google (biasanya max 155-160 huruf di desktop)
+        if(desc.length > 160) {
+            pDesc.innerText = desc.substring(0, 157) + "...";
+        } else {
+            pDesc.innerText = desc;
+        }
+    } else {
+        pDesc.innerText = "Write a compelling meta description in the box to the left. This text helps users decide whether to click on your link from the search engine results page.";
+    }
+}
+
+function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, 
+        tag => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+        }[tag])
+    );
+}
+
+function generateTags() {
+    // 1. Ambil & update counter
+    updateCharCount('metaTitle', 60, 'countTitle');
+    updateCharCount('metaDesc', 160, 'countDesc');
+
+    // 2. Ambil semua value
+    const title = document.getElementById('metaTitle').value.trim();
+    const desc = document.getElementById('metaDesc').value.trim();
+    const url = document.getElementById('metaUrl').value.trim();
+    const image = document.getElementById('metaImage').value.trim();
+    const author = document.getElementById('metaAuthor').value.trim();
+    const keywords = document.getElementById('metaKeywords').value.trim();
+    const robots = document.getElementById('metaRobots').value;
+
+    // 3. Update Visual Google Preview
+    updateGooglePreview(title, desc, url);
+
+    // 4. Generate HTML String
+    let code = `<!-- Primary Meta Tags -->\n`;
+    code += `<title>${escapeHTML(title || 'Your Page Title')}</title>\n`;
+    code += `<meta name="title" content="${escapeHTML(title || '')}">\n`;
+    code += `<meta name="description" content="${escapeHTML(desc || '')}">\n`;
+    if(keywords) code += `<meta name="keywords" content="${escapeHTML(keywords)}">\n`;
+    if(author) code += `<meta name="author" content="${escapeHTML(author)}">\n`;
+    code += `<meta name="robots" content="${escapeHTML(robots)}">\n\n`;
+
+    code += `<!-- Open Graph / Facebook -->\n`;
+    code += `<meta property="og:type" content="website">\n`;
+    if(url) code += `<meta property="og:url" content="${escapeHTML(url)}">\n`;
+    code += `<meta property="og:title" content="${escapeHTML(title || '')}">\n`;
+    code += `<meta property="og:description" content="${escapeHTML(desc || '')}">\n`;
+    if(image) code += `<meta property="og:image" content="${escapeHTML(image)}">\n\n`;
+
+    code += `<!-- Twitter -->\n`;
+    code += `<meta property="twitter:card" content="summary_large_image">\n`;
+    if(url) code += `<meta property="twitter:url" content="${escapeHTML(url)}">\n`;
+    code += `<meta property="twitter:title" content="${escapeHTML(title || '')}">\n`;
+    code += `<meta property="twitter:description" content="${escapeHTML(desc || '')}">\n`;
+    if(image) code += `<meta property="twitter:image" content="${escapeHTML(image)}">\n`;
+
+    // 5. Tulis ke output box
+    // Menggunakan textContent agar tag HTML tidak dieksekusi browser, tapi ditampilkan sebagai teks
+    document.getElementById('codeOutput').textContent = code;
+}
+
+// Fungsi Custom UI Copy
+function copyCode() {
+    const codeText = document.getElementById('codeOutput').textContent;
+    if(codeText === "Start typing to generate meta tags...") return;
+
+    navigator.clipboard.writeText(codeText).then(() => {
+        const btn = document.getElementById('copyBtn');
+        const originalText = btn.innerText;
+        btn.innerText = '✅ Copied!';
+        btn.style.background = '#28a745';
+        btn.style.borderColor = '#28a745';
+        
+        setTimeout(() => { 
+            btn.innerText = originalText; 
+            btn.style.background = 'rgba(255,255,255,0.1)';
+            btn.style.borderColor = 'rgba(255,255,255,0.2)';
+        }, 2000);
+    });
+}
+
+// Logika Dark Mode
+function toggleDarkMode() {
+    const body = document.body;
+    const btn = document.getElementById('darkModeToggle');
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        btn.innerHTML = '🌙 Dark Mode';
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.add('dark-mode');
+        btn.innerHTML = '☀️ Light Mode';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Inisialisasi awal saat pertama dibuka
+document.addEventListener("DOMContentLoaded", function() {
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('darkModeToggle').innerHTML = '☀️ Light Mode';
+    }
+    generateTags(); // Panggil sekali untuk menampilkan kerangka awal di box
+});
+</script>
+
+</body>
+</html>
