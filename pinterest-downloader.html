@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+    
+    <!-- Tag Verifikasi Google -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinterest Video Downloader - Download MP4 Free | OmniTools AI</title>
+    <meta name="description" content="Download Pinterest videos, stories, and images in high quality (MP4/JPG) for free. Fast, secure, and 100% online.">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Gaya Khusus Tool Downloader */
+        .downloader-box {
+            background: var(--bg-card, #fff); padding: 40px 30px; border-radius: 16px;
+            box-shadow: var(--shadow-sm, 0 4px 15px rgba(0,0,0,0.05)); border: 1px solid var(--border-color, #eee);
+            margin-bottom: 20px; text-align: center;
+        }
+
+        .input-group { position: relative; max-width: 600px; margin: 0 auto 20px auto; }
+        .input-group input {
+            width: 100%; padding: 16px 20px; border-radius: 50px; border: 2px solid var(--border-color, #eee); 
+            background: var(--bg-main, #fafafa); color: var(--text-main, #222); font-size: 16px; outline: none; font-family: 'Poppins'; box-sizing: border-box;
+            transition: 0.3s;
+        }
+        .input-group input:focus { border-color: var(--primary, #1a73e8); box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1); }
+        
+        .btn-main { background: var(--primary, #1a73e8); color: #fff; border: none; padding: 14px 40px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Poppins'; font-size: 16px; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-main:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(26, 115, 232, 0.3); }
+
+        /* Loader */
+        .loader-container { display: none; margin: 30px 0; }
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(26,115,232,0.2); border-top: 4px solid var(--primary, #1a73e8); border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Area Hasil */
+        .result-area {
+            display: none; background: var(--bg-card, #fff); padding: 30px; border-radius: 16px;
+            box-shadow: var(--shadow-sm, 0 4px 15px rgba(0,0,0,0.05)); border: 1px solid var(--success, #28a745);
+            margin-top: 20px;
+        }
+        .media-preview {
+            max-width: 300px; margin: 0 auto 20px auto; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: #000;
+        }
+        .media-preview video, .media-preview img { width: 100%; display: block; border-radius: 12px; }
+        
+        .btn-download { background: var(--success, #28a745); color: white; padding: 14px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: 16px; transition: 0.3s; }
+        .btn-download:hover { transform: translateY(-2px); opacity: 0.9; box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3); }
+
+        .error-msg { display: none; color: var(--danger, #dc3545); background: rgba(220, 53, 69, 0.1); padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 14px; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Pinterest Video Downloader</h1>
+    <div class="subtitle">Download Pinterest Videos, Stories, and Images in High Quality (MP4).</div>
+    
+    <div style="margin-top: 20px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--bg-card, #fff); border: 1px solid var(--border-color, #eee); color: var(--text-main, #333); padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
+            🌙 Dark Mode
+        </button>
+    </div>
+</header>
+
+<div class="seo-container">
+    <div class="downloader-box active">
+        <h2 style="margin-top: 0; font-size: 22px;">Insert Pinterest Link Here</h2>
+        <p style="font-size: 14px; color: var(--text-muted, #666); margin-bottom: 25px;">Paste the URL of the Pin you want to download (e.g., https://pin.it/... or https://pinterest.com/pin/...)</p>
+        
+        <div class="input-group">
+            <input type="url" id="pinUrl" placeholder="Paste link here..." autocomplete="off">
+        </div>
+        
+        <button class="btn-main" onclick="fetchMedia()">
+            <span>🔍 Extract Video</span>
+        </button>
+
+        <div id="errorMsg" class="error-msg"></div>
+
+        <!-- Loading Animation -->
+        <div id="loadingArea" class="loader-container">
+            <div class="spinner"></div>
+            <p style="margin-top: 15px; font-weight: 600; color: var(--primary, #1a73e8);">Bypassing Security & Extracting Media...</p>
+            <p style="font-size: 13px; color: var(--text-muted, #666);" id="loadingStatus">Please wait, checking multiple proxy routes.</p>
+        </div>
+    </div>
+
+    <!-- Area Hasil (Muncul setelah diekstrak) -->
+    <div id="resultArea" class="result-area">
+        <h3 style="color: var(--success, #28a745); margin-top: 0;">✅ Media Ready to Download!</h3>
+        
+        <div class="media-preview" id="previewContainer">
+            <!-- Video atau Gambar akan dimuat di sini oleh JS -->
+        </div>
+
+        <a id="downloadBtn" href="#" target="_blank" class="btn-download">
+            ⬇️ Download MP4 File
+        </a>
+        
+        <p style="font-size: 12px; color: var(--text-muted, #666); margin-top: 15px;">
+            *If the video opens in a new tab, click the three dots (⋮) in the corner and select "Download".
+        </p>
+
+        <div style="margin-top: 25px;">
+            <button onclick="resetTool()" style="background: transparent; border: none; color: var(--primary, #1a73e8); cursor: pointer; text-decoration: underline; font-family: 'Poppins'; font-size: 14px; font-weight: 500;">Download another Pin</button>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="index.html" style="color: var(--primary, #1a73e8); text-decoration: none; font-weight: 600;">← Back to Home</a>
+    </div>
+</div>
+
+<!-- SEO & Panduan -->
+<div class="seo-container">
+    <div class="how active">
+        <h2 style="text-align: center; margin-top: 0;">How to Download Pinterest Videos?</h2>
+        <div class="how-grid">
+            <div class="how-card">
+                <span style="font-size: 36px; display: block; margin-bottom: 10px;">📋</span>
+                <strong>1. Copy Link</strong>
+                <p style="font-size: 14px; color: var(--text-muted, #666); margin-top: 8px;">Open Pinterest app or website, find the video, click Share, and select "Copy Link".</p>
+            </div>
+            <div class="how-card">
+                <span style="font-size: 36px; display: block; margin-bottom: 10px;">✂️</span>
+                <strong>2. Paste URL</strong>
+                <p style="font-size: 14px; color: var(--text-muted, #666); margin-top: 8px;">Paste the copied link (pin.it or pinterest.com) into the input box above and click Extract.</p>
+            </div>
+            <div class="how-card">
+                <span style="font-size: 36px; display: block; margin-bottom: 10px;">💾</span>
+                <strong>3. Download</strong>
+                <p style="font-size: 14px; color: var(--text-muted, #666); margin-top: 8px;">Click the green download button to save the MP4 video directly to your gallery or PC.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content active">
+        <h2 style="margin-top: 0;">The Best Free Pinterest Downloader</h2>
+        <p>
+            Saving inspiring videos, DIY tutorials, or aesthetic clips from Pinterest shouldn't be difficult. Our <strong>Pinterest Video Downloader</strong> uses advanced DOM Parsing technology to extract the original high-quality MP4 file directly from the Pinterest servers, bypassing the need for you to install any shady apps.
+        </p>
+        
+        <h3 style="margin-top: 20px;">Features of Our Tool:</h3>
+        <ul style="line-height: 1.8; color: var(--text-main, #333);">
+            <li><strong>High-Quality MP4:</strong> We extract the highest resolution available (up to 1080p HD).</li>
+            <li><strong>Supports Images & Gifs:</strong> If the link contains an image or GIF instead of a video, our tool will smartly adapt and provide the JPG/GIF file.</li>
+            <li><strong>No Watermark:</strong> The videos are downloaded exactly as the creator uploaded them, completely free of generic watermarks.</li>
+            <li><strong>No Software Required:</strong> Works 100% online in your web browser, whether you are on an iPhone, Android, Mac, or Windows PC.</li>
+        </ul>
+    </div>
+</div>
+
+<footer>
+    <div class="social">
+        <p style="margin-top: 20px;">
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a> |
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms</a>
+        </p>
+    </div>
+    <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
+</footer>
+
+<script>
+// --- LOGIKA UTAMA DOWNLOADER ---
+
+async function fetchMedia() {
+    let urlInput = document.getElementById('pinUrl').value.trim();
+    const errorMsg = document.getElementById('errorMsg');
+    
+    errorMsg.style.display = 'none';
+    
+    if (!urlInput) {
+        showError("Please enter a valid Pinterest link.");
+        return;
+    }
+
+    // Validasi apakah ini link pinterest
+    if (!urlInput.includes('pinterest') && !urlInput.includes('pin.it')) {
+        showError("The URL must be a valid Pinterest link (e.g., pin.it or pinterest.com).");
+        return;
+    }
+
+    // UI Transitions
+    document.getElementById('resultArea').style.display = 'none';
+    document.getElementById('loadingArea').style.display = 'block';
+    
+    const statusText = document.getElementById('loadingStatus');
+
+    try {
+        // SISTEM MULTI-PROXY FALLBACK (Mencegah error CORS dan menangani Redirect)
+        const proxies = [
+            // Menggunakan endpoint /get JSON agar proxy bisa memproses redirect (sangat penting untuk link pin.it)
+            { url: `https://api.allorigins.win/get?url=${encodeURIComponent(urlInput)}`, type: 'json' },
+            { url: `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(urlInput)}`, type: 'text' },
+            { url: `https://corsproxy.io/?${encodeURIComponent(urlInput)}`, type: 'text' }
+        ];
+        
+        let htmlString = null;
+
+        for (let i = 0; i < proxies.length; i++) {
+            try {
+                statusText.innerText = `Bypassing security (Proxy Route ${i + 1}/${proxies.length})...`;
+                
+                const response = await fetch(proxies[i].url);
+                
+                if (response.ok) {
+                    if (proxies[i].type === 'json') {
+                        const data = await response.json();
+                        if (data && data.contents) {
+                            htmlString = data.contents;
+                        }
+                    } else {
+                        htmlString = await response.text();
+                    }
+                    
+                    // Verifikasi apakah HTML yang dikembalikan valid dan cukup panjang (bukan error page)
+                    if (htmlString && htmlString.length > 1500) {
+                        break; 
+                    } else {
+                        htmlString = null; 
+                    }
+                }
+            } catch (e) {
+                console.warn(`Proxy ${i + 1} failed:`, e);
+            }
+        }
+
+        if (!htmlString) {
+            throw new Error("Unable to fetch data. The Pin might be private, deleted, or blocked by Pinterest security.");
+        }
+
+        statusText.innerText = "Extracting Video Source...";
+
+        // 1. Parsing HTML ke DOM Virtual
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlString, "text/html");
+
+        let mediaUrl = "";
+        let isVideo = false;
+
+        // TEKNIK EKSTRAKSI 1: Cek Meta Tag og:video (Paling Umum untuk Video Pinterest)
+        const ogVideo = doc.querySelector('meta[property="og:video"]');
+        const ogVideoSecure = doc.querySelector('meta[property="og:video:secure_url"]');
+        
+        if (ogVideoSecure && ogVideoSecure.content && ogVideoSecure.content.includes('.mp4')) {
+            mediaUrl = ogVideoSecure.content;
+            isVideo = true;
+        } else if (ogVideo && ogVideo.content && ogVideo.content.includes('.mp4')) {
+            mediaUrl = ogVideo.content;
+            isVideo = true;
+        } 
+        
+        // TEKNIK EKSTRAKSI 2: Cek Meta Tag og:image (Jika ternyata user memasukkan link gambar)
+        if (!mediaUrl) {
+            const ogImage = doc.querySelector('meta[property="og:image"]');
+            if (ogImage && ogImage.content) {
+                mediaUrl = ogImage.content;
+                isVideo = false;
+            }
+        }
+
+        // TEKNIK EKSTRAKSI 3 (FALLBACK): Regex untuk mencari MP4 di dalam raw JSON data Pinterest
+        // Hal ini mengatasi masalah jika meta tag video disembunyikan
+        if (!mediaUrl || !isVideo) {
+            const mp4Match = htmlString.match(/https:(?:\\\/\\\/|\/\/)[^"']+\.mp4/);
+            if (mp4Match) {
+                // Bersihkan karakter escape backslash dari raw JSON
+                mediaUrl = mp4Match[0].replace(/\\\//g, '/');
+                isVideo = true;
+            }
+        }
+
+        if (!mediaUrl) {
+            throw new Error("Could not find any video or image in this Pin. Ensure it's a public post.");
+        }
+
+        // Tampilkan Hasil
+        document.getElementById('loadingArea').style.display = 'none';
+        const resultArea = document.getElementById('resultArea');
+        const previewContainer = document.getElementById('previewContainer');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        previewContainer.innerHTML = ''; // Bersihkan preview lama
+
+        if (isVideo) {
+            // Tampilkan Video Player
+            previewContainer.innerHTML = `<video controls autoplay loop muted src="${mediaUrl}"></video>`;
+            downloadBtn.innerHTML = '⬇️ Download MP4 File';
+            downloadBtn.className = 'btn-download';
+            downloadBtn.href = mediaUrl; // Pinterest video biasanya membolehkan direct download
+        } else {
+            // Tampilkan Gambar
+            previewContainer.innerHTML = `<img src="${mediaUrl}" alt="Pinterest Image">`;
+            downloadBtn.innerHTML = '⬇️ Download JPG File';
+            downloadBtn.className = 'btn-download';
+            downloadBtn.href = mediaUrl;
+        }
+
+        resultArea.style.display = 'block';
+
+    } catch (error) {
+        console.error("Extraction Error:", error);
+        document.getElementById('loadingArea').style.display = 'none';
+        showError(`<strong>Error:</strong> ${error.message}`);
+    }
+}
+
+function showError(msg) {
+    const errorMsg = document.getElementById('errorMsg');
+    errorMsg.innerHTML = msg;
+    errorMsg.style.display = 'block';
+}
+
+function resetTool() {
+    document.getElementById('pinUrl').value = '';
+    document.getElementById('errorMsg').style.display = 'none';
+    document.getElementById('resultArea').style.display = 'none';
+    document.getElementById('pinUrl').focus();
+}
+
+// Dark Mode
+function toggleDarkMode() {
+    const body = document.body;
+    const btn = document.getElementById('darkModeToggle');
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        btn.innerHTML = '🌙 Dark Mode';
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.classList.add('dark-mode');
+        btn.innerHTML = '☀️ Light Mode';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Cek tema saat awal dimuat (fallback jika style.css tidak menangani)
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    const btn = document.getElementById('darkModeToggle');
+    if (btn) btn.innerHTML = '☀️ Light Mode';
+}
+</script>
+
+</body>
+</html>
