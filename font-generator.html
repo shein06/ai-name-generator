@@ -12,156 +12,113 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Font Generator - Modern Typography & Aesthetic Text</title>
+    <title>Fancy Font Generator - Modern Typography & Aesthetic Text | OmniTools AI</title>
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Transform plain text into aesthetic fonts for Instagram, WhatsApp, and Social Media Bio with the AI-powered Architect Fancy Font Generator.">
-    <meta name="keywords" content="fancy font generator, aesthetic fonts, cool text, instagram bio fonts, unicode text converter, copy and paste fonts">
-    
-    <style>
-        :root {
-            --primary: #1a73e8;
-            --accent: #9b51e0;
-            --bg-glass: rgba(255, 255, 255, 0.9);
-            --input-bg: #f8f9fa;
-            --border-radius: 16px;
-            --text-color: #202124;
-            --card-bg: #ffffff;
-            --bg-body: #f0f2f5;
-        }
+    <!-- Tag Verifikasi Google (Sesuai Permintaan) -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
 
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Transform plain text into aesthetic fancy fonts for Instagram, TikTok, WhatsApp, and Facebook bios instantly. Free, secure, and 100% online Unicode converter.">
+    <meta name="keywords" content="fancy font generator, aesthetic fonts, cool text, instagram bio fonts, unicode text converter, copy and paste fonts, fancy text generator">
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Variabel & Desain Premium Fancy Font Generator */
+        :root {
+            --bg-color: #f8f9fa; --text-color: #333; --card-bg: #fff;
+            --primary: #1a73e8; --border-color: #e0e0e0; --success: #28a745; --danger: #dc3545;
+            --input-bg: #f1f3f4;
+        }
         [data-theme="dark"] {
-            --primary: #8ab4f8;
-            --accent: #c58af9;
-            --input-bg: #2d2e31;
-            --text-color: #e8eaed;
-            --card-bg: #202124;
-            --bg-body: #171717;
+            --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e;
+            --primary: #4da3ff; --border-color: #333; --input-bg: #2a2a2a;
         }
 
         body {
-            font-family: 'Inter', -apple-system, system-ui, sans-serif;
-            background-color: var(--bg-body);
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        header {
-            background: linear-gradient(135deg, #1a73e8 0%, #9b51e0 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
+        header { text-align: center; padding: 40px 20px; }
+        .subtitle { color: #666; font-size: 1rem; margin-top: 10px; }
+        [data-theme="dark"] .subtitle { color: #aaa; }
 
-        header h1 { margin: 0; font-size: 2.8rem; letter-spacing: -1.5px; font-weight: 800; }
-        .subtitle { opacity: 0.9; font-size: 1.1rem; margin-top: 10px; font-weight: 300; }
-
-        .seo-container {
-            max-width: 1100px;
-            margin: -40px auto 40px;
-            padding: 0 20px;
-        }
-
-        .architect-card {
+        .seo-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .architect-card, .content, .how, .faq-section, .directory-section {
             background: var(--card-bg);
-            border-radius: 28px;
-            padding: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-            border: 1px solid rgba(0,0,0,0.03);
-            margin-bottom: 40px;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
         }
 
-        /* Input Styling */
-        .input-group {
-            margin-bottom: 35px;
-        }
-
-        .input-group label {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 12px;
-            font-size: 0.9rem;
-            color: var(--text-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.7;
-        }
-
+        /* Input Area & Counter */
+        .input-group { margin-bottom: 30px; text-align: left; }
+        .input-group label { display: block; font-weight: 700; margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
+        
+        .textarea-container { position: relative; }
         textarea {
             width: 100%;
-            padding: 24px;
-            border-radius: var(--border-radius);
+            padding: 20px;
+            border-radius: 12px;
             border: 2px solid transparent;
             background-color: var(--input-bg);
             color: var(--text-color);
-            font-size: 1.3rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
             box-sizing: border-box;
             resize: vertical;
-            min-height: 120px;
-            font-family: inherit;
+            min-height: 110px;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
         }
-
         textarea:focus {
             background-color: var(--card-bg);
             border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(26, 115, 232, 0.15);
-            outline: none;
+            box-shadow: 0 8px 20px rgba(26, 115, 232, 0.1);
         }
 
-        /* Results Grid */
+        .counter-badge {
+            display: flex; gap: 15px; font-size: 12px; font-weight: 600; color: #888; margin-top: 8px; justify-content: flex-end;
+        }
+
+        /* Results Grid & Custom Font Cards */
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 20px;
             margin-top: 25px;
         }
 
         .font-card {
-            background: var(--input-bg);
-            padding: 24px;
-            border-radius: 20px;
-            border: 1px solid rgba(0,0,0,0.04);
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            text-align: left;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.25s ease;
-            cursor: pointer;
+            min-height: 180px;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
         }
-
         .font-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
             border-color: var(--primary);
-            background: var(--card-bg);
-        }
-
-        .font-card::before {
-            content: "COPY";
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 0.65rem;
-            font-weight: 900;
-            background: var(--primary);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .font-card:hover::before {
-            opacity: 1;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
         }
 
         .font-card .label {
-            font-size: 0.7rem;
+            font-size: 10px;
             text-transform: uppercase;
             font-weight: 800;
             color: var(--primary);
@@ -170,234 +127,440 @@
         }
 
         .font-card .output-text {
-            font-size: 1.35rem;
-            word-break: break-word;
-            margin-bottom: 10px;
-            color: var(--text-color);
-        }
-
-        /* How it works */
-        .section-title {
-            text-align: center;
-            margin: 80px 0 40px;
-        }
-        .section-title h2 { font-size: 2.2rem; color: var(--text-color); margin-bottom: 10px; }
-        .section-title p { opacity: 0.7; font-size: 1.1rem; }
-
-        .how-detail-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .how-card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-            text-align: center;
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-
-        .how-card .icon {
-            font-size: 3rem;
+            font-size: 1.25rem;
+            word-break: break-all;
             margin-bottom: 20px;
-            display: block;
+            color: var(--text-color);
+            font-weight: 500;
+            line-height: 1.4;
         }
 
-        .how-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
-
-        /* Toast Notification */
-        #toast {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1a73e8;
-            color: white;
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            display: none;
-            z-index: 1000;
-            box-shadow: 0 15px 35px rgba(26, 115, 232, 0.4);
-            animation: slideUp 0.3s ease-out;
+        /* Action Buttons Grouping */
+        .card-actions {
+            display: flex; gap: 8px; margin-top: auto;
         }
-
-        @keyframes slideUp {
-            from { bottom: 0; opacity: 0; }
-            to { bottom: 40px; opacity: 1; }
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            background: var(--card-bg);
-            margin-top: 80px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .btn-toggle {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
+        .btn-card-copy {
+            background: rgba(26, 115, 232, 0.1);
+            color: var(--primary);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
             cursor: pointer;
-            font-size: 14px;
-            margin-top: 20px;
-            transition: all 0.3s;
-            backdrop-filter: blur(5px);
+            font-family: 'Poppins';
+            transition: 0.2s;
+            width: 100%;
+            text-align: center;
+        }
+        .btn-card-copy:hover {
+            background: var(--primary);
+            color: white;
         }
 
-        .btn-toggle:hover {
-            background: rgba(255,255,255,0.3);
-        }
+        /* FAQ Accordion Styles */
+        .accordion-item { border-bottom: 1px solid var(--border-color); padding: 15px 0; }
+        .accordion-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 16px; }
+        .accordion-answer { display: none; padding-top: 10px; font-size: 14px; color: #666; line-height: 1.6; }
+        [data-theme="dark"] .accordion-answer { color: #bbb; }
+        .accordion-icon { transition: transform 0.3s; font-size: 18px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-answer { display: block; }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            .results-grid { grid-template-columns: 1fr; }
-            .architect-card { padding: 25px; }
-        }
+        /* Directory / Category Grid Styles */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; }
+        .directory-cat { background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .directory-cat h4 { margin-top: 0; color: var(--primary); font-size: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .directory-list { list-style: none; padding: 0; margin: 0; }
+        .directory-list li { margin-bottom: 10px; font-size: 14px; }
+        .directory-list a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+        .directory-list a:hover { color: var(--primary); }
+
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .how-card { text-align: center; padding: 25px; border: 1px solid var(--border-color); border-radius: 12px; background: var(--bg-color); }
+        .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
+
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Fancy Font Generator</h1>
-    <div class="subtitle">Convert plain text into artistic typography for social media</div>
-    <button class="btn-toggle" onclick="toggleTheme()">🌓 Switch Theme</button>
+    <div class="subtitle">Convert plain text into aesthetic Unicode typography styles for social media.</div>
+    
+    <div style="margin-top: 20px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
+            🌙 Dark Mode
+        </button>
+    </div>
 </header>
 
 <div class="seo-container">
-    <div class="architect-card">
+    <div class="architect-card active">
         <div class="input-group">
-            <label>Your Input Text</label>
-            <textarea id="userInput" placeholder="Type or paste your text here..." oninput="generateFonts()"></textarea>
+            <label for="userInput">Your Plain Text</label>
+            <div class="textarea-container">
+                <textarea id="userInput" placeholder="Type or paste your text here to convert..." oninput="handleInput()"></textarea>
+            </div>
+            <div class="counter-badge">
+                <span id="charCount">Characters: 0</span>
+                <span id="wordCount">Words: 0</span>
+            </div>
         </div>
 
         <div id="results" class="results-grid">
-            <div style="grid-column: 1/-1; text-align: center; opacity: 0.4; padding: 60px;">
+            <!-- Tampilan awal sebelum pengguna mengetik -->
+            <div style="grid-column: 1/-1; text-align: center; opacity: 0.5; padding: 60px;">
                 <span style="font-size: 3rem; display: block; margin-bottom: 15px;">✍️</span>
-                Typography variations will appear here as you type...
+                Typography variations will appear here instantly as you type...
             </div>
         </div>
     </div>
 </div>
 
 <div class="seo-container">
-    <div class="section-title">
-        <h2>The Science of Modern Typography</h2>
-        <p>Unlocking the potential of Unicode for digital expression.</p>
+    <!-- How it works -->
+    <div class="how active">
+        <h2 style="text-align: center; margin-top: 0;">How the Unicode Generator Works</h2>
+        <div class="how-grid">
+            <div class="how-card">
+                <span>🧬</span>
+                <strong>1. Unicode Mapping</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">We map standard ASCII characters into specific higher-index Unicode symbols that look like stylized fonts.</p>
+            </div>
+            <div class="how-card">
+                <span>🌍</span>
+                <strong>2. Universal Support</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">The generated text works natively on platforms like Instagram, TikTok, WhatsApp, and Facebook with no apps required.</p>
+            </div>
+            <div class="how-card">
+                <span>📋</span>
+                <strong>3. Instant Copy</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Click any card to copy the stylized font instantly. Our secure clipboard engine guarantees compatibility.</p>
+            </div>
+        </div>
     </div>
 
-    <div class="how-detail-grid">
-        <div class="how-card">
-            <span class="icon">🧬</span>
-            <h3>Unicode Mapping</h3>
-            <p>Our tool doesn't just change "fonts"—it maps standard ASCII characters to unique Unicode symbols that create specific visual styles recognized by all devices.</p>
+    <!-- SEO DEEP CONTENT (AdSense Quality Guard) -->
+    <div class="content active">
+        <h2 style="margin-top: 0;">The Power of Aesthetic Typography in Digital Branding</h2>
+        <p>
+            In a highly visual digital ecosystem, standard text fails to capture attention. Whether you are crafting an eye-catching Instagram bio, structuring a viral TikTok caption, or organizing your personal Twitter handle, using stylized text adds immediate visual character. 
+        </p>
+        
+        <h3 style="margin-top: 20px;">What is Unicode and How Does It Create "Fonts"?</h3>
+        <p>
+            Many people believe that our <strong>Fancy Font Generator</strong> changes the actual system font file. In reality, we are changing standard letters into mathematical alphanumeric symbols and stylized Unicode glyphs. Unicode is the universal industry standard that ensures all computers, smartphones, and tablets can render the same unique symbols correctly.
+        </p>
+        <p>
+            Because these are standard text symbols (not external files), you can safely copy and paste them into any input field on the web. They will load smoothly on your readers' devices, keeping your branding consistent across all networks.
+        </p>
+
+        <h3 style="margin-top: 20px;">Linguistic Rules of Creative Social Media Bios</h3>
+        <p>
+            Our tool generates over 15+ aesthetic styles—including *Classic Script*, *Bold Sans*, *Monospace Tech*, and *Bubble Text*. When planning your social media layout, we recommend:
+        </p>
+        <ul style="line-height: 1.8; color: var(--text-color);">
+            <li><strong>Contrast is Key:</strong> Use fancy fonts only on your main heading or call-to-action phrases. Too many decorative fonts can reduce readability.</li>
+            <li><strong>Keep it Clean:</strong> Use clear styles like *Bold Sans* for key keywords to help viewers understand your industry focus within three seconds.</li>
+            <li><strong>Emphasize Contact Details:</strong> Use *Monospace* or *Bubble* fonts to draw immediate attention to your links, discount codes, or emails.</li>
+        </ul>
+    </div>
+
+    <!-- FAQ Accordion Section (Rich Content) -->
+    <div class="faq-section active">
+        <h2 style="text-align: center; margin-bottom: 25px; margin-top:0;">Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Why do some fonts look like blank squares on older devices?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                This happens on outdated operating systems (usually very old Android or iOS versions) that do not support the latest Unicode character libraries. Rest assured, on $98\%$ of modern smartphones and laptops, they will render beautifully.
+            </div>
         </div>
-        <div class="how-card">
-            <span class="icon">🌍</span>
-            <h3>Universal Support</h3>
-            <p>Generated text works seamlessly across global platforms like Instagram, WhatsApp, TikTok, X (Twitter), and Facebook without requiring any app installation.</p>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Does using fancy fonts affect my SEO rank?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Yes, search engine bots read Unicode symbols differently than plain text. If you convert your entire website page into fancy fonts, search engines might struggle to read your content. We highly recommend using them selectively for headers, social media bios, or aesthetic posts.
+            </div>
         </div>
-        <div class="how-card">
-            <span class="icon">⚡</span>
-            <h3>Architect Engine</h3>
-            <p>Built with performance in mind, our engine renders over 15+ styles instantly, ensuring a smooth creative workflow for digital architects and creators.</p>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Is the Fancy Font Generator free and secure?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Yes, OmniTools AI provides this advanced typography tool completely free. Everything is processed instantly and locally inside your web browser, ensuring your private inputs are never sent to any server.
+            </div>
         </div>
     </div>
 
-    <div class="architect-card" style="margin-top: 40px; text-align: center;">
-        <h2 style="font-size: 2rem; margin-bottom: 20px;">Why Aesthetic Fonts Matter?</h2>
-        <p style="max-width: 800px; margin: 0 auto 20px; font-size: 1.1rem; opacity: 0.8;">
-            In a crowded digital landscape, visual distinction is your greatest asset. Using a <strong>Fancy Font Generator</strong> helps your bio, captions, and headlines grab attention instantly. 
-        </p>
-        <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; opacity: 0.8;">
-            Whether you are a <em>Digital Nomad</em>, <em>Brand Manager</em>, or <em>Content Creator</em>, these styles add a layer of personality that standard text simply cannot provide. Just type, pick, and paste!
-        </p>
+    <!-- Complete Categorized Directory of OmniTools AI Ecosystem (Internal Linking Optimization) -->
+    <div class="directory-section active">
+        <h2 style="margin-top: 0; text-align: center;">Explore OmniTools AI Ecosystem</h2>
+        <p style="text-align: center; font-size: 14px; color: #666; margin-bottom: 30px;">Discover our extensive list of free, fast, and secure developer, creator, and productivity tools.</p>
+        
+        <div class="directory-grid">
+            <!-- Category 1 -->
+            <div class="directory-cat">
+                <h4>📄 PDF & Document Utilities</h4>
+                <ul class="directory-list">
+                    <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                    <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                    <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                    <li><a href="txt-to-pdf.html">📄 Plain TXT to PDF</a></li>
+                    <li><a href="pdf-to-word.html">📝 PDF to Editable Word</a></li>
+                    <li><a href="pdf-to-grayscale.html">🖨️ PDF to Grayscale B&W</a></li>
+                    <li><a href="resize-pdf.html">📏 Vector PDF Page Resizer</a></li>
+                    <li><a href="password-protect.html">🔒 Password Protect PDF</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="directory-cat">
+                <h4>✍️ AI & Content Writing</h4>
+                <ul class="directory-list">
+                    <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                    <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                    <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                    <li><a href="similarity-checker.html">🔍 Content Similarity Checker</a></li>
+                    <li><a href="email-name-generator.html">📧 Email Name Generator</a></li>
+                    <li><a href="blog-name-generator.html">📝 Creative Blog Name Gen</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="directory-cat">
+                <h4>🎨 Creative & Branding</h4>
+                <ul class="directory-list">
+                    <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                    <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                    <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                    <li><a href="shop-name.html">🛍️ Shop Name Generator</a></li>
+                    <li><a href="startup-name.html">🚀 Startup Name Generator</a></li>
+                    <li><a href="gaming-name.html">🎮 Gaming Name Generator</a></li>
+                    <li><a href="youtube-name-generator.html">📺 YouTube Name Gen</a></li>
+                    <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                    <li><a href="hashtag-generator.html">#️ Instagram/TikTok Hashtags</a></li>
+                    <li><a href="font-generator.html">✨ Fancy Font Generator</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="directory-cat">
+                <h4>💻 Developer, SEO & Utility</h4>
+                <ul class="directory-list">
+                    <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                    <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                    <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                    <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                    <li><a href="website-rank-analyzer.html">📈 Website SEO Rank Analyzer</a></li>
+                    <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                    <li><a href="password-gen.html">🔑 Secure Cryptographic Pwd</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Beranda</a>
     </div>
 </div>
 
-<div id="toast">Copied to clipboard! ✨</div>
-
 <footer>
-    <p>&copy; 2026 OmniTools AI. Engineered for Global Creatives by Architect Series.</p>
+    <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
 </footer>
 
+<script src="script.js"></script>
 <script>
+    // Database Pemetaan Karakter Unicode Super Lengkap
     const styles = [
         { label: "Classic Script", map: { a: "𝓪", b: "𝓫", c: "𝓬", d: "𝓭", e: "𝓮", f: "𝓯", g: "𝓰", h: "𝓱", i: "𝓲", j: "𝓳", k: "𝓴", l: "𝓵", m: "𝓶", n: "𝓷", o: "𝓸", p: "𝓹", q: "𝓺", r: "𝓻", s: "𝓼", t: "𝓽", u: "𝓾", v: "𝓿", w: "𝔀", x: "𝔁", y: "𝔂", z: "𝔃", A: "𝓐", B: "𝓑", C: "𝓒", D: "𝓓", E: "𝓔", F: "𝓕", G: "𝓖", H: "𝓗", I: "𝓘", J: "𝓙", K: "𝓚", L: "𝓛", M: "𝓜", N: "𝓝", O: "𝓞", P: "𝓟", Q: "𝓠", R: "𝓡", S: "𝓢", T: "𝓣", U: "𝓤", V: "𝓥", W: "𝓦", X: "𝓧", Y: "𝓨", Z: "𝓩" }},
         { label: "Modern Bold Sans", map: { a: "𝗮", b: "𝗯", c: "𝗰", d: "𝗱", e: "𝗲", f: "𝗳", g: "𝗴", h: "𝗵", i: "𝗶", j: "𝗷", k: "𝗸", l: "𝗹", m: "𝗺", n: "𝗻", o: "𝗼", p: "𝗽", q: "𝗾", r: "𝗿", s: "𝘀", t: "𝘁", u: "𝘂", v: "𝘃", w: "𝘄", x: "𝘅", y: "𝘆", z: "𝘇", A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜", J: "𝗝", K: "𝗞", L: "𝗟", M: "𝗠", N: "𝗡", O: "𝗢", P: "𝗣", Q: "𝗤", R: "𝗥", S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭" }},
-        { label: "Monospace Tech", map: { a: "𝚊", b: "𝚋", c: "𝚌", d: "𝚍", e: "𝚎", f: "𝚏", g: "𝚐", h: "𝚑", i: "𝚒", j: "𝚓", k: "𝚔", l: "𝚕", m: "𝚖", n: "𝚗", o: "𝚘", p: "𝚙", q: "", r: "𝚛", s: "𝚜", t: "𝚝", u: "𝚞", v: "𝚟", w: "𝚠", x: "𝚡", y: "𝚢", z: "𝚣", A: "𝙰", B: "𝙱", C: "𝙲", D: "𝙳", E: "𝙴", F: "𝙵", G: "𝙶", H: "𝙷", I: "𝙸", J: "𝙹", k: "𝙺", L: "𝙻", M: "𝙼", N: "𝙽", O: "𝙾", P: "𝙿", Q: "𝚀", R: "𝚁", S: "𝚂", T: "𝚃", U: "𝚄", V: "𝚅", W: "𝚆", X: "𝚇", Y: "𝚈", Z: "𝚉" }},
+        { label: "Monospace Tech", map: { a: "𝚊", b: "𝚋", c: "𝚌", d: "𝚍", e: "𝚎", f: " f", g: "𝚐", h: "𝚑", i: "𝚒", j: "𝚓", k: "𝚔", l: "𝚕", m: "𝚖", n: "𝚗", o: "𝚘", p: "𝚙", q: "𝚚", r: "𝚛", s: "𝚜", t: "𝚝", u: "𝚞", v: "𝚟", w: "𝚠", x: "𝚡", y: "𝚢", z: "𝚣", A: "𝙰", B: "𝙱", C: "𝙲", D: "𝙳", E: "𝙴", F: "𝙵", G: "𝙶", H: "𝙷", I: "𝙸", J: "𝙹", K: "𝙺", L: "𝙻", M: "𝙼", N: "𝙽", O: "𝙾", P: "𝙿", Q: "𝚀", R: "𝚁", S: "𝚂", T: "𝚃", U: "𝚄", V: "𝚅", W: "𝚆", X: "𝚇", Y: "𝚈", Z: "𝚉" }},
         { label: "Double Struck", map: { a: "𝕒", b: "𝕓", c: "𝕔", d: "𝕕", e: "𝕖", f: "𝕗", g: "𝕘", h: "𝕙", i: "𝕚", j: "𝕛", k: "𝕜", l: "𝕝", m: "𝕞", n: "𝕟", o: "𝕠", p: "𝕡", q: "𝕢", r: "𝕣", s: "𝕤", t: "𝕥", u: "𝕦", v: "𝕧", w: "𝕨", x: "𝕩", y: "𝕪", z: "𝕫", A: "𝔸", B: "𝔹", C: "ℂ", D: "𝔻", E: "𝔼", F: "𝔽", G: "𝔾", H: "ℍ", I: "𝕀", J: "𝕁", K: "𝕂", L: "𝕃", M: "𝕄", N: "ℕ", O: "𝕆", P: "ℙ", Q: "ℚ", R: "ℝ", S: "𝕊", T: "𝕋", U: "𝕌", V: "𝕍", W: "𝕎", X: "𝕏", Y: "𝕐", Z: "ℤ" }},
         { label: "Gothic Serif", map: { a: "𝔞", b: "𝔟", c: "𝔠", d: "𝔡", e: "𝔢", f: "𝔣", g: "𝔤", h: "𝔥", i: "𝔦", j: "𝔧", k: "𝔨", l: "𝔩", m: "𝔪", n: "𝔫", o: "𝔬", p: "𝔭", q: "𝔮", r: "𝔯", s: "𝔰", t: "𝔱", u: "𝔲", v: "𝔳", w: "𝔴", x: "𝔵", y: "𝔶", z: "𝔷", A: "𝔄", B: "𝔅", C: "ℭ", D: "𝔇", E: "𝔈", F: "𝔉", G: "𝔊", H: "ℌ", I: "ℑ", J: "𝔍", K: "𝔎", L: "𝔏", M: "𝔐", N: "𝔑", O: "𝔒", P: "𝔓", Q: "𝔔", R: "ℜ", S: "𝔖", T: "𝔗", U: "𝔘", V: "𝔙", W: "𝔚", X: "𝔛", Y: "𝔜", Z: "ℨ" }},
         { label: "Bubble Text", map: { a: "ⓐ", b: "ⓑ", c: "ⓒ", d: "ⓓ", e: "ⓔ", f: "ⓕ", g: "ⓖ", h: "ⓗ", i: "ⓘ", j: "ⓙ", k: "ⓚ", l: "ⓛ", m: "ⓜ", n: "ⓝ", o: "ⓞ", p: "ⓟ", q: "ⓠ", r: "ⓡ", s: "ⓢ", t: "ⓣ", u: "ⓤ", v: "ⓥ", w: "ⓦ", x: "ⓧ", y: "ⓨ", z: "ⓩ", A: "Ⓐ", B: "Ⓑ", C: "Ⓒ", D: "Ⓓ", E: "Ⓔ", F: "Ⓕ", G: "Ⓖ", H: "Ⓗ", I: "Ⓘ", J: "Ⓙ", K: "Ⓚ", L: "Ⓛ", M: "Ⓜ", N: "Ⓝ", O: "Ⓞ", P: "Ⓟ", Q: "Ⓠ", R: "Ⓡ", S: "Ⓢ", T: "Ⓣ", U: "Ⓤ", V: "Ⓥ", W: "Ⓦ", X: "Ⓧ", Y: "Ⓨ", Z: "Ⓩ" }},
         { label: "Small Caps Pro", map: { a: "ᴀ", b: "ʙ", c: "ᴄ", d: "ᴅ", e: "ᴇ", f: "ғ", g: "ɢ", h: "ʜ", i: "ɪ", j: "ᴊ", k: "ᴋ", l: "ʟ", m: "ᴍ", n: "ɴ", o: "ᴏ", p: "ᴘ", q: "ǫ", r: "ʀ", s: "s", t: "ᴛ", u: "ᴜ", v: "ᴠ", w: "ᴡ", x: "x", y: "ʏ", z: "ᴢ", A: "ᴀ", B: "ʙ", C: "ᴄ", D: "ᴅ", E: "ᴇ", F: "ғ", G: "ɢ", H: "ʜ", I: "ɪ", J: "ᴊ", K: "ᴋ", L: "ʟ", M: "ᴍ", N: "ɴ", O: "ᴏ", P: "ᴘ", Q: "ǫ", R: "ʀ", S: "s", T: "ᴛ", U: "ᴜ", V: "ᴠ", W: "ᴡ", X: "x", Y: "ʏ", Z: "ᴢ" }},
-        { label: "Bold Italic Serif", map: { a: "𝒂", b: "𝒃", c: "𝒄", d: "𝒅", e: "𝒆", f: "𝒇", g: "𝒈", h: "𝒉", i: "𝒊", j: "𝒋", k: "𝒌", l: "𝒍", m: "𝒎", n: "𝒏", o: "𝒐", p: "𝒑", q: "𝒒", r: "𝒓", s: "𝒔", t: "𝒕", u: "𝒖", v: "𝒗", w: "𝒘", x: "𝒙", y: "𝒚", z: "𝒛", A: "𝑨", B: "𝑩", C: "𝑪", D: "𝑫", E: "𝑬", F: "𝑭", G: "𝑮", H: "𝑯", I: "𝑰", J: "𝑱", K: "𝑲", L: "𝑳", M: "𝑴", N: "𝑵", O: "𝑶", P: "𝑷", Q: "𝑸", R: "𝑹", S: "𝑺", T: "𝑻", U: "𝑼", V: "𝑽", W: "𝑾", X: "𝑿", Y: "𝒀", Z: "𝒁" }}
+        { label: "Bold Italic Serif", map: { a: "𝒂", b: "𝒃", c: "𝒄", d: "𝒅", e: "𝒆", f: "𝒇", g: "𝒈", h: "𝒉", i: "𝒊", j: "𝒋", k: "𝒌", l: "𝒍", m: "𝒎", n: "𝒏", o: "𝒐", p: "𝒑", q: "𝒒", r: "𝒓", s: "𝒔", t: "𝒕", u: "𝒖", v: "𝒗", w: "𝒘", x: "𝒙", y: "𝒚", z: "𝒛", A: "𝑨", B: "𝑩", C: "𝑪", D: "𝑫", E: "𝑬", F: "𝑭", G: "𝑮", H: "𝑯", I: "𝑰", J: "𝑱", K: "𝑲", L: "𝑳", M: "𝑴", N: "打", O: "𝑶", P: "𝑷", Q: "𝑸", R: "𝑹", S: "𝑺", T: "𝑻", U: "𝑼", V: "𝑽", W: "𝑾", X: "𝑿", Y: "𝒀", Z: "𝒁" }},
+        // Penambahan Font Eksklusif Baru untuk "Powering Up"
+        { label: "Fancy Bracketed", map: { a: "⒜", b: "⒝", c: "⒞", d: "⒟", e: "⒠", f: "⒡", g: "⒢", h: "⒣", i: "⒤", j: "⒥", k: "⒦", l: "⒧", m: "⒨", n: "⒩", o: "⒪", p: "⒫", q: "⒬", r: "⒭", s: "⒮", t: "⒯", u: "⒰", v: "⒱", w: "⒲", x: "⒳", y: "⒴", z: "⒵", A: "⒜", B: "⒝", C: "⒞", D: "⒟", E: "⒠", F: "⒡", G: "⒢", H: "⒣", I: "⒤", J: "⒥", K: "⒦", L: "⒧", M: "⒨", N: "⒩", O: "⒪", P: "⒫", Q: "⒬", R: "⒭", S: "⒮", T: "⒯", U: "⒰", V: "⒱", W: "⒲", X: "⒳", Y: "⒴", Z: "⒵" }},
+        { label: "Upside Down Rotate", map: { a: "ɐ", b: "q", c: "ɔ", d: "p", e: "ǝ", f: "ɟ", g: "ƃ", h: "ɥ", i: "ı", j: "ɾ", k: "ʞ", l: "ן", m: "ɯ", n: "u", o: "o", p: "d", q: "b", r: "ɹ", s: "s", t: "ʇ", u: "n", v: "ʌ", w: "ʍ", x: "x", y: "ʎ", z: "z", A: "∀", B: "𐐒", C: "Ɔ", D: "◖", E: "Ǝ", F: "Ⅎ", G: "⅁", H: "H", I: "I", J: "ſ", K: "⋊", L: "˥", M: "W", N: "N", O: "O", P: "Ԁ", Q: "Ό", R: "ᴚ", S: "S", T: "┴", U: "∩", V: "Λ", W: "M", X: "X", Y: "⅄", Z: "Z" }}
     ];
 
+    // FAQ Accordion Toggle
+    function toggleAccordion(element) {
+        const item = element.parentElement;
+        item.classList.toggle('active');
+        const icon = element.querySelector('.accordion-icon');
+        if (item.classList.contains('active')) {
+            icon.textContent = '－';
+        } else {
+            icon.textContent = '＋';
+        }
+    }
+
+    // Transformasi Karakter Dasar
     function transformText(text, map) {
         return text.split('').map(char => map[char] || char).join('');
     }
 
-    function generateFonts() {
+    // Fungsi Gabungan (Gaya Dekorasi Di Atas)
+    function applyDecorations(text, prefix, suffix) {
+        return `${prefix} ${text} ${suffix}`;
+    }
+
+    // Mengolah Input & Counter Karakter
+    function handleInput() {
         const text = document.getElementById('userInput').value;
-        const resultsDiv = document.getElementById('results');
         
+        // Counter Huruf & Kata
+        const charCount = text.length;
+        const wordCount = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+        
+        document.getElementById('charCount').textContent = `Characters: ${charCount}`;
+        document.getElementById('wordCount').textContent = `Words: ${wordCount}`;
+
+        generateFonts(text);
+    }
+
+    // Generate Layout Font ke dalam Grid
+    function generateFonts(text) {
+        const resultsDiv = document.getElementById('results');
+
         if (!text.trim()) {
-            resultsDiv.innerHTML = '<div style="grid-column: 1/-1; text-align: center; opacity: 0.4; padding: 60px;"><span style="font-size: 3rem; display: block; margin-bottom: 15px;">✍️</span>Typography variations will appear here as you type...</div>';
+            resultsDiv.innerHTML = '<div style="grid-column: 1/-1; text-align: center; opacity: 0.5; padding: 60px;"><span style="font-size: 3rem; display: block; margin-bottom: 15px;">✍️</span>Typography variations will appear here instantly as you type...</div>';
             return;
         }
 
         resultsDiv.innerHTML = '';
+
+        // 1. Render Gaya Database Standard & Penambahan Baru
         styles.forEach(style => {
             const transformed = transformText(text, style.map);
-            const card = document.createElement('div');
-            card.className = 'font-card';
-            card.onclick = () => copyToClipboard(transformed);
-            
-            card.innerHTML = `
-                <div>
-                    <div class="label">${style.label}</div>
-                    <div class="output-text">${transformed}</div>
-                </div>
-            `;
-            resultsDiv.appendChild(card);
+            createCard(resultsDiv, style.label, transformed);
         });
+
+        // 2. Render Efek Modifikasi Garis (Strikethrough, Underline, dll)
+        const striked = text.split('').map(char => char + '\u0336').join('');
+        createCard(resultsDiv, "Strikethrough Font", striked);
+
+        const underlined = text.split('').map(char => char + '\u0332').join('');
+        createCard(resultsDiv, "Underline Font", underlined);
+
+        const slashed = text.split('').map(char => char + '\u0337').join('');
+        createCard(resultsDiv, "Slash-Through Font", slashed);
+
+        // 3. Render Gaya Dekorasi Sosial Media (Aesthetic Decor)
+        createCard(resultsDiv, "Sparkle Aesthetic", applyDecorations(text, "✨", "✨"));
+        createCard(resultsDiv, "Special Star Decor", applyDecorations(text, "★彡", "彡★"));
+        createCard(resultsDiv, "Love Aesthetic", applyDecorations(text, "꧁༺", "༻꧂"));
+        createCard(resultsDiv, "Flower Power", applyDecorations(text, "✿", "✿"));
     }
 
+    // Fungsi membuat elemen kartu visual hasil
+    function createCard(container, label, text) {
+        const card = document.createElement('div');
+        card.className = 'font-card';
+        
+        card.innerHTML = `
+            <div>
+                <div class="label">${label}</div>
+                <div class="output-text">${text}</div>
+            </div>
+            <div class="card-actions">
+                <button class="btn-card-copy" onclick="copyToClipboard('${text.replace(/'/g, "\\'")}')">📋 Copy Font</button>
+            </div>
+        `;
+        container.appendChild(card);
+    }
+
+    // Fungsi Copy Khusus yang Kompatibel dengan Browser / iFrame
     function copyToClipboard(text) {
         const temp = document.createElement('textarea');
         temp.value = text;
         document.body.appendChild(temp);
         temp.select();
-        document.execCommand('copy');
-        document.body.removeChild(temp);
         
-        showToast();
+        try {
+            document.execCommand('copy');
+            showNotification(`📋 Copied style: "${text}"`);
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
+        
+        document.body.removeChild(temp);
     }
 
-    function showToast() {
-        const toast = document.getElementById('toast');
-        toast.style.display = 'block';
+    // Fungsi Memunculkan Toast Notifikasi
+    function showNotification(message) {
+        // Hapus toast lama jika ada
+        const oldToast = document.getElementById('omni-toast');
+        if (oldToast) oldToast.remove();
+
+        const toast = document.createElement('div');
+        toast.id = 'omni-toast';
+        toast.style.position = 'fixed';
+        toast.style.bottom = '30px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+        toast.style.background = '#1a73e8';
+        toast.style.color = '#fff';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '50px';
+        toast.style.fontSize = '14px';
+        toast.style.fontWeight = '600';
+        toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+        toast.style.zIndex = '9999';
+        toast.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        toast.style.opacity = '0';
+        toast.innerHTML = message;
+
+        document.body.appendChild(toast);
+
         setTimeout(() => {
-            toast.style.display = 'none';
+            toast.style.transform = 'translateX(-50%) translateY(0)';
+            toast.style.opacity = '1';
+        }, 10);
+
+        setTimeout(() => {
+            toast.style.transform = 'translateX(-50%) translateY(100px)';
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 400);
         }, 2000);
     }
 
-    function toggleTheme() {
+    // Logika Dark Mode
+    function toggleDarkMode() {
         const body = document.body;
+        const btn = document.getElementById('darkModeToggle');
         if (body.getAttribute('data-theme') === 'dark') {
             body.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            btn.innerHTML = '🌙 Dark Mode';
         } else {
             body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            btn.innerHTML = '☀️ Light Mode';
         }
+    }
+
+    // Cek tema default
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.setAttribute('data-theme', 'dark');
+        const btn = document.getElementById('darkModeToggle');
+        if (btn) btn.innerHTML = '☀️ Light Mode';
     }
 </script>
 
 </body>
 </html>
+
