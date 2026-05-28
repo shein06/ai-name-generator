@@ -10,38 +10,84 @@
       gtag('config', 'G-4LVEC8BY40');
     </script>
 
+    <!-- Tag Verifikasi Google (Sesuai Permintaan) -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Image Prompt Architect - Professional Prompt Generator</title>
+    <title>AI Image Prompt Architect - Professional Prompt Generator | OmniTools AI</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Master AI art with our Image Prompt Architect. Professional prompt engineering for Midjourney, DALL-E, and Leonardo AI using Gemini AI technology.">
-    <meta name="keywords" content="ai prompt generator, midjourney helper, dall-e 3 builder, ai art architect, professional prompt engineering">
+    <meta name="description" content="Master AI art with our Image Prompt Architect. Professional prompt engineering helper for Midjourney, DALL-E 3, and Leonardo AI using advanced Gemini AI technology.">
+    <meta name="keywords" content="ai prompt generator, midjourney helper, dall-e 3 builder, ai art architect, professional prompt engineering, free prompt builder">
     
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
         :root {
             --primary: #1a73e8;
             --accent: #9b51e0;
-            --bg-glass: rgba(255, 255, 255, 0.9);
-            --input-bg: #f8f9fa;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #fff;
+            --border-color: #e0e0e0;
+            --input-bg: #f1f3f4;
             --border-radius: 16px;
+            --accordion-bg: #f1f3f4;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --primary: #4da3ff;
+            --border-color: #333;
+            --input-bg: #2a2a2a;
+            --accordion-bg: #2a2a2a;
         }
 
-        .architect-card {
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: 0.3s;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        [data-theme="dark"] .subtitle {
+            color: #aaa;
+        }
+
+        .seo-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .architect-card, .content, .how, .faq-section, .directory-section {
             background: var(--card-bg);
-            border-radius: 24px;
             padding: 35px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
-            margin-bottom: 40px;
-            border: 1px solid rgba(0,0,0,0.03);
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
         }
 
         /* Modern Input Styling */
         .prompt-input-group {
             margin-bottom: 25px;
+            text-align: left;
         }
         .prompt-input-group label {
             display: block;
@@ -63,6 +109,7 @@
             transition: all 0.3s ease;
             appearance: none;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         .select-wrapper {
@@ -77,10 +124,11 @@
             transform: translateY(-50%);
             pointer-events: none;
             opacity: 0.5;
+            color: var(--text-color);
         }
 
         input[type="text"]:focus, select:focus {
-            background-color: #fff;
+            background-color: var(--card-bg);
             border-color: var(--primary);
             box-shadow: 0 8px 20px rgba(26, 115, 232, 0.1);
             outline: none;
@@ -95,19 +143,18 @@
 
         /* Result Area */
         .result-area {
-            background: linear-gradient(145deg, #ffffff, #f0f7ff);
-            border: 2.5px solid var(--primary);
+            background: var(--input-bg);
+            border: 2px solid var(--primary);
             border-radius: 20px;
             padding: 30px;
             margin-top: 35px;
             position: relative;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+            text-align: left;
         }
 
         #finalPrompt {
-            font-family: 'Inter', sans-serif;
             font-weight: 500;
-            color: #2c3e50;
+            color: var(--text-color);
             line-height: 1.8;
             margin-bottom: 25px;
             font-size: 1.1rem;
@@ -117,58 +164,105 @@
         .ai-features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 35px;
         }
 
         .gemini-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
             padding: 14px 10px;
             border-radius: 14px;
-            font-size: 0.8rem;
-            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: opacity 0.2s, transform 0.2s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .gemini-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
 
         .ai-feedback-box {
-            background: #fffbe6;
-            border-left: 5px solid #ffe58f;
-            color: #856404;
+            background: rgba(251, 188, 5, 0.1);
+            border-left: 5px solid #fbbc05;
+            color: var(--text-color);
             border-radius: 12px;
             padding: 20px;
             margin-top: 25px;
             font-size: 14px;
+            text-align: left;
         }
 
-        /* Extra Sections Styling */
-        .section-title {
-            text-align: center;
-            margin: 60px 0 30px;
-        }
-        .section-title h2 { font-size: 2rem; color: var(--text-color); }
-
+        /* How Grid Fix */
         .how-detail-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            margin-bottom: 50px;
+            margin-top: 25px;
+        }
+        .how-card {
+            background: var(--bg-color);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: left;
         }
 
-        .rec-tool-card {
-            background: white;
-            padding: 25px;
-            border-radius: 18px;
-            border: 1px solid #eee;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+        /* FAQ Accordion Styles */
+        .accordion-item { border-bottom: 1px solid var(--border-color); padding: 15px 0; }
+        .accordion-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 16px; }
+        .accordion-answer { display: none; padding-top: 10px; font-size: 14px; color: #666; line-height: 1.6; }
+        [data-theme="dark"] .accordion-answer { color: #bbb; }
+        .accordion-icon { transition: transform 0.3s; font-size: 18px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-answer { display: block; }
+
+        /* Directory Grid Styles */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; }
+        .directory-cat { background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .directory-cat h4 { margin-top: 0; color: var(--primary); font-size: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .directory-list { list-style: none; padding: 0; margin: 0; }
+        .directory-list li { margin-bottom: 10px; font-size: 14px; }
+        .directory-list a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+        .directory-list a:hover { color: var(--primary); }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 2px solid #ffffff;
+            width: 14px;
+            height: 14px;
+            animation: spin 0.8s linear infinite;
+            display: none;
         }
-        .rec-tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border-color: var(--primary);
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
+
+        .search-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .search-btn:hover { opacity: 0.9; }
+
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
     </style>
 </head>
 <body>
@@ -177,15 +271,15 @@
     <h1>AI Image Prompt Architect</h1>
     <div class="subtitle">Engineer High-Fidelity Visual Concepts with Gemini AI</div>
     
-    <div style="margin-top: 15px;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
-            🌙 Toggle Theme
+    <div style="margin-top: 20px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
+            🌙 Dark Mode
         </button>
     </div>
 </header>
 
 <div class="seo-container">
-    <div class="architect-card reveal active">
+    <div class="architect-card active">
         <!-- AI Smart Controls -->
         <div class="ai-features">
             <button class="gemini-btn" onclick="enhanceWithGemini()">
@@ -266,52 +360,161 @@
 
         <div id="aiFeedback" class="ai-feedback-box" style="display:none;"></div>
     </div>
-</div>
 
-<!-- DETAILED HOW IT WORKS -->
-<div class="seo-container">
-    <div class="section-title">
-        <h2>How the Architect Works</h2>
-        <p>The science behind turning words into museum-quality art.</p>
-    </div>
-    
-    <div class="how-detail-grid">
-        <div class="how-card reveal active" style="background:blue;">
-            <div style="font-size: 2.5rem; margin-bottom: 15px;"></div>
-            <h3>1. Semantic Processing</h3>
-            <p>Our tool uses Gemini AI to analyze your raw ideas. It doesn't just "copy" words; it understands the intent and expands it into visual tokens that AI models like Midjourney and DALL-E prefer.</p>
-        </div>
-        <div class="how-card reveal active" style="background:blue;">
-            <div style="font-size: 2.5rem; margin-bottom: 15px;"></div>
-            <h3>2. Technical Layering</h3>
-            <p>By selecting Styles, Lighting, and Camera settings, you add "weights" to the prompt. This reduces the randomness of AI generation, giving you predictable and professional results every time.</p>
-        </div>
-        <div class="how-card reveal active" style="background:blue;">
-            <div style="font-size: 2.5rem; margin-bottom: 15px;"></div>
-            <h3>3. Parameter Optimization</h3>
-            <p>The Architect automatically appends crucial parameters like aspect ratios (--ar) and version tags (--v) ensuring your prompt is compatible with the latest generative engines.</p>
+    <!-- DETAILED HOW IT WORKS -->
+    <div class="how active">
+        <h2 style="text-align: center; margin-top: 0;">How the Prompt Architect Works</h2>
+        <p style="text-align: center; color:#666; font-size:14px; margin-bottom:20px;">The science behind turning words into museum-quality digital art.</p>
+        
+        <div class="how-detail-grid">
+            <div class="how-card">
+                <div style="font-size: 2.5rem; margin-bottom: 15px;">🧠</div>
+                <h3>1. Semantic Processing</h3>
+                <p style="font-size: 14px; color:#666; line-height: 1.6;">Our tool uses Gemini AI to analyze your raw ideas. It doesn't just "copy" words; it understands the artistic intent and expands it into visual tokens that AI generators prefer.</p>
+            </div>
+            <div class="how-card">
+                <div style="font-size: 2.5rem; margin-bottom: 15px;">⚙️</div>
+                <h3>2. Technical Layering</h3>
+                <p style="font-size: 14px; color:#666; line-height: 1.6;">By selecting specific Art Styles, Lighting, and Camera angles, you add weights to the prompt. This reduces generation randomness, providing predictable, professional results.</p>
+            </div>
+            <div class="how-card">
+                <div style="font-size: 2.5rem; margin-bottom: 15px;">📐</div>
+                <h3>3. Aspect Optimization</h3>
+                <p style="font-size: 14px; color:#666; line-height: 1.6;">The Architect automatically appends crucial parameters like widescreen aspect ratios (--ar 16:9) and version tags ensuring compatibility with engines like Midjourney v6.</p>
+            </div>
         </div>
     </div>
 
-    <!-- SEO EXPLANATION -->
-    <div class="content reveal active">
-        <h2>Why Use a Prompt Architect?</h2>
+    <!-- SEO EXPLANATION (Rich Content) -->
+    <div class="content active">
+        <h2 style="margin-top: 0;">The Masterclass of AI Prompt Engineering</h2>
         <p>
-            In the world of Generative AI, the quality of your output is 100% dependent on the quality of your input. Most users fail because their prompts are too vague. A professional prompt needs <strong>Subject, Medium, Lighting, Composition, and Technical Parameters.</strong>
+            In the revolutionary era of generative artificial intelligence, the quality of your output is 100% dependent on the precision of your input. Most creators fail to get stunning results because their commands are too vague. A professional prompt requires a strict structure: <strong>Subject, Medium, Lighting, Camera Composition, and Technical Parameters.</strong>
+        </p>
+        
+        <h3 style="margin-top: 20px;">Why Structuring Your AI Prompt is Crucial</h3>
+        <p>
+            When you enter a basic phrase like "a cat in space," generative engines such as Midjourney, DALL-E 3, or Leonardo AI have to fill in billions of missing details. They guess the art style, the light source, the lens type, and the framing. This randomness often leads to generic and messy results. 
         </p>
         <p>
-            Our tool automates this complex "Prompt Engineering" process. Whether you are a concept artist looking for inspiration or a social media manager needing high-quality visuals, the Architect ensures your <em>"AI Image Generation"</em> hits the mark on the first try.
+            By utilizing our <strong>AI Image Prompt Architect</strong>, you are taking control of the rendering pipeline. Specifying cinematic lighting, a shallow depth of field (bokeh), or hand-painted Studio Ghibli textures guides the neural networks with high precision, elevating your prompt from a simple keyword search to a professional art blueprint.
         </p>
     </div>
 
-    <!-- RECOMMENDED TOOLS -->
-    <div class="section-title">
-        <h2>Explore More AI Tools</h2>
-        <p>Boost your productivity with our suite of specialized AI architects.</p>
+    <!-- FAQ Accordion Section (AdSense Value Multiplier) -->
+    <div class="faq-section active">
+        <h2 style="text-align: center; margin-bottom: 25px; margin-top:0;">Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                What is AI Prompt Engineering?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Prompt Engineering is the practice of structured communication with AI models. In AI art, it involves combining artistic vocabularies (lighting styles, historical mediums, camera lenses, engine parameters) to guide generative models to produce highly specific, high-fidelity images.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Does this tool support DALL-E 3, Midjourney, and Stable Diffusion?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Yes, our Prompt Architect generates universal artistic descriptions that are highly compatible with DALL-E 3, Stable Diffusion, Leonardo AI, and Adobe Firefly. The default parameter append (--ar 16:9 --v 6.0) is optimized for Midjourney v6.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                How does the "Magic Enhance" button work?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Magic Enhance connects your raw text with Google's advanced Gemini AI. Gemini analyzes your original thought, identifies the implicit visual theme, and enriches it with descriptive adjectives, materials, atmospheric details, and cinematic references.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Is my usage of the AI Prompt Architect free?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Yes, OmniTools AI provides this advanced prompt engineering workspace completely free. There are no registrations, daily limits, or hidden costs.
+            </div>
+        </div>
     </div>
-    
-    <div class="prompt-select-grid" id="recommendedSection">
-        <!-- Tools will be injected here -->
+
+    <!-- Complete Categorized Directory of OmniTools AI Ecosystem (Internal Linking Optimization) -->
+    <div class="directory-section active">
+        <h2 style="margin-top: 0; text-align: center;">Explore OmniTools AI Ecosystem</h2>
+        <p style="text-align: center; font-size: 14px; color: #666; margin-bottom: 30px;">Discover our extensive list of free, fast, and secure developer, creator, and productivity tools.</p>
+        
+        <div class="directory-grid">
+            <!-- Category 1 -->
+            <div class="directory-cat">
+                <h4>📄 PDF & Document Utilities</h4>
+                <ul class="directory-list">
+                    <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                    <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                    <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                    <li><a href="txt-to-pdf.html">📄 Plain TXT to PDF</a></li>
+                    <li><a href="pdf-to-word.html">📝 PDF to Editable Word</a></li>
+                    <li><a href="pdf-to-grayscale.html">🖨️ PDF to Grayscale B&W</a></li>
+                    <li><a href="resize-pdf.html">📏 Vector PDF Page Resizer</a></li>
+                    <li><a href="password-protect.html">🔒 Password Protect PDF</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="directory-cat">
+                <h4>✍️ AI & Content Writing</h4>
+                <ul class="directory-list">
+                    <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                    <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                    <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                    <li><a href="similarity-checker.html">🔍 Content Similarity Checker</a></li>
+                    <li><a href="email-name-generator.html">📧 Email Name Generator</a></li>
+                    <li><a href="blog-name-generator.html">📝 Creative Blog Name Gen</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="directory-cat">
+                <h4>🎨 Creative & Branding</h4>
+                <ul class="directory-list">
+                    <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                    <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                    <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                    <li><a href="shop-name.html">🛍️ Shop Name Generator</a></li>
+                    <li><a href="startup-name.html">🚀 Startup Name Generator</a></li>
+                    <li><a href="gaming-name.html">🎮 Gaming Name Generator</a></li>
+                    <li><a href="youtube-name-generator.html">📺 YouTube Name Gen</a></li>
+                    <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                    <li><a href="hashtag-generator.html">#️ Instagram/TikTok Hashtags</a></li>
+                    <li><a href="font-generator.html">✨ Fancy Font Generator</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="directory-cat">
+                <h4>💻 Developer, SEO & Utility</h4>
+                <ul class="directory-list">
+                    <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                    <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                    <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                    <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                    <li><a href="website-rank-analyzer.html">📈 Website SEO Rank Analyzer</a></li>
+                    <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                    <li><a href="password-gen.html">🔑 Secure Cryptographic Pwd</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Beranda</a>
     </div>
 </div>
 
@@ -324,14 +527,43 @@
     <p>&copy; 2026 OmniTools AI. Leading the Era of Prompt Engineering.</p>
 </footer>
 
-<script src="script.js"></script>
 <script>
+    // System Theme Detection & Persistence
+    function toggleDarkMode() {
+        const body = document.body;
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.setAttribute('data-theme', 'dark');
+    }
+
+    // FAQ Accordion Toggle Function
+    function toggleAccordion(element) {
+        const item = element.parentElement;
+        item.classList.toggle('active');
+        const icon = element.querySelector('.accordion-icon');
+        if (item.classList.contains('active')) {
+            icon.textContent = '－';
+        } else {
+            icon.textContent = '＋';
+        }
+    }
+
+    // API Call Setup (Mandatory Fallback & Exponential Backoff)
     const apiKey = ""; 
 
     async function callGemini(promptText) {
         let retries = 0;
         const maxRetries = 5;
         const delays = [1000, 2000, 4000, 8000, 16000];
+        
         while (retries < maxRetries) {
             try {
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
@@ -339,14 +571,29 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
                 });
+                
+                if (!response.ok) throw new Error("API Network error");
+                
                 const data = await response.json();
                 return data.candidates?.[0]?.content?.parts?.[0]?.text;
             } catch (error) {
                 retries++;
-                if (retries === maxRetries) throw error;
+                if (retries === maxRetries) {
+                    showErrorBox("Failed to connect to AI server. Please try again later.");
+                    throw error;
+                }
                 await new Promise(resolve => setTimeout(resolve, delays[retries-1]));
             }
         }
+    }
+
+    function showErrorBox(msg) {
+        const feedback = document.getElementById("aiFeedback");
+        feedback.style.display = "block";
+        feedback.style.background = "#fff0f0";
+        feedback.style.borderLeft = "5px solid #ff4d4f";
+        feedback.style.color = "#d9363e";
+        feedback.innerHTML = `<strong>⚠️ Error:</strong><br>${msg}`;
     }
 
     async function enhanceWithGemini() {
@@ -360,7 +607,9 @@
                 document.getElementById("subject").value = result.trim();
                 buildPrompt();
             }
-        } catch (e) {} finally { spinner.style.display = "none"; }
+        } catch (e) {
+            console.error(e);
+        } finally { spinner.style.display = "none"; }
     }
 
     async function suggestIdea() {
@@ -372,7 +621,9 @@
                 document.getElementById("subject").value = result.trim();
                 buildPrompt();
             }
-        } catch (e) {} finally { spinner.style.display = "none"; }
+        } catch (e) {
+            console.error(e);
+        } finally { spinner.style.display = "none"; }
     }
 
     async function analyzePrompt() {
@@ -385,9 +636,14 @@
             const result = await callGemini(`Critique this AI image prompt and give 2 technical improvement tips: "${fullPrompt}". Very brief.`);
             if (result) {
                 feedback.style.display = "block";
+                feedback.style.background = "rgba(251, 188, 5, 0.1)";
+                feedback.style.borderLeft = "5px solid #fbbc05";
+                feedback.style.color = "var(--text-color)";
                 feedback.innerHTML = "<strong>💡 Architect Insight:</strong><br>" + result;
             }
-        } catch (e) {} finally { spinner.style.display = "none"; }
+        } catch (e) {
+            console.error(e);
+        } finally { spinner.style.display = "none"; }
     }
 
     async function generateVariations() {
@@ -400,9 +656,14 @@
             if (result) {
                 const feedback = document.getElementById("aiFeedback");
                 feedback.style.display = "block";
+                feedback.style.background = "rgba(251, 188, 5, 0.1)";
+                feedback.style.borderLeft = "5px solid #fbbc05";
+                feedback.style.color = "var(--text-color)";
                 feedback.innerHTML = "<strong>🎨 Creative Paths:</strong><br>" + result.replace(/\n/g, '<br>');
             }
-        } catch (e) {} finally { spinner.style.display = "none"; }
+        } catch (e) {
+            console.error(e);
+        } finally { spinner.style.display = "none"; }
     }
 
     function buildPrompt() {
@@ -439,33 +700,6 @@
             link.click();
         });
     }
-
-    // Tools Recommendation System
-    const toolDatabase = [
-        { name: "Startup Name Architect", link: "startup-name.html", icon: "🚀", desc: "AI-powered branding for your next big thing." },
-        { name: "Gaming Tag Architect", link: "gaming-name.html", icon: "🎮", desc: "Create legendary identities for the metaverse." },
-        { name: "Social Hashtag Architect", link: "hashtag-generator.html", icon: "📱", desc: "Viral hashtags optimized by Gemini AI." },
-        { name: "Fancy Font Architect", link: "font-generator.html", icon: "✨", desc: "Transform your text into aesthetic art." },
-        { name: "Business Bio Architect", link: "business-bio.html", icon: "💼", desc: "Professional bios that convert leads." }
-    ];
-
-    function initRecommendations() {
-        const shuffled = toolDatabase.sort(() => 0.5 - Math.random());
-        const selected = shuffled.slice(0, 3);
-        let html = "";
-        selected.forEach(tool => {
-            html += `
-                <a href="${tool.link}" class="rec-tool-card reveal active">
-                    <div style="font-size: 2rem; margin-bottom:10px;">${tool.icon}</div>
-                    <strong>${tool.name}</strong>
-                    <p style="font-size:13px; color:#666; margin-top:8px;">${tool.desc}</p>
-                </a>
-            `;
-        });
-        document.getElementById("recommendedSection").innerHTML = html;
-    }
-
-    window.onload = initRecommendations;
 </script>
 
 </body>
