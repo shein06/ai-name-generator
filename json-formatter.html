@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -8,140 +9,385 @@
       gtag('js', new Date());
       gtag('config', 'G-4LVEC8BY40');
     </script>
-    
+
+    <!-- Tag Verifikasi Google (Sesuai Permintaan) -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI JSON Formatter & Validator - Clean Your Code | SmartToolbox</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AI JSON Formatter & Validator - Clean, Format & Minify | OmniTools AI</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Validate, format, prettify, and minify JSON data instantly. Complete client-side processing with high-accuracy line-by-line syntax error tracking.">
+    <meta name="keywords" content="json formatter, json validator, json prettifier, json minifier, validate json, online json tool, parse json error">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        .json-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
+        /* CSS Khusus & Premium untuk JSON Formatter & Validator */
+        :root {
+            --bg-color: #f8f9fa; --text-color: #333; --card-bg: #fff;
+            --primary: #1a73e8; --border-color: #e0e0e0; --success: #28a745; --danger: #dc3545;
+            --editor-bg: #1e1e1e; --editor-text: #d4d4d4;
         }
-        .editor-wrapper {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+        [data-theme="dark"] {
+            --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e;
+            --primary: #4da3ff; --border-color: #333; --editor-bg: #151515; --editor-text: #f0f0f0;
         }
-        @media (min-width: 768px) {
-            .editor-wrapper { grid-template-columns: 1fr 1fr; }
-        }
-        textarea {
-            width: 100%;
-            height: 400px;
-            background: #1e1e1e;
-            color: #d4d4d4;
-            border-radius: 12px;
-            padding: 15px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 14px;
-            border: 1px solid #333;
-            resize: none;
-            outline: none;
-        }
-        .output-area {
-            position: relative;
-        }
-        .status-bar {
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-size: 13px;
-            display: none;
-        }
-        .status-success { background: rgba(40, 167, 69, 0.1); color: #28a745; border: 1px solid #28a745; }
-        .status-error { background: rgba(220, 53, 69, 0.1); color: #dc3545; border: 1px solid #dc3545; }
-        
+
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; transition: 0.3s; }
+        header { text-align: center; padding: 40px 20px; }
+        .subtitle { color: #666; font-size: 1rem; margin-top: 10px; }
+        [data-theme="dark"] .subtitle { color: #aaa; }
+
+        .json-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .seo-card, .content, .how, .faq-section, .directory-section { background: var(--card-bg); padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); }
+
+        /* Toolbar Styles */
         .toolbar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
+            display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; justify-content: space-between; align-items: center;
         }
+        .tool-btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        
         .tool-btn {
-            padding: 8px 15px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 12px;
-            transition: 0.2s;
+            padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer;
+            font-weight: 600; font-size: 13px; transition: 0.2s; font-family: 'Poppins', sans-serif;
+            display: flex; align-items: center; gap: 6px;
         }
-        .btn-format { background: #1a73e8; color: white; }
+        .btn-format { background: var(--primary); color: white; }
         .btn-minify { background: #6c757d; color: white; }
-        .btn-clear { background: #ff4757; color: white; }
+        .btn-clear { background: var(--danger); color: white; }
+        
+        .btn-file-load {
+            background: transparent; border: 1px solid var(--border-color); color: var(--text-color);
+        }
+        .btn-file-load:hover { background: rgba(0, 0, 0, 0.05); }
+        [data-theme="dark"] .btn-file-load:hover { background: rgba(255, 255, 255, 0.05); }
+
+        .indent-select {
+            padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);
+            background: var(--card-bg); color: var(--text-color); font-family: 'Poppins'; font-size: 13px; outline: none;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; font-size: 14px;
+            display: none; text-align: left; font-weight: 500; line-height: 1.5;
+        }
+        .status-success { background: rgba(40, 167, 69, 0.1); color: var(--success); border: 1px solid var(--success); }
+        .status-error { background: rgba(220, 53, 69, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+
+        /* Workspace Grid */
+        .editor-wrapper { display: grid; grid-template-columns: 1fr; gap: 20px; text-align: left; }
+        @media (min-width: 820px) { .editor-wrapper { grid-template-columns: 1fr 1fr; } }
+
+        .editor-box { display: flex; flex-direction: column; }
+        .editor-box label { font-size: 13px; font-weight: 600; margin-bottom: 8px; opacity: 0.8; }
+        
+        textarea {
+            width: 100%; height: 420px; background: var(--editor-bg); color: var(--editor-text);
+            border-radius: 12px; padding: 18px; font-family: 'Courier New', Courier, monospace;
+            font-size: 14px; border: 1px solid var(--border-color); resize: none; outline: none; box-sizing: border-box;
+            transition: border-color 0.2s; line-height: 1.5;
+        }
+        textarea:focus { border-color: var(--primary); }
+
+        /* Action Buttons */
+        .output-actions {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;
+        }
+        .action-btn {
+            border: none; padding: 12px; border-radius: 8px; font-size: 13px; font-weight: 700;
+            cursor: pointer; font-family: 'Poppins'; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .btn-copy-out { background: rgba(26, 115, 232, 0.1); color: var(--primary); }
+        .btn-copy-out:hover { background: var(--primary); color: white; }
+
+        .btn-download-out { background: rgba(40, 167, 69, 0.1); color: var(--success); }
+        .btn-download-out:hover { background: var(--success); color: white; }
+
+        /* FAQ Accordion Styles */
+        .accordion-item { border-bottom: 1px solid var(--border-color); padding: 15px 0; }
+        .accordion-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 16px; }
+        .accordion-answer { display: none; padding-top: 10px; font-size: 14px; color: #666; line-height: 1.6; }
+        [data-theme="dark"] .accordion-answer { color: #bbb; }
+        .accordion-icon { transition: transform 0.3s; font-size: 18px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-answer { display: block; }
+
+        /* Directory / Category Grid Styles */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; }
+        .directory-cat { background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .directory-cat h4 { margin-top: 0; color: var(--primary); font-size: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .directory-list { list-style: none; padding: 0; margin: 0; }
+        .directory-list li { margin-bottom: 10px; font-size: 14px; }
+        .directory-list a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+        .directory-list a:hover { color: var(--primary); }
+
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; }
+        .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
     </style>
 </head>
 <body>
 
-<header class="compact-header">
-    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" class="btn-dark-mini">🌙 Dark</button>
+<header>
+    <h1>AI JSON Formatter & Validator</h1>
+    <div class="subtitle">Pretty print, deep validate, detect syntax errors, and minify your JSON data instantly.</div>
+    
+    <div style="margin-top: 20px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
+            🌙 Dark Mode
+        </button>
     </div>
-    <h1>AI JSON Formatter</h1>
-    <p class="subtitle">Pretty print, validate, and minify your JSON code instantly.</p>
 </header>
 
 <div class="json-container">
-    <div class="toolbar">
-        <button class="tool-btn btn-format" onclick="processJSON('format')">✨ Format / Beautify</button>
-        <button class="tool-btn btn-minify" onclick="processJSON('minify')">📦 Minify</button>
-        <button class="tool-btn btn-clear" onclick="clearAll()">🗑️ Clear</button>
-    </div>
-
-    <div id="statusMsg" class="status-bar"></div>
-
-    <div class="editor-wrapper">
-        <div class="input-area">
-            <label style="display:block; margin-bottom:5px; font-size:12px; opacity:0.7;">Input Raw JSON:</label>
-            <textarea id="jsonInput" placeholder='Paste your messy JSON here... e.g. {"name":"John","age":30}'></textarea>
+    <div class="seo-card active">
+        <!-- Control Toolbar -->
+        <div class="toolbar">
+            <div class="tool-btn-group">
+                <button class="tool-btn btn-format" onclick="processJSON('format')">✨ Format JSON</button>
+                <button class="tool-btn btn-minify" onclick="processJSON('minify')">📦 Minify JSON</button>
+                <button class="tool-btn btn-file-load" onclick="document.getElementById('fileUploadInput').click()">📥 Load File</button>
+                <button class="tool-btn btn-clear" onclick="clearAll()">🗑️ Clear</button>
+                <input type="file" id="fileUploadInput" accept=".json, .txt" style="display: none;" onchange="handleFileLoad()">
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <label for="indentSelect" style="font-size: 12px; font-weight: 600;">Indentation:</label>
+                <select id="indentSelect" class="indent-select" onchange="processJSON('format')">
+                    <option value="2">2 Spaces</option>
+                    <option value="4" selected>4 Spaces</option>
+                    <option value="tab">1 Tab</option>
+                </select>
+            </div>
         </div>
-        <div class="output-area">
-            <label style="display:block; margin-bottom:5px; font-size:12px; opacity:0.7;">Formatted Output:</label>
-            <textarea id="jsonOutput" readonly placeholder="Result will appear here..."></textarea>
-            <button class="cta-btn" onclick="copyResult()" style="position:absolute; bottom:20px; right:20px; font-size:11px; padding:5px 15px;">📋 Copy</button>
+
+        <!-- Error / Success Status Bar -->
+        <div id="statusMsg" class="status-bar"></div>
+
+        <!-- Editor Workspace -->
+        <div class="editor-wrapper">
+            <div class="editor-box">
+                <label for="jsonInput">Input Raw / Messy JSON</label>
+                <textarea id="jsonInput" placeholder='Paste your messy JSON here... e.g. {"name":"John","age":30,"hobbies":["coding","design"]}'></textarea>
+            </div>
+            <div class="editor-box">
+                <label for="jsonOutput">Formatted / Optimized Output</label>
+                <div style="position: relative;">
+                    <textarea id="jsonOutput" readonly placeholder="Result will appear here..."></textarea>
+                </div>
+                
+                <!-- Separated Action Controls (Sesuai Permintaan) -->
+                <div class="output-actions">
+                    <button class="action-btn btn-copy-out" onclick="copyResult()">📋 Copy Output</button>
+                    <button class="action-btn btn-download-out" onclick="downloadJSON()">💾 Download JSON File</button>
+                </div>
+            </div>
         </div>
-    </div>
-    
-    <div style="margin-top: 30px; text-align: center;">
-        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
     </div>
 </div>
 
-<div class="how reveal">
-    <h2>Powerful JSON Tools</h2>
-    <div class="how-grid">
-        <div class="how-card"><span>🔍</span><strong>Validator</strong><p>Detect errors in your JSON code and find out exactly where the syntax is wrong.</p></div>
-        <div class="how-card"><span>🎨</span><strong>Beautifier</strong><p>Turn a single line of messy code into a perfectly indented, readable structure.</p></div>
-        <div class="how-card"><span>🚀</span><strong>Minifier</strong><p>Compress your JSON to the smallest size possible for faster web performance.</p></div>
+<!-- HOW IT WORKS SECTION -->
+<div class="seo-container">
+    <div class="how active">
+        <h2 style="text-align: center; margin-top: 0;">How the JSON Formatter Functions</h2>
+        <div class="how-grid">
+            <div class="how-card">
+                <span>🔍</span>
+                <strong>1. Syntax Analysis</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Our compiler analyzes your code character-by-character to locate missing colons, brackets, or commas instantly.</p>
+            </div>
+            <div class="how-card">
+                <span>🎨</span>
+                <strong>2. Aesthetic Structuring</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Messy and nested objects are organized with perfectly aligned indentations, making them highly legible.</p>
+            </div>
+            <div class="how-card">
+                <span>⚡</span>
+                <strong>3. Minification</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Strip all unnecessary whitespaces and return-breaks to output the smallest data packets for API speed.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEO DEEP CONTENT (AdSense Quality Guard) -->
+    <div class="content active">
+        <h2 style="margin-top: 0;">The Importance of JSON Structure in APIs & Web Services</h2>
+        <p>
+            JavaScript Object Notation (JSON) is the universal language of data transmission on the modern web. Every time your mobile app talks to a database, or a web page queries an external API, small packets of JSON are sent back and forth. Ensuring your JSON structure remains syntactically flawless is paramount to preventing unexpected software crashes and network failures.
+        </p>
+        
+        <h3 style="margin-top: 20px;">Anatomy of Valid JSON Syntax</h3>
+        <p>
+            While JSON is incredibly lightweight and easy for humans to read, computers require absolute strictness. Unlike standard JavaScript, JSON syntax demands rigid rules:
+        </p>
+        <ul style="line-height: 1.8; color: var(--text-color);">
+            <li><strong>Double Quotes Only:</strong> All string data, as well as every single object key, must be wrapped in double quotes (e.g., `"name": "Value"`). Single quotes are strictly invalid.</li>
+            <li><strong>No Trailing Commas:</strong> Placing a comma after the final item in an object or array (e.g., `[1, 2, 3, ]`) is a common error that will cause native JSON engines to fail.</li>
+            <li><strong>Strict Object Formats:</strong> Keys and values must be separated by colons, and separate key-value pairs must be divided by commas. Braces (`{}`) enclose objects, and brackets (`[]`) enclose arrays.</li>
+        </ul>
+
+        <h3 style="margin-top: 20px;">Why Developer Utilities Should Run Entirely Offline</h3>
+        <p>
+            When validating enterprise database records or proprietary API layouts, uploading your code to an external backend server poses severe security risks. Unauthorized interception or silent data storage on a random platform can breach user privacy policies. 
+        </p>
+        <p>
+            OmniTools AI operates with a strict **Privacy-First Architecture**. All JSON parsing, linting, error locating, and formatting occur locally inside your browser's execution sandbox. Your data never leaves your computer, offering you maximum security and peace of mind.
+        </p>
+    </div>
+
+    <!-- FAQ Accordion Section (Rich Content) -->
+    <div class="faq-section active">
+        <h2 style="text-align: center; margin-bottom: 25px; margin-top:0;">Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                How does the AI Error Tracker point out syntax errors?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                When you enter an invalid JSON structure, our parser catches the native browser exception, matches the exact character position of the syntax failure, and translates it into specific Line and Column indices, helping you isolate the bug instantly.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                What is the difference between Prettify and Minify?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Prettifying adds visual indentations and return-breaks to make complex nested JSON data readable for human engineers during development. Minifying strips away all non-functional white spaces and formatting characters, reducing file size to speed up bandwidth and decrease API load times.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Is there any limit on the file size of the JSON input?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Because OmniTools AI runs completely offline inside your browser, there are no artificial file size limits. However, processing exceptionally large files (greater than 50MB) may depend on your device's RAM capacity.
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete Categorized Directory of OmniTools AI Ecosystem (Internal Linking Optimization) -->
+    <div class="directory-section active">
+        <h2 style="margin-top: 0; text-align: center;">Explore OmniTools AI Ecosystem</h2>
+        <p style="text-align: center; font-size: 14px; color: #666; margin-bottom: 30px;">Discover our extensive list of free, fast, and secure developer, creator, and productivity tools.</p>
+        
+        <div class="directory-grid">
+            <!-- Category 1 -->
+            <div class="directory-cat">
+                <h4>📄 PDF & Document Utilities</h4>
+                <ul class="directory-list">
+                    <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                    <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                    <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                    <li><a href="txt-to-pdf.html">📄 Plain TXT to PDF</a></li>
+                    <li><a href="pdf-to-word.html">📝 PDF to Editable Word</a></li>
+                    <li><a href="pdf-to-grayscale.html">🖨️ PDF to Grayscale B&W</a></li>
+                    <li><a href="resize-pdf.html">📏 Vector PDF Page Resizer</a></li>
+                    <li><a href="password-protect.html">🔒 Password Protect PDF</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="directory-cat">
+                <h4>✍️ AI & Content Writing</h4>
+                <ul class="directory-list">
+                    <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                    <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                    <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                    <li><a href="similarity-checker.html">🔍 Content Similarity Checker</a></li>
+                    <li><a href="email-name-generator.html">📧 Email Name Generator</a></li>
+                    <li><a href="blog-name-generator.html">📝 Creative Blog Name Gen</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="directory-cat">
+                <h4>🎨 Creative & Branding</h4>
+                <ul class="directory-list">
+                    <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                    <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                    <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                    <li><a href="shop-name.html">🛍️ Shop Name Generator</a></li>
+                    <li><a href="startup-name.html">🚀 Startup Name Generator</a></li>
+                    <li><a href="gaming-name.html">🎮 Gaming Name Generator</a></li>
+                    <li><a href="youtube-name-generator.html">📺 YouTube Name Gen</a></li>
+                    <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                    <li><a href="hashtag-generator.html">#️ Instagram/TikTok Hashtags</a></li>
+                    <li><a href="font-generator.html">✨ Fancy Font Generator</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="directory-cat">
+                <h4>💻 Developer, SEO & Utility</h4>
+                <ul class="directory-list">
+                    <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                    <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                    <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                    <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                    <li><a href="website-rank-analyzer.html">📈 Website SEO Rank Analyzer</a></li>
+                    <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                    <li><a href="password-gen.html">🔑 Secure Cryptographic Pwd</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Beranda</a>
     </div>
 </div>
 
 <footer>
-    <div class="social">
-        <a href="sitemap.xml" style="font-size: 10px; opacity: 0.5;">Sitemap</a>
-    </div>
-    <p>&copy; 2026 SmartToolbox. All rights reserved.</p>
+    <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
 </footer>
 
 <script src="script.js"></script>
 <script>
+    // Elements Setup
     const inputArea = document.getElementById('jsonInput');
     const outputArea = document.getElementById('jsonOutput');
     const statusMsg = document.getElementById('statusMsg');
+    const indentSelect = document.getElementById('indentSelect');
+    const fileUploadInput = document.getElementById('fileUploadInput');
 
+    // FAQ Accordion Toggle
+    function toggleAccordion(element) {
+        const item = element.parentElement;
+        item.classList.toggle('active');
+        const icon = element.querySelector('.accordion-icon');
+        if (item.classList.contains('active')) {
+            icon.textContent = '－';
+        } else {
+            icon.textContent = '＋';
+        }
+    }
+
+    // JSON Formatting Pipeline
     function processJSON(mode) {
         const rawValue = inputArea.value.trim();
-        if (!rawValue) return;
+        if (!rawValue) {
+            showNotification("Please enter or load some raw JSON first!", "danger");
+            return;
+        }
 
         try {
             const jsonObj = JSON.parse(rawValue);
             let result = "";
 
             if (mode === 'format') {
-                result = JSON.stringify(jsonObj, null, 4);
+                const indentVal = indentSelect.value;
+                const indent = indentVal === 'tab' ? '\t' : parseInt(indentVal, 10);
+                result = JSON.stringify(jsonObj, null, indent);
                 showStatus("✅ Valid JSON: Successfully formatted!", "success");
             } else {
                 result = JSON.stringify(jsonObj);
@@ -150,9 +396,69 @@
 
             outputArea.value = result;
         } catch (e) {
-            showStatus("❌ Invalid JSON: " + e.message, "error");
+            const errorLocation = locateJSONError(e.message, rawValue);
+            if (errorLocation) {
+                showStatus(`❌ Invalid JSON Syntax (Line ${errorLocation.line}, Col ${errorLocation.column}): ${e.message}`, "error");
+            } else {
+                showStatus("❌ Invalid JSON Syntax: " + e.message, "error");
+            }
             outputArea.value = "";
         }
+    }
+
+    // AI Error Tracking Logic (Line & Column Calculator)
+    function locateJSONError(errorMessage, rawText) {
+        // Method 1: Check standard exception position indicator
+        const posMatch = errorMessage.match(/at position (\d+)/i);
+        if (posMatch) {
+            const pos = parseInt(posMatch[1], 10);
+            const textSegment = rawText.substring(0, pos);
+            const lines = textSegment.split('\n');
+            return { line: lines.length, column: lines[lines.length - 1].length + 1 };
+        }
+        
+        // Method 2: Check chrome/firefox specific error formats (e.g. line 4 column 12)
+        const lineColMatch = errorMessage.match(/line (\d+) column (\d+)/i);
+        if (lineColMatch) {
+            return { line: parseInt(lineColMatch[1], 10), column: parseInt(lineColMatch[2], 10) };
+        }
+        
+        return null;
+    }
+
+    // Load Local File
+    function handleFileLoad() {
+        const file = fileUploadInput.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            inputArea.value = e.target.result;
+            showNotification(`📥 Successfully loaded "${file.name}"`);
+            processJSON('format');
+        };
+        reader.onerror = () => {
+            showNotification("❌ Failed to read file.", "danger");
+        };
+        reader.readAsText(file);
+    }
+
+    // Export output as .json File (Sesuai Permintaan)
+    function downloadJSON() {
+        const outValue = outputArea.value.trim();
+        if (!outValue) {
+            showNotification("There is no formatted output to download yet!", "danger");
+            return;
+        }
+
+        const blob = new Blob([outValue], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = "OmniTools_Optimized.json";
+        link.click();
+        
+        showNotification("💾 JSON file exported successfully!");
     }
 
     function showStatus(msg, type) {
@@ -165,14 +471,89 @@
         inputArea.value = "";
         outputArea.value = "";
         statusMsg.style.display = "none";
+        fileUploadInput.value = "";
+        showNotification("🧹 All inputs cleared.");
     }
 
+    // Clipboard Copy Action
     function copyResult() {
-        if (!outputArea.value) return;
-        navigator.clipboard.writeText(outputArea.value);
-        alert("Copied to clipboard!");
+        const outputVal = outputArea.value.trim();
+        if (!outputVal) {
+            showNotification("No formatted output to copy!", "danger");
+            return;
+        }
+
+        // Custom sandbox secure copy fallback
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = outputVal;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        
+        try {
+            document.execCommand('copy');
+            showNotification("📋 Copied output to clipboard!");
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
+        
+        document.body.removeChild(tempTextArea);
+    }
+
+    // Custom Toast Notification (Anti-Browser Alert)
+    function showNotification(message, type = "success") {
+        const oldToast = document.getElementById('omni-toast');
+        if (oldToast) oldToast.remove();
+
+        const toast = document.createElement('div');
+        toast.id = 'omni-toast';
+        toast.style.position = 'fixed';
+        toast.style.bottom = '30px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+        toast.style.background = type === 'success' ? '#28a745' : '#dc3545';
+        toast.style.color = '#fff';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '50px';
+        toast.style.fontSize = '14px';
+        toast.style.fontWeight = '600';
+        toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+        toast.style.zIndex = '9999';
+        toast.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        toast.style.opacity = '0';
+        toast.innerHTML = message;
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.transform = 'translateX(-50%) translateY(0)';
+            toast.style.opacity = '1';
+        }, 10);
+
+        setTimeout(() => {
+            toast.style.transform = 'translateX(-50%) translateY(100px)';
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 400);
+        }, 3000);
+    }
+
+    // Dark Mode Toggle Logic
+    function toggleDarkMode() {
+        const body = document.body;
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    // Check default dark mode state
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.setAttribute('data-theme', 'dark');
     }
 </script>
 
 </body>
 </html>
+
