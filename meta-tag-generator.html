@@ -9,134 +9,238 @@
       gtag('js', new Date());
       gtag('config', 'G-4LVEC8BY40');
     </script>
-    
-    <!-- Tag Verifikasi Google -->
+
+    <!-- Tag Verifikasi Google (Sesuai Permintaan) -->
     <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEO Meta Tag Generator - Boost Your Website Ranking | OmniTools AI</title>
-    <meta name="description" content="Generate perfect SEO Meta Tags, Open Graph, and Twitter Cards with real-time Google search preview. Free online tool.">
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Generate perfect HTML SEO Meta Tags, Open Graph, and Twitter Cards with real-time live previews of Google SERP, Facebook, and X share cards.">
+    <meta name="keywords" content="meta tag generator, seo tag creator, open graph generator, twitter cards generator, google serp preview, meta tag builder, free seo tools">
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Html2canvas for exporting share preview cards -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
-        /* Tool-Specific Styles */
-        .workspace-grid {
-            display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 20px;
+        /* CSS Khusus & Premium untuk SEO Meta Tag Generator */
+        :root {
+            --bg-color: #f8f9fa; --text-color: #333; --card-bg: #fff;
+            --primary: #1a73e8; --border-color: #e0e0e0; --success: #28a745; --danger: #dc3545;
+            --input-bg: #f1f3f4;
         }
-        @media(min-width: 850px) {
-            .workspace-grid { grid-template-columns: 1fr 1fr; }
+        [data-theme="dark"] {
+            --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e;
+            --primary: #4da3ff; --border-color: #333; --input-bg: #2a2a2a;
         }
+
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; transition: 0.3s; }
+        header { text-align: center; padding: 40px 20px; }
+        .subtitle { color: #666; font-size: 1rem; margin-top: 10px; }
+        [data-theme="dark"] .subtitle { color: #aaa; }
+
+        .seo-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .seo-card, .content, .how, .faq-section, .directory-section { background: var(--card-bg); padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); }
+
+        /* Workspace Layout */
+        .workspace-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 20px; }
+        @media(min-width: 850px) { .workspace-grid { grid-template-columns: 1.1fr 0.9fr; } }
 
         .config-panel, .preview-panel {
-            background: var(--bg-card, #fff); padding: 25px; border-radius: 15px; 
-            border: 1px solid var(--border-color, #eee); box-shadow: 0 4px 15px rgba(0,0,0,0.03); text-align: left;
+            background: var(--bg-color); padding: 30px; border-radius: 14px; 
+            border: 1px solid var(--border-color); text-align: left;
         }
 
-        /* Form Group */
-        .form-group { margin-bottom: 20px; }
+        /* Form Group styling */
+        .form-group { margin-bottom: 20px; text-align: left; }
         .form-group label { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
         .form-control {
-            width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color, #ddd); 
-            background: var(--bg-main, #fafafa); color: var(--text-main, #333); font-size: 14px; outline: none; font-family: 'Poppins'; box-sizing: border-box; transition: 0.3s;
+            width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); 
+            background: var(--card-bg); color: var(--text-color); font-size: 14px; outline: none; font-family: 'Poppins'; box-sizing: border-box; transition: 0.3s;
         }
-        .form-control:focus { border-color: #1a73e8; box-shadow: 0 0 0 3px rgba(26,115,232,0.1); }
-        
-        .char-count { font-size: 12px; font-weight: 500; }
-        .count-good { color: #28a745; }
+        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,115,232,0.1); }
+
+        .char-count { font-size: 12px; font-weight: 600; }
+        .count-good { color: var(--success); }
         .count-warn { color: #f39c12; }
-        .count-danger { color: #dc3545; }
-
-        /* Google SERP Preview */
-        .google-preview {
-            background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;
-            font-family: Arial, sans-serif; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        [data-theme="dark"] .google-preview { background: #202124; border-color: #3c4043; }
-        
-        .g-url { color: #202124; font-size: 14px; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
-        [data-theme="dark"] .g-url { color: #dadce0; }
-        .g-url img { width: 16px; height: 16px; border-radius: 50%; background: #eee; }
-        
-        .g-title { color: #1a0dab; font-size: 20px; font-weight: normal; margin: 0 0 4px 0; line-height: 1.3; cursor: pointer; text-decoration: none; }
-        .g-title:hover { text-decoration: underline; }
-        [data-theme="dark"] .g-title { color: #8ab4f8; }
-        
-        .g-desc { color: #4d5156; font-size: 14px; line-height: 1.58; word-wrap: break-word; }
-        [data-theme="dark"] .g-desc { color: #bdc1c6; }
-
-        /* Code Output Box */
-        .code-box-wrapper { position: relative; }
-        .code-box {
-            background: #1e1e1e; color: #a9dc76; padding: 20px; border-radius: 8px; 
-            font-family: 'Fira Code', Consolas, monospace; font-size: 13px; line-height: 1.5;
-            white-space: pre-wrap; word-break: break-all; overflow-x: auto; height: 350px; border: 1px solid #333;
-        }
-        .btn-copy {
-            position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); 
-            color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 6px; 
-            cursor: pointer; font-family: 'Poppins'; font-size: 12px; font-weight: 600; transition: 0.2s;
-        }
-        .btn-copy:hover { background: rgba(255,255,255,0.2); }
+        .count-danger { color: var(--danger); }
 
         /* Multi-input Grid */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         @media(max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+        /* Previews tab system */
+        .preview-tabs { display: flex; border-bottom: 2px solid var(--border-color); margin-bottom: 20px; }
+        .tab-btn {
+            background: transparent; border: none; padding: 10px 15px; font-family: 'Poppins'; font-size: 13px; font-weight: 600;
+            color: var(--text-color); cursor: pointer; opacity: 0.6; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: 0.3s;
+        }
+        .tab-btn.active { opacity: 1; border-bottom-color: var(--primary); color: var(--primary); }
+
+        /* Google SERP Preview Style */
+        .preview-box { display: none; }
+        .preview-box.active { display: block; }
+
+        .google-preview {
+            background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;
+            font-family: Arial, sans-serif; box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        [data-theme="dark"] .google-preview { background: #202124; border-color: #3c4043; }
+
+        .g-url { color: #202124; font-size: 13px; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+        [data-theme="dark"] .g-url { color: #dadce0; }
+        .g-url img { width: 16px; height: 16px; border-radius: 50%; background: #eee; }
+
+        .g-title { color: #1a0dab; font-size: 19px; font-weight: normal; margin: 0 0 4px 0; line-height: 1.3; cursor: pointer; text-decoration: none; display: block; text-align: left; }
+        .g-title:hover { text-decoration: underline; }
+        [data-theme="dark"] .g-title { color: #8ab4f8; }
+
+        .g-desc { color: #4d5156; font-size: 14px; line-height: 1.58; word-wrap: break-word; text-align: left; }
+        [data-theme="dark"] .g-desc { color: #bdc1c6; }
+
+        /* Facebook Share Preview Card Style */
+        .facebook-preview {
+            background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; font-family: Helvetica, Arial, sans-serif; box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        [data-theme="dark"] .facebook-preview { background: #242526; border-color: #3e4042; }
+        
+        .fb-img-box { background: #f2f3f5; width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid #ddd; }
+        [data-theme="dark"] .fb-img-box { background: #3a3b3c; border-color: #3e4042; }
+        .fb-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .fb-no-img { color: #8d949e; font-size: 14px; }
+        
+        .fb-text-box { padding: 12px; background: #f2f3f5; text-align: left; }
+        [data-theme="dark"] .fb-text-box { background: #242526; }
+        .fb-domain { font-size: 12px; color: #606770; text-transform: uppercase; margin-bottom: 4px; }
+        [data-theme="dark"] .fb-domain { color: #b0b3b8; }
+        .fb-title { font-size: 16px; font-weight: bold; color: #1d2129; margin: 0 0 4px 0; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+        [data-theme="dark"] .fb-title { color: #e4e6eb; }
+        .fb-desc { font-size: 13px; color: #606770; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin: 0; }
+        [data-theme="dark"] .fb-desc { color: #b0b3b8; }
+
+        /* Twitter Card Preview Style */
+        .twitter-preview {
+            background: #fff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        [data-theme="dark"] .twitter-preview { background: #15181c; border-color: #2f3336; }
+        
+        .tw-img-box { background: #f2f3f5; width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid #ddd; }
+        [data-theme="dark"] .tw-img-box { background: #202327; border-color: #2f3336; }
+        .tw-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .tw-no-img { color: #536471; font-size: 14px; }
+
+        .tw-text-box { padding: 12px; text-align: left; }
+        .tw-domain { font-size: 13px; color: #536471; margin-bottom: 4px; }
+        [data-theme="dark"] .tw-domain { color: #8b98a5; }
+        .tw-title { font-size: 15px; font-weight: bold; color: #0f1419; margin: 0 0 4px 0; line-height: 1.3; }
+        [data-theme="dark"] .tw-title { color: #f7f9fa; }
+        .tw-desc { font-size: 13px; color: #536471; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin: 0; }
+        [data-theme="dark"] .tw-desc { color: #8b98a5; }
+
+        /* Code Output Box */
+        .code-box-wrapper { position: relative; margin-top: 15px; }
+        .code-box {
+            background: #1e1e1e; color: #a9dc76; padding: 20px; border-radius: 8px; 
+            font-family: 'Fira Code', Consolas, monospace; font-size: 13px; line-height: 1.5;
+            white-space: pre-wrap; word-break: break-all; overflow-x: auto; height: 320px; border: 1px solid #333;
+            box-sizing: border-box; text-align: left;
+        }
+
+        /* Action Buttons */
+        .output-actions {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;
+        }
+        .action-btn {
+            border: none; padding: 12px; border-radius: 8px; font-size: 13px; font-weight: 700;
+            cursor: pointer; font-family: 'Poppins'; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .btn-copy-out { background: rgba(26, 115, 232, 0.1); color: var(--primary); }
+        .btn-copy-out:hover { background: var(--primary); color: white; }
+
+        .btn-download-out { background: rgba(40, 167, 69, 0.1); color: var(--success); }
+        .btn-download-out:hover { background: var(--success); color: white; }
+
+        /* FAQ Accordion Styles */
+        .accordion-item { border-bottom: 1px solid var(--border-color); padding: 15px 0; }
+        .accordion-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 16px; text-align: left; }
+        .accordion-answer { display: none; padding-top: 10px; font-size: 14px; color: #666; line-height: 1.6; text-align: left; }
+        [data-theme="dark"] .accordion-answer { color: #bbb; }
+        .accordion-icon { transition: transform 0.3s; font-size: 18px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-answer { display: block; }
+
+        /* Directory / Category Grid Styles */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; }
+        .directory-cat { background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .directory-cat h4 { margin-top: 0; color: var(--primary); font-size: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .directory-list { list-style: none; padding: 0; margin: 0; }
+        .directory-list li { margin-bottom: 10px; font-size: 14px; }
+        .directory-list a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+        .directory-list a:hover { color: var(--primary); }
+
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; }
+        .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
+    <h1>SEO Meta Tag Generator</h1>
+    <div class="subtitle">Create optimized HTML meta tags to rank higher on Google & look perfect on Social Media networks.</div>
+    
+    <div style="margin-top: 20px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
             🌙 Dark Mode
         </button>
     </div>
-    <h1>SEO Meta Tag Generator</h1>
-    <div class="subtitle">Create optimized HTML meta tags to rank higher on Google & look perfect on Social Media.</div>
 </header>
 
 <div class="seo-container">
     <div class="seo-card active" style="padding: 20px;">
-        
         <div class="workspace-grid">
+            
             <!-- PANEL KIRI: INPUT FORM -->
             <div class="config-panel">
-                <h3 style="margin-top:0; border-bottom: 1px solid var(--border-color); padding-bottom:10px;">Page Details</h3>
-                
+                <h3 style="margin-top:0; border-bottom: 1px solid var(--border-color); padding-bottom:10px; font-size: 18px;">Page Architecture</h3>
+
                 <div class="form-group">
                     <label><span>Site / Page Title</span> <span id="countTitle" class="char-count">0 / 60</span></label>
                     <input type="text" id="metaTitle" class="form-control" placeholder="e.g. Free AI Tools Collection | OmniTools" oninput="generateTags()">
-                    <small style="color:var(--text-muted); font-size:11px; margin-top:4px; display:block;">Keep under 60 characters for best Google display.</small>
+                    <small style="color:#777; font-size:11px; margin-top:4px; display:block;">Recommended: 50-60 characters for best Google display.</small>
                 </div>
 
                 <div class="form-group">
                     <label><span>Meta Description</span> <span id="countDesc" class="char-count">0 / 160</span></label>
-                    <textarea id="metaDesc" class="form-control" rows="3" placeholder="e.g. Boost your workflow with our free, offline AI productivity tools." oninput="generateTags()"></textarea>
-                    <small style="color:var(--text-muted); font-size:11px; margin-top:4px; display:block;">Keep between 150-160 characters.</small>
+                    <textarea id="metaDesc" class="form-control" rows="3" placeholder="e.g. Boost your workflow with our free, secure, and offline AI productivity tools collection." oninput="generateTags()"></textarea>
+                    <small style="color:#777; font-size:11px; margin-top:4px; display:block;">Recommended: 150-160 characters for snippets.</small>
                 </div>
 
                 <div class="form-group">
-                    <label><span>Page URL</span></label>
+                    <label><span>Canonical Page URL</span></label>
                     <input type="text" id="metaUrl" class="form-control" placeholder="e.g. https://omnitools.ai/seo-tool" oninput="generateTags()">
                 </div>
 
                 <div class="grid-2">
                     <div class="form-group">
-                        <label><span>Image URL (For Social Sharing)</span></label>
+                        <label><span>Open Graph Image URL</span></label>
                         <input type="text" id="metaImage" class="form-control" placeholder="e.g. https://omnitools.ai/banner.jpg" oninput="generateTags()">
                     </div>
                     <div class="form-group">
-                        <label><span>Author Name</span></label>
+                        <label><span>Author / Publisher Name</span></label>
                         <input type="text" id="metaAuthor" class="form-control" placeholder="e.g. OmniTools Team" oninput="generateTags()">
                     </div>
                 </div>
 
                 <div class="grid-2">
                     <div class="form-group">
-                        <label><span>Keywords (Comma separated)</span></label>
+                        <label><span>Keywords (Comma split)</span></label>
                         <input type="text" id="metaKeywords" class="form-control" placeholder="e.g. seo tools, meta generator, free ai" oninput="generateTags()">
                     </div>
                     <div class="form-group">
@@ -153,126 +257,279 @@
 
             <!-- PANEL KANAN: PREVIEW & CODE -->
             <div class="preview-panel">
-                <h3 style="margin-top:0; border-bottom: 1px solid var(--border-color); padding-bottom:10px;">Live Google Preview</h3>
-                
-                <div class="google-preview">
-                    <div class="g-url">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2FhYSIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIvPjwvc3ZnPg==" alt="icon" id="previewIcon">
-                        <span id="previewUrl">example.com > my-page</span>
-                    </div>
-                    <h3 class="g-title" id="previewTitle">Your Page Title Will Appear Here</h3>
-                    <div class="g-desc" id="previewDesc">Write a compelling meta description in the box to the left. This text helps users decide whether to click on your link from the search engine results page.</div>
+                <h3 style="margin-top:0; margin-bottom: 15px; font-size: 18px;">Social Share & SERP Preview</h3>
+
+                <!-- Tabs to switch platform preview -->
+                <div class="preview-tabs">
+                    <button class="tab-btn active" id="tabGoogle" onclick="switchPreview('google')">Google Search</button>
+                    <button class="tab-btn" id="tabFacebook" onclick="switchPreview('facebook')">Facebook (OG)</button>
+                    <button class="tab-btn" id="tabTwitter" onclick="switchPreview('twitter')">Twitter / X Card</button>
                 </div>
 
-                <h3 style="margin-top:30px; margin-bottom:10px;">Generated HTML Code</h3>
+                <!-- Google SERP Box -->
+                <div id="googleBox" class="preview-box active">
+                    <div class="google-preview">
+                        <div class="g-url">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2FhYSIgZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDIgNi40OCAyIDEzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUzIDIgMTIgMnpbTTEyIDIwYy00LjQxIDAtOC0zLjU5LTgtOHMzLjU5LTggOC04IDggMy41OSA4IDgtMy41OSA4LTggOHoiLz48L3N2Zz4=" alt="icon" id="previewIcon">
+                            <span id="previewUrl">example.com > my-page</span>
+                        </div>
+                        <h3 class="g-title" id="previewTitle">Your Page Title Will Appear Here</h3>
+                        <div class="g-desc" id="previewDesc">Write a compelling meta description in the box to the left. This text helps users decide whether to click on your link from the search engine results page.</div>
+                    </div>
+                </div>
+
+                <!-- Facebook Share Box -->
+                <div id="facebookBox" class="preview-box">
+                    <div class="facebook-preview">
+                        <div class="fb-img-box" id="fbImgContainer">
+                            <span class="fb-no-img">No Image Specified</span>
+                        </div>
+                        <div class="fb-text-box">
+                            <div class="fb-domain" id="fbDomain">example.com</div>
+                            <div class="fb-title" id="fbTitle">Your Shared Page Title</div>
+                            <p class="fb-desc" id="fbDesc">The customized page meta description will automatically scale here to show how your website link formats on Facebook timelines.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Twitter / X Share Box -->
+                <div id="twitterBox" class="preview-box">
+                    <div class="twitter-preview">
+                        <div class="tw-img-box" id="twImgContainer">
+                            <span class="tw-no-img">No Image Specified</span>
+                        </div>
+                        <div class="tw-text-box">
+                            <div class="tw-domain" id="twDomain">example.com</div>
+                            <div class="tw-title" id="twTitle">Your Shared Page Title</div>
+                            <p class="tw-desc" id="twDesc">The customized page meta description will automatically scale here to show how your website link formats on X (Twitter) timelines.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top:30px; margin-bottom:10px; font-size: 16px;">Generated HTML Meta Block</h3>
                 <div class="code-box-wrapper">
-                    <button class="btn-copy" id="copyBtn" onclick="copyCode()">📋 Copy Code</button>
                     <div class="code-box" id="codeOutput">Start typing to generate meta tags...</div>
+                </div>
+                
+                <!-- SEPARATED ACTION BUTTONS (Sesuai Permintaan) -->
+                <div class="output-actions">
+                    <button class="action-btn btn-copy-out" onclick="copyCode()">📋 Copy Meta Tags</button>
+                    <button class="action-btn btn-download-out" onclick="downloadMetaFile()">💾 Download HTML File</button>
                 </div>
             </div>
         </div>
-
-    </div>
-
-    <div style="text-align: center;">
-        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
     </div>
 </div>
 
 <div class="how reveal active">
-    <h2>How to Add Meta Tags to Your Website</h2>
+    <h2>How to Deploy HTML Meta Tags</h2>
     <div class="how-grid">
         <div class="how-card">
             <span>📝</span>
-            <strong>1. Fill Information</strong>
-            <p style="font-size: 14px; color: var(--text-muted, #666);">Enter your title, description, and image URLs. Watch the live preview update instantly.</p>
+            <strong>1. Fill Core Details</strong>
+            <p style="font-size: 14px; color: #666; margin-top: 8px;">Enter your page titles, description limits, and custom assets. Watch the multi-tab live previews update instantly.</p>
         </div>
         <div class="how-card">
             <span>📋</span>
-            <strong>2. Copy Code</strong>
-            <p style="font-size: 14px; color: var(--text-muted, #666);">Click the copy button to grab the fully formatted HTML meta tags.</p>
+            <strong>2. Copy block</strong>
+            <p style="font-size: 14px; color: #666; margin-top: 8px;">Click the Copy button or download the output as a clean, stand-alone `.html` code block.</p>
         </div>
         <div class="how-card">
             <span>💻</span>
-            <strong>3. Paste in Head</strong>
-            <p style="font-size: 14px; color: var(--text-muted, #666);">Paste the code between the <code>&lt;head&gt;</code> and <code>&lt;/head&gt;</code> tags of your website's HTML file.</p>
+            <strong>3. Paste inside Header</strong>
+            <p style="font-size: 14px; color: #666; margin-top: 8px;">Paste the generated code blocks strictly between the <code>&lt;head&gt;</code> and <code>&lt;/head&gt;</code> tags of your HTML file.</p>
         </div>
     </div>
 </div>
 
 <div class="content reveal active">
-    <h2>Why Are SEO Meta Tags Important?</h2>
+    <h2>Why Are Advanced SEO Meta Tags Critical?</h2>
     <p>
-        Meta tags are snippets of text that describe a page's content. They don't appear directly on the page itself, but rather in the page's source code. <strong>OmniTools AI Meta Tag Generator</strong> helps you create the perfect hidden code to communicate with Search Engines.
+        Meta tags are structural text fragments embedded into your page's source code rather than its visible body. Search engines like Google, Yahoo, and Bing read this code to index content categories, while social channels extract it to render sharing cards. <strong>OmniTools AI Meta Tag Generator</strong> ensures your code is fully optimized to maximize your search and social discoverability.
     </p>
-    
-    <h3 style="margin-top: 20px;">The "Big Three" Tags</h3>
-    <ul style="line-height: 1.8; color: var(--text-main, #333);">
-        <li><strong>Title Tag:</strong> The most important SEO tag. It dictates the clickable headline in Google. Aim for around 50-60 characters.</li>
-        <li><strong>Meta Description:</strong> A brief summary of the page. While it doesn't directly impact ranking algorithms, a well-written description dramatically increases your <strong>Click-Through Rate (CTR)</strong>. Aim for 150-160 characters.</li>
-        <li><strong>Open Graph & Twitter Cards:</strong> Without these, sharing your website link on WhatsApp, Facebook, or Twitter will result in a boring, blank link. These tags force social media platforms to display a rich thumbnail image and bold title.</li>
+
+    <h3 style="margin-top: 20px;">The Core Pillar Meta Tags</h3>
+    <p>
+        A professional webpage requires precise tags to maintain structural index integrity across directories:
+    </p>
+    <ul style="line-height: 1.8; color: var(--text-color);">
+        <li><strong>Title Tag:</strong> The single most important SEO parameter. Google reads this to determine search result titles. Keep it under 60 characters to prevent truncation.</li>
+        <li><strong>Meta Description:</strong> A persuasive call-to-action summary. While not a direct ranking algorithm factor, a compelling description boosts click-through rates (CTR). Keep it between 150-160 characters.</li>
+        <li><strong>Open Graph & Twitter Cards:</strong> These protocols ensure sharing your link on Facebook, X, LinkedIn, or Discord displays a rich thumbnail image, domain label, and clean title instead of a generic link.</li>
     </ul>
 
-    <h3 style="margin-top: 20px;">What is the "Robots" Meta Tag?</h3>
+    <h3 style="margin-top: 20px;">Understanding Search Robot Index Directives</h3>
     <p>
-        The robots meta tag tells search engine crawlers (like Googlebot) what they should do with the page. "Index" means they should save it to their database so people can search for it. "Follow" tells them to follow any links on that page to discover more of your content. By default, you almost always want <code>index, follow</code>.
+        The robots directive tag tells search engine crawlers (like Googlebot) what to do with your page. Choosing <code>index, follow</code> instructs them to add your URL to search listings and follow any outbound links. Setting <code>noindex</code> tells them to keep the page hidden from search engines—ideal for private member areas or checkout systems.
     </p>
 </div>
 
-<div class="seo-container" style="margin-top: 50px; border-top: 1px dashed #ccc; padding-top: 30px;">
-    <h3>Boost Your SEO with These Free Tools</h3>
-    <div class="seo-grid">
-        <a href="blog-title-generator.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display:block;">
-            <strong>✍️ Blog Title Generator</strong>
-            <p style="font-size:12px; margin-bottom:0;">Generate click-worthy and SEO-optimized headlines instantly.</p>
-        </a>
-        <a href="similarity-checker.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display:block;">
-            <strong>🔍 Similarity Checker</strong>
-            <p style="font-size:12px; margin-bottom:0;">Compare two documents to avoid duplicate content penalties.</p>
-        </a>
-        <a href="image-to-webp.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display:block;">
-            <strong>🖼️ Image to WebP</strong>
-            <p style="font-size:12px; margin-bottom:0;">Optimize image size to improve Google PageSpeed scores.</p>
-        </a>
+<!-- FAQ Accordion Section (AdSense Value Booster) -->
+<div class="faq-section active">
+    <h2 style="text-align: center; margin-bottom: 25px; margin-top:0;">Frequently Asked Questions (FAQ)</h2>
+    
+    <div class="accordion-item">
+        <div class="accordion-question" onclick="toggleAccordion(this)">
+            What is the difference between Google, Open Graph, and Twitter tags?
+            <span class="accordion-icon">＋</span>
+        </div>
+        <div class="accordion-answer">
+            Standard SEO tags (Title, Description, Keywords) are used specifically by search engine bots like Googlebot. Open Graph tags are a protocol developed by Facebook to optimize how links look on social feeds, and Twitter Cards are X's proprietary format for timeline cards.
+        </div>
     </div>
+
+    <div class="accordion-item">
+        <div class="accordion-question" onclick="toggleAccordion(this)">
+            Where should I paste these generated meta tags?
+            <span class="accordion-icon">＋</span>
+        </div>
+        <div class="accordion-answer">
+            You must paste the generated code block inside the header region of your website's HTML file—between the opening <code>&lt;head&gt;</code> tag and the closing <code>&lt;/head&gt;</code> tag, typically right after your CSS link tags.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-question" onclick="toggleAccordion(this)">
+            Is the SEO Meta Tag Generator free and secure?
+            <span class="accordion-icon">＋</span>
+        </div>
+        <div class="accordion-answer">
+            Yes, OmniTools AI provides this optimization suite 100% free with unlimited generation runs. All calculations and text compiling occur locally inside your browser's RAM, keeping your webpage code completely confidential.
+        </div>
+    </div>
+</div>
+
+<!-- Complete Categorized Directory of OmniTools AI Ecosystem (Internal Linking Optimization) -->
+<div class="directory-section active">
+    <h2 style="margin-top: 0; text-align: center;">Explore OmniTools AI Ecosystem</h2>
+    <p style="text-align: center; font-size: 14px; color: #666; margin-bottom: 30px;">Discover our extensive list of free, fast, and secure developer, creator, and productivity tools.</p>
+    
+    <div class="directory-grid">
+        <!-- Category 1 -->
+        <div class="directory-cat">
+            <h4>📄 PDF & Document Utilities</h4>
+            <ul class="directory-list">
+                <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                <li><a href="txt-to-pdf.html">📄 Plain TXT to PDF</a></li>
+                <li><a href="pdf-to-word.html">📝 PDF to Editable Word</a></li>
+                <li><a href="pdf-to-grayscale.html">🖨️ PDF to Grayscale B&W</a></li>
+                <li><a href="resize-pdf.html">📏 Vector PDF Page Resizer</a></li>
+                <li><a href="password-protect.html">🔒 Password Protect PDF</a></li>
+            </ul>
+        </div>
+
+        <!-- Category 2 -->
+        <div class="directory-cat">
+            <h4>✍️ AI & Content Writing</h4>
+            <ul class="directory-list">
+                <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                <li><a href="similarity-checker.html">🔍 Content Similarity Checker</a></li>
+                <li><a href="email-name-generator.html">📧 Email Name Generator</a></li>
+                <li><a href="blog-name-generator.html">📝 Creative Blog Name Gen</a></li>
+            </ul>
+        </div>
+
+        <!-- Category 3 -->
+        <div class="directory-cat">
+            <h4>🎨 Creative & Branding</h4>
+            <ul class="directory-list">
+                <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                <li><a href="shop-name.html">🛍️ Shop Name Generator</a></li>
+                <li><a href="startup-name.html">🚀 Startup Name Generator</a></li>
+                <li><a href="gaming-name.html">🎮 Gaming Name Generator</a></li>
+                <li><a href="youtube-name-generator.html">📺 YouTube Name Gen</a></li>
+                <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                <li><a href="hashtag-generator.html">#️ Instagram/TikTok Hashtags</a></li>
+                <li><a href="font-generator.html">✨ Fancy Font Generator</a></li>
+            </ul>
+        </div>
+
+        <!-- Category 4 -->
+        <div class="directory-cat">
+            <h4>💻 Developer, SEO & Utility</h4>
+            <ul class="directory-list">
+                <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                <li><a href="website-rank-analyzer.html">📈 Website SEO Rank Analyzer</a></li>
+                <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                <li><a href="password-gen.html">🔑 Secure Cryptographic Pwd</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Beranda</a>
 </div>
 
 <footer>
-    <div class="social">
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="FB"></a>
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="TW"></a>
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="IG"></a>
-        <p style="margin-top: 20px;">
-            <a href="about.html">About</a> |
-            <a href="contact.html">Contact</a> |
-            <a href="privacy-policy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms</a>
-        </p>
-    </div>
     <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
 </footer>
 
+<script src="script.js"></script>
 <script>
-// --- LOGIKA META TAG GENERATOR ---
+// --- LOGIKA UTAMA META TAG GENERATOR ---
+
+// FAQ Accordion Toggle
+function toggleAccordion(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+    const icon = element.querySelector('.accordion-icon');
+    if (item.classList.contains('active')) {
+        icon.textContent = '－';
+    } else {
+        icon.textContent = '＋';
+    }
+}
+
+// Switch Platforms Previews Area
+function switchPreview(platform) {
+    // Reset all tabs & boxes
+    document.getElementById('tabGoogle').classList.remove('active');
+    document.getElementById('tabFacebook').classList.remove('active');
+    document.getElementById('tabTwitter').classList.remove('active');
+
+    document.getElementById('googleBox').classList.remove('active');
+    document.getElementById('facebookBox').classList.remove('active');
+    document.getElementById('twitterBox').classList.remove('active');
+
+    // Activate selected tab & box
+    if (platform === 'google') {
+        document.getElementById('tabGoogle').classList.add('active');
+        document.getElementById('googleBox').classList.add('active');
+    } else if (platform === 'facebook') {
+        document.getElementById('tabFacebook').classList.add('active');
+        document.getElementById('facebookBox').classList.add('active');
+    } else {
+        document.getElementById('tabTwitter').classList.add('active');
+        document.getElementById('twitterBox').classList.add('active');
+    }
+}
 
 function updateCharCount(id, max, countId) {
     const el = document.getElementById(id);
     const countEl = document.getElementById(countId);
     const length = el.value.length;
-    
+
     countEl.innerText = `${length} / ${max}`;
-    
-    // Hapus kelas warna lama
     countEl.classList.remove('count-good', 'count-warn', 'count-danger');
-    
+
     if (length === 0) {
         countEl.style.color = "var(--text-muted)";
     } else if (length <= max) {
         countEl.classList.add('count-good');
     } else if (length <= max + 10) {
-        countEl.classList.add('count-warn'); // Warning sedikit lebih
+        countEl.classList.add('count-warn');
     } else {
-        countEl.classList.add('count-danger'); // Bahaya terpotong Google
+        countEl.classList.add('count-danger');
     }
 }
 
@@ -280,37 +537,74 @@ function updateGooglePreview(title, desc, url) {
     const pTitle = document.getElementById('previewTitle');
     const pDesc = document.getElementById('previewDesc');
     const pUrl = document.getElementById('previewUrl');
-    
-    // Judul
+
     pTitle.innerText = title ? title : "Your Page Title Will Appear Here";
-    
-    // Format URL untuk Preview Google (misal: https://web.com/path jadi web.com > path)
-    if(url) {
+
+    if (url) {
         try {
             const urlObj = new URL(url);
             let displayUrl = urlObj.hostname;
-            if(urlObj.pathname.length > 1) {
+            if (urlObj.pathname.length > 1) {
                 displayUrl += " > " + urlObj.pathname.substring(1).replace(/\//g, " > ");
             }
             pUrl.innerText = displayUrl;
         } catch(e) {
-            pUrl.innerText = url; // Jika URL tidak valid secara format, tampilkan mentah
+            pUrl.innerText = url;
         }
     } else {
         pUrl.innerText = "example.com > my-page";
     }
 
-    // Deskripsi
-    if(desc) {
-        // Simulasi potongan Google (biasanya max 155-160 huruf di desktop)
-        if(desc.length > 160) {
-            pDesc.innerText = desc.substring(0, 157) + "...";
-        } else {
-            pDesc.innerText = desc;
-        }
+    if (desc) {
+        pDesc.innerText = desc.length > 160 ? desc.substring(0, 157) + "..." : desc;
     } else {
         pDesc.innerText = "Write a compelling meta description in the box to the left. This text helps users decide whether to click on your link from the search engine results page.";
     }
+}
+
+function updateSocialCardsPreview(title, desc, url, image) {
+    // 1. Domain Parser
+    let domain = "example.com";
+    if (url) {
+        try {
+            const urlObj = new URL(url);
+            domain = urlObj.hostname;
+        } catch(e) {
+            domain = url;
+        }
+    }
+
+    // 2. Facebook Preview Updates
+    document.getElementById('fbDomain').textContent = domain;
+    document.getElementById('fbTitle').textContent = title ? title : "Your Shared Page Title";
+    document.getElementById('fbDesc').textContent = desc ? desc : "The customized page meta description will automatically scale here to show how your website link formats on Facebook timelines.";
+    
+    const fbImgContainer = document.getElementById('fbImgContainer');
+    if (image) {
+        fbImgContainer.innerHTML = `<img src="${image}" alt="Social Share Preview" onerror="fbImageReset()">`;
+    } else {
+        fbImgContainer.innerHTML = `<span class="fb-no-img">No Image Specified</span>`;
+    }
+
+    // 3. Twitter Preview Updates
+    document.getElementById('twDomain').textContent = domain;
+    document.getElementById('twTitle').textContent = title ? title : "Your Shared Page Title";
+    document.getElementById('twDesc').textContent = desc ? desc : "The customized page meta description will automatically scale here to show how your website link formats on X (Twitter) timelines.";
+    
+    const twImgContainer = document.getElementById('twImgContainer');
+    if (image) {
+        twImgContainer.innerHTML = `<img src="${image}" alt="Social Share Preview" onerror="twImageReset()">`;
+    } else {
+        twImgContainer.innerHTML = `<span class="tw-no-img">No Image Specified</span>`;
+    }
+}
+
+function fbImageReset() {
+    document.getElementById('fbImgContainer').innerHTML = `<span class="fb-no-img" style="color: var(--danger);">⚠️ Invalid Image URL</span>`;
+}
+
+function twImageReset() {
+    document.getElementById('twImgContainer').innerHTML = `<span class="tw-no-img" style="color: var(--danger);">⚠️ Invalid Image URL</span>`;
 }
 
 function escapeHTML(str) {
@@ -339,8 +633,9 @@ function generateTags() {
     const keywords = document.getElementById('metaKeywords').value.trim();
     const robots = document.getElementById('metaRobots').value;
 
-    // 3. Update Visual Google Preview
+    // 3. Update Previews
     updateGooglePreview(title, desc, url);
+    updateSocialCardsPreview(title, desc, url, image);
 
     // 4. Generate HTML String
     let code = `<!-- Primary Meta Tags -->\n`;
@@ -366,52 +661,105 @@ function generateTags() {
     if(image) code += `<meta property="twitter:image" content="${escapeHTML(image)}">\n`;
 
     // 5. Tulis ke output box
-    // Menggunakan textContent agar tag HTML tidak dieksekusi browser, tapi ditampilkan sebagai teks
     document.getElementById('codeOutput').textContent = code;
 }
 
-// Fungsi Custom UI Copy
+// Fungsi Custom Copy (Anti-Browser Alert)
 function copyCode() {
     const codeText = document.getElementById('codeOutput').textContent;
-    if(codeText === "Start typing to generate meta tags...") return;
+    if(codeText === "Start typing to generate meta tags...") {
+        showNotification("Please enter details first!", "danger");
+        return;
+    }
 
-    navigator.clipboard.writeText(codeText).then(() => {
-        const btn = document.getElementById('copyBtn');
-        const originalText = btn.innerText;
-        btn.innerText = '✅ Copied!';
-        btn.style.background = '#28a745';
-        btn.style.borderColor = '#28a745';
-        
-        setTimeout(() => { 
-            btn.innerText = originalText; 
-            btn.style.background = 'rgba(255,255,255,0.1)';
-            btn.style.borderColor = 'rgba(255,255,255,0.2)';
-        }, 2000);
-    });
+    const tempTextArea = document.createElement('textarea');
+    tempTextArea.value = codeText;
+    document.body.appendChild(tempTextArea);
+    tempTextArea.select();
+
+    try {
+        document.execCommand('copy');
+        showNotification("📋 HTML Meta Tags block copied to clipboard!", "success");
+    } catch(err) {
+        console.error('Failed to copy code block: ', err);
+    }
+
+    document.body.removeChild(tempTextArea);
+}
+
+// Fungsi Download Meta file (Separated action - Sesuai Permintaan)
+function downloadMetaFile() {
+    const codeText = document.getElementById('codeOutput').textContent;
+    if(codeText === "Start typing to generate meta tags...") {
+        showNotification("Nothing to download yet!", "danger");
+        return;
+    }
+
+    const blob = new Blob([codeText], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = "OmniTools_Meta_Tags.html";
+    link.click();
+
+    showNotification("💾 Meta tags exported as HTML successfully!", "success");
+}
+
+// Fungsi Notifikasi / Toast Kustom yang Elegan (Anti-Browser Alert)
+function showNotification(message, type = "success") {
+    const oldToast = document.getElementById('omni-toast');
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'omni-toast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '30px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.background = type === 'success' ? '#28a745' : '#dc3545';
+    toast.style.color = '#fff';
+    toast.style.padding = '12px 24px';
+    toast.style.borderRadius = '50px';
+    toast.style.fontSize = '14px';
+    toast.style.fontWeight = '600';
+    toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+    toast.style.zIndex = '9999';
+    toast.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    toast.style.opacity = '0';
+    toast.innerHTML = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+        toast.style.opacity = '1';
+    }, 10);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+    }, 3000);
 }
 
 // Logika Dark Mode
 function toggleDarkMode() {
     const body = document.body;
-    const btn = document.getElementById('darkModeToggle');
-    if (body.classList.contains('dark-mode')) {
-        body.classList.remove('dark-mode');
-        btn.innerHTML = '🌙 Dark Mode';
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
         localStorage.setItem('theme', 'light');
     } else {
-        body.classList.add('dark-mode');
-        btn.innerHTML = '☀️ Light Mode';
+        body.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
     }
 }
 
 // Inisialisasi awal saat pertama dibuka
 document.addEventListener("DOMContentLoaded", function() {
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-        document.getElementById('darkModeToggle').innerHTML = '☀️ Light Mode';
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.body.setAttribute('data-theme', 'dark');
     }
-    generateTags(); // Panggil sekali untuk menampilkan kerangka awal di box
+    generateTags(); // Tampilkan kerangka awal di box
 });
 </script>
 
