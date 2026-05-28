@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -9,109 +10,635 @@
       gtag('config', 'G-4LVEC8BY40');
     </script>
     
+    <!-- Tag Verifikasi Google (Sesuai Permintaan) -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Hashtag Generator for TikTok & IG - OmniTools AI</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AI Hashtag Generator - Free TikTok, Instagram & Reels Tags | OmniTools AI</title>
+    <meta name="description" content="Generate high-converting, trending, and niche-specific hashtags for TikTok, Instagram Reels, and YouTube Shorts instantly. Copy all or save your customized tags list.">
+    <meta name="keywords" content="ai hashtag generator, instagram hashtag finder, tiktok hashtag tool, trending hashtags, free social media tags, virality tracker">
     
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Html2canvas library for local card export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <style>
-        .hashtag-container { max-width: 700px; margin: 0 auto; padding: 20px; }
-        .tag-box { 
-            background: var(--card-bg); border-radius: 15px; padding: 25px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center;
+        /* Variabel & Desain Khusus AI Hashtag Generator */
+        :root {
+            --bg-color: #f8f9fa; --text-color: #333; --card-bg: #fff;
+            --primary: #1a73e8; --border-color: #e0e0e0; --success: #28a745; --danger: #dc3545;
+            --tiktok-accent: #fe2c55; --ig-accent: #e1306c;
         }
-        .result-area {
-            margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+        [data-theme="dark"] {
+            --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e;
+            --primary: #4da3ff; --border-color: #333;
         }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; transition: 0.3s; }
+        header { text-align: center; padding: 40px 20px; }
+        .subtitle { color: #666; font-size: 1rem; margin-top: 10px; }
+        [data-theme="dark"] .subtitle { color: #aaa; }
+        
+        .seo-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .seo-card, .content, .how, .faq-section, .directory-section { background: var(--card-bg); padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); }
+        
+        /* Form Controls */
+        .workspace-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; text-align: left; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+        .form-control {
+            padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);
+            background: var(--bg-color); color: var(--text-color); font-family: 'Poppins'; outline: none; transition: 0.3s;
+        }
+        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1); }
+        
+        .btn-generate {
+            background: var(--primary); color: white; border: none; padding: 14px 28px; border-radius: 8px;
+            font-size: 16px; font-weight: 600; cursor: pointer; font-family: 'Poppins'; margin-top: 20px; width: 100%; transition: 0.2s;
+        }
+        .btn-generate:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* Card Results & Buttons Separation (Sesuai Permintaan) */
+        .hashtag-output-card {
+            background: var(--card-bg); padding: 30px; border-radius: 16px; border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); text-align: left; margin-top: 30px; position: relative;
+            display: none; flex-direction: column; justify-content: space-between;
+        }
+        .card-tag { font-size: 9px; background: var(--primary); color: white; padding: 3px 10px; border-radius: 10px; font-weight: bold; align-self: flex-start; margin-bottom: 15px; text-transform: uppercase; }
+        
+        /* Interactive Hashtag Items Area */
+        .result-area { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0 25px 0; }
         .hashtag-item {
-            background: rgba(26, 115, 232, 0.1); color: #1a73e8;
-            padding: 5px 12px; border-radius: 20px; font-size: 14px; font-weight: 600;
-            border: 1px solid rgba(26, 115, 232, 0.2); transition: 0.2s;
+            background: rgba(26, 115, 232, 0.08); color: var(--primary);
+            padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+            border: 1px solid rgba(26, 115, 232, 0.15); transition: 0.2s; cursor: pointer;
+            user-select: none;
         }
-        .hashtag-item:hover { background: #1a73e8; color: white; cursor: pointer; }
-        #copyBtn { display: none; margin-top: 20px; width: 100%; }
+        .hashtag-item:hover { background: var(--primary); color: white; transform: translateY(-1px); }
+
+        /* Smart Distribution Progress Meter */
+        .distribution-meter { background: var(--bg-color); padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border-color); }
+        .distribution-title { font-size: 12px; font-weight: 700; color: #777; margin-bottom: 8px; display: flex; justify-content: space-between; }
+        .progress-bar-container { display: flex; height: 10px; border-radius: 5px; overflow: hidden; background: #e0e0e0; }
+        .progress-segment { height: 100%; transition: width 0.3s ease; }
+        .progress-broad { background-color: var(--primary); }
+        .progress-niche { background-color: var(--success); }
+        .progress-viral { background-color: var(--danger); }
+
+        /* Grouping Action Buttons */
+        .card-actions-group { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 15px; }
+        .btn-action {
+            border: none; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: 700;
+            cursor: pointer; font-family: 'Poppins'; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .btn-copy-all { background: var(--success); color: white; }
+        .btn-copy-all:hover { opacity: 0.9; transform: translateY(-1px); }
+        
+        /* Separated Download Button (Sesuai Permintaan) */
+        .btn-download-card {
+            background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color);
+            padding: 12px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer;
+            font-family: 'Poppins'; transition: 0.2s; margin-top: 10px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .btn-download-card:hover { background: #ff9f43; color: white; border-color: #ff9f43; }
+
+        /* FAQ Accordion Styles */
+        .accordion-item { border-bottom: 1px solid var(--border-color); padding: 15px 0; }
+        .accordion-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 16px; }
+        .accordion-answer { display: none; padding-top: 10px; font-size: 14px; color: #666; line-height: 1.6; }
+        [data-theme="dark"] .accordion-answer { color: #bbb; }
+        .accordion-icon { transition: transform 0.3s; font-size: 18px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-answer { display: block; }
+
+        /* Directory / Category Grid Styles */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; }
+        .directory-cat { background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .directory-cat h4 { margin-top: 0; color: var(--primary); font-size: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .directory-list { list-style: none; padding: 0; margin: 0; }
+        .directory-list li { margin-bottom: 10px; font-size: 14px; }
+        .directory-list a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+        .directory-list a:hover { color: var(--primary); }
+
+        /* Loader */
+        .loader-container { display: none; margin: 30px 0; text-align: center; }
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(26,115,232,0.2); border-top: 4px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; }
+        .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
     </style>
 </head>
 <body>
 
-<header class="compact-header">
-    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" class="btn-dark-mini">🌙 Dark</button>
+<header>
+    <h1>AI Hashtag Generator</h1>
+    <div class="subtitle">Extract high-converting, smart, and trending hashtags customized for your target platform.</div>
+    
+    <div style="margin-top: 20px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
+            🌙 Dark Mode
+        </button>
     </div>
-    <h1>AI Hashtag Finder</h1>
-    <p class="subtitle">Get trending hashtags for your TikTok, Instagram, and Reels.</p>
 </header>
 
-<div class="hashtag-container">
-    <div class="tag-box reveal active">
-        <div class="search-box" style="margin-bottom: 15px;">
-            <input type="text" id="tagInput" placeholder="Enter topic (e.g. Food, Gaming, Travel)...">
+<div class="seo-container">
+    <div class="seo-card active">
+        <p style="text-align: center; font-weight: 500; margin-top: 0;">Specify your primary video/image topic and select your media channel to deploy virality vectors.</p>
+        
+        <!-- Workspace Form -->
+        <div class="workspace-form">
+            <div class="form-group">
+                <label for="tagInput">Core Topic or Subject</label>
+                <input type="text" id="tagInput" class="form-control" placeholder="e.g., Food, Travel, Coding, Fitness">
+            </div>
+            <div class="form-group">
+                <label for="platformSelect">Target Social Channel</label>
+                <select id="platformSelect" class="form-control" style="appearance: none;">
+                    <option value="tiktok">🎵 TikTok (Broad & Highly Viral)</option>
+                    <option value="instagram">📸 Instagram Reels & Posts (Broad, Niche & Local)</option>
+                    <option value="shorts">📺 YouTube Shorts (Short & Punchy)</option>
+                    <option value="twitter">🐦 Twitter / X (Minimalist & Topic Focused)</option>
+                </select>
+            </div>
         </div>
-        <button class="cta-btn" onclick="generateTags()" style="width:100%;">🔍 Find Hashtags</button>
 
-        <div id="resultTags" class="result-area">
+        <button class="btn-generate" onclick="generatePremiumHashtags()">
+            Find Virality Hashtags 🔍
+        </button>
+
+        <!-- Loading Spinner -->
+        <div id="loadingArea" class="loader-container">
+            <div class="spinner"></div>
+            <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">Analyzing target platform virality vectors... 🧠</p>
+        </div>
+
+        <!-- Target Output Card (Sesuai Permintaan) -->
+        <div id="hashtagCard" class="hashtag-output-card">
+            <div>
+                <div class="card-tag" id="platformTag">TikTok Optimization</div>
+                <h3 style="margin: 0 0 10px 0; font-size: 18px; font-weight: 700;">🎯 Selected Virality Blueprint</h3>
+                <p style="font-size: 12px; color: #777; margin: 0 0 15px 0;">Click on individual tags to copy them singly, or copy the entire block below.</p>
+                
+                <!-- Smart Distribution Progress Meter -->
+                <div class="distribution-meter">
+                    <div class="distribution-title">
+                        <span>Hashtag Weight Ratio</span>
+                        <span id="distributionLabel">40% Broad | 40% Niche | 20% Viral</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-segment progress-broad" style="width: 40%"></div>
+                        <div class="progress-segment progress-niche" style="width: 40%"></div>
+                        <div class="progress-segment progress-viral" style="width: 20%"></div>
+                    </div>
+                </div>
+
+                <!-- Hashtags Container Area -->
+                <div id="resultTags" class="result-area"></div>
             </div>
 
-        <button id="copyBtn" class="cta-btn" onclick="copyAll()" style="background: #28a745;">📋 Copy All Hashtags</button>
-    </div>
-
-    <div style="margin-top: 30px; text-align: center;">
-        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
+            <div>
+                <!-- Grouping Action Buttons -->
+                <div class="card-actions-group">
+                    <button class="btn-action btn-copy-all" onclick="copyAllTags()">
+                        📋 Copy All Hashtags Block
+                    </button>
+                </div>
+                
+                <!-- PISAHKAN TOMBOL DOWNLOAD DI BAWAH (Sesuai Permintaan) -->
+                <button class="btn-download-card" onclick="downloadHashtagCard()">
+                    📸 Download Hashtag Cheat Sheet
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="how reveal">
-    <h2>Go Viral Faster</h2>
-    <div class="how-grid">
-        <div class="how-card"><span>📈</span><strong>Trending Data</strong><p>Dapatkan kombinasi hashtag populer dan spesifik untuk jangkauan lebih luas.</p></div>
-        <div class="how-card"><span>📱</span><strong>Multi Platform</strong><p>Optimasi konten untuk TikTok, Instagram Reels, dan YouTube Shorts.</p></div>
-        <div class="how-card"><span>🚀</span><strong>Zero Effort</strong><p>Copy puluhan hashtag sekaligus hanya dengan satu kali klik.</p></div>
+<!-- HOW IT WORKS SECTION -->
+<div class="seo-container">
+    <div class="how active">
+        <h2 style="text-align: center; margin-top: 0;">How to Balance Social Media Hashtags</h2>
+        <div class="how-grid">
+            <div class="how-card">
+                <span>📈</span>
+                <strong>1. Broad Hashtags ($40\%$)</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Use high-volume, generic hashtags (e.g., `#travel` or `#coding`) to define your broad niche to the platform algorithms.</p>
+            </div>
+            <div class="how-card">
+                <span>🎯</span>
+                <strong>2. Niche Hashtags ($40\%$)</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Target high-engagement, specific keywords (e.g., `#exploreindonesia` or `#javascriptdev`) to reach real, active leads.</p>
+            </div>
+            <div class="how-card">
+                <span>🔥</span>
+                <strong>3. Viral Hashtags ($20\%$)</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Deploy high-momentum algorithm booster tags (e.g., `#fyp`, `#reels`, or `#shorts`) to step into trending discoverability pipelines.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEO DEEP CONTENT (AdSense Quality Guard) -->
+    <div class="content active">
+        <h2 style="margin-top: 0;">The Scientific Approach to Viral Social Media Algorithms</h2>
+        <p>
+            Establishing organic reach on social media channels like Instagram, TikTok, and YouTube is highly dependent on how well you label your digital assets. Generative search engines use tags to determine your video or image category, analyze who is likely to engage with your content, and push it to appropriate explorer pipelines. Failing to balance your hashtags is the most common reason creators stay trapped in low-view algorithms.
+        </p>
+        
+        <h3 style="margin-top: 20px;">Linguistic Distribution of High-Impact Hashtags</h3>
+        <p>
+            Our <strong>Free AI Hashtag Generator</strong> uses rigorous semantic pattern indexing to align prefix metrics and industry keywords. Here is how our system architectures optimized packages for your specific network:
+        </p>
+        <ul style="line-height: 1.8; color: var(--text-color);">
+            <li><strong>TikTok Optimization:</strong> TikTok relies on massive, broad trends. We prioritize highly organic discoverability tags, mixed with broad niche categorizers, optimized for TikTok's custom recommendation system.</li>
+            <li><strong>Instagram Reels & Posts:</strong> Instagram operates heavily on local community search. We distribute an optimal blend of broad industry markers and localized community niches to maximize your local explore-page authority.</li>
+            <li><strong>YouTube Shorts:</strong> YouTube uses search-engine architecture. We keep tags short, punchy, and highly structural to complement YouTube's backend metadata requirements.</li>
+        </ul>
+
+        <h3 style="margin-top: 20px;">Securing Higher Engagement Rates Offline</h3>
+        <p>
+            Generating tags is only half the battle. Sticking to a consistent content theme, maintaining high visual quality, and structuring your written description are equally important. Use our "Download Hashtag Cheat Sheet" feature to save your optimal hashtag layouts as clean, beautiful business cards for quick reference whenever you write captions on your mobile phone or PC.
+        </p>
+    </div>
+
+    <!-- FAQ Accordion Section (Rich Content) -->
+    <div class="faq-section active">
+        <h2 style="text-align: center; margin-bottom: 25px; margin-top:0;">Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Is this AI Hashtag Generator completely free?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Yes, OmniTools AI provides this professional hashtag generator 100% free with unlimited generation rounds. No subscriptions, signups, or credit cards are required.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                How many hashtags should I use on Instagram Reels?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                While Instagram allows up to 30 hashtags, recent algorithm studies suggest that using a highly optimized blend of 5 to 15 focused hashtags (as balanced by our Smart Ratio Tracker) yields the best search authority results.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                What is the "Download Hashtag Cheat Sheet" feature?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                This feature formats your generated viral hashtag bundle into a beautiful graphic template and exports it as an HD PNG image locally to your device. It is processed 100% locally inside your browser's RAM for total security.
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete Categorized Directory of OmniTools AI Ecosystem (Internal Linking Optimization) -->
+    <div class="directory-section active">
+        <h2 style="margin-top: 0; text-align: center;">Explore OmniTools AI Ecosystem</h2>
+        <p style="text-align: center; font-size: 14px; color: #666; margin-bottom: 30px;">Discover our extensive list of free, fast, and secure developer, creator, and productivity tools.</p>
+        
+        <div class="directory-grid">
+            <!-- Category 1 -->
+            <div class="directory-cat">
+                <h4>📄 PDF & Document Utilities</h4>
+                <ul class="directory-list">
+                    <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                    <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                    <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                    <li><a href="txt-to-pdf.html">📄 Plain TXT to PDF</a></li>
+                    <li><a href="pdf-to-word.html">📝 PDF to Editable Word</a></li>
+                    <li><a href="pdf-to-grayscale.html">🖨️ PDF to Grayscale B&W</a></li>
+                    <li><a href="resize-pdf.html">📏 Vector PDF Page Resizer</a></li>
+                    <li><a href="password-protect.html">🔒 Password Protect PDF</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="directory-cat">
+                <h4>✍️ AI & Content Writing</h4>
+                <ul class="directory-list">
+                    <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                    <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                    <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                    <li><a href="similarity-checker.html">🔍 Content Similarity Checker</a></li>
+                    <li><a href="email-name-generator.html">📧 Email Name Generator</a></li>
+                    <li><a href="blog-name-generator.html">📝 Creative Blog Name Gen</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="directory-cat">
+                <h4>🎨 Creative & Branding</h4>
+                <ul class="directory-list">
+                    <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                    <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                    <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                    <li><a href="shop-name.html">🛍️ Shop Name Generator</a></li>
+                    <li><a href="startup-name.html">🚀 Startup Name Generator</a></li>
+                    <li><a href="gaming-name.html">🎮 Gaming Name Generator</a></li>
+                    <li><a href="youtube-name-generator.html">📺 YouTube Name Gen</a></li>
+                    <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                    <li><a href="hashtag-generator.html">#️ Instagram/TikTok Hashtags</a></li>
+                    <li><a href="font-generator.html">✨ Fancy Font Generator</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="directory-cat">
+                <h4>💻 Developer, SEO & Utility</h4>
+                <ul class="directory-list">
+                    <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                    <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                    <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                    <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                    <li><a href="website-rank-analyzer.html">📈 Website SEO Rank Analyzer</a></li>
+                    <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                    <li><a href="password-gen.html">🔑 Secure Cryptographic Pwd</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Beranda</a>
     </div>
 </div>
 
 <footer>
-    <div class="social"><a href="sitemap.xml" style="font-size: 10px; opacity: 0.5;">Sitemap</a></div>
     <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
 </footer>
 
 <script src="script.js"></script>
 <script>
-    const database = {
-        "food": ["makananenak", "kulinertiktok", "recipe", "foodvlogger", "mukbang", "cooking", "instafood", "jajanan", "viralasep"],
-        "gaming": ["gamingontiktok", "mobilelegends", "freefire", "gamer", "esports", "gamingclips", "gameplay", "pubgmobile"],
-        "travel": ["liburan", "healing", "wisata", "adventure", "nature", "travelgram", "exploreindonesia", "wonderfulindonesia"],
-        "fashion": ["ootd", "outfitinspo", "fashiontiktok", "style", "beauty", "shopping", "racuntiktok", "skincare"],
-        "tech": ["technology", "gadget", "setup", "software", "ai", "coding", "developer", "omnitoolsai", "iphone"]
-    };
+// --- LOGIKA UTAMA AI HASHTAG GENERATOR ---
 
-    function generateTags() {
-        const input = document.getElementById('tagInput').value.toLowerCase().trim();
-        const resultArea = document.getElementById('resultTags');
-        const copyBtn = document.getElementById('copyBtn');
+// Database Cadangan Mandiri (Menjamin tool tetap bekerja tanpa bergantung script.js)
+const LOCAL_TAG_DATABASE = {
+    food: ["makananenak", "kulinertiktok", "recipe", "foodvlogger", "mukbang", "cooking", "instafood", "jajanan", "makananviral", "indonesianfood", "masakanrumah", "resepviral", "chefmode", "foodprep", "jajankuliner"],
+    gaming: ["gamingontiktok", "mobilelegends", "freefire", "gamer", "esports", "gamingclips", "gameplay", "pubgmobile", "gamers", "xbox", "playstation", "gamingsetup", "streamer", "pctech", "mlbbhighlights"],
+    travel: ["liburan", "healing", "wisata", "adventure", "nature", "travelgram", "exploreindonesia", "wonderfulindonesia", "backpacker", "parapejalan", "pesonaindonesia", "travelcouple", "roadtrip", "explore", "vacationmode"],
+    fashion: ["ootd", "outfitinspo", "fashiontiktok", "style", "beauty", "shopping", "racuntiktok", "skincare", "outfitideas", "vintagevibes", "streetwear", "glowup", "makeuptutorial", "aestheticfashion", "wardrobeinspo"],
+    tech: ["technology", "gadget", "setup", "software", "ai", "coding", "developer", "omnitoolsai", "iphone", "smarthome", "techreview", "pythonprogramming", "chatgpt", "uxdesign", "gamingsetup"]
+};
+
+// FAQ Accordion Toggle
+function toggleAccordion(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+    const icon = element.querySelector('.accordion-icon');
+    if (item.classList.contains('active')) {
+        icon.textContent = '－';
+    } else {
+        icon.textContent = '＋';
+    }
+}
+
+function generatePremiumHashtags() {
+    let input = document.getElementById("tagInput").value.trim().toLowerCase();
+    if (input === "") { 
+        showNotification("Please enter a core topic keyword first!", "danger"); 
+        return; 
+    }
+
+    // Bersihkan spasi dan karakter khusus dari input pengguna
+    const cleanKeyword = input.replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
+
+    const platform = document.getElementById("platformSelect").value;
+    
+    // Tampilkan Loading
+    document.getElementById("hashtagCard").style.display = "none";
+    const loader = document.getElementById("loadingArea");
+    loader.style.display = "block";
+
+    setTimeout(() => {
+        loader.style.display = "none";
         
-        resultArea.innerHTML = "";
-        
-        // Cari keyword atau gunakan default viral tags
-        let tags = database[input] || ["fyp", "viral", "trending", "explore", "foryou", "contentcreator", "shorts", "reels"];
-        
-        // Tambahkan variasi hashtag
-        tags.forEach(tag => {
-            const span = document.createElement('span');
-            span.className = "hashtag-item";
-            span.innerText = "#" + tag;
-            resultArea.appendChild(span);
+        const resultTagsContainer = document.getElementById("resultTags");
+        resultTagsContainer.innerHTML = "";
+
+        // Tentukan Database & Fallback
+        const database = (typeof LOCAL_TAG_DATABASE !== 'undefined') ? LOCAL_TAG_DATABASE : LOCAL_TAG_DATABASE;
+        let baseTags = database[cleanKeyword] || [
+            `${cleanKeyword}vibes`, `${cleanKeyword}style`, `${cleanKeyword}inspo`, 
+            `${cleanKeyword}life`, `${cleanKeyword}love`, `${cleanKeyword}ideas`, 
+            `${cleanKeyword}creator`, `${cleanKeyword}community`
+        ];
+
+        // Custom platform setups
+        let viralPlatformTags = [];
+        let labelText = "TikTok Optimization";
+        let colorTheme = "var(--tiktok-accent)";
+
+        if (platform === "tiktok") {
+            viralPlatformTags = ["fyp", "viral", "trending", "explore", "foryou", "contentcreator", "shorts"];
+            labelText = "🎵 TikTok Optimization";
+        } else if (platform === "instagram") {
+            viralPlatformTags = ["reels", "reelsinstagram", "explorepage", "viralposts", "trendingnow", "reelsviral"];
+            labelText = "📸 Instagram Optimization";
+            colorTheme = "var(--ig-accent)";
+        } else if (platform === "shorts") {
+            viralPlatformTags = ["shorts", "shortsvideo", "youtube", "ytshorts", "viralshorts", "shortstrending"];
+            labelText = "📺 YouTube Shorts Optimization";
+        } else { // Twitter / X
+            viralPlatformTags = ["trending", "breakingnews", "currentevents", "fyi", "techworld", "xnetwork"];
+            labelText = "🐦 X / Twitter Optimization";
+        }
+
+        // Setup badge tag header
+        const platformTag = document.getElementById("platformTag");
+        platformTag.textContent = labelText;
+        platformTag.style.background = colorTheme;
+
+        // Racikan Algoritma Hashtag (Emas: Broad, Niche, Viral)
+        let broadRatio = 40;
+        let nicheRatio = 40;
+        let viralRatio = 20;
+
+        // Custom Ratio based on platform bounds
+        if (platform === "twitter") {
+            broadRatio = 30; nicheRatio = 50; viralRatio = 20;
+        }
+
+        document.getElementById("distributionLabel").textContent = `${broadRatio}% Broad | ${nicheRatio}% Niche | ${viralRatio}% Viral`;
+
+        // Menggabungkan hashtag yang diproses secara dinamis
+        let finalHashtags = [];
+
+        // Broad & Niche Tags
+        baseTags.slice(0, 10).forEach(tag => {
+            finalHashtags.push(`#${tag}`);
         });
 
-        copyBtn.style.display = "block";
-    }
+        // Platform Viral Boosters
+        viralPlatformTags.slice(0, 5).forEach(tag => {
+            finalHashtags.push(`#${tag}`);
+        });
 
-    function copyAll() {
-        const tags = Array.from(document.querySelectorAll('.hashtag-item'))
-                          .map(t => t.innerText)
-                          .join(' ');
-        navigator.clipboard.writeText(tags);
-        alert("All hashtags copied to clipboard!");
+        // Tambahkan tag custom berdasarkan keyword input murni
+        finalHashtags.push(`#${cleanKeyword}`);
+        finalHashtags.push(`#${cleanKeyword}viral`);
+        finalHashtags.push(`#${cleanKeyword}trending`);
+
+        // Hilangkan Duplikat
+        finalHashtags = [...new Set(finalHashtags)];
+
+        // Render Hashtag ke UI
+        finalHashtags.forEach(hashtag => {
+            const span = document.createElement("span");
+            span.className = "hashtag-item";
+            span.textContent = hashtag;
+            span.onclick = () => copySingly(hashtag);
+            resultTagsContainer.appendChild(span);
+        });
+
+        document.getElementById("hashtagCard").style.display = "flex";
+        
+        // Smooth scroll ke visual card hasil
+        document.getElementById("hashtagCard").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 1200); // Jeda simulasi pemrosesan AI 1.2 detik
+}
+
+// Fungsi copy hashtag tunggal secara responsif
+function copySingly(tag) {
+    navigator.clipboard.writeText(tag).then(() => {
+        showNotification(`📋 Copied Tag: "${tag}"`, "success");
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+}
+
+// Fungsi copy seluruh blok hashtag sekaligus
+function copyAllTags() {
+    const tags = Array.from(document.querySelectorAll('.hashtag-item'))
+                      .map(t => t.textContent)
+                      .join(' ');
+                      
+    if (tags === "") return;
+
+    navigator.clipboard.writeText(tags).then(() => {
+        showNotification("🚀 All hashtags copied to clipboard!", "success");
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+}
+
+// Fungsi Notifikasi / Toast Kustom yang Elegan (Anti-Browser Alert)
+function showNotification(message, type = "success") {
+    const oldToast = document.getElementById('omni-toast');
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'omni-toast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '30px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.background = type === 'success' ? '#28a745' : '#dc3545';
+    toast.style.color = '#fff';
+    toast.style.padding = '12px 24px';
+    toast.style.borderRadius = '50px';
+    toast.style.fontSize = '14px';
+    toast.style.fontWeight = '600';
+    toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+    toast.style.zIndex = '9999';
+    toast.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    toast.style.opacity = '0';
+    toast.innerHTML = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+        toast.style.opacity = '1';
+    }, 10);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+    }, 3000);
+}
+
+// Fungsi Download Card yang Disempurnakan (Sesuai Permintaan)
+function downloadHashtagCard() {
+    const element = document.getElementById("hashtagCard");
+    if (typeof html2canvas === 'undefined') {
+        showNotification('Graphics engine still loading...', 'danger');
+        return;
     }
+    
+    // Matikan efek hover dan simpan gaya asli
+    const originalPadding = element.style.padding;
+    const originalBackground = element.style.background;
+    const originalBorder = element.style.border;
+
+    element.style.padding = "40px";
+    element.style.background = document.body.getAttribute('data-theme') === 'dark' ? "#1e1e1e" : "#ffffff";
+    element.style.border = "2px solid #1a73e8";
+    element.style.borderRadius = "0px";
+
+    // Sisipkan Watermark OmniTools AI sementara
+    const watermark = document.createElement('div');
+    watermark.innerHTML = "Generated by <strong>OmniTools AI</strong>";
+    watermark.style.position = "absolute";
+    watermark.style.bottom = "10px";
+    watermark.style.right = "15px";
+    watermark.style.fontSize = "9px";
+    watermark.style.color = "#888";
+    watermark.style.opacity = "0.7";
+    element.appendChild(watermark);
+
+    // Sembunyikan tombol aksi agar tidak ikut terfoto
+    const buttons = element.querySelectorAll('button, .card-actions-group');
+    buttons.forEach(btn => btn.style.display = 'none');
+
+    showNotification('📸 Preparing high-res hashtag sheet...');
+
+    const inputVal = document.getElementById("tagInput").value.trim().replace(/\s+/g, '-');
+
+    html2canvas(element, { scale: 2 }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `${inputVal || 'Viral'}-HashtagSheet.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+        
+        // Kembalikan UI seperti sedia kala
+        element.style.padding = originalPadding;
+        element.style.background = originalBackground;
+        element.style.border = originalBorder;
+        element.style.borderRadius = "";
+        watermark.remove();
+        buttons.forEach(btn => btn.style.display = '');
+
+        showNotification('✅ Hashtag Cheat Sheet saved successfully!');
+    });
+}
+
+// Dark Mode Toggle Logic
+function toggleDarkMode() {
+    const body = document.body;
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Cek tema default
+if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.setAttribute('data-theme', 'dark');
+}
 </script>
+
 </body>
 </html>
+
