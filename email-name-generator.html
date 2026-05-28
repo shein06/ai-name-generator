@@ -2,172 +2,594 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4LVEC8BY40');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+    
+    <!-- Tag Verifikasi Google (Sesuai Permintaan) -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Name Generator - Creative Blog Ideas</title>
+    <title>Email Name Generator - Free & Professional Username Generator | OmniTools AI</title>
+    <meta name="description" content="Generate professional, creative, and memorable email name ideas instantly. Choose your address style and provider to find the perfect username.">
+    
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Html2canvas library for local card export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        /* Variabel & Desain Khusus Email Name Generator */
+        :root {
+            --bg-color: #f8f9fa; --text-color: #333; --card-bg: #fff;
+            --primary: #1a73e8; --border-color: #e0e0e0; --success: #28a745; --danger: #dc3545;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e;
+            --primary: #4da3ff; --border-color: #333;
+        }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; transition: 0.3s; }
+        header { text-align: center; padding: 40px 20px; }
+        .subtitle { color: #666; font-size: 1rem; margin-top: 10px; }
+        [data-theme="dark"] .subtitle { color: #aaa; }
+        
+        .seo-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .seo-card, .content, .how, .faq-section, .directory-section { background: var(--card-bg); padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); }
+        
+        /* Form Controls */
+        .workspace-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; text-align: left; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+        .form-control {
+            padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);
+            background: var(--bg-color); color: var(--text-color); font-family: 'Poppins'; outline: none; transition: 0.3s;
+        }
+        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1); }
+        
+        .btn-generate {
+            background: var(--primary); color: white; border: none; padding: 14px 28px; border-radius: 8px;
+            font-size: 16px; font-weight: 600; cursor: pointer; font-family: 'Poppins'; margin-top: 20px; width: 100%; transition: 0.2s;
+        }
+        .btn-generate:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* Card Results & Buttons Separation (Sesuai Permintaan) */
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 25px; margin-top: 30px; }
+        .email-card {
+            background: var(--card-bg); padding: 25px; border-radius: 14px; border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); text-align: center; position: relative; transition: 0.3s;
+            display: flex; flex-direction: column; justify-content: space-between; min-height: 250px;
+        }
+        .email-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+        .card-tag { font-size: 9px; background: var(--primary); color: white; padding: 3px 10px; border-radius: 10px; font-weight: bold; align-self: center; margin-bottom: 15px; text-transform: uppercase; }
+        
+        /* Grouping Action Buttons */
+        .card-actions-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 15px; }
+        .btn-action {
+            border: none; padding: 10px; border-radius: 6px; font-size: 12px; font-weight: 600;
+            cursor: pointer; font-family: 'Poppins'; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 4px;
+        }
+        .btn-copy { background: rgba(26, 115, 232, 0.1); color: var(--primary); }
+        .btn-domain { background: rgba(40, 167, 69, 0.1); color: var(--success); }
+        
+        /* Separated Download Button (Sesuai Permintaan) */
+        .btn-download-card {
+            background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color);
+            padding: 10px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;
+            font-family: 'Poppins'; transition: 0.2s; margin-top: 10px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .btn-download-card:hover { background: #ff9f43; color: white; border-color: #ff9f43; }
+
+        /* FAQ Accordion Styles */
+        .accordion-item { border-bottom: 1px solid var(--border-color); padding: 15px 0; }
+        .accordion-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 16px; }
+        .accordion-answer { display: none; padding-top: 10px; font-size: 14px; color: #666; line-height: 1.6; }
+        [data-theme="dark"] .accordion-answer { color: #bbb; }
+        .accordion-icon { transition: transform 0.3s; font-size: 18px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-answer { display: block; }
+
+        /* Directory / Category Grid Styles */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; }
+        .directory-cat { background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .directory-cat h4 { margin-top: 0; color: var(--primary); font-size: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .directory-list { list-style: none; padding: 0; margin: 0; }
+        .directory-list li { margin-bottom: 10px; font-size: 14px; }
+        .directory-list a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+        .directory-list a:hover { color: var(--primary); }
+
+        /* Loader */
+        .loader-container { display: none; margin: 30px 0; text-align: center; }
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(26,115,232,0.2); border-top: 4px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; }
+        .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
+    </style>
 </head>
 <body>
 
 <header>
     <h1>Email Name Generator</h1>
-    <div class="subtitle">Find the perfect name for your new Email</div>
+    <div class="subtitle">Discover structured, professional, and unique usernames for your new personal or business email address.</div>
     
-    <div style="margin-top: 15px;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px;">
+    <div style="margin-top: 20px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
             🌙 Dark Mode
         </button>
     </div>
 </header>
 
 <div class="seo-container">
-    <div class="seo-card reveal">
-        <p>Enter a topic or niche keyword to get creative email name suggestions.</p>
-        <div class="search-container" style="margin-top: 10px;">
-            <div class="search-box">
-                <span class="search-icon">📝</span>
-                <input type="text" id="keyword" placeholder="example: travel, food, tech">
-                <button class="search-btn" onclick="showLoading('result', generateName)">Generate</button>
+    <div class="seo-card active">
+        <p style="text-align: center; font-weight: 500; margin-top: 0;">Input your name or target niche to immediately generate clean and available email configurations.</p>
+        
+        <!-- Workspace Form -->
+        <div class="workspace-form">
+            <div class="form-group">
+                <label for="keyword">Your Name / Topic</label>
+                <input type="text" id="keyword" class="form-control" placeholder="e.g., john.smith, craft, spark">
+            </div>
+            <div class="form-group">
+                <label for="emailStyleSelect">Email Address Style</label>
+                <select id="emailStyleSelect" class="form-control" style="appearance: none;">
+                    <option value="professional">Professional & Formal (john.smith, j.smith)</option>
+                    <option value="creative">Creative & Branding (hello.john, john.creates)</option>
+                    <option value="aesthetic">Aesthetic & Lifestyle (luna.john, dear.john)</option>
+                    <option value="short">Short Corporate (john.co, john.hq)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="domainSelect">Target Mail Provider</label>
+                <select id="domainSelect" class="form-control" style="appearance: none;">
+                    <option value="@gmail.com">@gmail.com</option>
+                    <option value="@outlook.com">@outlook.com</option>
+                    <option value="@yahoo.com">@yahoo.com</option>
+                    <option value="@yourcompany.com">@yourdomain.com (Custom Business)</option>
+                </select>
+            </div>
+        </div>
 
+        <button class="btn-generate" onclick="generatePremiumEmailNames()">
+            Generate Available Email Names 🚀
+        </button>
+
+        <!-- Loading Spinner -->
+        <div id="loadingArea" class="loader-container">
+            <div class="spinner"></div>
+            <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">Analyzing linguistic username models... 🧠</p>
+        </div>
+
+        <!-- Target Grid Results -->
+        <div id="result" class="seo-grid"></div>
+    </div>
+</div>
+
+<!-- HOW IT WORKS SECTION -->
+<div class="seo-container">
+    <div class="how active">
+        <h2 style="text-align: center; margin-top: 0;">How to Architect a Perfect Email Address</h2>
+        <div class="how-grid">
+            <div class="how-card">
+                <span>🛡️</span>
+                <strong>1. Credibility Structure</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Ensure your business emails use a dot-separated structure of your real names, establishing trust with clients.</p>
+            </div>
+            <div class="how-card">
+                <span>⚡</span>
+                <strong>2. Minimalist Length</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Keep usernames short. Avoid excessive numbers or symbols that might flag your address as potential spam.</p>
+            </div>
+            <div class="how-card">
+                <span>✨</span>
+                <strong>3. Purpose Driven Style</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Differentiate between your formal corporate operations and aesthetic personal setups with our targeted styles.</p>
             </div>
         </div>
     </div>
 
-    <div id="result" class="seo-grid"></div>
+    <!-- SEO DEEP CONTENT (AdSense Quality Guard) -->
+    <div class="content active">
+        <h2 style="margin-top: 0;">The Psychology & Design of Professional Email Addresses</h2>
+        <p>
+            Your email address is often the very first point of contact in digital communications. Whether you are sending a job application, closing an enterprise contract, or launching a brand newsletter, your email handle sets an immediate tone. Using an unprofessional, complicated, or confusing email name can severely impact your deliverability rates and professional reputation.
+        </p>
+        
+        <h3 style="margin-top: 20px;">Linguistic Best Practices for Professional Emails</h3>
+        <p>
+            Our <strong>Free Email Name Generator</strong> utilizes a tailored algorithmic filter to output addresses based on recognized formal and creative naming templates:
+        </p>
+        <ul style="line-height: 1.8; color: var(--text-color);">
+            <li><strong>The Classical Divider:</strong> Separating your first name and last name with a dot (e.g., `john.smith`) is the gold standard for global business relations.</li>
+            <li><strong>The Action Prefix:</strong> Adding welcoming words or active roles (e.g., `hello.john` or `john.writes`) to humanize your creative brand's outreach.</li>
+            <li><strong>Corporate Suffix Framing:</strong> Combining your name with short, prestigious suffixes (e.g., `john.hq` or `john.co`) to give a modern startup feel even to standard addresses.</li>
+        </ul>
 
-    <div style="margin-top: 30px; text-align: center;">
-        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
+        <h3 style="margin-top: 20px;">Why Having a Custom Domain Email Matters</h3>
+        <p>
+            While `@gmail.com` is incredible for personal accounts, registering a custom corporate domain (e.g., `john@brand.com`) elevates your enterprise's perceived authority instantly. If you choose a custom business domain, use our "Check Domain" tool to verify and secure the associated `.com` domain on Namecheap before someone else registers it.
+        </p>
     </div>
-</div>
 
-<div class="how reveal">
-    <h2>How to Pick a Great Blog Name</h2>
-    <div class="how-grid">
-        <div class="how-card">
-            <span>📖</span>
-            <strong>Reflect Your Niche</strong>
-            <p>Make sure people know what you're writing about just by reading the name.</p>
+    <!-- FAQ Accordion Section (Rich Content) -->
+    <div class="faq-section active">
+        <h2 style="text-align: center; margin-bottom: 25px; margin-top:0;">Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Is this Email Name Generator free to use?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Yes, OmniTools AI provides this professional username architect 100% free with unlimited generation rounds. No registration or credit cards are required.
+            </div>
         </div>
-        <div class="how-card">
-            <span>🗣️</span>
-            <strong>Easy to Pronounce</strong>
-            <p>Avoid complicated words. A simple name is easier for readers to share.</p>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Why should I avoid using numbers in my professional email name?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Adding random numbers (like `john199347@gmail.com`) can look unprofessional and, in worst-case scenarios, make your account resemble automated spam bots, increasing the risk of your emails landing in recipients' junk folders.
+            </div>
         </div>
-        <div class="how-card">
-            <span>✨</span>
-            <strong>Stay Original</strong>
-            <p>Try to stand out from other bloggers in your specific category.</p>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                What does the "Check Domain" button do?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Since having a custom business email requires an active domain, our "Domain" button redirects you safely to Namecheap to check if your generated username can be turned into a fully custom brand domain.
+            </div>
         </div>
     </div>
-</div>
 
-<div class="content reveal">
-    <h2>Free AI Blog Name Generator for Every Niche</h2>
-    <p>
-        Starting a blog is exciting, but finding the right name can be a challenge. Our <strong>Blog Name Generator</strong> is designed to provide you with instant inspiration. Whether you are starting a lifestyle blog, a technical journal, or a travel diary, our AI tool helps you find names that are catchy and memorable.
-    </p>
-    <p>
-        Simply enter a keyword that describes your blog's focus, and we will generate 10 unique combinations for you.
-    </p>
-</div>
-<div class="seo-container" style="margin-top: 50px; border-top: 1px dashed #ccc; padding-top: 30px;">
-    <h3>Other AI Generators You Might Like</h3>
-    <div class="seo-grid">
-        <a href="startup-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
-            <strong>🚀 Startup Name</strong>
-            <p style="font-size:12px;">Innovative ideas for tech ventures.</p>
-        </a>
-        <a href="gaming-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
-            <strong>🎮 Gaming Name</strong>
-            <p style="font-size:12px;">Cool tags for your gaming profile.</p>
-        </a>
-        <a href="youtube-name-generator.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
-            <strong>📺 YouTube Name</strong>
-            <p style="font-size:12px;">Catchy names for your channel.</p>
-        </a>
+    <!-- Complete Categorized Directory of OmniTools AI Ecosystem (Internal Linking Optimization) -->
+    <div class="directory-section active">
+        <h2 style="margin-top: 0; text-align: center;">Explore OmniTools AI Ecosystem</h2>
+        <p style="text-align: center; font-size: 14px; color: #666; margin-bottom: 30px;">Discover our extensive list of free, fast, and secure developer, creator, and productivity tools.</p>
+        
+        <div class="directory-grid">
+            <!-- Category 1 -->
+            <div class="directory-cat">
+                <h4>📄 PDF & Document Utilities</h4>
+                <ul class="directory-list">
+                    <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                    <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                    <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                    <li><a href="txt-to-pdf.html">📄 Plain TXT to PDF</a></li>
+                    <li><a href="pdf-to-word.html">📝 PDF to Editable Word</a></li>
+                    <li><a href="pdf-to-grayscale.html">🖨️ PDF to Grayscale B&W</a></li>
+                    <li><a href="resize-pdf.html">📏 Vector PDF Page Resizer</a></li>
+                    <li><a href="password-protect.html">🔒 Password Protect PDF</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="directory-cat">
+                <h4>✍️ AI & Content Writing</h4>
+                <ul class="directory-list">
+                    <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                    <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                    <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                    <li><a href="similarity-checker.html">🔍 Content Similarity Checker</a></li>
+                    <li><a href="email-name-generator.html">📧 Email Name Generator</a></li>
+                    <li><a href="blog-name-generator.html">📝 Creative Blog Name Gen</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="directory-cat">
+                <h4>🎨 Creative & Branding</h4>
+                <ul class="directory-list">
+                    <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                    <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                    <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                    <li><a href="shop-name.html">🛍️ Shop Name Generator</a></li>
+                    <li><a href="startup-name.html">🚀 Startup Name Generator</a></li>
+                    <li><a href="gaming-name.html">🎮 Gaming Name Generator</a></li>
+                    <li><a href="youtube-name-generator.html">📺 YouTube Name Gen</a></li>
+                    <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                    <li><a href="hashtag-generator.html">#️ Instagram/TikTok Hashtags</a></li>
+                    <li><a href="font-generator.html">✨ Fancy Font Generator</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="directory-cat">
+                <h4>💻 Developer, SEO & Utility</h4>
+                <ul class="directory-list">
+                    <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                    <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                    <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                    <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                    <li><a href="website-rank-analyzer.html">📈 Website SEO Rank Analyzer</a></li>
+                    <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                    <li><a href="password-gen.html">🔑 Secure Cryptographic Pwd</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Beranda</a>
     </div>
 </div>
 
 <footer>
-    <div class="social">
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="FB"></a>
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="TW"></a>
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="IG"></a>
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YT"></a>
-        <p>
-            <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms</a>
-        </p>
-    </div>
     <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
 </footer>
 
 <script src="script.js"></script>
-
 <script>
-// --- 5. EDIT LOGIKA GENERATOR DI SINI SAJA ---
-function generateName() {
-    const keyword = document.getElementById("keyword").value;
-    if (keyword === "") { 
-        alert("Please enter a keyword"); 
+// --- LOGIKA UTAMA EMAIL NAME GENERATOR ---
+
+// Database Cadangan Mandiri (Menjamin tool tetap bekerja tanpa bergantung script.js)
+const LOCAL_EMAIL_DATABASE = {
+    professional: ["contact", "hello", "office", "admin", "solutions", "partners", "team", "support", "media", "careers"],
+    creative: ["creates", "studio", "designs", "works", "stories", "concept", "writes", "lens", "visuals", "dev"],
+    aesthetic: ["luna", "sora", "hana", "dear", "daily", "pure", "soft", "muse", "aura", "ethos"],
+    short: ["co", "hq", "biz", "inc", "ltd", "corp", "hub", "sys", "net", "web"]
+};
+
+// FAQ Accordion Toggle
+function toggleAccordion(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+    const icon = element.querySelector('.accordion-icon');
+    if (item.classList.contains('active')) {
+        icon.textContent = '－';
+    } else {
+        icon.textContent = '＋';
+    }
+}
+
+function generatePremiumEmailNames() {
+    let keywordInput = document.getElementById("keyword").value.trim();
+    if (keywordInput === "") { 
+        showNotification("Please enter a name or topic keyword first!", "danger"); 
         return; 
     }
 
-    // Memanggil loading (Pastikan fungsi showLoading ada di script.js)
-    showLoading('result', function() {
+    // Ubah ke format huruf kecil dan ganti spasi dengan titik demi kesesuaian format alamat email realistis
+    let keyword = keywordInput.toLowerCase().replace(/\s+/g, '.').replace(/[^a-z0-9.]/g, '');
+
+    const style = document.getElementById("emailStyleSelect").value;
+    const domain = document.getElementById("domainSelect").value;
+    const db = (typeof AI_DATABASE !== 'undefined') ? AI_DATABASE : LOCAL_EMAIL_DATABASE;
+    
+    // Tampilkan Loading
+    document.getElementById("result").innerHTML = "";
+    const loader = document.getElementById("loadingArea");
+    loader.style.display = "block";
+
+    setTimeout(() => {
+        loader.style.display = "none";
         let output = "";
-        
-        for (let i = 0; i < 10; i++) {
+
+        // Daftar nama belakang realistis untuk fallback mode profesional
+        const surnames = ["smith", "jones", "williams", "brown", "davis", "miller", "wilson", "moore", "taylor", "anderson"];
+
+        // Menghasilkan 9 nama email premium
+        for (let i = 0; i < 9; i++) {
             const idUnik = "card-" + i;
-            const aiScore = Math.floor(Math.random() * 15) + 84;
+            const aiScore = Math.floor(Math.random() * 12) + 88; // Score (88% - 99%)
+            
+            let emailPrefix = "";
 
-            // --- BAGIAN YANG BISA KAMU UBAH SESUAI HALAMAN ---
-            // Pilih kategori: modern, business, tech, creative, atau aesthetic
-            const w1 = AI_DATABASE.business[Math.floor(Math.random() * AI_DATABASE.modern.length)];
-            const w2 = AI_DATABASE.aesthetic[Math.floor(Math.random() * AI_DATABASE.tech.length)];
-            // ------------------------------------------------
+            if (style === "professional") {
+                const surname = surnames[Math.floor(Math.random() * surnames.length)];
+                const prefixes = [
+                    `${keyword}.${surname}`,
+                    `${keyword.charAt(0)}.${surname}`,
+                    `contact.${keyword}`,
+                    `office.${keyword}`,
+                    `${keyword}.partners`,
+                    `${keyword}.solutions`
+                ];
+                emailPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            } else if (style === "creative") {
+                const suffixList = db.creative || LOCAL_EMAIL_DATABASE.creative;
+                const suffix = suffixList[Math.floor(Math.random() * suffixList.length)];
+                const prefixes = [
+                    `hello.${keyword}`,
+                    `${keyword}.${suffix}`,
+                    `${keyword}.studio`,
+                    `creates.${keyword}`,
+                    `${keyword}.designs`,
+                    `write.${keyword}`
+                ];
+                emailPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            } else if (style === "aesthetic") {
+                const aestheticList = db.aesthetic || LOCAL_EMAIL_DATABASE.aesthetic;
+                const aestheticWord = aestheticList[Math.floor(Math.random() * aestheticList.length)];
+                const prefixes = [
+                    `${aestheticWord}.${keyword}`,
+                    `dear.${keyword}`,
+                    `${keyword}.muse`,
+                    `pure.${keyword}`,
+                    `${keyword}.daily`,
+                    `soft.${keyword}`
+                ];
+                emailPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            } else { // short corporate Suffixes
+                const shortList = LOCAL_EMAIL_DATABASE.short;
+                const shortWord = shortList[Math.floor(Math.random() * shortList.length)];
+                const prefixes = [
+                    `${keyword}.${shortWord}`,
+                    `${keyword}.hq`,
+                    `${keyword}.co`,
+                    `${keyword}.biz`,
+                    `${keyword}.sys`,
+                    `${keyword}.hub`
+                ];
+                emailPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            }
 
-            // Variasi Pola Nama
-            const patterns = [
-                `${w1} ${keyword}`, 
-                `${keyword} ${w2}`, 
-                `${w1}${keyword}`, 
-                `${keyword}${w1}`
-            ];
-            const name = patterns[Math.floor(Math.random() * patterns.length)];
+            // Gabungkan prefix username dengan provider email domain terpilih
+            const fullEmail = `${emailPrefix}${domain}`;
 
-            // Template kartu yang sudah dioptimasi (tetap sinkron dengan CSS kamu)
+            // Template UI Premium dengan Pemisahan Tombol Download Card (Sesuai Permintaan)
             output += `
-                <div class="seo-mini-card reveal active" id="${idUnik}" style="text-align:center; position:relative;">
-                    <span style="font-size:9px; background:#1a73e8; color:white; padding:2px 8px; border-radius:10px; font-weight:bold;">AI OPTIMIZED</span>
-                    <h4 style="margin: 15px 0 5px 0; font-size:20px; letter-spacing:0.5px;">${name}</h4>
-                    <p style="font-size:11px; color:#28a745; margin-bottom:15px;">🧠 AI Confidence: ${aiScore}%</p>
+                <div class="email-card reveal active" id="${idUnik}">
+                    <div>
+                        <div class="card-tag">Format Verified</div>
+                        <h4 style="margin: 5px 0; font-size:18px; letter-spacing:0.2px; line-height:1.4; word-break: break-all; font-family: monospace;">${fullEmail}</h4>
+                        <p style="font-size:11px; color:#28a745; margin-bottom:15px; font-weight:500;">🧠 AI Score: ${aiScore}%</p>
+                    </div>
                     
-                    <div style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
-                        <button class="cta-btn" onclick="copyName('${name}')" style="flex: 1; font-size: 11px; padding: 8px;">📋 Copy</button>
-                        <button class="cta-btn" onclick="checkDomain('${name}')" style="flex: 1; font-size: 11px; background: #28a745; padding: 8px;">🌐 Domain</button>
-                        <button class="cta-btn" onclick="downloadCard('${idUnik}', '${name}')" style="flex: 1; font-size: 11px; background: #ff9f43; padding: 8px;">📸 Save</button>
+                    <div>
+                        <!-- Tombol copy & domain berdampingan -->
+                        <div class="card-actions-group">
+                            <button class="btn-action btn-copy" onclick="copyName('${fullEmail}')">📋 Copy</button>
+                            <button class="btn-action btn-domain" onclick="checkDomain('${keyword}')">🌐 Domain</button>
+                        </div>
+                        
+                        <!-- PISAHKAN TOMBOL DOWNLOAD DI BAWAH (Sesuai Permintaan) -->
+                        <button class="btn-download-card" onclick="downloadCard('${idUnik}', '${fullEmail}')">
+                            📸 Download Email Card
+                        </button>
                     </div>
                 </div>
             `;
         }
         document.getElementById("result").innerHTML = output;
+    }, 1200); // Delay simulasi pemrosesan AI 1.2 detik
+}
+
+// Fungsi copy dengan notifikasi kustom (Anti-Browser Alert)
+function copyName(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showNotification(`📋 Copied email address: "${text}"`, "success");
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
     });
 }
 
+function checkDomain(name) {
+    // Bersihkan nama untuk cek domain kustom
+    const domainName = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const url = `https://www.namecheap.com/domains/registration/results/?domain=${domainName}.com`;
+    window.open(url, '_blank');
+}
 
-function copyName(text) {
-    navigator.clipboard.writeText(text);
-    alert("Copied: " + text);
+// Fungsi Notifikasi / Toast Kustom yang Elegan
+function showNotification(message, type = "success") {
+    const oldToast = document.getElementById('omni-toast');
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'omni-toast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '30px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.background = type === 'success' ? '#28a745' : '#dc3545';
+    toast.style.color = '#fff';
+    toast.style.padding = '12px 24px';
+    toast.style.borderRadius = '50px';
+    toast.style.fontSize = '14px';
+    toast.style.fontWeight = '600';
+    toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+    toast.style.zIndex = '9999';
+    toast.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    toast.style.opacity = '0';
+    toast.innerHTML = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+        toast.style.opacity = '1';
+    }, 10);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+    }, 3000);
+}
+
+// Fungsi Download Card yang Disempurnakan
+function downloadCard(elementId, fileName) {
+    const element = document.getElementById(elementId);
+    if(typeof html2canvas === 'undefined') {
+        showNotification('Graphics engine still loading...', 'danger');
+        return;
+    }
+    
+    // Matikan efek hover dan simpan gaya asli
+    const originalPadding = element.style.padding;
+    const originalBackground = element.style.background;
+    const originalBorder = element.style.border;
+
+    element.style.padding = "40px";
+    element.style.background = document.body.getAttribute('data-theme') === 'dark' ? "#1e1e1e" : "#ffffff";
+    element.style.border = "2px solid #1a73e8";
+    element.style.borderRadius = "0px";
+
+    // Sisipkan Watermark OmniTools AI sementara
+    const watermark = document.createElement('div');
+    watermark.innerHTML = "Generated by <strong>OmniTools AI</strong>";
+    watermark.style.position = "absolute";
+    watermark.style.bottom = "10px";
+    watermark.style.right = "15px";
+    watermark.style.fontSize = "9px";
+    watermark.style.color = "#888";
+    watermark.style.opacity = "0.7";
+    element.appendChild(watermark);
+
+    // Sembunyikan tombol aksi agar tidak ikut terfoto
+    const buttons = element.querySelectorAll('button, .card-actions-group');
+    buttons.forEach(btn => btn.style.display = 'none');
+
+    showNotification('📸 Preparing high-res card graphic...');
+
+    html2canvas(element, { scale: 2 }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = fileName.replace(/@/g, '-at-').replace(/\./g, '-') + '-BrandEmail.png';
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+        
+        // Kembalikan UI seperti sedia kala
+        element.style.padding = originalPadding;
+        element.style.background = originalBackground;
+        element.style.border = originalBorder;
+        element.style.borderRadius = "";
+        watermark.remove();
+        buttons.forEach(btn => btn.style.display = '');
+
+        showNotification('✅ Email graphic saved successfully!');
+    });
+}
+
+// Dark Mode Toggle Logic
+function toggleDarkMode() {
+    const body = document.body;
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Cek tema default
+if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.setAttribute('data-theme', 'dark');
 }
 </script>
 
 </body>
 </html>
+
