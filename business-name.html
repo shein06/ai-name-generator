@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -8,127 +9,534 @@
       gtag('js', new Date());
       gtag('config', 'G-4LVEC8BY40');
     </script>
+    
+    <!-- Tag Verifikasi Google (Sesuai Permintaan) -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Name Generator - AI Tools</title>
+    <title>Business Name Generator - Free & Professional AI Naming Tool | OmniTools AI</title>
+    <meta name="description" content="Generate catchy, high-converting, and available business name ideas instantly. Choose your industry niche and let our smart hybrid AI engine build your brand.">
+    
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Html2canvas library for local card export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        /* Variabel & Desain Khusus Business Name Generator */
+        :root {
+            --bg-color: #f8f9fa; --text-color: #333; --card-bg: #fff;
+            --primary: #1a73e8; --border-color: #e0e0e0; --success: #28a745; --danger: #dc3545;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e;
+            --primary: #4da3ff; --border-color: #333;
+        }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; transition: 0.3s; }
+        header { text-align: center; padding: 40px 20px; }
+        .subtitle { color: #666; font-size: 1rem; margin-top: 10px; }
+        [data-theme="dark"] .subtitle { color: #aaa; }
+        
+        .seo-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .seo-card, .content, .how, .faq-section, .directory-section { background: var(--card-bg); padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); }
+        
+        /* Form Controls */
+        .workspace-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; text-align: left; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+        .form-control {
+            padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);
+            background: var(--bg-color); color: var(--text-color); font-family: 'Poppins'; outline: none; transition: 0.3s;
+        }
+        .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1); }
+        
+        .btn-generate {
+            background: var(--primary); color: white; border: none; padding: 14px 28px; border-radius: 8px;
+            font-size: 16px; font-weight: 600; cursor: pointer; font-family: 'Poppins'; margin-top: 20px; width: 100%; transition: 0.2s;
+        }
+        .btn-generate:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* Card Results & Buttons Separation (Sesuai Permintaan) */
+        .seo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 25px; margin-top: 30px; }
+        .biz-card {
+            background: var(--card-bg); padding: 25px; border-radius: 14px; border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); text-align: center; position: relative; transition: 0.3s;
+            display: flex; flex-direction: column; justify-content: space-between; min-height: 250px;
+        }
+        .biz-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+        .card-tag { font-size: 9px; background: var(--primary); color: white; padding: 3px 10px; border-radius: 10px; font-weight: bold; align-self: center; margin-bottom: 15px; text-transform: uppercase; }
+        
+        /* Grouping Action Buttons */
+        .card-actions-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 15px; }
+        .btn-action {
+            border: none; padding: 10px; border-radius: 6px; font-size: 12px; font-weight: 600;
+            cursor: pointer; font-family: 'Poppins'; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 4px;
+        }
+        .btn-copy { background: rgba(26, 115, 232, 0.1); color: var(--primary); }
+        .btn-domain { background: rgba(40, 167, 69, 0.1); color: var(--success); }
+        
+        /* Separated Download Button (Sesuai Permintaan) */
+        .btn-download-card {
+            background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color);
+            padding: 10px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;
+            font-family: 'Poppins'; transition: 0.2s; margin-top: 10px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .btn-download-card:hover { background: #ff9f43; color: white; border-color: #ff9f43; }
+
+        /* FAQ Accordion Styles */
+        .accordion-item { border-bottom: 1px solid var(--border-color); padding: 15px 0; }
+        .accordion-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 16px; }
+        .accordion-answer { display: none; padding-top: 10px; font-size: 14px; color: #666; line-height: 1.6; }
+        [data-theme="dark"] .accordion-answer { color: #bbb; }
+        .accordion-icon { transition: transform 0.3s; font-size: 18px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-answer { display: block; }
+
+        /* Directory / Category Grid Styles */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; }
+        .directory-cat { background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .directory-cat h4 { margin-top: 0; color: var(--primary); font-size: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .directory-list { list-style: none; padding: 0; margin: 0; }
+        .directory-list li { margin-bottom: 10px; font-size: 14px; }
+        .directory-list a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+        .directory-list a:hover { color: var(--primary); }
+
+        /* Loader */
+        .loader-container { display: none; margin: 30px 0; text-align: center; }
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(26,115,232,0.2); border-top: 4px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; }
+        .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
+    </style>
 </head>
 <body>
 
 <header>
-    <div style="text-align: right; max-width: 1000px; margin: 0 auto;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 5px 12px; border-radius: 15px; cursor: pointer; font-size: 12px;">
-            🌙 Dark
-        </button>
-    </div>
     <h1>Business Name Generator</h1>
-    <div class="subtitle">Discover the perfect identity for your next big venture</div>
-
-    <div class="search-container">
-        <div class="search-box">
-            <span class="search-icon">💡</span>
-            <input type="text" id="keyword" placeholder="example: coffee, tech, fashion">
-            <button class="search-btn" onclick="generateName()">Generate</button>
-        </div>
+    <div class="subtitle">Discover the perfect, memorable, and available identity for your next big corporate venture.</div>
+    
+    <div style="margin-top: 20px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
+            🌙 Dark Mode
+        </button>
     </div>
 </header>
 
 <div class="seo-container">
-    <div id="result" class="seo-grid"></div>
+    <div class="seo-card active">
+        <p style="text-align: center; font-weight: 500; margin-top: 0;">Provide a central keyword and select your business style to generate optimized corporate identity packages.</p>
+        
+        <!-- Workspace Form -->
+        <div class="workspace-form">
+            <div class="form-group">
+                <label for="keyword">Core Business Keyword</label>
+                <input type="text" id="keyword" class="form-control" placeholder="e.g., Coffee, Tech, Logistics, Finance">
+            </div>
+            <div class="form-group">
+                <label for="bizNicheSelect">Business Identity Style</label>
+                <select id="bizNicheSelect" class="form-control" style="appearance: none;">
+                    <option value="corporate">Corporate & Structured (Partners, Holdings, Elite)</option>
+                    <option value="modern">Tech & Innovation (Nexalyn, Quantix, Fluxo)</option>
+                    <option value="creative">Creative Studio & Agency (Maison, Artisan, Spark)</option>
+                    <option value="aesthetic">Premium & Luxury Brand (Velvet, Ivory, Sovereign)</option>
+                    <option value="business">Classic Retail & Commerce (Legacy, Global, Synergy)</option>
+                </select>
+            </div>
+        </div>
 
-    <div style="margin-top: 30px; text-align: center;">
-        <a href="index.html" style="color: #1a73e8; text-decoration: none; font-weight: 600;">← Back to Home</a>
+        <button class="btn-generate" onclick="generatePremiumBusinessNames()">
+            Generate Professional Business Names 🚀
+        </button>
+
+        <!-- Loading Spinner -->
+        <div id="loadingArea" class="loader-container">
+            <div class="spinner"></div>
+            <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">Formulating semantic corporate combinations... 🧠</p>
+        </div>
+
+        <!-- Target Grid Results -->
+        <div id="result" class="seo-grid"></div>
     </div>
 </div>
 
-<div class="how reveal">
-    <h2>How to Pick a Great Business Name</h2>
-    <div class="how-grid">
-        <div class="how-card"><span>🔎</span><strong>Enter Keyword</strong><p>Type a word related to your niche.</p></div>
-        <div class="how-card"><span>⚡</span><strong>AI Generation</strong><p>Our hybrid engine creates unique combinations.</p></div>
-        <div class="how-card"><span>📋</span><strong>Save & Use</strong><p>Copy the name or save it as a brand card.</p></div>
+<!-- HOW IT WORKS SECTION -->
+<div class="seo-container">
+    <div class="how active">
+        <h2 style="text-align: center; margin-top: 0;">How to Evaluate a Great Business Name</h2>
+        <div class="how-grid">
+            <div class="how-card">
+                <span>📊</span>
+                <strong>1. Domain Compatibility</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Ensure a clean, hypen-free `.com` domain name is available for registration before making legal business entities.</p>
+            </div>
+            <div class="how-card">
+                <span>🔊</span>
+                <strong>2. Syllable Harmony</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">A great company name should be limited to 2-3 syllables to ensure it rolls off the tongue quickly and is easily memorizable.</p>
+            </div>
+            <div class="how-card">
+                <span>🛡️</span>
+                <strong>3. Trademark Integrity</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Pick structured words or blends that avoid pre-existing global registrations, giving you safe room for future expansion.</p>
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="content reveal">
-    <h2>Professional Business Name Ideas</h2>
-    <p>Finding the right name is the first step toward success. Our <strong>AI Business Name Generator</strong> helps you discover names that are catchy, memorable, and ready for branding.</p>
-</div>
+    <!-- SEO DEEP CONTENT (AdSense Quality Guard) -->
+    <div class="content active">
+        <h2 style="margin-top: 0;">The Scientific Framework Behind Corporate Branding</h2>
+        <p>
+            Launching a successful brand begins with a name that commands authority. A business name is more than a legal title; it is the core anchor of your company's narrative, your central digital touchpoint, and the key search query consumers will use. Establishing a distinctive identity early defines your trajectory toward long-term corporate growth.
+        </p>
+        
+        <h3 style="margin-top: 20px;">Structured Formulas for High-Impact Names</h3>
+        <p>
+            Our <strong>AI Business Name Generator</strong> uses linguistic pattern matching to align prefix metrics and industry keywords. Here are the core architectures used by world-renowned brands:
+        </p>
+        <ul style="line-height: 1.8; color: var(--text-color);">
+            <li><strong>The Compound Method:</strong> Combining two relevant concepts (e.g., *Micro-soft* or *Fed-Ex*) to immediately describe your professional scope in a single, cohesive word.</li>
+            <li><strong>Metaphorical Associations:</strong> Evoking strong imagery (e.g., *Amazon*, *Nike*, or *Oracle*) to build instant emotional connections and branding authority.</li>
+            <li><strong>Structured Suffixing:</strong> Adapting real nouns into active suffixes (e.g., *Veldora Partners* or *Zynapse Holdings*) to imply immediate prestige and scale.</li>
+        </ul>
 
-<div class="seo-container" style="margin-top: 50px; border-top: 1px dashed #ccc; padding-top: 30px;">
-    <h3>Other OmniTools AI You Might Like</h3>
-    <div class="seo-grid">
-        <a href="startup-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
-            <strong>🚀 Startup Name</strong>
-            <p style="font-size:12px;">Innovative ideas for tech ventures.</p>
-        </a>
-        <a href="gaming-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
-            <strong>🎮 Gaming Name</strong>
-            <p style="font-size:12px;">Cool tags for your gaming profile.</p>
-        </a>
-        <a href="brand-name.html" class="seo-mini-card" style="text-decoration:none; color:inherit;">
-            <strong>✨ Brand Name</strong>
-            <p style="font-size:12px;">Create memorable brand identities.</p>
-        </a>
+        <h3 style="margin-top: 20px;">Securing Your Brand's Digital Real Estate</h3>
+        <p>
+            A perfect company name is only useful if it belongs to you online. We highly recommend obtaining the `.com` extension of your chosen business name. Sites running under `.com` enjoy spontaneous global trust, making it vastly easier to attract international clients and boost organic SEO authority. Use our "Domain" button to search and secure yours instantly.
+        </p>
+    </div>
+
+    <!-- FAQ Accordion Section (Rich Content) -->
+    <div class="faq-section active">
+        <h2 style="text-align: center; margin-bottom: 25px; margin-top:0;">Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Is this Business Name Generator free to use?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Yes, OmniTools AI provides this professional naming workspace 100% free with unlimited generation rounds. No signup or credit cards are ever required.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Does checking the domain availability cost anything?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Checking availability is entirely free. The "Domain" button safely directs you to Namecheap's direct query API, showing you purchase paths with no added lookup markups.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                What is the "Download Brand Card" feature?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                This feature styles the generated name into a high-fidelity business card template and exports it as an HD PNG image locally to your device. It is processed 100% locally inside your browser's RAM for total security.
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete Categorized Directory of OmniTools AI Ecosystem (Internal Linking Optimization) -->
+    <div class="directory-section active">
+        <h2 style="margin-top: 0; text-align: center;">Explore OmniTools AI Ecosystem</h2>
+        <p style="text-align: center; font-size: 14px; color: #666; margin-bottom: 30px;">Discover our extensive list of free, fast, and secure developer, creator, and productivity tools.</p>
+        
+        <div class="directory-grid">
+            <!-- Category 1 -->
+            <div class="directory-cat">
+                <h4>📄 PDF & Document Utilities</h4>
+                <ul class="directory-list">
+                    <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                    <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                    <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                    <li><a href="txt-to-pdf.html">📄 Plain TXT to PDF</a></li>
+                    <li><a href="pdf-to-word.html">📝 PDF to Editable Word</a></li>
+                    <li><a href="pdf-to-grayscale.html">🖨️ PDF to Grayscale B&W</a></li>
+                    <li><a href="resize-pdf.html">📏 Vector PDF Page Resizer</a></li>
+                    <li><a href="password-protect.html">🔒 Password Protect PDF</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="directory-cat">
+                <h4>✍️ AI & Content Writing</h4>
+                <ul class="directory-list">
+                    <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                    <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                    <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                    <li><a href="similarity-checker.html">🔍 Content Similarity Checker</a></li>
+                    <li><a href="email-name-generator.html">📧 Email Name Generator</a></li>
+                    <li><a href="blog-name-generator.html">📝 Creative Blog Name Gen</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="directory-cat">
+                <h4>🎨 Creative & Branding</h4>
+                <ul class="directory-list">
+                    <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                    <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                    <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                    <li><a href="shop-name.html">🛍️ Shop Name Generator</a></li>
+                    <li><a href="startup-name.html">🚀 Startup Name Generator</a></li>
+                    <li><a href="gaming-name.html">🎮 Gaming Name Generator</a></li>
+                    <li><a href="youtube-name-generator.html">📺 YouTube Name Gen</a></li>
+                    <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                    <li><a href="hashtag-generator.html">#️ Instagram/TikTok Hashtags</a></li>
+                    <li><a href="font-generator.html">✨ Fancy Font Generator</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="directory-cat">
+                <h4>💻 Developer, SEO & Utility</h4>
+                <ul class="directory-list">
+                    <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                    <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                    <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                    <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                    <li><a href="website-rank-analyzer.html">📈 Website SEO Rank Analyzer</a></li>
+                    <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                    <li><a href="password-gen.html">🔑 Secure Cryptographic Pwd</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Beranda</a>
     </div>
 </div>
 
 <footer>
-    <div class="social">
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="FB"></a>
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="TW"></a>
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="IG"></a>
-        <a href="#"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YT"></a>
-        <p>
-            <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms</a>
-        </p>
-    </div>
     <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
 </footer>
 
 <script src="script.js"></script>
-
 <script>
-function generateName() {
-    const keyword = document.getElementById("keyword").value;
-    if (keyword === "") { alert("Please enter a keyword"); return; }
+// --- LOGIKA UTAMA BUSINESS NAME GENERATOR ---
 
-    showLoading('result', function() {
+// Database Cadangan Mandiri (Menjamin tool tetap bekerja tanpa bergantung script.js)
+const LOCAL_BIZ_DATABASE = {
+    corporate: ["Capital", "Equity", "Partners", "Holdings", "Ventures", "Synergy", "Global", "Bridge", "Alliance", "Prime", "Elite", "Summit", "Vision", "Legacy", "Core"],
+    modern: ["Zynapse", "Nexalyn", "Aetheris", "Veldora", "Quantix", "Omnith", "Krytos", "Elovate", "Ionix", "Synthetix", "Fluxo", "Zenith", "Apex", "Lyra", "Kinetix"],
+    creative: ["Studio", "Maison", "Concept", "Muse", "Aura", "Craft", "Design", "Vibe", "Flow", "Story", "Artisan", "Canvas", "Bloom", "Echo", "Spark"],
+    aesthetic: ["Luna", "Sora", "Hana", "Mochi", "Aura", "Cloud", "Dear", "Sweet", "Daily", "Pure", "Soft", "Vibe", "Muse", "Ethos", "Nara"],
+    business: ["Capital", "Equity", "Partners", "Holdings", "Ventures", "Synergy", "Global", "Bridge", "Alliance", "Prime", "Elite", "Summit", "Vision", "Legacy", "Core"]
+};
+
+// FAQ Accordion Toggle
+function toggleAccordion(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+    const icon = element.querySelector('.accordion-icon');
+    if (item.classList.contains('active')) {
+        icon.textContent = '－';
+    } else {
+        icon.textContent = '＋';
+    }
+}
+
+function generatePremiumBusinessNames() {
+    let keyword = document.getElementById("keyword").value.trim();
+    if (keyword === "") { 
+        showNotification("Please enter a core keyword first!", "danger"); 
+        return; 
+    }
+
+    // Ubah ke format Title Case agar rapi
+    keyword = keyword.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+    const niche = document.getElementById("bizNicheSelect").value;
+    const db = (typeof AI_DATABASE !== 'undefined') ? AI_DATABASE : LOCAL_BIZ_DATABASE;
+    
+    // Tampilkan Loading
+    document.getElementById("result").innerHTML = "";
+    const loader = document.getElementById("loadingArea");
+    loader.style.display = "block";
+
+    setTimeout(() => {
+        loader.style.display = "none";
         let output = "";
-        
-        for (let i = 0; i < 10; i++) {
-            const idUnik = "biz-card-" + i;
-            const aiScore = Math.floor(Math.random() * 15) + 84;
 
-            // Database Khusus Bisnis: Business + Modern
-            const word1 = AI_DATABASE.business[Math.floor(Math.random() * AI_DATABASE.business.length)];
-            const word2 = AI_DATABASE.modern[Math.floor(Math.random() * AI_DATABASE.modern.length)];
-            
+        // Menghasilkan 9 nama bisnis premium
+        for (let i = 0; i < 9; i++) {
+            const idUnik = "biz-card-" + i;
+            const aiScore = Math.floor(Math.random() * 12) + 88; // Business AI Match Score (88% - 99%)
+
+            // Mengambil kata acak berdasarkan niche terpilih
+            const wordList = db[niche] || db.corporate;
+            const word1 = wordList[Math.floor(Math.random() * wordList.length)];
+            const word2 = db.creative[Math.floor(Math.random() * db.creative.length)];
+
+            // Variasi Pola Penamaan Bisnis
             const patterns = [
                 `${word1} ${keyword}`, 
                 `${keyword} ${word2}`, 
-                `${word1}${keyword}`, 
-                `${keyword} ${word1}`
+                `${keyword} ${word1}`, 
+                `${word1}${keyword}`,
+                `${keyword} ${word1} Group`,
+                `${word1} & ${keyword}`
             ];
             const name = patterns[Math.floor(Math.random() * patterns.length)];
 
+            // Template UI Premium dengan Pemisahan Tombol Download Card (Sesuai Permintaan)
             output += `
-                <div class="seo-mini-card reveal active" id="${idUnik}" style="text-align:center; position:relative;">
-                    <span style="font-size:9px; background:#1a73e8; color:white; padding:2px 8px; border-radius:10px; font-weight:bold;">AI OPTIMIZED</span>
-                    <h4 style="margin: 15px 0 5px 0; font-size:20px; letter-spacing:0.5px;">${name}</h4>
-                    <p style="font-size:11px; color:#28a745; margin-bottom:15px;">🧠 AI Confidence: ${aiScore}%</p>
+                <div class="biz-card reveal active" id="${idUnik}">
+                    <div>
+                        <div class="card-tag">Corporate Class</div>
+                        <h4 style="margin: 5px 0; font-size:20px; letter-spacing:0.2px; line-height:1.4;">${name}</h4>
+                        <p style="font-size:11px; color:#28a745; margin-bottom:15px; font-weight:500;">🧠 AI Brand Strength: ${aiScore}%</p>
+                    </div>
                     
-                    <div style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
-                        <button class="cta-btn" onclick="copyName('${name}')" style="flex: 1; font-size: 11px; padding: 8px;">📋 Copy</button>
-                        <button class="cta-btn" onclick="checkDomain('${name}')" style="flex: 1; font-size: 11px; background: #28a745; padding: 8px;">🌐 Domain</button>
-                        <button class="cta-btn" onclick="downloadCard('${idUnik}', '${name}')" style="flex: 1; font-size: 11px; background: #ff9f43; padding: 8px;">📸 Save</button>
+                    <div>
+                        <!-- Tombol copy & domain berdampingan -->
+                        <div class="card-actions-group">
+                            <button class="btn-action btn-copy" onclick="copyName('${name}')">📋 Copy</button>
+                            <button class="btn-action btn-domain" onclick="checkDomain('${name}')">🌐 Domain</button>
+                        </div>
+                        
+                        <!-- PISAHKAN TOMBOL DOWNLOAD DI BAWAH (Sesuai Permintaan) -->
+                        <button class="btn-download-card" onclick="downloadCard('${idUnik}', '${name}')">
+                            📸 Download Brand Card
+                        </button>
                     </div>
                 </div>
             `;
         }
         document.getElementById("result").innerHTML = output;
+    }, 1200); // Delay simulasi pemrosesan AI 1.2 detik
+}
+
+// Fungsi copy dengan notifikasi khusus (Anti-Browser Alert)
+function copyName(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showNotification(`📋 Copied to clipboard: "${text}"`, "success");
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
     });
+}
+
+function checkDomain(name) {
+    const domainName = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const url = `https://www.namecheap.com/domains/registration/results/?domain=${domainName}.com`;
+    window.open(url, '_blank');
+}
+
+// Fungsi Notifikasi / Toast Kustom yang Elegan
+function showNotification(message, type = "success") {
+    const oldToast = document.getElementById('omni-toast');
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'omni-toast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '30px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.background = type === 'success' ? '#28a745' : '#dc3545';
+    toast.style.color = '#fff';
+    toast.style.padding = '12px 24px';
+    toast.style.borderRadius = '50px';
+    toast.style.fontSize = '14px';
+    toast.style.fontWeight = '600';
+    toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+    toast.style.zIndex = '9999';
+    toast.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    toast.style.opacity = '0';
+    toast.innerHTML = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+        toast.style.opacity = '1';
+    }, 10);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+    }, 3000);
+}
+
+// Fungsi Download Card yang Disempurnakan
+function downloadCard(elementId, fileName) {
+    const element = document.getElementById(elementId);
+    if(typeof html2canvas === 'undefined') {
+        showNotification('Graphics engine still loading...', 'danger');
+        return;
+    }
+    
+    // Matikan efek hover dan simpan gaya asli
+    const originalPadding = element.style.padding;
+    const originalBackground = element.style.background;
+    const originalBorder = element.style.border;
+
+    element.style.padding = "40px";
+    element.style.background = document.body.getAttribute('data-theme') === 'dark' ? "#1e1e1e" : "#ffffff";
+    element.style.border = "2px solid #1a73e8";
+    element.style.borderRadius = "0px";
+
+    // Sisipkan Watermark OmniTools AI sementara
+    const watermark = document.createElement('div');
+    watermark.innerHTML = "Generated by <strong>OmniTools AI</strong>";
+    watermark.style.position = "absolute";
+    watermark.style.bottom = "10px";
+    watermark.style.right = "15px";
+    watermark.style.fontSize = "9px";
+    watermark.style.color = "#888";
+    watermark.style.opacity = "0.7";
+    element.appendChild(watermark);
+
+    // Sembunyikan tombol aksi agar tidak ikut terfoto
+    const buttons = element.querySelectorAll('button, .card-actions-group');
+    buttons.forEach(btn => btn.style.display = 'none');
+
+    showNotification('📸 Preparing high-res brand graphic...');
+
+    html2canvas(element, { scale: 2 }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = fileName.replace(/\s+/g, '-') + '-BusinessConcept.png';
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+        
+        // Kembalikan UI seperti sedia kala
+        element.style.padding = originalPadding;
+        element.style.background = originalBackground;
+        element.style.border = originalBorder;
+        element.style.borderRadius = "";
+        watermark.remove();
+        buttons.forEach(btn => btn.style.display = '');
+
+        showNotification('✅ Brand graphic saved successfully!');
+    });
+}
+
+// Dark Mode Toggle Logic
+function toggleDarkMode() {
+    const body = document.body;
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Cek tema default
+if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.setAttribute('data-theme', 'dark');
 }
 </script>
 
