@@ -10,57 +10,90 @@
       gtag('config', 'G-4LVEC8BY40');
     </script>
     
-    <!-- Tag Verifikasi Google -->
+    <!-- Tag Verifikasi Google (Sesuai Permintaan) -->
     <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pinterest Video Downloader - Download MP4 Free | OmniTools AI</title>
     <meta name="description" content="Download Pinterest videos, stories, and images in high quality (MP4/JPG) for free. Fast, secure, and 100% online.">
+    <meta name="keywords" content="pinterest video downloader, download pinterest video, pin downloader, save pinterest video, pinterest mp4 downloader, free pin saver">
     
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* Gaya Khusus Tool Downloader */
-        .downloader-box {
-            background: var(--bg-card, #fff); padding: 40px 30px; border-radius: 16px;
-            box-shadow: var(--shadow-sm, 0 4px 15px rgba(0,0,0,0.05)); border: 1px solid var(--border-color, #eee);
-            margin-bottom: 20px; text-align: center;
+        :root {
+            --bg-color: #f8f9fa; --text-color: #333; --card-bg: #fff;
+            --primary: #1a73e8; --border-color: #e0e0e0; --success: #28a745; --danger: #dc3545;
         }
+        [data-theme="dark"] {
+            --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e;
+            --primary: #4da3ff; --border-color: #333;
+        }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-color); color: var(--text-color); margin: 0; padding: 0; transition: 0.3s; }
+        header { text-align: center; padding: 40px 20px; }
+        .subtitle { color: #666; font-size: 1rem; margin-top: 10px; }
+        [data-theme="dark"] .subtitle { color: #aaa; }
 
-        .input-group { position: relative; max-width: 600px; margin: 0 auto 20px auto; }
+        .seo-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .downloader-box, .content, .how, .faq-section, .directory-section { background: var(--card-bg); padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); text-align: center; }
+
+        .input-group { position: relative; max-width: 650px; margin: 0 auto 20px auto; }
         .input-group input {
-            width: 100%; padding: 16px 20px; border-radius: 50px; border: 2px solid var(--border-color, #eee); 
-            background: var(--bg-main, #fafafa); color: var(--text-main, #222); font-size: 16px; outline: none; font-family: 'Poppins'; box-sizing: border-box;
+            width: 100%; padding: 16px 20px; border-radius: 50px; border: 2px solid var(--border-color); 
+            background: var(--bg-color); color: var(--text-color); font-size: 16px; outline: none; font-family: 'Poppins'; box-sizing: border-box;
             transition: 0.3s;
         }
-        .input-group input:focus { border-color: var(--primary, #1a73e8); box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1); }
-        
-        .btn-main { background: var(--primary, #1a73e8); color: #fff; border: none; padding: 14px 40px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Poppins'; font-size: 16px; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-main:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(26, 115, 232, 0.3); }
+        .input-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1); }
+
+        .btn-main { background: var(--primary); color: #fff; border: none; padding: 14px 40px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Poppins'; font-size: 16px; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-main:hover { opacity: 0.9; transform: translateY(-2px); }
 
         /* Loader */
         .loader-container { display: none; margin: 30px 0; }
-        .spinner { width: 40px; height: 40px; border: 4px solid rgba(26,115,232,0.2); border-top: 4px solid var(--primary, #1a73e8); border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; }
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(26,115,232,0.2); border-top: 4px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Area Hasil */
+        /* Area Hasil (Sesuai Permintaan: Pemisahan Tombol Hasil) */
         .result-area {
-            display: none; background: var(--bg-card, #fff); padding: 30px; border-radius: 16px;
-            box-shadow: var(--shadow-sm, 0 4px 15px rgba(0,0,0,0.05)); border: 1px solid var(--success, #28a745);
-            margin-top: 20px;
+            display: none; background: var(--card-bg); padding: 30px; border-radius: 16px;
+            border: 1px solid var(--success); margin-top: 20px;
         }
         .media-preview {
-            max-width: 300px; margin: 0 auto 20px auto; border-radius: 12px; overflow: hidden;
+            max-width: 320px; margin: 0 auto 20px auto; border-radius: 12px; overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: #000;
         }
         .media-preview video, .media-preview img { width: 100%; display: block; border-radius: 12px; }
-        
-        .btn-download { background: var(--success, #28a745); color: white; padding: 14px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: 16px; transition: 0.3s; }
-        .btn-download:hover { transform: translateY(-2px); opacity: 0.9; box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3); }
 
-        .error-msg { display: none; color: var(--danger, #dc3545); background: rgba(220, 53, 69, 0.1); padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 14px; font-weight: 500; }
+        .btn-download { background: var(--success); color: white; padding: 14px 35px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 15px; font-size: 16px; transition: 0.3s; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); width: 100%; max-width: 400px; box-sizing: border-box; }
+        .btn-download:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        .error-msg { display: none; color: var(--danger); background: rgba(220, 53, 69, 0.08); padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 14px; font-weight: 500; text-align: center; }
+
+        /* FAQ Accordion Styles */
+        .accordion-item { border-bottom: 1px solid var(--border-color); padding: 15px 0; }
+        .accordion-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 16px; text-align: left; }
+        .accordion-answer { display: none; padding-top: 10px; font-size: 14px; color: #666; line-height: 1.6; text-align: left; }
+        [data-theme="dark"] .accordion-answer { color: #bbb; }
+        .accordion-icon { transition: transform 0.3s; font-size: 18px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-answer { display: block; }
+
+        /* Directory / Category Grid Styles */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; }
+        .directory-cat { background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); text-align: left; }
+        .directory-cat h4 { margin-top: 0; color: var(--primary); font-size: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .directory-list { list-style: none; padding: 0; margin: 0; }
+        .directory-list li { margin-bottom: 10px; font-size: 14px; }
+        .directory-list a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+        .directory-list a:hover { color: var(--primary); }
+
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--bg-color); }
+        .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
     </style>
 </head>
 <body>
@@ -68,25 +101,25 @@
 <header>
     <h1>Pinterest Video Downloader</h1>
     <div class="subtitle">Download Pinterest Videos, Stories, and Images in High Quality (MP4).</div>
-    
+
     <div style="margin-top: 20px;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--bg-card, #fff); border: 1px solid var(--border-color, #eee); color: var(--text-main, #333); padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
             🌙 Dark Mode
         </button>
     </div>
 </header>
 
 <div class="seo-container">
-    <div class="downloader-box active">
+    <div class="downloader-box">
         <h2 style="margin-top: 0; font-size: 22px;">Insert Pinterest Link Here</h2>
-        <p style="font-size: 14px; color: var(--text-muted, #666); margin-bottom: 25px;">Paste the URL of the Pin you want to download (e.g., https://pin.it/... or https://pinterest.com/pin/...)</p>
-        
+        <p style="font-size: 14px; color: #777; margin-bottom: 25px;">Paste the URL of the Pin you want to download (e.g., https://pin.it/... or https://pinterest.com/pin/...)</p>
+
         <div class="input-group">
             <input type="url" id="pinUrl" placeholder="Paste link here..." autocomplete="off">
         </div>
-        
+
         <button class="btn-main" onclick="fetchMedia()">
-            <span>🔍 Extract Video</span>
+            <span>🔍 Extract Media</span>
         </button>
 
         <div id="errorMsg" class="error-msg"></div>
@@ -94,34 +127,31 @@
         <!-- Loading Animation -->
         <div id="loadingArea" class="loader-container">
             <div class="spinner"></div>
-            <p style="margin-top: 15px; font-weight: 600; color: var(--primary, #1a73e8);">Bypassing Security & Extracting Media...</p>
-            <p style="font-size: 13px; color: var(--text-muted, #666);" id="loadingStatus">Please wait, checking multiple proxy routes.</p>
+            <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">Bypassing Security & Extracting Media... 🛡️</p>
+            <p style="font-size: 13px; color: #777;" id="loadingStatus">Please wait, checking multiple proxy routes.</p>
         </div>
     </div>
 
-    <!-- Area Hasil (Muncul setelah diekstrak) -->
+    <!-- Area Hasil (Muncul setelah diekstrak - Terpisah Fungsional) -->
     <div id="resultArea" class="result-area">
-        <h3 style="color: var(--success, #28a745); margin-top: 0;">✅ Media Ready to Download!</h3>
-        
+        <h3 style="color: var(--success); margin-top: 0;">✅ Media Ready to Download!</h3>
+
         <div class="media-preview" id="previewContainer">
             <!-- Video atau Gambar akan dimuat di sini oleh JS -->
         </div>
 
+        <!-- Separated Download Button block (Sesuai Permintaan) -->
         <a id="downloadBtn" href="#" target="_blank" class="btn-download">
             ⬇️ Download MP4 File
         </a>
-        
-        <p style="font-size: 12px; color: var(--text-muted, #666); margin-top: 15px;">
+
+        <p style="font-size: 12px; color: #777; margin-top: 15px;">
             *If the video opens in a new tab, click the three dots (⋮) in the corner and select "Download".
         </p>
 
         <div style="margin-top: 25px;">
-            <button onclick="resetTool()" style="background: transparent; border: none; color: var(--primary, #1a73e8); cursor: pointer; text-decoration: underline; font-family: 'Poppins'; font-size: 14px; font-weight: 500;">Download another Pin</button>
+            <button onclick="resetTool()" style="background: transparent; border: none; color: var(--primary); cursor: pointer; text-decoration: underline; font-family: 'Poppins'; font-size: 14px; font-weight: 500;">Download another Pin</button>
         </div>
-    </div>
-
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="index.html" style="color: var(--primary, #1a73e8); text-decoration: none; font-weight: 600;">← Back to Home</a>
     </div>
 </div>
 
@@ -131,75 +161,188 @@
         <h2 style="text-align: center; margin-top: 0;">How to Download Pinterest Videos?</h2>
         <div class="how-grid">
             <div class="how-card">
-                <span style="font-size: 36px; display: block; margin-bottom: 10px;">📋</span>
+                <span>📋</span>
                 <strong>1. Copy Link</strong>
-                <p style="font-size: 14px; color: var(--text-muted, #666); margin-top: 8px;">Open Pinterest app or website, find the video, click Share, and select "Copy Link".</p>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Open the Pinterest app or website, find the video, click Share, and select "Copy Link".</p>
             </div>
             <div class="how-card">
-                <span style="font-size: 36px; display: block; margin-bottom: 10px;">✂️</span>
+                <span>✂️</span>
                 <strong>2. Paste URL</strong>
-                <p style="font-size: 14px; color: var(--text-muted, #666); margin-top: 8px;">Paste the copied link (pin.it or pinterest.com) into the input box above and click Extract.</p>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Paste the copied link (pin.it or pinterest.com) into the input box above and click Extract.</p>
             </div>
             <div class="how-card">
-                <span style="font-size: 36px; display: block; margin-bottom: 10px;">💾</span>
-                <strong>3. Download</strong>
-                <p style="font-size: 14px; color: var(--text-muted, #666); margin-top: 8px;">Click the green download button to save the MP4 video directly to your gallery or PC.</p>
+                <span>💾</span>
+                <strong>3. Download File</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Click the green download button to save the MP4 video directly to your gallery or PC.</p>
             </div>
         </div>
     </div>
 
     <div class="content active">
-        <h2 style="margin-top: 0;">The Best Free Pinterest Downloader</h2>
+        <h2 style="margin-top: 0; text-align: left;">The Best Free & Safe Pinterest Downloader</h2>
         <p>
-            Saving inspiring videos, DIY tutorials, or aesthetic clips from Pinterest shouldn't be difficult. Our <strong>Pinterest Video Downloader</strong> uses advanced DOM Parsing technology to extract the original high-quality MP4 file directly from the Pinterest servers, bypassing the need for you to install any shady apps.
+            Saving inspiring videos, DIY tutorials, or aesthetic clips from Pinterest shouldn't be difficult. Our <strong>Pinterest Video Downloader</strong> uses advanced, high-performance DOM Parsing algorithms to extract the original high-quality MP4 files directly from Pinterest's CDN servers. 
         </p>
-        
-        <h3 style="margin-top: 20px;">Features of Our Tool:</h3>
-        <ul style="line-height: 1.8; color: var(--text-main, #333);">
-            <li><strong>High-Quality MP4:</strong> We extract the highest resolution available (up to 1080p HD).</li>
-            <li><strong>Supports Images & Gifs:</strong> If the link contains an image or GIF instead of a video, our tool will smartly adapt and provide the JPG/GIF file.</li>
-            <li><strong>No Watermark:</strong> The videos are downloaded exactly as the creator uploaded them, completely free of generic watermarks.</li>
-            <li><strong>No Software Required:</strong> Works 100% online in your web browser, whether you are on an iPhone, Android, Mac, or Windows PC.</li>
+
+        <h3 style="margin-top: 20px; text-align: left;">High-Fidelity Media Extraction Suite</h3>
+        <p>
+            Traditional social downloaders usually redirect you through malware-heavy web extensions or ask you to install insecure packages on your phone. OmniTools AI delivers a modern, clean, browser-only alternative:
+        </p>
+        <ul style="line-height: 1.8; color: var(--text-color); text-align: left;">
+            <li><strong>High-Quality MP4 Outputs:</strong> We target and fetch the highest resolution available on Pinterest servers (up to 1080p HD).</li>
+            <li><strong>Intelligent Format Detector:</strong> If you accidentally paste an image Pin or a GIF, our tool automatically adapts the player interface and changes the download tag to "Download JPG" seamlessly.</li>
+            <li><strong>CORS Bypass Network:</strong> We use an array of fallback proxies to retrieve public Pin files, ensuring a high-success extraction rate without backend server logs.</li>
         </ul>
+    </div>
+
+    <!-- FAQ Accordion Section (AdSense Value Booster) -->
+    <div class="faq-section active">
+        <h2 style="text-align: center; margin-bottom: 25px; margin-top:0;">Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Is the Pinterest Downloader completely free of cost?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Yes, our tool is 100% free with no registration, subscriptions, download limits, or hidden fees.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Can I download private or secret Board Pins?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                No, because we value safety and user security. Our extraction proxies can only access publicly shared Pins. If a Pin is placed on a private board or locked by account privacy settings, we cannot scrape its content.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Are downloaded videos watermarked?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                No, the videos are downloaded exactly as the original creators uploaded them. No automated watermarks, logos, or frames are ever added to your saved files.
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete Categorized Directory of OmniTools AI Ecosystem (Internal Linking Optimization) -->
+    <div class="directory-section active">
+        <h2 style="margin-top: 0; text-align: center;">Explore OmniTools AI Ecosystem</h2>
+        <p style="text-align: center; font-size: 14px; color: #666; margin-bottom: 30px;">Discover our extensive list of free, fast, and secure developer, creator, and productivity tools.</p>
+        
+        <div class="directory-grid">
+            <!-- Category 1 -->
+            <div class="directory-cat">
+                <h4>📄 PDF & Document Utilities</h4>
+                <ul class="directory-list">
+                    <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                    <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                    <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                    <li><a href="txt-to-pdf.html">📄 Plain TXT to PDF</a></li>
+                    <li><a href="pdf-to-word.html">📝 PDF to Editable Word</a></li>
+                    <li><a href="pdf-to-grayscale.html">🖨️ PDF to Grayscale B&W</a></li>
+                    <li><a href="resize-pdf.html">📏 Vector PDF Page Resizer</a></li>
+                    <li><a href="password-protect.html">🔒 Password Protect PDF</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="directory-cat">
+                <h4>✍️ AI & Content Writing</h4>
+                <ul class="directory-list">
+                    <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                    <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                    <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                    <li><a href="similarity-checker.html">🔍 Content Similarity Checker</a></li>
+                    <li><a href="email-name-generator.html">📧 Email Name Generator</a></li>
+                    <li><a href="blog-name-generator.html">📝 Creative Blog Name Gen</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="directory-cat">
+                <h4>🎨 Creative & Branding</h4>
+                <ul class="directory-list">
+                    <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                    <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                    <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                    <li><a href="shop-name.html">🛍️ Shop Name Generator</a></li>
+                    <li><a href="startup-name.html">🚀 Startup Name Generator</a></li>
+                    <li><a href="gaming-name.html">🎮 Gaming Name Generator</a></li>
+                    <li><a href="youtube-name-generator.html">📺 YouTube Name Gen</a></li>
+                    <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                    <li><a href="hashtag-generator.html">#️ Instagram/TikTok Hashtags</a></li>
+                    <li><a href="font-generator.html">✨ Fancy Font Generator</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="directory-cat">
+                <h4>💻 Developer, SEO & Utility</h4>
+                <ul class="directory-list">
+                    <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                    <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                    <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                    <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                    <li><a href="website-rank-analyzer.html">📈 Website SEO Rank Analyzer</a></li>
+                    <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                    <li><a href="password-gen.html">🔑 Secure Cryptographic Pwd</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Beranda</a>
     </div>
 </div>
 
 <footer>
-    <div class="social">
-        <p style="margin-top: 20px;">
-            <a href="about.html">About</a> |
-            <a href="contact.html">Contact</a> |
-            <a href="privacy-policy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms</a>
-        </p>
-    </div>
     <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
 </footer>
 
+<script src="script.js"></script>
 <script>
 // --- LOGIKA UTAMA DOWNLOADER ---
+
+// FAQ Accordion Toggle
+function toggleAccordion(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+    const icon = element.querySelector('.accordion-icon');
+    if (item.classList.contains('active')) {
+        icon.textContent = '－';
+    } else {
+        icon.textContent = '＋';
+    }
+}
 
 async function fetchMedia() {
     let urlInput = document.getElementById('pinUrl').value.trim();
     const errorMsg = document.getElementById('errorMsg');
-    
+
     errorMsg.style.display = 'none';
-    
+
     if (!urlInput) {
-        showError("Please enter a valid Pinterest link.");
+        showNotification("Please enter a valid Pinterest link.", "danger");
         return;
     }
 
     // Validasi apakah ini link pinterest
     if (!urlInput.includes('pinterest') && !urlInput.includes('pin.it')) {
-        showError("The URL must be a valid Pinterest link (e.g., pin.it or pinterest.com).");
+        showNotification("The URL must be a valid Pinterest link (e.g., pin.it or pinterest.com).", "danger");
         return;
     }
 
     // UI Transitions
     document.getElementById('resultArea').style.display = 'none';
     document.getElementById('loadingArea').style.display = 'block';
-    
+
     const statusText = document.getElementById('loadingStatus');
 
     try {
@@ -210,15 +353,15 @@ async function fetchMedia() {
             { url: `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(urlInput)}`, type: 'text' },
             { url: `https://corsproxy.io/?${encodeURIComponent(urlInput)}`, type: 'text' }
         ];
-        
+
         let htmlString = null;
 
         for (let i = 0; i < proxies.length; i++) {
             try {
                 statusText.innerText = `Bypassing security (Proxy Route ${i + 1}/${proxies.length})...`;
-                
+
                 const response = await fetch(proxies[i].url);
-                
+
                 if (response.ok) {
                     if (proxies[i].type === 'json') {
                         const data = await response.json();
@@ -228,7 +371,7 @@ async function fetchMedia() {
                     } else {
                         htmlString = await response.text();
                     }
-                    
+
                     // Verifikasi apakah HTML yang dikembalikan valid dan cukup panjang (bukan error page)
                     if (htmlString && htmlString.length > 1500) {
                         break; 
@@ -257,7 +400,7 @@ async function fetchMedia() {
         // TEKNIK EKSTRAKSI 1: Cek Meta Tag og:video (Paling Umum untuk Video Pinterest)
         const ogVideo = doc.querySelector('meta[property="og:video"]');
         const ogVideoSecure = doc.querySelector('meta[property="og:video:secure_url"]');
-        
+
         if (ogVideoSecure && ogVideoSecure.content && ogVideoSecure.content.includes('.mp4')) {
             mediaUrl = ogVideoSecure.content;
             isVideo = true;
@@ -265,7 +408,7 @@ async function fetchMedia() {
             mediaUrl = ogVideo.content;
             isVideo = true;
         } 
-        
+
         // TEKNIK EKSTRAKSI 2: Cek Meta Tag og:image (Jika ternyata user memasukkan link gambar)
         if (!mediaUrl) {
             const ogImage = doc.querySelector('meta[property="og:image"]');
@@ -302,17 +445,16 @@ async function fetchMedia() {
             // Tampilkan Video Player
             previewContainer.innerHTML = `<video controls autoplay loop muted src="${mediaUrl}"></video>`;
             downloadBtn.innerHTML = '⬇️ Download MP4 File';
-            downloadBtn.className = 'btn-download';
             downloadBtn.href = mediaUrl; // Pinterest video biasanya membolehkan direct download
         } else {
             // Tampilkan Gambar
             previewContainer.innerHTML = `<img src="${mediaUrl}" alt="Pinterest Image">`;
             downloadBtn.innerHTML = '⬇️ Download JPG File';
-            downloadBtn.className = 'btn-download';
             downloadBtn.href = mediaUrl;
         }
 
         resultArea.style.display = 'block';
+        showNotification("🎉 Media successfully extracted!", "success");
 
     } catch (error) {
         console.error("Extraction Error:", error);
@@ -332,28 +474,59 @@ function resetTool() {
     document.getElementById('errorMsg').style.display = 'none';
     document.getElementById('resultArea').style.display = 'none';
     document.getElementById('pinUrl').focus();
+    showNotification("🧹 Input field reset.", "success");
 }
 
-// Dark Mode
+// Custom Toast Notification System (Anti-Browser Alert)
+function showNotification(message, type = "success") {
+    const oldToast = document.getElementById('omni-toast');
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'omni-toast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '30px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.background = type === 'success' ? '#28a745' : '#dc3545';
+    toast.style.color = '#fff';
+    toast.style.padding = '12px 24px';
+    toast.style.borderRadius = '50px';
+    toast.style.fontSize = '14px';
+    toast.style.fontWeight = '600';
+    toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+    toast.style.zIndex = '9999';
+    toast.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    toast.style.opacity = '0';
+    toast.innerHTML = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+        toast.style.opacity = '1';
+    }, 10);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+    }, 3000);
+}
+
+// Dark Mode Toggle
 function toggleDarkMode() {
     const body = document.body;
-    const btn = document.getElementById('darkModeToggle');
-    if (body.classList.contains('dark-mode')) {
-        body.classList.remove('dark-mode');
-        btn.innerHTML = '🌙 Dark Mode';
-        localStorage.setItem('theme', 'light');
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
     } else {
-        body.classList.add('dark-mode');
-        btn.innerHTML = '☀️ Light Mode';
-        localStorage.setItem('theme', 'dark');
+        body.setAttribute('data-theme', 'dark');
     }
 }
 
-// Cek tema saat awal dimuat (fallback jika style.css tidak menangani)
-if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
-    const btn = document.getElementById('darkModeToggle');
-    if (btn) btn.innerHTML = '☀️ Light Mode';
+// Cek tema default yang disimpan
+if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.setAttribute('data-theme', 'dark');
 }
 </script>
 
