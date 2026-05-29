@@ -9,19 +9,21 @@
       gtag('js', new Date());
       gtag('config', 'G-4LVEC8BY40');
     </script>
-    
-    <!-- Tag Verifikasi Google -->
+
+    <!-- Tag Verifikasi Google (Sesuai Permintaan) -->
     <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Content Similarity & Plagiarism Checker | OmniTools AI</title>
     <meta name="description" content="Compare two documents to detect copied content, duplicate text, and calculate plagiarism similarity percentage offline and securely.">
-    
+    <meta name="keywords" content="similarity checker, plagiarism checker, text comparison tool, duplicate content finder, offline plagiarism check, jaccard similarity, text overlap scanner">
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        /* Variabel Tema OmniTools AI */
         :root {
             --bg-color: #f8f9fa; --text-color: #333; --card-bg: #fff;
             --primary: #1a73e8; --border-color: #e0e0e0; --success: #28a745; --danger: #dc3545; --warning: #f1c40f;
@@ -34,54 +36,83 @@
         header { text-align: center; padding: 40px 20px; }
         .subtitle { color: #666; font-size: 1rem; margin-top: 10px; }
         [data-theme="dark"] .subtitle { color: #aaa; }
+        
         .seo-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        .seo-card, .content, .how { background: var(--card-bg); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); }
-        
+        .seo-card, .content, .how, .faq-section, .directory-section { background: var(--card-bg); padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); }
+
         /* Dual Textarea Grid */
-        .workspace-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .workspace-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
         @media(max-width: 768px) { .workspace-grid { grid-template-columns: 1fr; } }
-        
-        .text-panel { display: flex; flex-direction: column; }
+
+        .text-panel { display: flex; flex-direction: column; text-align: left; }
         .text-panel label { font-weight: 600; margin-bottom: 8px; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
-        .word-count { font-size: 12px; font-weight: normal; color: var(--text-muted); background: var(--bg-color); padding: 2px 8px; border-radius: 10px; border: 1px solid var(--border-color); }
         
+        .panel-controls { display: flex; gap: 10px; align-items: center; }
+        
+        .btn-file-upload {
+            background: transparent; border: 1px solid var(--border-color); color: var(--text-color);
+            padding: 2px 8px; border-radius: 8px; font-size: 11px; cursor: pointer; font-family: 'Poppins';
+            font-weight: 500; transition: 0.2s;
+        }
+        .btn-file-upload:hover { background: rgba(0, 0, 0, 0.05); }
+        [data-theme="dark"] .btn-file-upload:hover { background: rgba(255, 255, 255, 0.05); }
+
+        .word-count { font-size: 11px; font-weight: 500; color: #777; background: var(--bg-color); padding: 2px 8px; border-radius: 10px; border: 1px solid var(--border-color); }
+
         textarea {
-            width: 100%; height: 300px; padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);
+            width: 100%; height: 320px; padding: 18px; border-radius: 12px; border: 1px solid var(--border-color);
             background: var(--bg-color); color: var(--text-color); font-size: 14px; outline: none; font-family: 'Poppins'; box-sizing: border-box; resize: vertical; line-height: 1.6;
         }
-        textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,115,232,0.1); }
-        
+        textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,115,232,0.15); }
+
         /* Buttons */
         .btn-main { background: var(--primary); color: #fff; border: none; padding: 15px 30px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s; font-family: 'Poppins'; width: 100%; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .btn-main:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(26,115,232,0.2); }
-        
+        .btn-main:hover { opacity: 0.9; transform: translateY(-1px); }
+
         /* Result Area */
         .result-box { display: none; margin-top: 30px; padding-top: 30px; border-top: 2px dashed var(--border-color); }
-        
+
         .score-container { display: flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 30px; }
         .score-circle { 
             width: 150px; height: 150px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center;
             border: 10px solid var(--border-color); font-size: 40px; font-weight: 700; color: var(--text-color); position: relative; transition: border-color 0.5s;
         }
-        .score-label { font-size: 14px; font-weight: 500; margin-top: 5px; color: var(--text-muted); }
-        
-        /* Highlight Analysis */
-        .analysis-panel { background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; font-size: 14px; line-height: 1.8; max-height: 400px; overflow-y: auto; text-align: left; }
-        .match-exact { background-color: rgba(220, 53, 69, 0.2); color: #c0392b; padding: 2px 4px; border-radius: 3px; font-weight: 500; border-bottom: 2px solid var(--danger); }
-        [data-theme="dark"] .match-exact { background-color: rgba(220, 53, 69, 0.3); color: #ff7675; }
+        .score-label { font-size: 14px; font-weight: 600; margin-top: 10px; color: #777; }
 
-        .alert-box { background: rgba(26, 115, 232, 0.1); border-left: 4px solid var(--primary); padding: 15px; border-radius: 4px; font-size: 13px; text-align: left; margin-bottom: 20px; line-height: 1.6; }
+        /* Highlight Analysis */
+        .analysis-panel { background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; font-size: 14px; line-height: 1.8; max-height: 400px; overflow-y: auto; text-align: left; }
+        
+        /* Custom highlight matches */
+        .match-exact { background-color: rgba(220, 53, 69, 0.15); color: #c0392b; padding: 2px 4px; border-radius: 4px; font-weight: 500; border-bottom: 2px solid var(--danger); }
+        [data-theme="dark"] .match-exact { background-color: rgba(220, 53, 69, 0.25); color: #ff7675; }
+
+        .alert-box { background: rgba(26, 115, 232, 0.04); border-left: 4px solid var(--primary); padding: 15px; border-radius: 4px; font-size: 13px; text-align: left; margin-bottom: 20px; line-height: 1.6; }
 
         /* Loader */
         .loader-container { display: none; text-align: center; padding: 40px 0; }
         .spinner { width: 40px; height: 40px; border: 4px solid rgba(26,115,232,0.2); border-top: 4px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; display: inline-block; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Misc */
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
-        .seo-mini-card { background: var(--card-bg); padding: 20px; border-radius: 10px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: 0.3s; }
+        /* FAQ Accordion Styles */
+        .accordion-item { border-bottom: 1px solid var(--border-color); padding: 15px 0; }
+        .accordion-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 16px; text-align: left; }
+        .accordion-answer { display: none; padding-top: 10px; font-size: 14px; color: #666; line-height: 1.6; text-align: left; }
+        [data-theme="dark"] .accordion-answer { color: #bbb; }
+        .accordion-icon { transition: transform 0.3s; font-size: 18px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-answer { display: block; }
+
+        /* Directory / Category Grid Styles */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; }
+        .directory-cat { background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); text-align: left; }
+        .directory-cat h4 { margin-top: 0; color: var(--primary); font-size: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .directory-list { list-style: none; padding: 0; margin: 0; }
+        .directory-list li { margin-bottom: 10px; font-size: 14px; }
+        .directory-list a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+        .directory-list a:hover { color: var(--primary); }
+
         .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; }
+        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--bg-color); }
         .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
         footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
     </style>
@@ -91,9 +122,9 @@
 <header>
     <h1>Similarity & Plagiarism Checker</h1>
     <div class="subtitle">Compare two texts or articles to find duplicate content and check uniqueness instantly.</div>
-    
+
     <div style="margin-top: 20px;">
-        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--bg-card); border: none; color: var(--text-main); padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
             🌙 Dark Mode
         </button>
     </div>
@@ -101,23 +132,34 @@
 
 <div class="seo-container">
     <div class="seo-card active">
-        
+
         <div class="alert-box">
-            <strong>🔒 100% Offline & Secure:</strong> Our advanced <em>N-Gram Jaccard</em> algorithm compares your documents right inside your browser memory. We do not save or upload your confidential articles to any servers.
+            <strong>🔒 100% Offline & Secure:</strong> Our advanced <em>N-Gram Jaccard</em> algorithm compares your documents right inside your browser memory. We do not save, read, or upload your confidential articles to any servers.
         </div>
 
         <div class="workspace-grid">
+            <!-- Textarea A Panel -->
             <div class="text-panel">
                 <label>
-                    Text A (Original Source) 
-                    <span class="word-count" id="countA">0 words</span>
+                    <span>Text A (Original Source)</span>
+                    <div class="panel-controls">
+                        <button class="btn-file-upload" onclick="document.getElementById('fileUploadA').click()">📂 Load .txt</button>
+                        <input type="file" id="fileUploadA" accept=".txt" style="display:none;" onchange="handleFileUpload('textA', 'countA', this)">
+                        <span class="word-count" id="countA">0 words</span>
+                    </div>
                 </label>
                 <textarea id="textA" placeholder="Paste the original article or source text here..." oninput="updateWordCount('textA', 'countA')"></textarea>
             </div>
+            
+            <!-- Textarea B Panel -->
             <div class="text-panel">
                 <label>
-                    Text B (Document to Check)
-                    <span class="word-count" id="countB">0 words</span>
+                    <span>Text B (Document to Check)</span>
+                    <div class="panel-controls">
+                        <button class="btn-file-upload" onclick="document.getElementById('fileUploadB').click()">📂 Load .txt</button>
+                        <input type="file" id="fileUploadB" accept=".txt" style="display:none;" onchange="handleFileUpload('textB', 'countB', this)">
+                        <span class="word-count" id="countB">0 words</span>
+                    </div>
                 </label>
                 <textarea id="textB" placeholder="Paste the rewritten or suspected text here to check for similarities..." oninput="updateWordCount('textB', 'countB')"></textarea>
             </div>
@@ -127,13 +169,15 @@
             🔍 Compare & Check Similarity
         </button>
 
+        <!-- Loading Area -->
         <div id="loadingArea" class="loader-container">
             <div class="spinner"></div>
             <p style="margin-top: 15px; font-weight: 600; color: var(--primary);">Analyzing linguistic patterns...</p>
         </div>
 
+        <!-- Result Box (Sesuai Permintaan: Hasil Terstruktur & Terpisah Fungsional) -->
         <div id="resultArea" class="result-box">
-            
+
             <div class="score-container">
                 <div class="score-circle" id="scoreCircle">
                     <span id="scoreValue">0%</span>
@@ -141,18 +185,18 @@
                 <div class="score-label" id="scoreVerdict">Analyzing...</div>
             </div>
 
-            <h3 style="margin-top:0; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Highlighted Plagiarism Analysis (Text B)</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">Text marked in red indicates exact phrase matches found in the original source (Text A).</p>
-            
+            <h3 style="margin-top:0; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; font-size: 18px; text-align: left;">Highlighted Plagiarism Analysis (Text B)</h3>
+            <p style="font-size: 13px; color: #777; margin-bottom: 15px; text-align: left;">Text marked in red indicates exact phrase matches found in the original source (Text A).</p>
+
             <div class="analysis-panel" id="highlightedResult">
                 <!-- Highlighted text will appear here -->
             </div>
+            
+            <div style="margin-top: 25px; text-align: center;">
+                <button onclick="resetTool()" style="background: transparent; border: none; color: var(--primary); cursor: pointer; text-decoration: underline; font-family: 'Poppins'; font-size: 14px; font-weight: 500;">Reset Checker Workspace</button>
+            </div>
         </div>
 
-    </div>
-
-    <div style="text-align: center;">
-        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Home</a>
     </div>
 </div>
 
@@ -163,77 +207,188 @@
             <div class="how-card">
                 <span>📝</span>
                 <strong>1. Paste Your Texts</strong>
-                <p style="font-size: 14px; color: var(--text-muted);">Insert your original source in Box A, and the document you want to test in Box B.</p>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Insert your original source in Box A, and the document you want to test in Box B.</p>
             </div>
             <div class="how-card">
                 <span>🧠</span>
-                <strong>2. AI Comparison</strong>
-                <p style="font-size: 14px; color: var(--text-muted);">Our tool breaks down sentences into chunks and maps intersecting data using N-Gram algorithms.</p>
+                <strong>2. Run Comparison</strong>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Our tool breaks down sentences into chunks and maps intersecting data using N-Gram algorithms.</p>
             </div>
             <div class="how-card">
                 <span>📊</span>
                 <strong>3. Review Highlights</strong>
-                <p style="font-size: 14px; color: var(--text-muted);">See exactly which sentences were copied and get a final plagiarism score instantly.</p>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">See exactly which sentences were copied and get a final plagiarism score instantly.</p>
             </div>
         </div>
     </div>
 
+    <!-- SEO DEEP CONTENT (AdSense Quality Guard) -->
     <div class="content active">
-        <h2 style="margin-top: 0;">The Best Article Rewriter & Paraphrase Checker</h2>
+        <h2 style="margin-top: 0; text-align: left;">The Importance of Duplicate Content Audits in Digital Publishing</h2>
         <p>
-            If you hire freelance writers, purchase content, or use AI text generators, you risk publishing duplicate content. Google's algorithm penalizes websites that use scraped or spun articles. Our <strong>Content Similarity & Plagiarism Checker</strong> allows you to compare a suspicious article against its source to ensure it is 100% uniquely rewritten.
+            If you hire freelance writers, purchase content assets, or utilize automated AI text generators, you face the persistent risk of publishing duplicate text. Search engine crawlers (like Googlebot) strongly penalize websites that publish scraped, spun, or heavily borrowed articles. Employing a <strong>Content Similarity & Plagiarism Checker</strong> ensures your digital copy remains 100% unique and optimized for organic reach.
         </p>
-        
-        <h3 style="margin-top: 20px;">How Our Client-Side Algorithm Works</h3>
+
+        <h3 style="margin-top: 20px; text-align: left;">How Our Client-Side Comparison Algorithm Works</h3>
         <p>
-            Instead of simply looking for exact keyword matches, our tool employs an <strong>N-Gram Shingling Sequence</strong>. This means we break down your text into 3-to-4 word phrases (shingles) and look for overlaps. 
+            Instead of simply scanning for exact, isolated keyword matches, our tool employs an <strong>N-Gram Shingling Sequence</strong>. This means we break down your text block into 3-to-4 word phrases (shingles) and look for overlaps. Here is why this methodology is superior:
         </p>
-        <ul style="line-height: 1.8; color: var(--text-main);">
-            <li><strong>Detects "Spinning":</strong> If a writer just changes one word in a sentence (e.g., changing "happy" to "glad"), our algorithm still detects the surrounding structural similarity.</li>
-            <li><strong>Visual Highlighting:</strong> The tool visually paints the stolen text red, allowing editors to know exactly which paragraph needs to be rewritten.</li>
-            <li><strong>Privacy Guaranteed:</strong> By running the complex math calculations directly via your browser's JavaScript engine, your confidential business proposals, essays, and articles are never saved in any database.</li>
+        <ul style="line-height: 1.8; color: var(--text-color); text-align: left;">
+            <li><strong>Detects "Article Spinning":</strong> If a writer simply exchanges single words (e.g., swapping "happy" for "glad") but preserves the surrounding sentence structure, our N-Gram sequence still flags the plagiarism.</li>
+            <li><strong>Visual Highlighting:</strong> The parser highlights exact overlaps in light red on the output panel, giving editors instant feedback on which paragraphs require rewriting.</li>
+            <li><strong>Maximum Confidentiality:</strong> Traditional plag checkers save your uploads on their external databases. OmniTools AI processes all operations locally in your browser memory, keeping your draft text secure.</li>
         </ul>
     </div>
 
-    <div style="margin-top: 50px; border-top: 1px dashed var(--border-color); padding-top: 30px;">
-        <h3>Other Content & AI Tools</h3>
-        <div class="seo-grid">
-            <a href="blog-title-generator.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
-                <strong>📝 Blog Title Generator</strong>
-                <p style="font-size:12px; margin-bottom: 0;">Generate click-worthy and SEO-optimized headlines.</p>
-            </a>
-            <a href="tagline-generator.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
-                <strong>✨ Tagline Generator</strong>
-                <p style="font-size:12px; margin-bottom: 0;">Create catchy slogans for your brand.</p>
-            </a>
-            <a href="txt-to-pdf.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
-                <strong>📄 TXT to PDF</strong>
-                <p style="font-size:12px; margin-bottom: 0;">Transform your clean text into a secure PDF.</p>
-            </a>
+    <!-- FAQ Accordion Section (AdSense Value Booster) -->
+    <div class="faq-section active">
+        <h2 style="text-align: center; margin-bottom: 25px; margin-top:0;">Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Are my drafted articles saved on your server?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                No, absolutely not. OmniTools AI performs all text segment comparisons locally inside your browser's virtual memory sandbox. No text data is ever transmitted to outside databases or remote servers, ensuring total data privacy.
+            </div>
         </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                What is the "N-Gram Shingling" methodology?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                N-Gram Shingling is a natural language processing (NLP) technique where a document is broken down into contiguous sequences of words (shingles). By matching these shingles across both texts, our tool calculates a high-accuracy similarity score based on Jaccard indexing.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                What percentage of similarity is considered safe for SEO?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Generally, a similarity score under $20\%$ is considered excellent and safe for SEO. A score between $20\% - 40\%$ is a moderate warning (indicates spun phrasing), and any score above $40\%$ indicates a high risk of duplicate content penalties.
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete Categorized Directory of OmniTools AI Ecosystem (Internal Linking Optimization) -->
+    <div class="directory-section active">
+        <h2 style="margin-top: 0; text-align: center;">Explore OmniTools AI Ecosystem</h2>
+        <p style="text-align: center; font-size: 14px; color: #666; margin-bottom: 30px;">Discover our extensive list of free, fast, and secure developer, creator, and productivity tools.</p>
+        
+        <div class="directory-grid">
+            <!-- Category 1 -->
+            <div class="directory-cat">
+                <h4>📄 PDF & Document Utilities</h4>
+                <ul class="directory-list">
+                    <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                    <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                    <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                    <li><a href="txt-to-pdf.html">📄 Plain TXT to PDF</a></li>
+                    <li><a href="pdf-to-word.html">📝 PDF to Editable Word</a></li>
+                    <li><a href="pdf-to-grayscale.html">🖨️ PDF to Grayscale B&W</a></li>
+                    <li><a href="resize-pdf.html">📏 Vector PDF Page Resizer</a></li>
+                    <li><a href="password-protect.html">🔒 Password Protect PDF</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="directory-cat">
+                <h4>✍️ AI & Content Writing</h4>
+                <ul class="directory-list">
+                    <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                    <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                    <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                    <li><a href="similarity-checker.html">🔍 Content Similarity Checker</a></li>
+                    <li><a href="email-name-generator.html">📧 Email Name Generator</a></li>
+                    <li><a href="blog-name-generator.html">📝 Creative Blog Name Gen</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="directory-cat">
+                <h4>🎨 Creative & Branding</h4>
+                <ul class="directory-list">
+                    <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                    <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                    <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                    <li><a href="shop-name.html">🛍️ Shop Name Generator</a></li>
+                    <li><a href="startup-name.html">🚀 Startup Name Generator</a></li>
+                    <li><a href="gaming-name.html">🎮 Gaming Name Generator</a></li>
+                    <li><a href="youtube-name-generator.html">📺 YouTube Name Gen</a></li>
+                    <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                    <li><a href="hashtag-generator.html">#️ Instagram/TikTok Hashtags</a></li>
+                    <li><a href="font-generator.html">✨ Fancy Font Generator</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="directory-cat">
+                <h4>💻 Developer, SEO & Utility</h4>
+                <ul class="directory-list">
+                    <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                    <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                    <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                    <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                    <li><a href="website-rank-analyzer.html">📈 Website SEO Rank Analyzer</a></li>
+                    <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                    <li><a href="password-gen.html">🔑 Secure Cryptographic Pwd</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Beranda</a>
     </div>
 </div>
 
 <footer>
-    <div class="social">
-        <p style="margin-top: 20px;">
-            <a href="about.html">About</a> |
-            <a href="contact.html">Contact</a> |
-            <a href="privacy-policy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms</a>
-        </p>
-    </div>
     <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
 </footer>
 
+<script src="script.js"></script>
 <script>
 // --- ALGORITMA SIMILARITY & PLAGIARISM CHECKER ---
+
+// FAQ Accordion Toggle
+function toggleAccordion(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+    const icon = element.querySelector('.accordion-icon');
+    if (item.classList.contains('active')) {
+        icon.textContent = '－';
+    } else {
+        icon.textContent = '＋';
+    }
+}
 
 // Helper: Menghitung jumlah kata
 function updateWordCount(textareaId, countId) {
     const text = document.getElementById(textareaId).value;
     const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
     document.getElementById(countId).innerText = `${words} words`;
+}
+
+// Menangani File Upload Lokal (.txt)
+function handleFileUpload(textareaId, countId, inputElement) {
+    const file = inputElement.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        document.getElementById(textareaId).value = e.target.result;
+        updateWordCount(textareaId, countId);
+        showNotification(`📥 Loaded file: "${file.name}"`, "success");
+    };
+    reader.onerror = () => {
+        showNotification("Failed to read file.", "danger");
+    };
+    reader.readAsText(file);
 }
 
 // Membersihkan teks (Hapus tanda baca, ubah jadi huruf kecil)
@@ -246,7 +401,7 @@ function getNgrams(text, n) {
     const words = cleanText(text).split(' ');
     let ngrams = [];
     if (words.length < n) return [words.join(' ')];
-    
+
     for (let i = 0; i <= words.length - n; i++) {
         ngrams.push(words.slice(i, i + n).join(' '));
     }
@@ -259,7 +414,7 @@ function analyzeTexts() {
     const rawB = document.getElementById('textB').value.trim();
 
     if (!rawA || !rawB) {
-        alert("Please enter text in both Box A and Box B to compare.");
+        showNotification("Please enter or load text in both Box A and Box B to compare.", "danger");
         return;
     }
 
@@ -273,16 +428,14 @@ function analyzeTexts() {
 }
 
 function performAnalysis(rawA, rawB) {
-    // 1. SCORING DENGAN ALGORITMA N-GRAM & JACCARD
     const n = 3; // Menggunakan Trigrams (3 kata berurutan)
-    
+
     const ngramsA = getNgrams(rawA, n);
     const ngramsB = getNgrams(rawB, n);
-    
-    // Set untuk efisiensi
+
     const setA = new Set(ngramsA);
     const setB = new Set(ngramsB);
-    
+
     // Irisan (Berapa N-gram B yang ada di A)
     let intersectionCount = 0;
     for (let gram of setB) {
@@ -290,29 +443,25 @@ function performAnalysis(rawA, rawB) {
             intersectionCount++;
         }
     }
-    
+
     // Kalkulasi Similarity Persentase
-    // Persentase kemiripan dihitung berdasarkan teks B terhadap Teks A.
     let similarityScore = 0;
     if (setB.size > 0) {
         similarityScore = Math.round((intersectionCount / setB.size) * 100);
     }
-    
+
     if (similarityScore > 100) similarityScore = 100;
 
     // 2. VISUAL HIGHLIGHTING (Mencari teks yang persis sama)
-    // Trik sederhana: Kita pecah Teks B berdasarkan N-gram, jika match, kita mark.
     let highlightedText = rawB;
-    
-    // Untuk highlight, kita cari frasa yang lebih panjang agar tidak mewarnai kata-kata umum (seperti "dan", "atau")
+
     const highlightGrams = getNgrams(rawA, 4); // Cari kecocokan minimal 4 kata berurutan untuk Highlighting
-    const uniqueHighlightGrams = [...new Set(highlightGrams)].sort((a,b) => b.length - a.length); // Urutkan yang terpanjang dulu
-    
+    const uniqueHighlightGrams = [...new Set(highlightGrams)].sort((a,b) => b.length - a.length);
+
     // Escape regex util
     const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
     // Menerapkan Highlight (Sangat dasar untuk client side)
-    // Akan menandai frasa yang sama persis (case insensitive match)
     uniqueHighlightGrams.forEach(gram => {
         if(gram.length > 5) { // Hindari kata terlalu pendek
             const regex = new RegExp(`\\b${escapeRegExp(gram)}\\b`, 'gi');
@@ -326,14 +475,13 @@ function performAnalysis(rawA, rawB) {
     // 3. UPDATE UI RESULT
     document.getElementById('loadingArea').style.display = 'none';
     document.getElementById('resultArea').style.display = 'block';
-    
+
     const scoreCircle = document.getElementById('scoreCircle');
     const scoreValue = document.getElementById('scoreValue');
     const scoreVerdict = document.getElementById('scoreVerdict');
 
-    // Animasi angka
     scoreValue.innerText = `${similarityScore}%`;
-    
+
     // Warna dan Verdict berdasarkan skor
     if (similarityScore < 20) {
         scoreCircle.style.borderColor = "var(--success)"; // Hijau
@@ -350,32 +498,79 @@ function performAnalysis(rawA, rawB) {
     }
 
     // Pasang hasil highlight
-    // Kita ganti baris baru (\n) menjadi <br> agar rapi
     document.getElementById('highlightedResult').innerHTML = highlightedText.replace(/\n/g, '<br>');
-    
+
     // Smooth scroll ke hasil
     document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showNotification("📊 Comparison analysis completed!", "success");
+}
+
+function resetTool() {
+    document.getElementById('textA').value = '';
+    document.getElementById('textB').value = '';
+    document.getElementById('countA').innerText = '0 words';
+    document.getElementById('countB').innerText = '0 words';
+    
+    document.getElementById('resultArea').style.display = 'none';
+    document.getElementById('loadingArea').style.display = 'none';
+    document.getElementById('fileUploadA').value = '';
+    document.getElementById('fileUploadB').value = '';
+
+    showNotification("🧹 Workspace reset successfully.");
+}
+
+// Custom Toast Notification System (Anti-Browser Alert)
+function showNotification(message, type = "success") {
+    const oldToast = document.getElementById('omni-toast');
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'omni-toast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '30px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.background = type === 'success' ? '#28a745' : '#dc3545';
+    toast.style.color = '#fff';
+    toast.style.padding = '12px 24px';
+    toast.style.borderRadius = '50px';
+    toast.style.fontSize = '14px';
+    toast.style.fontWeight = '600';
+    toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+    toast.style.zIndex = '9999';
+    toast.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    toast.style.opacity = '0';
+    toast.innerHTML = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+        toast.style.opacity = '1';
+    }, 10);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+    }, 3000);
 }
 
 // Dark Mode Toggle Logic
 function toggleDarkMode() {
     const body = document.body;
-    const btn = document.getElementById('darkModeToggle');
-    if (body.classList.contains('dark-mode')) {
-        body.classList.remove('dark-mode');
-        btn.innerHTML = '🌙 Dark Mode';
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
         localStorage.setItem('theme', 'light');
     } else {
-        body.classList.add('dark-mode');
-        btn.innerHTML = '☀️ Light Mode';
+        body.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
     }
 }
 
-// Cek tema yang tersimpan
-if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
-    document.getElementById('darkModeToggle').innerHTML = '☀️ Light Mode';
+// Cek tema default
+if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.setAttribute('data-theme', 'dark');
 }
 </script>
 
