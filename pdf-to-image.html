@@ -9,14 +9,18 @@
       gtag('js', new Date());
       gtag('config', 'G-4LVEC8BY40');
     </script>
+    
+    <!-- Tag Verifikasi Google (Sesuai Permintaan) -->
     <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF to Image Converter - High Quality JPG/PNG | OmniTools AI</title>
     <meta name="description" content="Convert your PDF pages into high-quality JPG, PNG, or WebP images instantly. Secure, offline, and supports ZIP batch download.">
-    
+    <meta name="keywords" content="pdf to image, pdf to jpg, pdf to png, extract pdf pages, online pdf converter, batch pdf export, secure pdf to image">
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- PDF.js for Rendering -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -38,37 +42,38 @@
         header { text-align: center; padding: 40px 20px; }
         .subtitle { color: #666; font-size: 1rem; margin-top: 10px; }
         [data-theme="dark"] .subtitle { color: #aaa; }
-        .seo-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        .seo-card, .content, .how { background: var(--card-bg); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); }
         
-        /* Area Unggah (Upload Area) - Fixed display flex for borders */
+        .seo-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .seo-card, .content, .how, .faq-section, .directory-section { background: var(--card-bg); padding: 35px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid var(--border-color); }
+
+        /* Area Unggah (Upload Area) */
         .upload-area {
             display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; width: 100%;
-            border: 2px dashed var(--primary); border-radius: 12px; padding: 40px 20px; text-align: center;
-            background: rgba(26, 115, 232, 0.05); cursor: pointer; transition: all 0.3s ease; margin-bottom: 20px;
+            border: 2px dashed var(--primary); border-radius: 12px; padding: 50px 20px; text-align: center;
+            background: rgba(26, 115, 232, 0.04); cursor: pointer; transition: all 0.3s ease; margin-bottom: 20px;
         }
-        .upload-area:hover { background: rgba(26, 115, 232, 0.1); }
-        .upload-icon { font-size: 40px; margin-bottom: 10px; }
+        .upload-area:hover { background: rgba(26, 115, 232, 0.08); }
+        .upload-icon { font-size: 40px; margin-bottom: 15px; }
         #pdfFileInput { display: none; }
-        
+
         /* Toolbar Konfigurasi */
         .toolbar {
             display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; align-items: center;
-            background: var(--bg-color); padding: 15px 20px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 20px;
+            background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 25px;
         }
         .toolbar-group { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
         .form-control {
-            padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-color); 
+            padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); 
             background: var(--card-bg); color: var(--text-color); font-size: 14px; outline: none; font-family: 'Poppins'; cursor: pointer;
         }
-        
+
         /* Tombol Aksi Utama */
         .btn-main {
-            background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 6px; 
+            background: var(--primary); color: #fff; border: none; padding: 12px 24px; border-radius: 8px; 
             font-weight: 600; cursor: pointer; transition: 0.2s; font-family: 'Poppins'; font-size: 14px; display: flex; align-items: center; gap: 8px;
         }
-        .btn-main:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3); }
-        .btn-main:disabled { background: #999; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-main:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-main:disabled { background: #999; cursor: not-allowed; transform: none; box-shadow: none; opacity: 0.6; }
 
         /* Grid Visual Halaman */
         .thumbnail-grid {
@@ -81,31 +86,45 @@
         }
         .thumbnail-wrapper:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); border-color: var(--primary); }
         .thumbnail-wrapper canvas { width: 100%; height: auto; display: block; background: #fff; }
+        
         .thumb-footer {
             padding: 10px; background: var(--card-bg); border-top: 1px solid var(--border-color); text-align: center;
         }
-        .btn-download-single {
-            background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color);
-            padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer; transition: 0.2s; width: 100%; font-family: 'Poppins';
-        }
-        .btn-download-single:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
         
-        /* Loading Overlay Khusus ZIP */
+        /* SEPARATED DOWNLOAD BUTTON (Sesuai Permintaan) */
+        .btn-download-single {
+            background: var(--success); color: white; border: none;
+            padding: 8px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; width: 100%; font-family: 'Poppins';
+            box-sizing: border-box; text-align: center; display: block; text-decoration: none;
+        }
+        .btn-download-single:hover { opacity: 0.9; }
+
+        /* Progress Overlay Khusus ZIP */
         #progressOverlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; flex-direction: column; color: white;
+            background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; flex-direction: column; color: white;
         }
         .progress-bar-container { width: 300px; height: 10px; background: #444; border-radius: 5px; margin-top: 15px; overflow: hidden; }
         .progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 0.2s; }
 
-        /* Misc / SEO Grid */
-        .seo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
-        .seo-mini-card { background: var(--card-bg); padding: 20px; border-radius: 10px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: 0.3s; }
-        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
-        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; }
-        .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
-        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
-        
+        /* FAQ Accordion Styles */
+        .accordion-item { border-bottom: 1px solid var(--border-color); padding: 15px 0; }
+        .accordion-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 16px; text-align: left; }
+        .accordion-answer { display: none; padding-top: 10px; font-size: 14px; color: #666; line-height: 1.6; text-align: left; }
+        [data-theme="dark"] .accordion-answer { color: #bbb; }
+        .accordion-icon { transition: transform 0.3s; font-size: 18px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-answer { display: block; }
+
+        /* Directory / Category Grid Styles */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 25px; }
+        .directory-cat { background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .directory-cat h4 { margin-top: 0; color: var(--primary); font-size: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .directory-list { list-style: none; padding: 0; margin: 0; }
+        .directory-list li { margin-bottom: 10px; font-size: 14px; }
+        .directory-list a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+        .directory-list a:hover { color: var(--primary); }
+
         /* Scrollbar */
         .thumbnail-grid::-webkit-scrollbar { width: 8px; }
         .thumbnail-grid::-webkit-scrollbar-track { background: var(--bg-color); }
@@ -117,7 +136,7 @@
 <header>
     <h1>PDF to Image Converter</h1>
     <div class="subtitle">Convert PDF pages to High-Resolution JPG, PNG, or WebP securely.</div>
-    
+
     <div style="margin-top: 20px;">
         <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
             🌙 Dark Mode
@@ -127,14 +146,14 @@
 
 <div class="seo-container">
     <div class="seo-card active">
-        
+
         <!-- Area Unggah -->
-        <label for="pdfFileInput" class="upload-area" id="dropZone">
+        <div class="upload-area" id="dropZone" onclick="document.getElementById('pdfFileInput').click()">
             <div class="upload-icon">🖼️</div>
             <h3 style="margin: 0 0 10px 0;">Upload PDF File</h3>
-            <p style="margin: 0; font-size: 14px; color: #666;">Click or drag and drop your file here</p>
-            <input type="file" id="pdfFileInput" accept="application/pdf" onchange="handleFileSelect()">
-        </label>
+            <p style="margin: 0; font-size: 14px; color: #777;">Click or drag and drop your file here</p>
+            <input type="file" id="pdfFileInput" accept="application/pdf" style="display:none;" onchange="handleFileSelect()">
+        </div>
 
         <!-- Loading Area -->
         <div id="loadingArea" style="display: none; text-align: center; margin: 20px 0; color: var(--primary);">
@@ -143,11 +162,11 @@
 
         <!-- Area Workspace & Konfigurasi -->
         <div id="workspaceArea" style="display: none;">
-            
+
             <div class="toolbar">
                 <div class="toolbar-group">
                     <div>
-                        <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Image Format:</label>
+                        <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px; text-align: left;">Image Format:</label>
                         <select id="imageFormat" class="form-control">
                             <option value="image/jpeg">JPG (Standard)</option>
                             <option value="image/png">PNG (High Quality)</option>
@@ -155,7 +174,7 @@
                         </select>
                     </div>
                     <div>
-                        <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Resolution:</label>
+                        <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px; text-align: left;">Resolution:</label>
                         <select id="imageScale" class="form-control">
                             <option value="1">1x (Normal)</option>
                             <option value="2" selected>2x (High Res - Recommended)</option>
@@ -163,8 +182,9 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="toolbar-group">
+                    <!-- SEPARATED BATCH ZIP DOWNLOAD BUTTON -->
                     <button class="btn-main" onclick="downloadAllAsZip()" id="zipBtn">
                         📦 Download All as ZIP
                     </button>
@@ -204,71 +224,152 @@
             <div class="how-card">
                 <span>📁</span>
                 <strong>1. Upload PDF</strong>
-                <p style="font-size: 14px; color: #666;">Select the PDF document you want to convert into images.</p>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Select the PDF document you want to convert into images.</p>
             </div>
             <div class="how-card">
                 <span>⚙️</span>
                 <strong>2. Set Quality</strong>
-                <p style="font-size: 14px; color: #666;">Choose your desired format (JPG/PNG) and resolution scale (up to 3x Ultra HD).</p>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Choose your desired format (JPG/PNG) and resolution scale (up to 3x Ultra HD).</p>
             </div>
             <div class="how-card">
                 <span>⬇️</span>
                 <strong>3. Download</strong>
-                <p style="font-size: 14px; color: #666;">Download specific pages individually or grab all of them at once in a ZIP file.</p>
+                <p style="font-size: 14px; color: #666; margin-top: 8px;">Download specific pages individually or grab all of them at once in a ZIP file.</p>
             </div>
         </div>
     </div>
 
     <div class="content active">
-        <h2 style="margin-top: 0;">The Best Free PDF to JPG/PNG Converter</h2>
+        <h2 style="margin-top: 0; text-align: left;">The Best Free PDF to JPG/PNG Converter</h2>
         <p>
             Whether you need to extract a single chart for a presentation or convert an entire eBook into images for social media, OmniTools AI provides the most powerful <strong>Client-Side PDF to Image Converter</strong> available online.
         </p>
-        
-        <h3 style="margin-top: 20px;">Why Professionals Choose Our Tool:</h3>
-        <ul style="line-height: 1.8; color: var(--text-color);">
+
+        <h3 style="margin-top: 20px; text-align: left;">Why Professionals Choose Our Tool:</h3>
+        <ul style="line-height: 1.8; color: var(--text-color); text-align: left;">
             <li><strong>Unmatched Resolution (Up to 3x):</strong> Standard converters often give you blurry, pixelated results. Our tool allows you to render the PDF at 2x or 3x scale, providing crisp, retina-ready High-Definition images.</li>
             <li><strong>Multiple Formats:</strong> Choose JPG for smaller file sizes, PNG for lossless graphic quality, or WebP for modern web optimization.</li>
             <li><strong>Batch ZIP Processing:</strong> Don't waste time clicking download 50 times. Click "Download All as ZIP" and let our engine compress all your high-res images into a single neat folder.</li>
         </ul>
 
-        <h3 style="margin-top: 20px;">100% Secure & Offline</h3>
+        <h3 style="margin-top: 20px; text-align: left;">100% Secure & Offline</h3>
         <p>
             Converting bank statements or confidential contracts? You're safe. We utilize advanced WebAssembly and <code>pdf.js</code> technology to render and convert every pixel entirely inside your device's memory. <strong>No uploads, no servers, no privacy risks.</strong>
         </p>
     </div>
 
-    <div style="margin-top: 50px; border-top: 1px dashed var(--border-color); padding-top: 30px;">
-        <h3>Other PDF & Utility Tools</h3>
-        <div class="seo-grid">
-            <a href="split-pdf.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
-                <strong>✂️ PDF Splitter</strong>
-                <p style="font-size:12px; margin-bottom: 0;">Visually select, extract, or delete pages from your PDF securely.</p>
-            </a>
-            <a href="add-watermark.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
-                <strong>🔐 PDF Watermark</strong>
-                <p style="font-size:12px; margin-bottom: 0;">Stamp your documents with custom text or image watermarks.</p>
-            </a>
-            <a href="pdf-compressor.html" class="seo-mini-card" style="text-decoration:none; color:inherit; display: block;">
-                <strong>📉 PDF Compressor</strong>
-                <p style="font-size:12px; margin-bottom: 0;">Reduce your PDF file size without losing quality.</p>
-            </a>
+    <!-- FAQ Accordion Section (AdSense Value Booster) -->
+    <div class="faq-section active">
+        <h2 style="text-align: center; margin-bottom: 25px; margin-top:0;">Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Is this PDF to Image converter free and safe?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Yes, absolutely. Our tool processes all files 100% locally inside your browser's RAM memory. Your PDF documents and generated images are never sent to outside databases or remote servers, guaranteeing complete document privacy.
+            </div>
         </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Can I choose which format to export?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Yes, our tool supports three versatile output formats: standard JPEG (JPG) for compact sizes, lossless PNG for clear graphics, and optimized WebP for superior next-generation web speeds.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                What is the advantage of downloading as a ZIP?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Instead of manually saving individual pages one-by-one, clicking "Download All as ZIP" compiles every single page rendered into a structured ZIP archive instantly, letting you download everything with a single click.
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete Categorized Directory of OmniTools AI Ecosystem (Internal Linking Optimization) -->
+    <div class="directory-section active">
+        <h2 style="margin-top: 0; text-align: center;">Explore OmniTools AI Ecosystem</h2>
+        <p style="text-align: center; font-size: 14px; color: #666; margin-bottom: 30px;">Discover our extensive list of free, fast, and secure developer, creator, and productivity tools.</p>
+        
+        <div class="directory-grid">
+            <!-- Category 1 -->
+            <div class="directory-cat">
+                <h4>📄 PDF & Document Utilities</h4>
+                <ul class="directory-list">
+                    <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                    <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                    <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                    <li><a href="txt-to-pdf.html">📄 Plain TXT to PDF</a></li>
+                    <li><a href="pdf-to-word.html">📝 PDF to Editable Word</a></li>
+                    <li><a href="pdf-to-grayscale.html">🖨️ PDF to Grayscale B&W</a></li>
+                    <li><a href="resize-pdf.html">📏 Vector PDF Page Resizer</a></li>
+                    <li><a href="password-protect.html">🔒 Password Protect PDF</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="directory-cat">
+                <h4>✍️ AI & Content Writing</h4>
+                <ul class="directory-list">
+                    <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                    <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                    <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                    <li><a href="similarity-checker.html">🔍 Content Similarity Checker</a></li>
+                    <li><a href="email-name-generator.html">📧 Email Name Generator</a></li>
+                    <li><a href="blog-name-generator.html">📝 Creative Blog Name Gen</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="directory-cat">
+                <h4>🎨 Creative & Branding</h4>
+                <ul class="directory-list">
+                    <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                    <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                    <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                    <li><a href="shop-name.html">🛍️ Shop Name Generator</a></li>
+                    <li><a href="startup-name.html">🚀 Startup Name Generator</a></li>
+                    <li><a href="gaming-name.html">🎮 Gaming Name Generator</a></li>
+                    <li><a href="youtube-name-generator.html">📺 YouTube Name Gen</a></li>
+                    <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                    <li><a href="hashtag-generator.html">#️ Instagram/TikTok Hashtags</a></li>
+                    <li><a href="font-generator.html">✨ Fancy Font Generator</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="directory-cat">
+                <h4>💻 Developer, SEO & Utility</h4>
+                <ul class="directory-list">
+                    <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                    <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                    <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                    <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                    <li><a href="website-rank-analyzer.html">📈 Website SEO Rank Analyzer</a></li>
+                    <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                    <li><a href="password-gen.html">🔑 Secure Cryptographic Pwd</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Beranda</a>
     </div>
 </div>
 
 <footer>
-    <div class="social">
-        <p style="margin-top: 20px;">
-            <a href="about.html">About</a> |
-            <a href="contact.html">Contact</a> |
-            <a href="privacy-policy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms</a>
-        </p>
-    </div>
     <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
 </footer>
 
+<script src="script.js"></script>
 <script>
 // --- LOGIKA UTAMA PDF TO IMAGE (PDF.js + JSZip) ---
 
@@ -280,9 +381,21 @@ let currentPdfDoc = null;
 let totalPages = 0;
 let originalFileName = "Document";
 
+// FAQ Accordion Toggle
+function toggleAccordion(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+    const icon = element.querySelector('.accordion-icon');
+    if (item.classList.contains('active')) {
+        icon.textContent = '－';
+    } else {
+        icon.textContent = '＋';
+    }
+}
+
 // Drag and Drop Handlers
 const dropZone = document.getElementById('dropZone');
-dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.background = 'rgba(26, 115, 232, 0.2)'; });
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.background = 'rgba(26, 115, 232, 0.08)'; });
 dropZone.addEventListener('dragleave', (e) => { e.preventDefault(); dropZone.style.background = 'rgba(26, 115, 232, 0.05)'; });
 dropZone.addEventListener('drop', (e) => {
     e.preventDefault(); dropZone.style.background = 'rgba(26, 115, 232, 0.05)';
@@ -296,32 +409,33 @@ async function handleFileSelect() {
     const fileInput = document.getElementById('pdfFileInput');
     const file = fileInput.files[0];
     if (!file || file.type !== 'application/pdf') {
-        alert('Please select a valid PDF file.');
+        showNotification('Please select a valid PDF file.', 'danger');
         return;
     }
 
     originalFileName = file.name.replace('.pdf', '');
-    
+
     document.getElementById('dropZone').style.display = 'none';
     document.getElementById('loadingArea').style.display = 'block';
 
     try {
         const arrayBuffer = await file.arrayBuffer();
-        
+
         // Memuat PDF dengan pdf.js
         const loadingTask = pdfjsLib.getDocument({data: arrayBuffer});
         currentPdfDoc = await loadingTask.promise;
         totalPages = currentPdfDoc.numPages;
-        
+
         // Render UI Thumbnails (Kualitas rendah agar cepat untuk sekedar preview visual)
         await renderUIThumbnails();
 
         document.getElementById('loadingArea').style.display = 'none';
         document.getElementById('workspaceArea').style.display = 'block';
-        
+        showNotification('📁 Document analyzed and pages rendered.', 'success');
+
     } catch (error) {
         console.error("Error reading PDF:", error);
-        alert("Failed to load PDF. It might be password protected or corrupted.");
+        showNotification("Failed to load PDF. It might be encrypted.", "danger");
         resetTool();
     }
 }
@@ -341,7 +455,8 @@ async function renderUIThumbnails() {
                 <div style="position:absolute; top:5px; left:5px; background:rgba(0,0,0,0.6); color:white; font-size:10px; padding:2px 6px; border-radius:4px;">Pg ${pageNum}</div>
             </div>
             <div class="thumb-footer">
-                <button class="btn-download-single" onclick="downloadSinglePage(${pageNum})">⬇️ Download</button>
+                <!-- SEPARATED INSTANT PAGE DOWNLOAD BUTTON -->
+                <button class="btn-download-single" onclick="downloadSinglePage(${pageNum})">⬇&nbsp;Download Page</button>
             </div>
         `;
         grid.appendChild(wrapper);
@@ -354,7 +469,7 @@ async function renderUIThumbnails() {
             const viewport = page.getViewport({ scale: 0.4 }); // Skala kecil untuk preview
             canvas.width = viewport.width;
             canvas.height = viewport.height;
-            
+
             page.render({ canvasContext: ctx, viewport: viewport });
         });
     }
@@ -364,7 +479,7 @@ async function renderUIThumbnails() {
 async function renderHighResPageToDataUrl(pageNum, format, scale) {
     const page = await currentPdfDoc.getPage(pageNum);
     const viewport = page.getViewport({ scale: scale });
-    
+
     // Canvas Off-screen (Tidak ditampilkan ke user)
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -379,7 +494,7 @@ async function renderHighResPageToDataUrl(pageNum, format, scale) {
 
     // Tunggu proses render selesai
     await page.render({ canvasContext: ctx, viewport: viewport }).promise;
-    
+
     // Kembalikan Data URL. Kualitas 0.9 (90%) untuk JPG/WebP
     return canvas.toDataURL(format, 0.9);
 }
@@ -398,7 +513,7 @@ async function downloadSinglePage(pageNum) {
 
     try {
         const dataUrl = await renderHighResPageToDataUrl(pageNum, format, scale);
-        
+
         // Buat link download palsu
         const link = document.createElement('a');
         link.href = dataUrl;
@@ -406,8 +521,10 @@ async function downloadSinglePage(pageNum) {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        
+        showNotification(`✅ Page ${pageNum} downloaded successfully.`, 'success');
     } catch (e) {
-        alert("An error occurred during conversion.");
+        showNotification("An error occurred during conversion.", 'danger');
         console.error(e);
     } finally {
         btn.innerText = oldText;
@@ -420,12 +537,12 @@ async function downloadAllAsZip() {
     const format = document.getElementById('imageFormat').value;
     const scale = parseFloat(document.getElementById('imageScale').value);
     const ext = format.split('/')[1] === 'jpeg' ? 'jpg' : format.split('/')[1];
-    
+
     const overlay = document.getElementById('progressOverlay');
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
     const zipBtn = document.getElementById('zipBtn');
-    
+
     overlay.style.display = 'flex';
     zipBtn.disabled = true;
 
@@ -437,24 +554,25 @@ async function downloadAllAsZip() {
         for (let i = 1; i <= totalPages; i++) {
             progressText.innerText = `Rendering page ${i} of ${totalPages}...`;
             progressBar.style.width = `${(i / totalPages) * 100}%`;
-            
+
             const dataUrl = await renderHighResPageToDataUrl(i, format, scale);
-            
+
             // Hapus prefix data:image/...;base64,
             const base64Data = dataUrl.replace(/^data:image\/(png|jpeg|webp);base64,/, "");
-            
+
             // Format nama file jadi 01, 02, biar rapi urutannya
             const numStr = i.toString().padStart(totalPages.toString().length, '0');
             imgFolder.file(`Page_${numStr}.${ext}`, base64Data, {base64: true});
         }
 
         progressText.innerText = `Compressing to ZIP...`;
-        
+
         const zipContent = await zip.generateAsync({type: "blob"});
         saveAs(zipContent, `${originalFileName}_Images.zip`); // Menggunakan FileSaver.js
+        showNotification('📦 ZIP Archive downloaded successfully.', 'success');
 
     } catch (e) {
-        alert("An error occurred while building the ZIP file.");
+        showNotification("An error occurred while building the ZIP file.", 'danger');
         console.error(e);
     } finally {
         overlay.style.display = 'none';
@@ -472,23 +590,59 @@ function resetTool() {
     document.getElementById('thumbnailGrid').innerHTML = '';
     currentPdfDoc = null;
     totalPages = 0;
+    showNotification('🧹 Workspace reset successfully.');
 }
 
-// Logika Dark Mode
+// Custom Toast Notification System (Anti-Browser Alert)
+function showNotification(message, type = "success") {
+    const oldToast = document.getElementById('omni-toast');
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'omni-toast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '30px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.background = type === 'success' ? '#28a745' : '#dc3545';
+    toast.style.color = '#fff';
+    toast.style.padding = '12px 24px';
+    toast.style.borderRadius = '50px';
+    toast.style.fontSize = '14px';
+    toast.style.fontWeight = '600';
+    toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+    toast.style.zIndex = '9999';
+    toast.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    toast.style.opacity = '0';
+    toast.innerHTML = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+        toast.style.opacity = '1';
+    }, 10);
+
+    setTimeout(() => {
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+    }, 3000);
+}
+
+// Dark Mode Toggle Logic
 function toggleDarkMode() {
     const body = document.body;
-    const btn = document.getElementById('darkModeToggle');
     if (body.getAttribute('data-theme') === 'dark') {
         body.removeAttribute('data-theme');
-        btn.innerHTML = '🌙 Dark Mode';
-        btn.style.background = 'var(--primary)';
-        btn.style.color = '#fff';
     } else {
         body.setAttribute('data-theme', 'dark');
-        btn.innerHTML = '☀️ Light Mode';
-        btn.style.background = '#fff';
-        btn.style.color = '#000';
     }
+}
+
+// Cek tema default
+if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.setAttribute('data-theme', 'dark');
 }
 </script>
 
