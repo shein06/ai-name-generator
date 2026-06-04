@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+
+    <!-- Google Verification Tag -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure File Downloader | OmniTools AI</title>
+    <meta name="robots" content="noindex, follow"> <!-- We don't want Google to index the transition page to avoid thin content flags -->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f8f9fa; 
+            --text-color: #333; 
+            --card-bg: #fff;
+            --primary: #1a73e8; 
+            --primary-hover: #1557b0;
+            --border-color: #e0e0e0; 
+            --success: #28a745; 
+            --success-hover: #218838;
+            --muted-text: #666;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212; 
+            --text-color: #e0e0e0; 
+            --card-bg: #1e1e1e;
+            --primary: #4da3ff; 
+            --primary-hover: #80bfff;
+            --border-color: #333;
+            --muted-text: #aaa;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: var(--bg-color); 
+            color: var(--text-color); 
+            margin: 0; 
+            padding: 0; 
+            transition: background 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px 20px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .download-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 550px;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .file-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .file-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            word-wrap: break-word;
+            color: var(--text-color);
+        }
+
+        /* Progress Bar & Timer */
+        .timer-container {
+            margin: 20px 0;
+        }
+
+        .countdown {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-bg {
+            background: var(--border-color);
+            height: 8px;
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .progress-bar {
+            background: var(--primary);
+            height: 100%;
+            width: 100%;
+            border-radius: 4px;
+            transition: width 1s linear;
+        }
+
+        /* Download Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 35px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+        }
+        .btn-success:hover {
+            background: var(--success-hover);
+        }
+
+        .btn:disabled {
+            background: var(--border-color) !important;
+            color: var(--muted-text) !important;
+            cursor: not-allowed;
+        }
+
+        /* Ad Slots placeholders */
+        .ad-slot-wrapper {
+            width: 100%;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Responsive Banner Containers to prevent layout shift */
+        .ad-banner-728x90 {
+            width: 100%;
+            max-width: 728px;
+            min-height: 90px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .ad-banner-300x250 {
+            width: 300px;
+            height: 250px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 13px;
+            color: var(--muted-text);
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- AD SLOT 1: Top Responsive/Banner Ad (Adsterra 728x90 Leaderboard) -->
+    <div class="ad-slot-wrapper">
+        <div class="ad-banner-728x90">
+            <!-- 
+               GANTI KODE DI BAWAH INI DENGAN KODE BANNER 728x90 ANDA DARI ADSTERRA 
+            -->
+            <script>
+  atOptions = {
+    'key' : 'a64feffc695fe6ba23851be67a2bbb4c',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://bogavoidmemorize.com/a64feffc695fe6ba23851be67a2bbb4c/invoke.js"></script>
+
+
+        </div>
+    </div>
+
+    <!-- Main Gateway Box -->
+    <div class="download-card">
+        <div class="file-icon" id="fileIcon">📄</div>
+        <div class="file-name" id="fileNameDisplay">Your File is Ready</div>
+
+        <!-- Progress / Countdown UI -->
+        <div id="statusWrapper">
+            <p style="margin: 0; font-size: 14px; color: var(--muted-text);">Generating secure download link...</p>
+            <div class="timer-container">
+                <div class="countdown" id="timer">5</div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div id="actionWrapper" style="display: none;">
+            <button id="downloadBtn" class="btn btn-success" onclick="startFileDownload()">
+                📥 Download File Now
+            </button>
+            <p style="margin-top: 10px; font-size: 12px; color: var(--muted-text);">
+                Didn't start? <a href="#" id="backupLink" style="color: var(--primary);">Click here to retry</a>
+            </p>
+        </div>
+        
+        <!-- OPTIONAL: Adsterra Direct Link (High Risk/High Reward) -->
+        <!-- 
+        <div style="margin-top: 15px;">
+            <a href="YOUR_ADSTERRA_DIRECT_LINK" target="_blank" class="btn btn-primary" style="background-color: #6c757d; font-size: 14px; padding: 10px;">
+                ⚡ Fast CDN Mirror (Sponsored Link)
+            </a>
+        </div>
+        -->
+    </div>
+
+    <!-- AD SLOT 2: Square Ad (Adsterra 300x250 Rectangle) -->
+    <div class="ad-slot-wrapper">
+        <div class="ad-banner-300x250">
+            <!-- 
+               GANTI KODE DI BAWAH INI DENGAN KODE BANNER 300x250 ANDA DARI ADSTERRA 
+            -->
+            <script>
+  atOptions = {
+    'key' : '3c5d3565076184a908451a65d4540a72',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bogavoidmemorize.com/3c5d3565076184a908451a65d4540a72/invoke.js"></script>
+
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 OmniTools AI. All rights reserved. Your files are processed securely on client-side.</p>
+</footer>
+
+<script>
+    // --- GATEWAY ENGINE CONTROLLER ---
+    let countdownVal = 5; // Countdown duration in seconds
+    let downloadUrl = "";
+    let fileName = "document.pdf";
+
+    // 1. Parse incoming parameters safely from URL
+    function parseParameters() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedUrl = urlParams.get('url');
+        const rawName = urlParams.get('name');
+
+        if (!encodedUrl) {
+            // Prevent redirection crash on blob: URLs or iframe sandbox previews
+            if (window.location.protocol === 'blob:' || !window.location.host) {
+                console.log("Running in sandbox/preview. Initializing with mock values.");
+                downloadUrl = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500"; // Mock image URL
+                fileName = "demo_document.jpg";
+                document.getElementById('fileNameDisplay').textContent = fileName + " (Preview Demo)";
+                setFileIcon(fileName);
+                return;
+            }
+            
+            // Fallback redirect for production wrapped safely
+            try {
+                window.location.replace("index.html");
+            } catch (e) {
+                console.error("Redirect blocked or failed:", e);
+            }
+            return;
+        }
+
+        // Decode URL safe strings
+        downloadUrl = decodeURIComponent(encodedUrl);
+        if (rawName) {
+            fileName = decodeURIComponent(rawName);
+        }
+
+        document.getElementById('fileNameDisplay').textContent = fileName;
+        setFileIcon(fileName);
+    }
+
+    // 2. Set beautiful file icon dynamically based on extension
+    function setFileIcon(name) {
+        const iconEl = document.getElementById('fileIcon');
+        const ext = name.split('.').pop().toLowerCase();
+
+        if (['pdf'].includes(ext)) iconEl.textContent = "📕";
+        else if (['jpg', 'jpeg', 'png', 'webp', 'gif'].includes(ext)) iconEl.textContent = "🖼️";
+        else if (['mp4', 'avi', 'mov', 'mkv'].includes(ext)) iconEl.textContent = "🎬";
+        else if (['zip', 'rar', '7z', 'tar'].includes(ext)) iconEl.textContent = "📦";
+        else if (['txt', 'doc', 'docx'].includes(ext)) iconEl.textContent = "📄";
+        else iconEl.textContent = "💾";
+    }
+
+    // 3. System countdown timer trigger
+    function startCountdown() {
+        const timerEl = document.getElementById('timer');
+        const progressEl = document.getElementById('progressBar');
+        const totalDuration = countdownVal;
+
+        const interval = setInterval(() => {
+            countdownVal--;
+            timerEl.textContent = countdownVal;
+
+            // Animate progress bar down
+            const percentage = (countdownVal / totalDuration) * 100;
+            progressEl.style.width = `${percentage}%`;
+
+            if (countdownVal <= 0) {
+                clearInterval(interval);
+                revealDownloadButton();
+            }
+        }, 1000);
+    }
+
+    // 4. Reveal real secure download triggers
+    function revealDownloadButton() {
+        document.getElementById('statusWrapper').style.display = "none";
+        document.getElementById('actionWrapper').style.display = "block";
+        
+        // Setup direct & backup hyperlinks
+        document.getElementById('backupLink').href = downloadUrl;
+        document.getElementById('backupLink').download = fileName;
+
+        // Auto trigger download
+        startFileDownload();
+    }
+
+    // 5. Execute file stream transfer download safely
+    function startFileDownload() {
+        if (!downloadUrl) return;
+
+        const tempLink = document.createElement('a');
+        tempLink.href = downloadUrl;
+        tempLink.download = fileName;
+        tempLink.target = "_blank"; // Cross-origin safety trigger
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        document.body.removeChild(tempLink);
+    }
+
+    // Initialize triggers on window load
+    window.addEventListener('DOMContentLoaded', () => {
+        // Force dark mode matching browser theme preferences automatically
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.setAttribute('data-theme', 'dark');
+        }
+        
+        parseParameters();
+        startCountdown();
+    });
+</script>
+
+<!-- 
+   (OPSIONAL) ADSTERRA SOCIAL BAR CODE (Sangat Direkomendasikan untuk CPM Tinggi)
+   Tempel kode Social Bar Anda tepat di bawah baris ini sebelum penutup body 
+-->
+
+</body>
+</html>
