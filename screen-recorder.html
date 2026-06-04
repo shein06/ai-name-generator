@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+
+    <!-- Google Verification Tag -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online Screen Recorder - No Watermark & Secure | OmniTools AI</title>
+    <meta name="description" content="Record your laptop screen, webcam, and audio instantly with our free online screen recorder. No installation, no watermarks, and 100% secure client-side recording.">
+    <link rel="canonical" href="https://omnitools.ai/screen-recorder.html" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* OmniTools AI Theme System Variables */
+        :root {
+            --bg-color: #f8f9fa; 
+            --text-color: #333; 
+            --card-bg: #fff;
+            --primary: #1a73e8; 
+            --primary-hover: #1557b0;
+            --border-color: #e0e0e0; 
+            --success: #28a745; 
+            --danger: #dc3545;
+            --accordion-bg: #f1f3f4;
+            --input-bg: #ffffff;
+            --muted-text: #666;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212; 
+            --text-color: #e0e0e0; 
+            --card-bg: #1e1e1e;
+            --primary: #4da3ff; 
+            --primary-hover: #80bfff;
+            --border-color: #333;
+            --accordion-bg: #2a2a2a;
+            --input-bg: #252525;
+            --muted-text: #aaa;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: var(--bg-color); 
+            color: var(--text-color); 
+            margin: 0; 
+            padding: 0; 
+            transition: background 0.3s, color 0.3s; 
+        }
+
+        header { 
+            text-align: center; 
+            padding: 40px 20px; 
+        }
+
+        .subtitle { 
+            color: var(--muted-text); 
+            font-size: 1rem; 
+            margin-top: 10px; 
+        }
+
+        .seo-container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+
+        .seo-card, .content, .how, .faq-section, .directory-section { 
+            background: var(--card-bg); 
+            padding: 35px; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            margin-bottom: 30px; 
+            border: 1px solid var(--border-color); 
+        }
+
+        /* Recorder Workspace */
+        .recorder-workspace {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 720px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #previewVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Floating Overlay Timer */
+        .recording-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(220, 53, 69, 0.9);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .blink-dot {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        /* Config Grid */
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            width: 100%;
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-select {
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Controls Block */
+        .controls-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-primary:hover { background: var(--primary-hover); }
+        .btn-danger { background: var(--danger); color: #fff; }
+        .btn-danger:hover { opacity: 0.9; }
+        .btn-success { background: var(--success); color: #fff; }
+        .btn-success:hover { opacity: 0.9; }
+        
+        .btn:disabled {
+            background: var(--border-color) !important;
+            color: var(--muted-text) !important;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Results / Success State */
+        .result-panel {
+            display: none;
+            text-align: center;
+            background: rgba(40, 167, 69, 0.08);
+            border: 1px solid var(--success);
+            padding: 25px;
+            border-radius: 12px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .status-message {
+            display: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .status-error {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        /* FAQ Accordions */
+        .accordion-item { border-bottom: 1px solid var(--border-color); padding: 15px 0; }
+        .accordion-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 16px; }
+        .accordion-answer { display: none; padding-top: 10px; font-size: 14px; color: var(--muted-text); line-height: 1.6; }
+        .accordion-icon { transition: transform 0.3s; font-size: 18px; }
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-answer { display: block; }
+
+        /* Ecosystem Directory Grid */
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-top: 25px; }
+        .directory-cat { background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .directory-cat h4 { margin-top: 0; color: var(--primary); font-size: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .directory-list { list-style: none; padding: 0; margin: 0; }
+        .directory-list li { margin-bottom: 10px; font-size: 14px; }
+        .directory-list a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+        .directory-list a:hover { color: var(--primary); }
+
+        /* How it works */
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .how-card { text-align: center; padding: 20px; border: 1px solid var(--border-color); border-radius: 10px; }
+        .how-card span { font-size: 30px; display: block; margin-bottom: 10px; }
+
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--border-color); font-size: 14px; }
+    </style>
+
+    <!-- Scheme Web Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "OmniTools AI Screen Recorder",
+      "operatingSystem": "Windows, macOS, Linux, ChromeOS",
+      "applicationCategory": "MultimediaApplication",
+      "browserRequirements": "Requires Modern HTML5 Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Free Online Screen Recorder</h1>
+    <div class="subtitle">Record your desktop, tabs, microphone, and webcam instantly with no installation required.</div>
+
+    <div style="margin-top: 20px;">
+        <button id="darkModeToggle" onclick="toggleDarkMode()" style="background: var(--primary); border: none; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; font-family: 'Poppins', sans-serif;">
+            🌙 Dark Mode
+        </button>
+    </div>
+</header>
+
+<div class="seo-container">
+    
+    <!-- Main Workspace Card -->
+    <div class="seo-card">
+        <div class="recorder-workspace">
+            
+            <!-- Video Player Box -->
+            <div class="video-container">
+                <!-- Recording Status Badge -->
+                <div class="recording-badge" id="recordBadge">
+                    <span class="blink-dot"></span>
+                    <span id="timerDisplay">00:00:00</span>
+                </div>
+                
+                <video id="previewVideo" autoplay muted playsinline></video>
+                <div id="noFeedPlaceholder" style="position: absolute; font-size: 15px; color: var(--muted-text); font-weight: 500;">
+                    Feed preview will load here when recording starts
+                </div>
+            </div>
+
+            <!-- Configuration Options -->
+            <div class="config-grid" id="configGrid">
+                <div class="form-group">
+                    <label>Capture Mode</label>
+                    <select id="recMode" class="form-select">
+                        <option value="screen">Screen Only</option>
+                        <option value="cam">Camera Only</option>
+                        <option value="hybrid">Screen + Camera (PiP)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Audio Source</label>
+                    <select id="recAudio" class="form-select">
+                        <option value="none">No Audio (Mute)</option>
+                        <option value="mic">Microphone</option>
+                        <option value="system">System Audio (Share Tab)</option>
+                        <option value="mixed">Microphone + System</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Resolution Limit</label>
+                    <select id="recResolution" class="form-select">
+                        <option value="1080">1080p (Full HD)</option>
+                        <option value="720" selected>720p (HD - Fast)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Frame Rate</label>
+                    <select id="recFps" class="form-select">
+                        <option value="30" selected>30 FPS (Standard)</option>
+                        <option value="60">60 FPS (Super Smooth)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="controls-row">
+                <button id="startBtn" class="btn btn-primary" onclick="initAndStartRecord()">⏺️ Start Capture</button>
+                <button id="pauseBtn" class="btn btn-primary" style="display: none;" onclick="pauseRecording()">⏸️ Pause</button>
+                <button id="resumeBtn" class="btn btn-success" style="display: none;" onclick="resumeRecording()">▶️ Resume</button>
+                <button id="stopBtn" class="btn btn-danger" style="display: none;" onclick="stopRecording()">⏹️ Stop & Save</button>
+            </div>
+
+            <!-- Output/Processing State (IndexedDB Ready) -->
+            <div class="result-panel" id="resultPanel">
+                <h3 style="color: var(--success); margin: 0 0 10px 0;">🎉 Video Recording Completed!</h3>
+                <p style="font-size: 13px; color: var(--muted-text); margin-bottom: 20px;">Your secure WebM recording is compiled. Save it to trigger download page.</p>
+                <button onclick="saveAndRedirect()" class="btn btn-success">📥 Process & Download File</button>
+                <div style="margin-top: 15px;">
+                    <button onclick="resetRecorder()" style="background: transparent; border: none; color: var(--primary); cursor: pointer; text-decoration: underline; font-family: 'Poppins'; font-size: 13px;">Record another clip</button>
+                </div>
+            </div>
+
+            <!-- Global Error Banner -->
+            <div id="errorBanner" class="status-message status-error"></div>
+
+        </div>
+    </div>
+
+    <!-- AdSense Placement -->
+    <div style="text-align:center; margin: 20px 0; min-height: 90px; background: rgba(0,0,0,0.02); border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--muted-text);">
+        AdSense Advertisement Slot
+    </div>
+
+    <!-- How to Record Laptop Screen Guide -->
+    <div class="how">
+        <h2 style="text-align: center; margin-top: 0;">How to Record Your Screen & Webcam</h2>
+        <div class="how-grid">
+            <div class="how-card">
+                <span>⚙️</span>
+                <strong>1. Choose Source</strong>
+                <p style="font-size: 14px; color: var(--muted-text); margin-top: 8px;">Select capture mode (Screen, Camera or Picture-in-Picture) and adjust audio inputs.</p>
+            </div>
+            <div class="how-card">
+                <span>⏺️</span>
+                <strong>2. Share & Capture</strong>
+                <p style="font-size: 14px; color: var(--muted-text); margin-top: 8px;">Grant permission to share screen or camera. Start recording instantly.</p>
+            </div>
+            <div class="how-card">
+                <span>📥</span>
+                <strong>3. Save to Device</strong>
+                <p style="font-size: 14px; color: var(--muted-text); margin-top: 8px;">Stop recording to compile file, process through secure gateway, and download.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deep Educational SEO Content -->
+    <div class="content">
+        <h2 style="margin-top: 0;">Free Laptop Screen Recorder - No Limits, Fully Browser-Based</h2>
+        <p>
+            Capturing video presentations, coding tutorials, game walkthroughs, or video lectures has never been simpler. Instead of downloading heavy executable software packages that hog your RAM and slow down system performance, our <strong>HTML5 Screen Recorder</strong> provides an instant, highly optimized online solution. 
+        </p>
+
+        <h3 style="margin-top: 25px;">Advanced Browser Canvas Stream Compositing</h3>
+        <p>
+            What makes this tool extremely powerful is its hybrid capture architecture. When you select <strong>Screen + Camera (PiP)</strong> mode, our local script merges your shared monitor display feed and camera feed onto a virtual Canvas layer. Your webcam is dynamically styled into a round circle and placed in the bottom right corner, mimicking premium desktop recorders. This processes completely locally inside your computer’s browser sandbox.
+        </p>
+
+        <h3 style="margin-top: 25px;">Uncompromised Privacy & Instant Compilation</h3>
+        <p>
+            Because your videos, confidential presentations, and personal audio feeds never pass through external cloud databases, your data is 100% secure. Once you finish recording, browser-native stream chunks are assembled instantly into high-performance <strong>WebM</strong> video formats. The file is saved right on your browser's physical device cache, keeping your information completely anonymous.
+        </p>
+    </div>
+
+    <!-- AdSense Placement -->
+    <div style="text-align:center; margin: 20px 0; min-height: 90px; background: rgba(0,0,0,0.02); border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--muted-text);">
+        AdSense Advertisement Slot
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h2 style="margin-top: 0; text-align: center; margin-bottom: 25px;">Frequently Asked Questions (FAQ)</h2>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Does this online screen recorder have a watermark?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                No, this tool is 100% free with no watermarks, brand logos, or visual stamps overlaid on your recorded files. You get clean, professional-looking screen recordings.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Can I record audio from both my microphone and computer system?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                Yes! Under the 'Audio Source' dropdown, select 'Microphone + System'. When your browser requests screen sharing, make sure to check the 'Share System Audio' box in the sharing prompt window to enable full mixed recording.
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-question" onclick="toggleAccordion(this)">
+                Is there a time limit on the recordings?
+                <span class="accordion-icon">＋</span>
+            </div>
+            <div class="accordion-answer">
+                There are no artificial time limits set by our page. However, because recording occurs directly inside browser virtual memory, maximum video length may vary depending on your device's free RAM and local system resources.
+            </div>
+        </div>
+    </div>
+
+    <!-- Directory recommended block -->
+    <div class="directory-section">
+        <h2 style="margin-top: 0; text-align: center;">Ecosystem Utilities Directory</h2>
+        <p style="text-align: center; font-size: 14px; color: var(--muted-text); margin-bottom: 30px;">Navigate through our comprehensive collection of 100% free web-native developer, writing, and PDF utilities.</p>
+
+        <div class="directory-grid">
+            <!-- Category 1 -->
+            <div class="directory-cat">
+                <h4>📄 PDF & Document Utilities</h4>
+                <ul class="directory-list">
+                    <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                    <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                    <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                    <li><a href="watermark-pdf.html">📑 Add Watermark to PDF</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="directory-cat">
+                <h4>✍️ AI & Content Writing Tools</h4>
+                <ul class="directory-list">
+                    <li><a href="article-rewriter.html">📝 AI Article Rewriter</a></li>
+                    <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                    <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                    <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="directory-cat">
+                <h4>🎨 Creative & Branding Names</h4>
+                <ul class="directory-list">
+                    <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                    <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                    <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                    <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="directory-cat">
+                <h4>💻 Developer, SEO & Media</h4>
+                <ul class="directory-list">
+                    <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                    <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                    <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                    <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                    <li><a href="twitter-downloader.html">🐦 Twitter Video Downloader</a></li>
+                    <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                    <li><a href="screen-recorder.html" style="color: var(--primary); font-weight: bold;">🎥 Online Screen Recorder</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">← Back to Homepage</a>
+    </div>
+
+</div>
+
+<footer>
+    <div class="social">
+        <p style="margin-top: 20px;">
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a> |
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms</a>
+        </p>
+    </div>
+    <p>&copy; 2026 OmniTools AI. All rights reserved.</p>
+</footer>
+
+<!-- Compositing feeds for PiP canvas compilation -->
+<video id="hiddenScreenFeed" autoplay muted playsinline style="display:none;"></video>
+<video id="hiddenCamFeed" autoplay muted playsinline style="display:none;"></video>
+<canvas id="compositorCanvas" style="display:none;"></canvas>
+
+<script>
+// FAQ Accordion Utility
+function toggleAccordion(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+    const icon = element.querySelector('.accordion-icon');
+    icon.textContent = item.classList.contains('active') ? '－' : '＋';
+}
+
+// Global Dark/Light Theme Handler
+function toggleDarkMode() {
+    const body = document.body;
+    const btn = document.getElementById('darkModeToggle');
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        btn.innerHTML = '🌙 Dark Mode';
+        btn.style.background = 'var(--primary)';
+        btn.style.color = '#fff';
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        btn.innerHTML = '☀️ Light Mode';
+        btn.style.background = '#fff';
+        btn.style.color = '#000';
+    }
+}
+
+/* ==========================================================================
+   POWERFUL LOCAL COMPOSITING MEDIA RECORDER SYSTEM
+   ========================================================================== */
+
+let mediaRecorder = null;
+let recordedChunks = [];
+let outputBlob = null;
+let streamTimer = null;
+let recordingSeconds = 0;
+
+// Raw media feed streams
+let screenStream = null;
+let camStream = null;
+let audioContext = null;
+let audioDestination = null;
+
+let isCanvasLooping = false;
+const compositeCanvas = document.getElementById('compositorCanvas');
+const compositeCtx = compositeCanvas.getContext('2d');
+
+const hiddenScreenVideo = document.getElementById('hiddenScreenFeed');
+const hiddenCamVideo = document.getElementById('hiddenCamFeed');
+const previewPlayer = document.getElementById('previewVideo');
+
+function showError(msg) {
+    const banner = document.getElementById('errorBanner');
+    if (msg) {
+        banner.textContent = msg;
+        banner.style.display = 'block';
+    } else {
+        banner.style.display = 'none';
+    }
+}
+
+async function initAndStartRecord() {
+    showError(null);
+    recordedChunks = [];
+    outputBlob = null;
+    recordingSeconds = 0;
+
+    const mode = document.getElementById('recMode').value;
+    const audioSetting = document.getElementById('recAudio').value;
+    const resHeight = parseInt(document.getElementById('recResolution').value);
+    const fpsValue = parseInt(document.getElementById('recFps').value);
+
+    // Dynamic resolution aspect calculation
+    const resWidth = Math.round((resHeight * 16) / 9);
+
+    try {
+        // 1. Get Screen Stream if needed
+        if (mode === 'screen' || mode === 'hybrid') {
+            const screenConstraints = {
+                video: {
+                    width: { ideal: resWidth },
+                    height: { ideal: resHeight },
+                    frameRate: { ideal: fpsValue }
+                },
+                audio: audioSetting === 'system' || audioSetting === 'mixed'
+            };
+            screenStream = await navigator.mediaDevices.getDisplayMedia(screenConstraints);
+            
+            // Listen if user clicks "Stop Sharing" on chrome system banner
+            screenStream.getVideoTracks()[0].onended = () => stopRecording();
+        }
+
+        // 2. Get Camera Stream if needed
+        if (mode === 'cam' || mode === 'hybrid') {
+            const camConstraints = {
+                video: {
+                    width: { ideal: 640 },
+                    height: { ideal: 480 },
+                    frameRate: { ideal: fpsValue }
+                },
+                audio: false // handle mic separately below
+            };
+            camStream = await navigator.mediaDevices.getUserMedia(camConstraints);
+        }
+
+        // 3. Audio Mixing Pipeline via AudioContext
+        let micStream = null;
+        if (audioSetting === 'mic' || audioSetting === 'mixed') {
+            try {
+                micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            } catch (micErr) {
+                console.warn("Microphone not available or blocked:", micErr);
+                showError("⚠️ Unable to access microphone. Recording will continue without microphone audio.");
+            }
+        }
+
+        // Setup unified audio node pipeline
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        audioDestination = audioContext.createMediaStreamDestination();
+        let hasAudioSource = false;
+
+        if (micStream && micStream.getAudioTracks().length > 0) {
+            const micSource = audioContext.createMediaStreamSource(micStream);
+            micSource.connect(audioDestination);
+            hasAudioSource = true;
+        }
+
+        if (screenStream && screenStream.getAudioTracks().length > 0) {
+            const sysAudioSource = audioContext.createMediaStreamSource(screenStream);
+            sysAudioSource.connect(audioDestination);
+            hasAudioSource = true;
+        }
+
+        // 4. Compositing and Target Feed Resolution
+        let recordStream = null;
+
+        if (mode === 'hybrid') {
+            // Setup hidden feeds to draw on canvas
+            hiddenScreenVideo.srcObject = screenStream;
+            hiddenCamVideo.srcObject = camStream;
+
+            // Wait for feeds metadata to be ready
+            await Promise.all([
+                new Promise(r => hiddenScreenVideo.onloadedmetadata = r),
+                new Promise(r => hiddenCamVideo.onloadedmetadata = r)
+            ]);
+
+            // Match canvas dimension to resolution standard
+            compositeCanvas.width = resWidth;
+            compositeCanvas.height = resHeight;
+
+            isCanvasLooping = true;
+            canvasLoop(resWidth, resHeight);
+
+            // Capture 100% clean canvas video feed
+            recordStream = compositeCanvas.captureStream(fpsValue);
+        } else if (mode === 'screen') {
+            recordStream = new MediaStream([screenStream.getVideoTracks()[0]]);
+        } else if (mode === 'cam') {
+            recordStream = new MediaStream([camStream.getVideoTracks()[0]]);
+        }
+
+        // Merge Web Audio Node Tracks into recorder compilation
+        if (hasAudioSource) {
+            const mixedAudioTracks = audioDestination.stream.getAudioTracks();
+            mixedAudioTracks.forEach(track => recordStream.addTrack(track));
+        }
+
+        // Attach target stream to live player container
+        previewPlayer.srcObject = recordStream;
+        previewPlayer.play();
+        document.getElementById('noFeedPlaceholder').style.display = 'none';
+
+        // 5. Build Media Recorder (Format with maximum compatibility fallback WebM/VP8)
+        let mimeType = 'video/webm;codecs=vp8,opus';
+        if (!MediaRecorder.isTypeSupported(mimeType)) {
+            mimeType = 'video/webm;codecs=vp9,opus';
+        }
+        if (!MediaRecorder.isTypeSupported(mimeType)) {
+            mimeType = 'video/webm';
+        }
+
+        mediaRecorder = new MediaRecorder(recordStream, { mimeType });
+
+        mediaRecorder.ondataavailable = (e) => {
+            if (e.data && e.data.size > 0) {
+                recordedChunks.push(e.data);
+            }
+        };
+
+        mediaRecorder.onstop = () => {
+            cleanActiveStreams();
+            compileAndPrepareOutput();
+        };
+
+        // Start Recording Process
+        mediaRecorder.start(250); // Get video slices every 250ms
+        startTimer();
+
+        // Control Panel UI Mode Transitions
+        document.getElementById('configGrid').style.display = 'none';
+        document.getElementById('startBtn').style.display = 'none';
+        document.getElementById('pauseBtn').style.display = 'inline-flex';
+        document.getElementById('stopBtn').style.display = 'inline-flex';
+        document.getElementById('recordBadge').style.display = 'inline-flex';
+
+    } catch (err) {
+        console.error("Recording initialization failed:", err);
+        showError(`⚠️ Failed to start recording: ${err.message || err}. Make sure to grant screen/camera permissions.`);
+        cleanActiveStreams();
+    }
+}
+
+// Real-time canvas PIP drawing looping logic
+function canvasLoop(width, height) {
+    if (!isCanvasLooping) return;
+
+    // Draw main computer desktop stream
+    compositeCtx.drawImage(hiddenScreenVideo, 0, 0, width, height);
+
+    // Draw video feed round circular PIP overlay
+    const pipWidth = width * 0.22;
+    const pipHeight = height * 0.22;
+    const x = width - pipWidth - 30; // 30px offset padding
+    const y = height - pipHeight - 30;
+
+    compositeCtx.save();
+    compositeCtx.beginPath();
+    compositeCtx.arc(x + pipWidth / 2, y + pipHeight / 2, pipWidth / 2, 0, Math.PI * 2);
+    compositeCtx.closePath();
+    compositeCtx.clip();
+    
+    // Draw raw camera feed
+    compositeCtx.drawImage(hiddenCamVideo, x, y, pipWidth, pipHeight);
+    compositeCtx.restore();
+
+    requestAnimationFrame(() => canvasLoop(width, height));
+}
+
+function startTimer() {
+    recordingSeconds = 0;
+    const display = document.getElementById('timerDisplay');
+    display.textContent = "00:00:00";
+
+    streamTimer = setInterval(() => {
+        recordingSeconds++;
+        const hrs = String(Math.floor(recordingSeconds / 3600)).padStart(2, '0');
+        const mins = String(Math.floor((recordingSeconds % 3600) / 60)).padStart(2, '0');
+        const secs = String(recordingSeconds % 60).padStart(2, '0');
+        display.textContent = `${hrs}:${mins}:${secs}`;
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(streamTimer);
+    document.getElementById('recordBadge').style.display = 'none';
+}
+
+function pauseRecording() {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.pause();
+        clearInterval(streamTimer);
+        document.getElementById('pauseBtn').style.display = 'none';
+        document.getElementById('resumeBtn').style.display = 'inline-flex';
+    }
+}
+
+function resumeRecording() {
+    if (mediaRecorder && mediaRecorder.state === 'paused') {
+        mediaRecorder.resume();
+        startTimer();
+        document.getElementById('resumeBtn').style.display = 'none';
+        document.getElementById('pauseBtn').style.display = 'inline-flex';
+    }
+}
+
+function stopRecording() {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+    }
+    stopTimer();
+    isCanvasLooping = false;
+}
+
+function cleanActiveStreams() {
+    if (screenStream) {
+        screenStream.getTracks().forEach(track => track.stop());
+        screenStream = null;
+    }
+    if (camStream) {
+        camStream.getTracks().forEach(track => track.stop());
+        camStream = null;
+    }
+    if (audioContext && audioContext.state !== 'closed') {
+        audioContext.close();
+    }
+    
+    // Sever element feeds
+    hiddenScreenVideo.srcObject = null;
+    hiddenCamVideo.srcObject = null;
+}
+
+function compileAndPrepareOutput() {
+    outputBlob = new Blob(recordedChunks, { type: 'video/webm' });
+    const localUrl = URL.createObjectURL(outputBlob);
+    
+    // Display finished recording on player for immediate preview check
+    previewPlayer.srcObject = null;
+    previewPlayer.src = localUrl;
+    previewPlayer.controls = true;
+    previewPlayer.muted = false;
+
+    // Show save option card
+    document.getElementById('pauseBtn').style.display = 'none';
+    document.getElementById('resumeBtn').style.display = 'none';
+    document.getElementById('stopBtn').style.display = 'none';
+    document.getElementById('resultPanel').style.display = 'block';
+}
+
+// Secure storage integration on local database and routing gateway redirect
+function saveAndRedirect() {
+    if (!outputBlob) {
+        showError("⚠️ No valid screen recording data is found.");
+        return;
+    }
+
+    const timestamp = new Date().toISOString().slice(0,10);
+    const fileName = `ScreenRecord_${timestamp}.webm`;
+
+    // 1. Open browser persistent local storage
+    const dbRequest = indexedDB.open("OmniToolsDownloads", 1);
+    
+    dbRequest.onupgradeneeded = (e) => {
+        e.target.result.createObjectStore("files");
+    };
+
+    dbRequest.onsuccess = (e) => {
+        const db = e.target.result;
+        const tx = db.transaction("files", "readwrite");
+        tx.objectStore("files").put(outputBlob, "pending_file");
+
+        tx.oncomplete = () => {
+            // 2. Redirect securely to countdown gateway once stored
+            window.location.href = `download.html?source=indexeddb&name=${encodeURIComponent(fileName)}`;
+        };
+    };
+
+    dbRequest.onerror = (e) => {
+        console.error("Local indexedDB storage failed:", e);
+        showError("⚠️ Internal browser storage error. Please try clicking the button again.");
+    };
+}
+
+function resetRecorder() {
+    recordedChunks = [];
+    outputBlob = null;
+    previewPlayer.src = "";
+    previewPlayer.srcObject = null;
+    previewPlayer.controls = false;
+    
+    document.getElementById('noFeedPlaceholder').style.display = 'block';
+    document.getElementById('resultPanel').style.display = 'none';
+    document.getElementById('configGrid').style.display = 'grid';
+    document.getElementById('startBtn').style.display = 'inline-flex';
+}
+</script>
+
+</body>
+</html>
