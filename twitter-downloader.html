@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LVEC8BY40"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4LVEC8BY40');
+    </script>
+
+    <!-- Google Verification Tag -->
+    <meta name="google-site-verification" content="sS5yFGhXwlmO2Ru-TLbHMMDWakK5IWPDk05aEblA88k" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Video Downloader - Download X Videos & GIFs Free | OmniTools AI</title>
+    <meta name="description" content="Download Twitter (X) videos and GIFs in high definition (MP4) instantly. 100% free, fast, secure, and compatible with mobile & desktop. No login required.">
+    <link rel="canonical" href="https://omnitools.ai/twitter-downloader.html" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            DEFAULT: '#1a73e8',
+                            hover: '#1557b0',
+                            dark: '#4da3ff'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Theme Transition & Custom Elements */
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --muted-text: #666;
+        }
+        .dark {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --border-color: #333333;
+            --muted-text: #aaa;
+        }
+        .theme-bg { background-color: var(--bg-color); }
+        .theme-text { color: var(--text-color); }
+        .theme-card { background-color: var(--card-bg); border-color: var(--border-color); }
+        .theme-border { border-color: var(--border-color); }
+        .theme-muted { color: var(--muted-text); }
+    </style>
+</head>
+<body class="theme-bg theme-text min-h-screen">
+
+<header class="py-8 px-4 text-center border-b theme-border">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <a href="index.html" class="text-2xl font-bold tracking-tight text-primary flex items-center gap-2">
+            🚀 OmniTools AI
+        </a>
+        <div class="flex items-center gap-4">
+            <button id="darkModeToggle" onclick="toggleDarkMode()" class="px-5 py-2 rounded-full font-semibold bg-gray-200 dark:bg-neutral-800 text-sm hover:opacity-90 transition">
+                🌙 Dark Mode
+            </button>
+        </div>
+    </div>
+</header>
+
+<div class="max-w-4xl mx-auto px-4 py-10">
+
+    <div class="theme-card border p-6 md:p-10 rounded-2xl shadow-xl text-center mb-10 transition">
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">Twitter Video Downloader</h1>
+        <p class="theme-muted text-base max-w-lg mx-auto mb-8">Save high-quality MP4 videos and GIFs from X (Twitter) directly to your device securely and without limits.</p>
+
+        <!-- Downloader Input Workspace -->
+        <div class="max-w-2xl mx-auto">
+            <div class="flex flex-col sm:flex-row items-center gap-3 mb-4">
+                <input type="text" id="tweetUrl" placeholder="Paste Twitter / X tweet link here..." 
+                       class="w-full px-5 py-4 rounded-xl border theme-border bg-transparent outline-none focus:border-primary transition text-base" />
+                <button onclick="fetchTweetMedia()" id="downloadBtn" 
+                        class="w-full sm:w-auto bg-primary hover:bg-primary-hover text-white font-bold py-4 px-8 rounded-xl transition flex items-center justify-center gap-2 shrink-0">
+                    <span id="spinner" class="hidden animate-spin inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full"></span>
+                    <span id="btnText">Download</span>
+                </button>
+            </div>
+            <div id="statusMessage" class="hidden text-sm py-3 px-4 rounded-xl font-medium mb-6"></div>
+        </div>
+
+        <!-- Results Container (Hidden until fetched) -->
+        <div id="resultsContainer" class="hidden max-w-2xl mx-auto border theme-border rounded-2xl p-5 md:p-8 mt-8 text-left transition animate-fade-in">
+            <h3 class="font-bold text-lg mb-4 text-primary">✓ Tweet Media Found</h3>
+            
+            <!-- Tweet Meta Header -->
+            <div class="flex items-start gap-4 mb-5 pb-5 border-b theme-border">
+                <div class="w-12 h-12 bg-gray-200 dark:bg-neutral-800 rounded-full flex items-center justify-center font-bold text-xl uppercase shrink-0" id="authorInitial">T</div>
+                <div>
+                    <h4 class="font-bold text-base" id="tweetAuthor">X User</h4>
+                    <p class="text-xs theme-muted" id="tweetUsername">@username</p>
+                    <p class="text-xs theme-muted mt-1" id="tweetLikes">Likes: 0 | Retweets: 0</p>
+                </div>
+            </div>
+
+            <!-- Media Preview Container -->
+            <div class="w-full rounded-xl overflow-hidden mb-6 bg-black flex items-center justify-center" id="mediaPreviewWrapper">
+                <!-- Media components will be loaded here dynamically -->
+            </div>
+
+            <!-- Download Options Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <a id="directDlBtn" href="#" target="_blank" rel="noopener noreferrer"
+                   class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-center py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2 shadow-lg">
+                    ⬇️ Open Direct Media
+                </a>
+                <button onclick="copyMediaUrl()" 
+                   class="bg-gray-200 hover:bg-gray-300 dark:bg-neutral-800 dark:hover:bg-neutral-700 font-bold py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2">
+                    🔗 Copy Media URL
+                </button>
+            </div>
+            
+            <p class="text-xs theme-muted text-center mt-4">
+                <strong>Pro-tip:</strong> If the video plays instead of downloading, long-press/right-click the media and select <strong>"Save Video As..."</strong> or use the three-dot browser menu.
+            </p>
+        </div>
+    </div>
+
+    <!-- Ads Placement -->
+    <div class="w-full min-h-[90px] border border-dashed theme-border flex items-center justify-center rounded-xl bg-gray-50 dark:bg-neutral-900 text-sm theme-muted mb-10 p-4 text-center">
+        AdSense Advertisement Slot — Native Responsive Banner
+    </div>
+
+    <!-- How to Use Section -->
+    <div class="how theme-card border p-6 md:p-10 rounded-2xl mb-10 transition">
+        <h2 class="text-2xl font-bold mb-8 text-center">How to Save Videos from Twitter (X)</h2>
+        <div class="how-grid">
+            <div class="how-card theme-card border">
+                <span>🔗</span>
+                <strong class="block text-base font-bold mb-2">1. Copy Post URL</strong>
+                <p class="text-sm theme-muted">Go to Twitter/X, click the share icon on the post containing the video, and choose "Copy Link".</p>
+            </div>
+            <div class="how-card theme-card border mt-6 sm:mt-0">
+                <span>📥</span>
+                <strong class="block text-base font-bold mb-2">2. Paste & Extract</strong>
+                <p class="text-sm theme-muted">Paste the copied URL in the input bar above, then click the "Download" button to extract media tracks.</p>
+            </div>
+            <div class="how-card theme-card border mt-6 sm:mt-0">
+                <span>📁</span>
+                <strong class="block text-base font-bold mb-2">3. Download HD MP4</strong>
+                <p class="text-sm theme-muted">Click the generated button to instantly stream or right-click to download the parsed high-definition MP4 file.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deep Educational SEO Content -->
+    <div class="content theme-card border p-6 md:p-10 rounded-2xl mb-10 transition">
+        <h2 class="text-2xl font-extrabold mb-4">No-Limits Local Twitter Video Downloader</h2>
+        <p class="mb-4 leading-relaxed theme-muted">
+            X (formerly Twitter) is a goldmine for educational tutorials, trending breaking news, captivating animations, and humorous video clips. Unfortunately, the platform does not include a native download button for public videos. Storing these assets offline is essential for presentation backings, archival security, or content compilation edits.
+        </p>
+        <p class="mb-4 leading-relaxed theme-muted">
+            Our **Twitter Video Downloader** is built specifically to address the major shortcomings of other third-party download websites. Many competitors force you to install malware-laden extensions, sit through relentless redirection scripts, or subscribe to hidden accounts. OmniTools AI processes your links safely, delivering direct CDN references with no boundaries.
+        </p>
+
+        <h3 class="text-xl font-bold mt-6 mb-3">Why OmniTools AI is the Most Reliable Choice</h3>
+        <p class="mb-4 leading-relaxed theme-muted">
+            Rather than deploying sluggish artificial intelligence queries that guess endpoints, our engine evaluates the core syntax of your tweet status structure locally on your screen. Using advanced parsing pathways, it retrieves original HD links directly from Twitter’s high-speed video content distribution network (CDN).
+        </p>
+        <ul class="list-disc pl-6 mb-6 space-y-2 theme-muted">
+            <li><strong>Complete Security Guarantee:</strong> No credential logins, no cookies tracking, and no system-invasive scripts.</li>
+            <li><strong>Pure Logic Engine:</strong> Fully lightweight JavaScript operation ensures optimized loading times with no downtime delays.</li>
+            <li><strong>Optimized for Devices:</strong> Fully responsive controls designed to work seamlessly on Android, iOS, tablet, and desktop screens.</li>
+            <li><strong>Direct CDN Paths:</strong> Access maximum resolution files (including standard MP4 formats and looping GIFs) directly from the server source.</li>
+        </ul>
+    </div>
+
+    <!-- Ads Placement -->
+    <div class="w-full min-h-[90px] border border-dashed theme-border flex items-center justify-center rounded-xl bg-gray-50 dark:bg-neutral-900 text-sm theme-muted mb-10 p-4 text-center">
+        AdSense Advertisement Slot — Native Responsive Banner
+    </div>
+
+    <!-- FAQ Accordion Block -->
+    <div class="faq-section theme-card border p-6 md:p-10 rounded-2xl mb-10 transition">
+        <h2 class="text-2xl font-bold mb-6 text-center">Frequently Asked Questions</h2>
+
+        <div class="accordion-item">
+            <button class="accordion-question w-full text-left" onclick="toggleAccordion(this)">
+                <span>Do I need to pay or register an account to download videos?</span>
+                <span class="accordion-icon font-bold text-primary">＋</span>
+            </button>
+            <div class="accordion-answer mt-2 theme-muted">
+                No. All services on OmniTools AI are 100% free. You don't need to create an account, register your email, or install any external browser extensions to download videos.
+            </div>
+        </div>
+
+        <div class="accordion-item mt-4">
+            <button class="accordion-question w-full text-left" onclick="toggleAccordion(this)">
+                <span>Does this downloader save videos from private Twitter accounts?</span>
+                <span class="accordion-icon font-bold text-primary">＋</span>
+            </button>
+            <div class="accordion-answer mt-2 theme-muted">
+                To respect personal data laws and user privacy, we cannot extract video tracks from private or protected accounts. The tweet must be published from a public profile for our tool to locate its media CDN files.
+            </div>
+        </div>
+
+        <div class="accordion-item mt-4">
+            <button class="accordion-question w-full text-left" onclick="toggleAccordion(this)">
+                <span>Can I download Twitter videos on my iPhone or Android device?</span>
+                <span class="accordion-icon font-bold text-primary">＋</span>
+            </button>
+            <div class="accordion-answer mt-2 theme-muted">
+                Yes, our tool is fully responsive and compatible with mobile devices. On Android, simply click the Direct Media button and select "Save". On iOS, you can open the media stream, tap the browser share button, and choose "Save to Files".
+            </div>
+        </div>
+
+        <div class="accordion-item mt-4">
+            <button class="accordion-question w-full text-left" onclick="toggleAccordion(this)">
+                <span>What video formats and qualities are supported?</span>
+                <span class="accordion-icon font-bold text-primary">＋</span>
+            </button>
+            <div class="accordion-answer mt-2 theme-muted">
+                Our parser grabs the highest available resolution provided directly by the Twitter media API (usually 720p or 1080p MP4 formats). If the post contains a looping Twitter GIF, it will be extracted as a standard MP4 file.
+            </div>
+        </div>
+    </div>
+
+    <!-- Categorized Directory of OmniTools AI Ecosystem -->
+    <div class="directory-section theme-card border p-6 md:p-10 rounded-2xl mb-6 transition">
+        <h2 class="text-2xl font-bold text-center mb-2">OmniTools AI Ecosystem Directory</h2>
+        <p class="theme-muted text-center text-sm mb-8 max-w-lg mx-auto">Explore our robust collection of secure, browser-native tools for developers, designers, writers, and document administrators.</p>
+
+        <div class="directory-grid">
+            <!-- Category 1 -->
+            <div class="directory-cat">
+                <h4 class="font-bold border-b-2 theme-border pb-2 mb-3 text-primary text-sm uppercase">📄 PDF & Documents</h4>
+                <ul class="directory-list">
+                    <li><a href="split-pdf.html">✂️ Advanced PDF Splitter</a></li>
+                    <li><a href="pdf-to-image.html">🖼️ PDF to Image Converter</a></li>
+                    <li><a href="pdf-compressor.html">📉 High-Quality PDF Compressor</a></li>
+                    <li><a href="txt-to-pdf.html">📄 Plain TXT to PDF</a></li>
+                    <li><a href="pdf-to-word.html">📝 PDF to Editable Word</a></li>
+                    <li><a href="pdf-to-grayscale.html">🖨️ PDF to Grayscale B&W</a></li>
+                    <li><a href="resize-pdf.html">📏 Vector PDF Page Resizer</a></li>
+                    <li><a href="password-protect.html">🔒 Password Protect PDF</a></li>
+                    <li><a href="watermark-pdf.html">📑 Add Watermark to PDF</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="directory-cat">
+                <h4 class="font-bold border-b-2 theme-border pb-2 mb-3 text-primary text-sm uppercase">✍️ AI & Content Writing</h4>
+                <ul class="directory-list">
+                    <li><a href="article-rewriter.html">📝 AI Article Rewriter</a></li>
+                    <li><a href="ai-image-prompt.html">🖼️ AI Image Prompt Architect</a></li>
+                    <li><a href="tagline-generator.html">✨ Brand Tagline Generator</a></li>
+                    <li><a href="blog-title-generator.html">✍️ Blog Title Generator</a></li>
+                    <li><a href="similarity-checker.html">🔍 Content Similarity Checker</a></li>
+                    <li><a href="email-name-generator.html">📧 Email Name Generator</a></li>
+                    <li><a href="blog-name-generator.html">📝 Creative Blog Name Gen</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="directory-cat">
+                <h4 class="font-bold border-b-2 theme-border pb-2 mb-3 text-primary text-sm uppercase">🎨 Creative & Branding</h4>
+                <ul class="directory-list">
+                    <li><a href="business-name.html">💼 Business Name Generator</a></li>
+                    <li><a href="brand-name.html">🏷️ Brand Name Generator</a></li>
+                    <li><a href="company-name-generator.html">🏢 Company Name Generator</a></li>
+                    <li><a href="shop-name.html">🛍️ Shop Name Generator</a></li>
+                    <li><a href="startup-name.html">🚀 Startup Name Generator</a></li>
+                    <li><a href="gaming-name.html">🎮 Gaming Name Generator</a></li>
+                    <li><a href="youtube-name-generator.html">📺 YouTube Name Gen</a></li>
+                    <li><a href="username-generator.html">👤 Social Handle Username</a></li>
+                    <li><a href="hashtag-generator.html">#️ Instagram/TikTok Hashtags</a></li>
+                    <li><a href="font-generator.html">✨ Fancy Font Generator</a></li>
+                </ul>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="directory-cat">
+                <h4 class="font-bold border-b-2 theme-border pb-2 mb-3 text-primary text-sm uppercase">💻 Developer, SEO & Media</h4>
+                <ul class="directory-list">
+                    <li><a href="twitter-downloader.html" class="font-bold text-primary">🐦 Twitter Video Downloader</a></li>
+                    <li><a href="image-to-webp.html">🖼️ Optimize Image to WebP</a></li>
+                    <li><a href="json-formatter.html">🗒️ JSON Formatter & Minifier</a></li>
+                    <li><a href="qr-generator.html">🔳 Custom Style QR Generator</a></li>
+                    <li><a href="meta-tag-generator.html">🔎 Google SERP Meta Tag Gen</a></li>
+                    <li><a href="website-rank-analyzer.html">📈 Website SEO Rank Analyzer</a></li>
+                    <li><a href="pinterest-downloader.html">📌 Pinterest HD Downloader</a></li>
+                    <li><a href="password-gen.html">🔑 Secure Cryptographic Pwd</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-6">
+        <a href="index.html" class="text-primary hover:underline font-bold text-base">← Back to Homepage</a>
+    </div>
+
+</div>
+
+<footer class="text-center py-10 mt-10 border-t theme-border">
+    <div class="social mb-4">
+        <p class="space-x-4">
+            <a href="about.html" class="hover:underline">About</a> <span>|</span>
+            <a href="contact.html" class="hover:underline">Contact</a> <span>|</span>
+            <a href="privacy-policy.html" class="hover:underline">Privacy Policy</a> <span>|</span>
+            <a href="terms.html" class="hover:underline">Terms</a>
+        </p>
+    </div>
+    <p class="text-xs theme-muted">&copy; 2026 OmniTools AI. All rights reserved.</p>
+</footer>
+
+<script>
+// --- CLIENT-SIDE LOGIC SYSTEM ---
+
+// Dark Mode Toggle Logic
+function toggleDarkMode() {
+    const body = document.documentElement;
+    const btn = document.getElementById('darkModeToggle');
+    if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        btn.innerHTML = '🌙 Dark Mode';
+    } else {
+        body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        btn.innerHTML = '☀️ Light Mode';
+    }
+}
+
+// Check initial theme state on page load
+(function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const btn = document.getElementById('darkModeToggle');
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.documentElement.classList.add('dark');
+        btn.innerHTML = '☀️ Light Mode';
+    } else {
+        document.documentElement.classList.remove('dark');
+        btn.innerHTML = '🌙 Dark Mode';
+    }
+})();
+
+// Accordion Toggles
+function toggleAccordion(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+    
+    // Toggle answers
+    const answer = element.nextElementSibling;
+    const icon = element.querySelector('.accordion-icon');
+    
+    if (item.classList.contains('active')) {
+        answer.style.display = 'block';
+        icon.textContent = '－';
+    } else {
+        answer.style.display = 'none';
+        icon.textContent = '＋';
+    }
+}
+
+// Extraction Handler (Full Logic & Secure Client API parsing)
+async function fetchTweetMedia() {
+    const urlInput = document.getElementById('tweetUrl').value.trim();
+    const downloadBtn = document.getElementById('downloadBtn');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.getElementById('btnText');
+    const statusMessage = document.getElementById('statusMessage');
+    const resultsContainer = document.getElementById('resultsContainer');
+
+    // Reset Result Box
+    resultsContainer.classList.add('hidden');
+    hideStatus();
+
+    if (!urlInput) {
+        showStatus("Please enter a valid Twitter (X) post URL.", "error");
+        return;
+    }
+
+    // Twitter / X status validation logic regex
+    const tweetIdMatch = urlInput.match(/status\/(\d+)/);
+    if (!tweetIdMatch) {
+        showStatus("Invalid URL format. Please paste a valid status link (e.g. https://x.com/username/status/12345678).", "error");
+        return;
+    }
+
+    const tweetId = tweetIdMatch[1];
+
+    // Trigger Loading State
+    downloadBtn.disabled = true;
+    spinner.classList.remove('hidden');
+    btnText.textContent = "Analyzing...";
+
+    try {
+        // Build request utilizing BetterTwitFix / vxTwitter API (High availability, zero rate limit, no auth)
+        const apiEndpoint = `https://api.vxtwitter.com/Twitter/status/${tweetId}`;
+        const response = await fetch(apiEndpoint);
+
+        if (!response.ok) {
+            throw new Error("Unable to retrieve details from the specified post. Please ensure the post exists and the profile is public.");
+        }
+
+        const data = await response.json();
+
+        // Validate media presence
+        if (!data.mediaURLs || data.mediaURLs.length === 0) {
+            showStatus("No downloadable media (video, GIF, or image) was detected in this tweet.", "error");
+            return;
+        }
+
+        // Display results block
+        renderResults(data);
+        showStatus("✓ Media parsed successfully!", "success");
+
+    } catch (error) {
+        console.error(error);
+        showStatus(error.message || "An unexpected error occurred. Please double-check your link and try again.", "error");
+    } finally {
+        // Remove Loading State
+        downloadBtn.disabled = false;
+        spinner.classList.add('hidden');
+        btnText.textContent = "Download";
+    }
+}
+
+let activeMediaUrl = "";
+
+// Dynamic Result Rendering
+function renderResults(data) {
+    const resultsContainer = document.getElementById('resultsContainer');
+    const authorInitial = document.getElementById('authorInitial');
+    const tweetAuthor = document.getElementById('tweetAuthor');
+    const tweetUsername = document.getElementById('tweetUsername');
+    const tweetLikes = document.getElementById('tweetLikes');
+    const mediaPreviewWrapper = document.getElementById('mediaPreviewWrapper');
+    const directDlBtn = document.getElementById('directDlBtn');
+
+    // Author meta
+    tweetAuthor.textContent = data.user_name || "Twitter User";
+    tweetUsername.textContent = `@${data.user_screen_name || 'username'}`;
+    authorInitial.textContent = (data.user_name || "T").charAt(0).toUpperCase();
+    tweetLikes.textContent = `Likes: ${data.likes.toLocaleString()} | Retweets: ${data.retweets.toLocaleString()}`;
+
+    // Clear previous preview
+    mediaPreviewWrapper.innerHTML = "";
+
+    // Extract first available media item
+    const mediaUrl = data.mediaURLs[0];
+    activeMediaUrl = mediaUrl;
+
+    // Detect format and render matching preview tags
+    if (mediaUrl.includes('.mp4') || mediaUrl.includes('video.twimg.com') || (data.media_extended && data.media_extended[0]?.type === 'video')) {
+        // Render Video Preview player
+        const videoElement = document.createElement('video');
+        videoElement.src = mediaUrl;
+        videoElement.controls = true;
+        videoElement.className = "w-full max-h-[360px] object-contain";
+        videoElement.setAttribute('playsinline', '');
+        mediaPreviewWrapper.appendChild(videoElement);
+    } else {
+        // Render Image Preview wrapper
+        const imgElement = document.createElement('img');
+        imgElement.src = mediaUrl;
+        imgElement.className = "w-full max-h-[360px] object-contain";
+        mediaPreviewWrapper.appendChild(imgElement);
+    }
+
+    // Assign triggers
+    directDlBtn.href = mediaUrl;
+    
+    // Reveal Result block
+    resultsContainer.classList.remove('hidden');
+}
+
+// Copy Direct Media URL to clipboard helper
+function copyMediaUrl() {
+    if (!activeMediaUrl) return;
+
+    const tempInput = document.createElement('textarea');
+    tempInput.value = activeMediaUrl;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); // Mobile compatibility
+
+    try {
+        const copySuccess = document.execCommand('copy');
+        if (copySuccess) {
+            showStatus("✓ Media URL copied successfully to your clipboard!", "success");
+        } else {
+            showStatus("Failed to copy URL automatically.", "error");
+        }
+    } catch (e) {
+        showStatus("Failed to access your clipboard.", "error");
+    }
+
+    document.body.removeChild(tempInput);
+}
+
+// Toast status styling
+function showStatus(msg, type) {
+    const statusBox = document.getElementById('statusMessage');
+    statusBox.textContent = msg;
+    statusBox.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'dark:bg-emerald-950', 'dark:text-emerald-200', 'bg-red-100', 'text-red-800', 'dark:bg-red-950', 'dark:text-red-200');
+
+    if (type === 'success') {
+        statusBox.classList.add('bg-emerald-100', 'text-emerald-800', 'dark:bg-emerald-950', 'dark:text-emerald-200');
+    } else {
+        statusBox.classList.add('bg-red-100', 'text-red-800', 'dark:bg-red-950', 'dark:text-red-200');
+    }
+    statusBox.classList.remove('hidden');
+}
+
+function hideStatus() {
+    document.getElementById('statusMessage').classList.add('hidden');
+}
+</script>
+
+</body>
+</html>
