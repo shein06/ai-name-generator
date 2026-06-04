@@ -445,12 +445,14 @@ async function fetchMedia() {
             // Tampilkan Video Player
             previewContainer.innerHTML = `<video controls autoplay loop muted src="${mediaUrl}"></video>`;
             downloadBtn.innerHTML = '⬇️ Download MP4 File';
-            downloadBtn.href = mediaUrl; // Pinterest video biasanya membolehkan direct download
+            // MENGARAHKAN VIDEO KE GATEWAY DOWNLOAD
+            downloadBtn.href = `download.html?url=${encodeURIComponent(mediaUrl)}&name=pinterest_video.mp4`;
         } else {
             // Tampilkan Gambar
             previewContainer.innerHTML = `<img src="${mediaUrl}" alt="Pinterest Image">`;
             downloadBtn.innerHTML = '⬇️ Download JPG File';
-            downloadBtn.href = mediaUrl;
+            // MENGARAHKAN GAMBAR KE GATEWAY DOWNLOAD
+            downloadBtn.href = `download.html?url=${encodeURIComponent(mediaUrl)}&name=pinterest_image.jpg`;
         }
 
         resultArea.style.display = 'block';
