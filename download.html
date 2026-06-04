@@ -287,7 +287,7 @@
     let isDemoMode = false;
     let isIndexedDBMode = false;
     let localBlobFile = null;
-    let countdownValue = 5;
+    let countdownValue = 10;
     let countdownTimer;
 
     // Parse incoming parameters from URL safely
@@ -379,7 +379,7 @@
             timerElement.textContent = countdownValue;
             
             // Adjust progress bar percentage
-            const percent = (countdownValue / 5) * 100;
+            const percent = (countdownValue / 10) * 100;
             progressBar.style.width = `${percent}%`;
 
             if (countdownValue <= 0) {
