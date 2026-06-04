@@ -485,7 +485,9 @@ function renderResults(data) {
     }
 
     // Assign triggers
-    directDlBtn.href = mediaUrl;
+    // KODE BARU (Diubah agar masuk ke halaman iklan terlebih dahulu)
+const namaFile = "twitter_video.mp4";
+directDlBtn.href = `download.html?url=${encodeURIComponent(mediaUrl)}&name=${encodeURIComponent(namaFile)}`;
     
     // Reveal Result block
     resultsContainer.classList.remove('hidden');
