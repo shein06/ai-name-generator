@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure File Downloader | OmniTools AI</title>
-    <meta name="robots" content="noindex, follow"> <!-- We don't want Google to index the transition page to avoid thin content flags -->
+    <meta name="robots" content="noindex, follow"> <!-- Prevent Google from indexing this gateway to avoid thin content flags -->
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -211,7 +211,7 @@
     <div class="ad-slot-wrapper">
         <div class="ad-banner-728x90">
             <!-- 
-               GANTI KODE DI BAWAH INI DENGAN KODE BANNER 728x90 ANDA DARI ADSTERRA 
+               REPLACE THE CONFIGURATION DETAILS BELOW WITH YOUR ACTUALLY ACTIVE 728x90 BANNER FROM ADSTERRA 
             -->
             <script>
   atOptions = {
@@ -223,7 +223,6 @@
   };
 </script>
 <script src="https://bogavoidmemorize.com/a64feffc695fe6ba23851be67a2bbb4c/invoke.js"></script>
-
 
         </div>
     </div>
@@ -253,22 +252,13 @@
                 Didn't start? <a href="#" id="backupLink" style="color: var(--primary);">Click here to retry</a>
             </p>
         </div>
-        
-        <!-- OPTIONAL: Adsterra Direct Link (High Risk/High Reward) -->
-        <!-- 
-        <div style="margin-top: 15px;">
-            <a href="YOUR_ADSTERRA_DIRECT_LINK" target="_blank" class="btn btn-primary" style="background-color: #6c757d; font-size: 14px; padding: 10px;">
-                ⚡ Fast CDN Mirror (Sponsored Link)
-            </a>
-        </div>
-        -->
     </div>
 
     <!-- AD SLOT 2: Square Ad (Adsterra 300x250 Rectangle) -->
     <div class="ad-slot-wrapper">
         <div class="ad-banner-300x250">
             <!-- 
-               GANTI KODE DI BAWAH INI DENGAN KODE BANNER 300x250 ANDA DARI ADSTERRA 
+               REPLACE THE CONFIGURATION DETAILS BELOW WITH YOUR ACTUALLY ACTIVE 300x250 BANNER FROM ADSTERRA 
             -->
             <script>
   atOptions = {
@@ -291,105 +281,171 @@
 </footer>
 
 <script>
-    // --- GATEWAY ENGINE CONTROLLER ---
-    let countdownVal = 5; // Countdown duration in seconds
+    // Global parameters to manage download file details
     let downloadUrl = "";
-    let fileName = "document.pdf";
+    let fileName = "Your File";
+    let isDemoMode = false;
+    let isIndexedDBMode = false;
+    let localBlobFile = null;
+    let countdownValue = 5;
+    let countdownTimer;
 
-    // 1. Parse incoming parameters safely from URL
+    // Parse incoming parameters from URL safely
     function parseParameters() {
         const urlParams = new URLSearchParams(window.location.search);
-        const encodedUrl = urlParams.get('url');
-        const rawName = urlParams.get('name');
+        const sourceMode = urlParams.get('source');
+        downloadUrl = urlParams.get('url') || urlParams.get('file');
+        fileName = urlParams.get('name') || "secure_document.pdf";
 
-        if (!encodedUrl) {
-            // Prevent redirection crash on blob: URLs or iframe sandbox previews
-            if (window.location.protocol === 'blob:' || !window.location.host) {
-                console.log("Running in sandbox/preview. Initializing with mock values.");
-                downloadUrl = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500"; // Mock image URL
-                fileName = "demo_document.jpg";
-                document.getElementById('fileNameDisplay').textContent = fileName + " (Preview Demo)";
-                setFileIcon(fileName);
-                return;
-            }
-            
-            // Fallback redirect for production wrapped safely
-            try {
-                window.location.replace("index.html");
-            } catch (e) {
-                console.error("Redirect blocked or failed:", e);
-            }
-            return;
+        // Handle fallback if running in preview environment (blob: / local sandbox)
+        if (window.location.protocol === 'blob:' || (!downloadUrl && sourceMode !== 'indexeddb')) {
+            isDemoMode = true;
+            downloadUrl = "#";
+            fileName = "demo_omnitools_document.pdf";
+            console.log("Demo Mode Activated: Sandbox Environment Detected.");
         }
 
-        // Decode URL safe strings
-        downloadUrl = decodeURIComponent(encodedUrl);
-        if (rawName) {
-            fileName = decodeURIComponent(rawName);
+        // Handle local files generated from tool pages (stored via IndexedDB)
+        if (sourceMode === 'indexeddb') {
+            isIndexedDBMode = true;
+            retrieveLocalFile();
         }
 
-        document.getElementById('fileNameDisplay').textContent = fileName;
-        setFileIcon(fileName);
+        // Display updated file name on UI
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        if (fileNameDisplay) {
+            fileNameDisplay.textContent = fileName;
+        }
+
+        // Match dynamic icon representing extension
+        const fileIcon = document.getElementById('fileIcon');
+        if (fileIcon) {
+            const ext = fileName.split('.').pop().toLowerCase();
+            if (['zip', 'rar', '7z'].includes(ext)) fileIcon.textContent = "📦";
+            else if (['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'].includes(ext)) fileIcon.textContent = "🖼️";
+            else if (['mp4', 'avi', 'mkv', 'mov'].includes(ext)) fileIcon.textContent = "🎬";
+            else if (['mp3', 'wav', 'ogg'].includes(ext)) fileIcon.textContent = "🎵";
+            else if (['pdf'].includes(ext)) fileIcon.textContent = "📕";
+            else fileIcon.textContent = "📄";
+        }
+
+        // Configure fallback backup link
+        const backupLink = document.getElementById('backupLink');
+        if (backupLink) {
+            backupLink.href = downloadUrl;
+            backupLink.addEventListener('click', (e) => {
+                if (isDemoMode) {
+                    e.preventDefault();
+                    triggerDemoDownload();
+                } else if (isIndexedDBMode) {
+                    e.preventDefault();
+                    triggerIndexedDBDownload();
+                }
+            });
+        }
     }
 
-    // 2. Set beautiful file icon dynamically based on extension
-    function setFileIcon(name) {
-        const iconEl = document.getElementById('fileIcon');
-        const ext = name.split('.').pop().toLowerCase();
-
-        if (['pdf'].includes(ext)) iconEl.textContent = "📕";
-        else if (['jpg', 'jpeg', 'png', 'webp', 'gif'].includes(ext)) iconEl.textContent = "🖼️";
-        else if (['mp4', 'avi', 'mov', 'mkv'].includes(ext)) iconEl.textContent = "🎬";
-        else if (['zip', 'rar', '7z', 'tar'].includes(ext)) iconEl.textContent = "📦";
-        else if (['txt', 'doc', 'docx'].includes(ext)) iconEl.textContent = "📄";
-        else iconEl.textContent = "💾";
+    // Retrieve local blob from IndexedDB (so PDF tools don't break upon page redirect)
+    function retrieveLocalFile() {
+        const dbRequest = indexedDB.open("OmniToolsDownloads", 1);
+        dbRequest.onsuccess = (e) => {
+            const db = e.target.result;
+            const tx = db.transaction("files", "readonly");
+            const storeRequest = tx.objectStore("files").get("pending_file");
+            storeRequest.onsuccess = () => {
+                if (storeRequest.result) {
+                    localBlobFile = storeRequest.result;
+                    console.log("Locally stored file retrieved from memory successfully.");
+                } else {
+                    console.error("Local file expired or not found.");
+                }
+            };
+        };
     }
 
-    // 3. System countdown timer trigger
+    // Initialize and run secure progress countdown timer
     function startCountdown() {
-        const timerEl = document.getElementById('timer');
-        const progressEl = document.getElementById('progressBar');
-        const totalDuration = countdownVal;
+        const timerElement = document.getElementById('timer');
+        const progressBar = document.getElementById('progressBar');
+        const statusWrapper = document.getElementById('statusWrapper');
+        const actionWrapper = document.getElementById('actionWrapper');
 
-        const interval = setInterval(() => {
-            countdownVal--;
-            timerEl.textContent = countdownVal;
+        if (!timerElement || !progressBar) return;
 
-            // Animate progress bar down
-            const percentage = (countdownVal / totalDuration) * 100;
-            progressEl.style.width = `${percentage}%`;
+        progressBar.style.width = '100%';
 
-            if (countdownVal <= 0) {
-                clearInterval(interval);
-                revealDownloadButton();
+        countdownTimer = setInterval(() => {
+            countdownValue--;
+            timerElement.textContent = countdownValue;
+            
+            // Adjust progress bar percentage
+            const percent = (countdownValue / 5) * 100;
+            progressBar.style.width = `${percent}%`;
+
+            if (countdownValue <= 0) {
+                clearInterval(countdownTimer);
+                
+                // Hide loader, show action button
+                if (statusWrapper) statusWrapper.style.display = 'none';
+                if (actionWrapper) actionWrapper.style.display = 'block';
+
+                // Automatically trigger file download
+                startFileDownload();
             }
         }, 1000);
     }
 
-    // 4. Reveal real secure download triggers
-    function revealDownloadButton() {
-        document.getElementById('statusWrapper').style.display = "none";
-        document.getElementById('actionWrapper').style.display = "block";
-        
-        // Setup direct & backup hyperlinks
-        document.getElementById('backupLink').href = downloadUrl;
-        document.getElementById('backupLink').download = fileName;
+    // Trigger file download
+    function startFileDownload() {
+        if (isDemoMode) {
+            triggerDemoDownload();
+            return;
+        }
+        if (isIndexedDBMode) {
+            triggerIndexedDBDownload();
+            return;
+        }
 
-        // Auto trigger download
-        startFileDownload();
+        // Create virtual DOM element to cleanly download original file
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 
-    // 5. Execute file stream transfer download safely
-    function startFileDownload() {
-        if (!downloadUrl) return;
+    // Download locally cached file from memory
+    function triggerIndexedDBDownload() {
+        if (!localBlobFile) {
+            console.error("No cached file in database.");
+            return;
+        }
+        const tempUrl = URL.createObjectURL(localBlobFile);
+        const link = document.createElement('a');
+        link.href = tempUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(tempUrl);
+    }
 
-        const tempLink = document.createElement('a');
-        tempLink.href = downloadUrl;
-        tempLink.download = fileName;
-        tempLink.target = "_blank"; // Cross-origin safety trigger
-        document.body.appendChild(tempLink);
-        tempLink.click();
-        document.body.removeChild(tempLink);
+    // Generate safe mock file download when tested in preview workspace
+    function triggerDemoDownload() {
+        const dummyText = "Thank you for using OmniTools AI Secure File Downloader!\nThis is a simulated download to prove the redirect and gateway logic works seamlessly inside the sandbox preview.";
+        const blob = new Blob([dummyText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = "simulated_omnitools_document.txt";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        
+        console.log("Simulated file successfully downloaded inside Sandbox Environment.");
     }
 
     // Initialize triggers on window load
@@ -405,9 +461,9 @@
 </script>
 
 <!-- 
-   (OPSIONAL) ADSTERRA SOCIAL BAR CODE (Sangat Direkomendasikan untuk CPM Tinggi)
-   Tempel kode Social Bar Anda tepat di bawah baris ini sebelum penutup body 
+   ADSTERRA SOCIAL BAR CODE (Sangat Direkomendasikan untuk CPM Tinggi)
 -->
+<script src="https://bogavoidmemorize.com/18/4f/2d/184f2d38143c54a5913b8a8661a2e654.js"></script>
 
 </body>
 </html>
